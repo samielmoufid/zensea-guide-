@@ -1,0 +1,1366 @@
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "name": "Breadcrumbs",
+      "settings": {
+        "breadcrumbs_enabled": false,
+        "breadcrumbs_enabled_on_products": true,
+        "breadcrumbs_enabled_on_pages": true,
+        "breadcrumbs_enabled_on_collections": true,
+        "breadcrumbs_enabled_on_blogs": true,
+        "breadcrumbs_enabled_on_articles": true,
+        "breadcrumbs_menu_definition": "main-menu",
+        "prefer_shortest_path": true,
+        "separator_shape": "triangle",
+        "color_scheme": "",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "additional_class": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "cc_banner": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<div id=\"zensea-sale-banner-{{ section.id }}\" class=\"zensea-sale-banner\">\n  <div class=\"zensea-sale-icon\">\n    <svg viewBox=\"0 0 24 24\" fill=\"none\">\n      <path d=\"M20 12.5L12.5 20a2 2 0 0 1-2.8 0L3 13.3V4h9.3L20 11.7a.6.6 0 0 1 0 .8Z\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\"/>\n      <circle cx=\"8\" cy=\"8\" r=\"1.4\" fill=\"currentColor\"/>\n    </svg>\n  </div>\n\n  <div class=\"zensea-sale-text\">\n    <div class=\"zensea-sale-kicker\">OFFRE LIMITÉE</div>\n    <div class=\"zensea-sale-main\">Jusqu'à <strong>-25%</strong> sur une sélection d'articles</div>\n  </div>\n</div>\n\n<style>\n#zensea-sale-banner-{{ section.id }}{\n  display:flex;\n  align-items:center;\n  gap:8px;\n  width:100%;\n  max-width:520px;\n  padding:7px 11px;\n  border:1px solid #DCE6D8;\n  border-left:4px solid #2E5E46;\n  border-radius:10px;\n  background:#fff;\n  box-shadow:0 1px 2px rgba(34,51,42,.035);\n}\n\n#zensea-sale-banner-{{ section.id }} .zensea-sale-icon{\n  width:30px;\n  height:30px;\n  min-width:30px;\n  border-radius:50%;\n  background:rgba(46, 94, 70,.14);\n  color:#2E5E46;\n  display:flex;\n  align-items:center;\n  justify-content:center;\n}\n\n#zensea-sale-banner-{{ section.id }} .zensea-sale-icon svg{\n  width:15px;\n  height:15px;\n}\n\n#zensea-sale-banner-{{ section.id }} .zensea-sale-text{\n  line-height:1;\n}\n\n#zensea-sale-banner-{{ section.id }} .zensea-sale-kicker{\n  font-family:Arial,sans-serif;\n  font-size:8px;\n  font-weight:800;\n  letter-spacing:.12em;\n  color:#5A6B60;\n  text-transform:uppercase;\n  line-height:1;\n  margin-bottom:2px;\n}\n\n#zensea-sale-banner-{{ section.id }} .zensea-sale-main{\n  font-family:Arial,sans-serif;\n  font-size:14px;\n  font-weight:500;\n  color:#22332A;\n  line-height:1.05;\n}\n\n#zensea-sale-banner-{{ section.id }} .zensea-sale-main strong{\n  color:#2E5E46;\n  font-weight:800;\n}\n\n@media(max-width:749px){\n  #zensea-sale-banner-{{ section.id }}{\n    max-width:100%;\n    padding:6px 9px;\n    gap:7px;\n    border-radius:9px;\n  }\n\n  #zensea-sale-banner-{{ section.id }} .zensea-sale-icon{\n    width:28px;\n    height:28px;\n    min-width:28px;\n  }\n\n  #zensea-sale-banner-{{ section.id }} .zensea-sale-icon svg{\n    width:14px;\n    height:14px;\n  }\n\n  #zensea-sale-banner-{{ section.id }} .zensea-sale-kicker{\n    font-size:7px;\n  }\n\n  #zensea-sale-banner-{{ section.id }} .zensea-sale-main{\n    font-size:13px;\n  }\n}\n</style>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "text_zLqMQw": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "<p>{{ product.title }}</p>",
+            "text_style": "h3",
+            "paragraph_font_size": "normal",
+            "font_weight": 400,
+            "alignment": "left",
+            "alignment_mobile": "left",
+            "show_read_more": false,
+            "read_more_length": 50,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": false,
+            "truncate_length": 2,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "rating_stars_Krck47": {
+          "type": "rating-stars",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "product": "{{ closest.product }}",
+            "hide_rating_when_no_reviews": true,
+            "rating": 0,
+            "show_note": true,
+            "show_review_count": true,
+            "review_count": 0,
+            "link": "#reviews",
+            "margin_top": 10,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "price_yEeMeb": {
+          "type": "product-price",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "product": "{{ closest.product }}",
+            "sales_badge": "percentage",
+            "show_sales_badge_text": false,
+            "show_unit_price": false,
+            "text_style": "paragraph",
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "cc_delivery": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>\n  .zensea-delivery-line {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    margin: 10px 0;\n    color: #2E5E46;\n    font-size: 13.5px;\n    font-weight: 700;\n    line-height: 1.15;\n    white-space: nowrap;\n    max-width: 100%;\n    overflow: hidden;\n  }\n\n  .zensea-delivery-dot {\n    width: 9px;\n    height: 9px;\n    border-radius: 50%;\n    background: #2E5E46;\n    flex-shrink: 0;\n    position: relative;\n    animation: zenseaBlink 1.3s infinite;\n  }\n\n  .zensea-delivery-dot::after {\n    content: \"\";\n    position: absolute;\n    inset: -5px;\n    border-radius: 50%;\n    background: rgba(46, 94, 70, 0.22);\n    animation: zenseaPulse 1.3s infinite;\n  }\n\n  .zensea-delivery-text {\n    color: #2E5E46;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n\n  .zensea-delivery-date {\n    font-weight: 800;\n  }\n\n  @keyframes zenseaBlink {\n    0%, 100% {\n      opacity: 1;\n      transform: scale(1);\n    }\n    50% {\n      opacity: 0.45;\n      transform: scale(0.85);\n    }\n  }\n\n  @keyframes zenseaPulse {\n    0% {\n      transform: scale(0.7);\n      opacity: 0.55;\n    }\n    70% {\n      transform: scale(1.45);\n      opacity: 0;\n    }\n    100% {\n      transform: scale(1.45);\n      opacity: 0;\n    }\n  }\n\n  @media screen and (max-width: 480px) {\n    .zensea-delivery-line {\n      font-size: 11.8px;\n      gap: 5px;\n      margin: 9px 0;\n    }\n\n    .zensea-delivery-dot {\n      width: 8px;\n      height: 8px;\n    }\n  }\n</style>\n\n<div class=\"zensea-delivery-line\" data-zensea-delivery>\n  <span class=\"zensea-delivery-dot\"></span>\n  <span class=\"zensea-delivery-text\">\n    Expédié demain · livré\n    <span class=\"zensea-delivery-date\" data-date-start></span>&nbsp;-&nbsp;<span class=\"zensea-delivery-date\" data-date-end></span>\n  </span>\n</div>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function () {\n    document.querySelectorAll(\"[data-zensea-delivery]\").forEach(function (block) {\n      var startElement = block.querySelector(\"[data-date-start]\");\n      var endElement = block.querySelector(\"[data-date-end]\");\n\n      if (!startElement || !endElement) return;\n\n      var startDate = new Date();\n      var endDate = new Date();\n\n      startDate.setDate(startDate.getDate() + 7);\n      endDate.setDate(endDate.getDate() + 13);\n\n      var sameMonth = startDate.getMonth() === endDate.getMonth() &&\n                      startDate.getFullYear() === endDate.getFullYear();\n\n      var shortMonth = {\n        day: \"numeric\",\n        month: \"short\"\n      };\n\n      if (sameMonth) {\n        startElement.textContent = startDate.getDate();\n        endElement.textContent = endDate.toLocaleDateString(\"fr-FR\", shortMonth).replace(\".\", \"\");\n      } else {\n        startElement.textContent = startDate.toLocaleDateString(\"fr-FR\", shortMonth).replace(\".\", \"\");\n        endElement.textContent = endDate.toLocaleDateString(\"fr-FR\", shortMonth).replace(\".\", \"\");\n      }\n    });\n  });\n</script>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "cc_compat": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>\n.zs-sig{display:flex;align-items:center;gap:13px;margin:16px 0 20px;padding:0 0 15px;border-bottom:1px solid rgba(46,94,70,.15)}\n.zs-sig__l{flex:0 0 auto;width:28px;height:28px;color:#2E5E46}\n.zs-sig__l svg{width:100%;height:100%;display:block}\n.zs-sig__t{margin:0;font-family:\"Playfair Display\",Georgia,serif;font-style:italic;font-weight:600;font-size:17px;line-height:1.42;color:#22332A}\n@media(max-width:749px){.zs-sig{gap:11px;margin:14px 0 18px;padding-bottom:13px}.zs-sig__t{font-size:15px}.zs-sig__l{width:23px;height:23px}}\n</style>\n<div class=\"zs-sig\">\n  <span class=\"zs-sig__l\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.35\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4.5 20C3.5 12 8 5.5 20 4c1.2 11-4.5 16-12.5 16H4.5z\"/><path d=\"M4.8 19.7C7.6 14.4 11.6 11 16.2 9\"/></svg></span>\n  <p class=\"zs-sig__t\">Façonné à la main, accordé à l'oreille. Prêt à jouer le soir même.</p>\n</div>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "cc_benefits": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>\n.zs-arg{margin:4px 0 22px}\n.zs-arg__r{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid rgba(46,94,70,.1)}\n.zs-arg__r:last-child{border-bottom:0}\n.zs-arg__i{flex:0 0 auto;width:28px;height:28px;border-radius:9px;background:#ECF1E8;color:#2E5E46;display:flex;align-items:center;justify-content:center}\n.zs-arg__i svg{width:15px;height:15px}\n.zs-arg__x{margin:0;font-size:14.2px;line-height:1.47;color:#5A6B60}\n.zs-arg__x b{color:#22332A;font-weight:700}\n@media(max-width:749px){.zs-arg__x{font-size:13.3px}.zs-arg__r{padding:11px 0;gap:10px}.zs-arg__i{width:26px;height:26px;border-radius:8px}}\n</style>\n<div class=\"zs-arg\">\n  <div class=\"zs-arg__r\">\n    <span class=\"zs-arg__i\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.5 3.5 20 9l-3 3-5.5-5.5z\"/><path d=\"m11.5 6.5-8 8L6 17l8-8\"/><path d=\"M4 21h8\"/></svg></span>\n    <p class=\"zs-arg__x\"><b>Martelé et accordé à la main</b> — par les artisans avec qui nous travaillons, note par note.</p>\n  </div>\n  <div class=\"zs-arg__r\">\n    <span class=\"zs-arg__i\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3 4.5 6v6c0 4.4 3.1 7.9 7.5 9 4.4-1.1 7.5-4.6 7.5-9V6z\"/></svg></span>\n    <p class=\"zs-arg__x\"><b>Acier nitruré</b> — il garde sa justesse pendant des années, pas seulement le premier mois.</p>\n  </div>\n  <div class=\"zs-arg__r\">\n    <span class=\"zs-arg__i\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 18V5l11-2v13\"/><circle cx=\"6.5\" cy=\"18\" r=\"2.5\"/><circle cx=\"17.5\" cy=\"16\" r=\"2.5\"/></svg></span>\n    <p class=\"zs-arg__x\"><b>Impossible de jouer faux</b> — toutes les notes appartiennent à la même gamme, aucun solfège requis.</p>\n  </div>\n  <div class=\"zs-arg__r\">\n    <span class=\"zs-arg__i\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3 4.5 6v6c0 4.4 3.1 7.9 7.5 9 4.4-1.1 7.5-4.6 7.5-9V6z\"/><path d=\"m9 12 2.2 2.2L15.5 10\"/></svg></span>\n    <p class=\"zs-arg__x\"><b>Garantie 2 ans, 30 jours d'essai</b> — renvoyé sans justification si le son ne vous parle pas.</p>\n  </div>\n</div>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "text_yQdqF8": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "{{ closest.product.description }}",
+            "text_style": "paragraph",
+            "paragraph_font_size": "normal",
+            "font_weight": 400,
+            "alignment": "left",
+            "alignment_mobile": "left",
+            "show_read_more": false,
+            "read_more_length": 50,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": true,
+            "truncate_length": 2,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "cc_offert": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>\n.zs-of{--g:#2E5E46;--ink:#22332A;--mut:#5A6B60;--soft:#ECF1E8;--line:#DFEAE4;position:relative;margin:26px 0 8px;padding:30px 18px 20px;border:1.5px dashed var(--g);border-radius:18px;background:linear-gradient(180deg,#FFF 0%,var(--soft) 100%)}\n.zs-of__flap{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--g);color:#fff;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:5px 16px;border-radius:99px;white-space:nowrap}\n.zs-of__t{margin:0 0 4px;font-family:\"Playfair Display\",Georgia,serif;font-style:italic;font-weight:700;font-size:25px;line-height:1.15;color:var(--ink);text-align:center}\n.zs-of__s{margin:0 auto 18px;max-width:430px;font-size:13.5px;line-height:1.55;color:var(--mut);text-align:center}\n.zs-of__g{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}\n.zs-of__i{position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;padding:8px 7px 11px;background:#fff;border:1px solid var(--line);border-radius:13px;text-align:center;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}\n.zs-of__i:hover{transform:translateY(-3px);border-color:var(--g);box-shadow:0 8px 20px rgba(46,94,70,.13)}\n.zs-of__img{display:block;width:100%;aspect-ratio:1/1;border-radius:9px;overflow:hidden;background:#F6F9F8}\n.zs-of__img img{width:100%;height:100%;object-fit:cover;display:block}\n.zs-of__n{font-size:12.5px;line-height:1.3;font-weight:600;color:var(--ink)}\n.zs-of__p{font-size:11.5px;color:var(--mut);text-decoration:line-through}\n.zs-of__b{position:absolute;top:11px;right:11px;z-index:1;background:var(--g);color:#fff;font-size:8.5px;font-weight:700;letter-spacing:.06em;padding:2px 6px;border-radius:99px}\n.zs-of__tot{margin-top:14px;padding:11px 14px;background:var(--g);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;text-align:center}\n.zs-of__tot b{font-size:15px}\n.zs-of__tot span{font-size:12.5px;opacity:.85}\n.zs-of__f{margin-top:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:5px 16px;font-size:11.5px;color:var(--mut)}\n.zs-of__f b{color:var(--g);font-weight:700}\n@media(max-width:749px){.zs-of{padding:28px 0 18px}.zs-of__flap{font-size:9px;padding:4px 13px}.zs-of__t{font-size:21px;padding:0 14px}.zs-of__s{font-size:12.5px;margin:0 0 14px;padding:0 16px}.zs-of__g{display:flex;grid-template-columns:none;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:2px 14px 9px;scrollbar-width:thin;scrollbar-color:#2E5E46 #DFEAE4}.zs-of__g::-webkit-scrollbar{height:3px}.zs-of__g::-webkit-scrollbar-track{background:#DFEAE4;border-radius:99px}.zs-of__g::-webkit-scrollbar-thumb{background:#2E5E46;border-radius:99px}.zs-of__i{flex:0 0 42%;scroll-snap-align:start;padding:7px 6px 10px}.zs-of__n{font-size:11.5px}.zs-of__tot{margin:10px 14px 0;padding:10px 12px}.zs-of__tot b{font-size:14px}.zs-of__f{padding:0 14px}}\n</style>\n<div class=\"zs-of\">\n  <span class=\"zs-of__flap\">Offert avec l'instrument</span>\n  <h3 class=\"zs-of__t\">Tout est déjà dans le carton</h3>\n  <p class=\"zs-of__s\">Vous n'aurez rien à racheter le lendemain.</p>\n  <div class=\"zs-of__g\">\n    <div class=\"zs-of__i\"><span class=\"zs-of__b\">OFFERT</span><span class=\"zs-of__img\"><img src=\"https://cdn.shopify.com/s/files/1/1016/6652/1462/files/ChatGPTImage12sept.2026_19_59_39.png?v=1789235995&width=400\" alt=\"Housse de transport rembourrée\" loading=\"lazy\" width=\"200\" height=\"200\"></span><span class=\"zs-of__n\">Housse rembourrée</span><span class=\"zs-of__p\">89 €</span></div>\n    <div class=\"zs-of__i\"><span class=\"zs-of__b\">OFFERT</span><span class=\"zs-of__img\"><img src=\"https://cdn.shopify.com/s/files/1/1016/6652/1462/files/3BE6C53C-3C0F-48F6-A139-E4ACC943CCE0.jpg?v=1788962768&width=400\" alt=\"Support trépied pliable\" loading=\"lazy\" width=\"200\" height=\"200\"></span><span class=\"zs-of__n\">Support trépied</span><span class=\"zs-of__p\">69 €</span></div>\n    <div class=\"zs-of__i\"><span class=\"zs-of__b\">OFFERT</span><span class=\"zs-of__img\"><img src=\"https://cdn.shopify.com/s/files/1/1016/6652/1462/files/76ED5DD9-B0B2-4B0C-B854-7E85A318F508.jpg?v=1788962768&width=400\" alt=\"Paire de mailloches\" loading=\"lazy\" width=\"200\" height=\"200\"></span><span class=\"zs-of__n\">Paire de mailloches</span><span class=\"zs-of__p\">19 €</span></div>\n    <div class=\"zs-of__i\"><span class=\"zs-of__b\">OFFERT</span><span class=\"zs-of__img\"><img src=\"https://guide.zensea.fr/guide-visuel.jpg\" alt=\"Le guide 3D numérique Zensea\" loading=\"lazy\" width=\"200\" height=\"200\"></span><span class=\"zs-of__n\">Guide 3D numérique</span><span class=\"zs-of__p\">49,90 €</span></div>\n    <div class=\"zs-of__i\"><span class=\"zs-of__b\">OFFERT</span><span class=\"zs-of__img\"><img src=\"https://cdn.shopify.com/s/files/1/1016/6652/1462/files/3B803A76-1C62-4042-8CF5-D64B85E5C40E.jpg?v=1788962768&width=400\" alt=\"Kit d'entretien : huile et chiffon\" loading=\"lazy\" width=\"200\" height=\"200\"></span><span class=\"zs-of__n\">Chiffon &amp; huile</span><span class=\"zs-of__p\">29 €</span></div>\n  </div>\n  <div class=\"zs-of__tot\"><b>255,90 € d'accessoires inclus</b><span>— sans supplément, dans le même carton</span></div>\n  <div class=\"zs-of__f\"><span><b>Livraison offerte</b> dès 30 €</span><span><b>30 jours</b> pour changer d'avis</span><span><b>Garantie 2 ans</b></span></div>\n</div>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "product_form_grYQk6": {
+          "type": "_product-form",
+          "settings": {},
+          "blocks": {
+            "product_variant_picker_xWC3wF": {
+              "type": "_product-variant-picker",
+              "settings": {
+                "show_option_name": true,
+                "variant_picker_type": "buttons",
+                "show_swatches": true,
+                "swatches_size": "normal",
+                "swatches_rounded": true,
+                "margin_top": 0,
+                "margin_bottom": 15,
+                "additional_class": ""
+              },
+              "blocks": {
+                "product-variant-popup": {
+                  "type": "_product-variant-popup",
+                  "static": true,
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "show_on_option_name": "Taille",
+                    "color_scheme": "scheme-1",
+                    "button_style": "button",
+                    "button_label": "Combien de notes ? Quelle gamme ?",
+                    "icon": "straighten",
+                    "icon_custom": "",
+                    "icon_position": "end",
+                    "additional_class": ""
+                  },
+                  "blocks": {
+                    "text_LfyX9A": {
+                      "type": "text",
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "text": "<h1>Choisir son handpan en deux minutes</h1>",
+                        "text_style": "h3",
+                        "paragraph_font_size": "normal",
+                        "font_weight": 400,
+                        "alignment": "left",
+                        "alignment_mobile": "left",
+                        "show_read_more": false,
+                        "read_more_length": 50,
+                        "read_more_text": "Voir plus",
+                        "read_less_text": "Voir moins",
+                        "truncate": false,
+                        "truncate_length": 2,
+                        "margin_top": 0,
+                        "margin_bottom": 10,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    },
+                    "text_99rHbT": {
+                      "type": "text",
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "text": "<p><strong>Le nombre de notes.</strong> Neuf notes, c'est la configuration la plus courante et celle qu'achètent six clients sur dix. On voit toutes les notes d'un coup d'œil, on improvise sans réfléchir, et on peut jouer l'immense majorité des morceaux qui circulent. Dix notes ajoutent une couleur supplémentaire. Douze élargissent la palette pour ceux qui veulent composer. Dans tous les cas la technique de jeu est identique : vous ne serez pas « limité » à neuf notes, vous serez juste plus vite à l'aise.</p><p><strong>La gamme.</strong> Toutes les notes d'un handpan appartiennent à une seule et même gamme. C'est le principe de l'instrument : quelle que soit la note que vous frappez, elle s'accorde avec les précédentes. La fausse note n'existe pas. Le Ré mineur est le choix par défaut, chaleureux et polyvalent. Le Sol mineur sonne un peu plus clair. Si vous hésitez, prenez du Ré mineur : personne ne l'a jamais regretté.</p><p><strong>440 Hz ou 432 Hz.</strong> C'est la hauteur de référence de l'instrument. Le 440 Hz est le standard international : choisissez-le si vous comptez jouer avec une guitare, un piano, ou enregistrer. Le 432 Hz est légèrement plus bas ; certains joueurs le préfèrent pour jouer seul. Les deux sont justes. Ils ne sont simplement pas compatibles entre eux.</p><p>Un doute ? Écrivez-nous à contact@zensea.fr en nous disant ce que vous écoutez, on vous répond avec une recommandation précise.</p>",
+                        "text_style": "paragraph",
+                        "paragraph_font_size": "normal",
+                        "font_weight": 400,
+                        "alignment": "left",
+                        "alignment_mobile": "left",
+                        "show_read_more": false,
+                        "read_more_length": 50,
+                        "read_more_text": "Voir plus",
+                        "read_less_text": "Voir moins",
+                        "truncate": false,
+                        "truncate_length": 2,
+                        "margin_top": 0,
+                        "margin_bottom": 0,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "text_LfyX9A",
+                    "text_99rHbT"
+                  ]
+                }
+              },
+              "block_order": []
+            },
+            "product-add-to-cart-button": {
+              "type": "_product-add-to-cart-button",
+              "static": true,
+              "settings": {
+                "enable_sticky_add_to_cart": true,
+                "button_style": "primary",
+                "show_price": true,
+                "icon": "none",
+                "icon_custom": "",
+                "icon_position": "end",
+                "enable_preorder": false,
+                "enable_preorder_on_empty_stock_only": true,
+                "preorder_cart_message": "Livraison à partir du JJ/MM",
+                "additional_class": ""
+              },
+              "blocks": {
+                "product-quantity-selector": {
+                  "type": "_product-quantity-selector",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "add-to-wishlist-button": {
+                  "type": "_add-to-wishlist-button",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "accelerated-checkout": {
+              "type": "_accelerated-checkout",
+              "static": true,
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "full_width": true,
+                "button_style": "primary",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_variant_picker_xWC3wF"
+          ]
+        },
+        "payment_methods_BdjpFB": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>\nproduct-form .shopify-payment-button, product-form shopify-accelerated-checkout, .accelerated-checkout, accelerated-checkout, [class*='accelerated-checkout']{display:none!important}\n.payment-icons-row {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 6px;\n  flex-wrap: wrap;\n  margin: 16px 0;\n}\n.payment-icons-row svg {\n  height: 18px;\n  width: auto;\n}\n</style>\n<div class=\"payment-icons-row\">\n  {%- for type in shop.enabled_payment_types -%}\n    {%- unless type == 'cb' or type == 'shopify_pay' or type == 'shop_pay' -%}\n      {{ type | payment_type_svg_tag: class: 'payment-icon' }}\n    {%- endunless -%}\n  {%- endfor -%}\n</div>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "velluce_3d_mini": {
+          "type": "zensea-3d-mini",
+          "disabled": true,
+          "settings": {},
+          "blocks": {}
+        },
+        "cc_trust": {
+          "type": "custom-code",
+          "disabled": true,
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>\n.trust-badges {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 8px;\n  margin: 20px 0;\n  padding: 0 16px;\n}\n\n.trust-badges__item {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 12px 14px;\n  border: 1px solid #DCE6D8;\n  border-radius: 10px;\n  background: #fff;\n}\n\n.trust-badges__item--full {\n  grid-column: 1 / -1;\n  justify-content: center;\n}\n\n.trust-badges__icon {\n  width: 32px;\n  height: 32px;\n  border-radius: 50%;\n  background: #2E5E461a;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-shrink: 0;\n}\n\n.trust-badges__icon svg {\n  width: 16px;\n  height: 16px;\n  stroke: #2E5E46;\n}\n\n.trust-badges__text {\n  font-size: 14px;\n  font-weight: 600;\n  color: #22332A;\n}\n\n.trust-badges__sub {\n  font-size: 12px;\n  font-weight: 400;\n  color: #5A6B60;\n  margin-left: 3px;\n}\n\n@media screen and (max-width: 480px) {\n  .trust-badges {\n    padding: 0 12px;\n    gap: 6px;\n  }\n\n  .trust-badges__item {\n    padding: 10px 10px;\n    gap: 8px;\n  }\n\n  .trust-badges__icon {\n    width: 28px;\n    height: 28px;\n  }\n\n  .trust-badges__icon svg {\n    width: 14px;\n    height: 14px;\n  }\n\n  .trust-badges__text {\n    font-size: 12px;\n  }\n\n  .trust-badges__sub {\n    font-size: 11px;\n    display: block;\n    margin-left: 0;\n  }\n}\n</style>\n\n<div class=\"trust-badges\">\n  <div class=\"trust-badges__item\">\n    <div class=\"trust-badges__icon\">\n      <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n        <rect x=\"1\" y=\"6\" width=\"13\" height=\"10\"></rect>\n        <polygon points=\"14 9 18 9 22 13 22 16 14 16 14 9\"></polygon>\n        <circle cx=\"5.5\" cy=\"18\" r=\"2\"></circle>\n        <circle cx=\"17.5\" cy=\"18\" r=\"2\"></circle>\n      </svg>\n    </div>\n    <span class=\"trust-badges__text\">\n      Livraison\n      <span class=\"trust-badges__sub\">7 à 13 jours ouvrés</span>\n    </span>\n  </div>\n\n  <div class=\"trust-badges__item\">\n    <div class=\"trust-badges__icon\">\n      <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n        <path d=\"M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z\"></path>\n      </svg>\n    </div>\n    <span class=\"trust-badges__text\">\n      Support client\n      <span class=\"trust-badges__sub\">du lundi au vendredi, 9h-18h</span>\n    </span>\n  </div>\n\n  <div class=\"trust-badges__item trust-badges__item--full\">\n    <div class=\"trust-badges__icon\">\n      <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n        <path d=\"M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\"></path>\n        <path d=\"M9 12l2 2 4-4\"></path>\n      </svg>\n    </div>\n    <span class=\"trust-badges__text\">\n      Garantie légale de conformité 2 ans\n      <span class=\"trust-badges__sub\">remplacement ou remboursement</span>\n    </span>\n  </div>\n</div>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "group_dddxG7": {
+          "type": "group",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "wrap_in_card": true,
+            "card_link": "",
+            "color_scheme": "scheme-2",
+            "show_card_border": false,
+            "layout_type": "flex",
+            "width_desktop": 100,
+            "layout_direction_desktop": "row",
+            "layout_grid_columns_desktop": 3,
+            "layout_gap_desktop": 10,
+            "layout_wrap_desktop": "nowrap",
+            "layout_justify_desktop": "space-around",
+            "layout_align_items_desktop": "center",
+            "same_as_desktop": true,
+            "width_mobile": 100,
+            "layout_direction_mobile": "column",
+            "layout_grid_columns_mobile": 1,
+            "layout_gap_mobile": 10,
+            "layout_wrap_mobile": "nowrap",
+            "layout_justify_mobile": "flex-start",
+            "layout_align_items_mobile": "flex-start",
+            "use_global_container_padding": true,
+            "padding_horizontal": 30,
+            "padding_vertical": 30,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {
+            "icon_with_text_DWkBqr": {
+              "type": "icon-with-text",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "layout_direction_desktop": "column",
+                "layout_gap_desktop": 5,
+                "same_as_desktop": true,
+                "layout_direction_mobile": "column",
+                "layout_gap_mobile": 10,
+                "icon_type": "icon",
+                "icon": "delivery_truck_speed",
+                "icon_custom": "",
+                "icon_size": 32,
+                "icon_position": "start",
+                "text": "<p>Expédition suivie</p>",
+                "text_style": "paragraph",
+                "font_weight": 500,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            },
+            "icon_with_text_LqjaQL": {
+              "type": "icon-with-text",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "layout_direction_desktop": "column",
+                "layout_gap_desktop": 5,
+                "same_as_desktop": true,
+                "layout_direction_mobile": "column",
+                "layout_gap_mobile": 10,
+                "icon_type": "icon",
+                "icon": "encrypted",
+                "icon_custom": "",
+                "icon_size": 32,
+                "icon_position": "start",
+                "text": "<p>Paiement sécurisé</p>",
+                "text_style": "paragraph",
+                "font_weight": 500,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            },
+            "icon_with_text_Y6hka8": {
+              "type": "icon-with-text",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "layout_direction_desktop": "column",
+                "layout_gap_desktop": 5,
+                "same_as_desktop": true,
+                "layout_direction_mobile": "column",
+                "layout_gap_mobile": 10,
+                "icon_type": "icon",
+                "icon": "package_2",
+                "icon_custom": "",
+                "icon_size": 32,
+                "icon_position": "start",
+                "text": "<p>30 jours pour changer d'avis</p>",
+                "text_style": "paragraph",
+                "font_weight": 500,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_with_text_DWkBqr",
+            "icon_with_text_LqjaQL",
+            "icon_with_text_Y6hka8"
+          ]
+        },
+        "cc_accordions": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>.bb-acc{border-top:1px solid #2E5E46}.bb-acc:last-of-type{border-bottom:1px solid #2E5E46}.bb-acc summary{display:flex;justify-content:space-between;align-items:center;padding:16px 2px;cursor:pointer;font-weight:700;font-size:15px;color:#22332A;list-style:none}.bb-acc summary::-webkit-details-marker{display:none}.bb-acc summary:after{content:\"+\";font-size:20px;color:#2E5E46;font-weight:400;transition:transform .2s}.bb-acc[open] summary:after{transform:rotate(45deg)}.bb-acc .bb-acc-body{padding:0 2px 16px;font-size:14px;line-height:1.6;color:#5A6B60}</style><details class=\"bb-acc\"><summary>Livraison &amp; retours</summary><div class=\"bb-acc-body\"><p>Votre commande est préparée sous 24 à 48 heures ouvrées, puis expédiée depuis notre entrepôt européen. Comptez ensuite 7 à 13 jours ouvrés pour la recevoir.</p><p>Vous recevez un e-mail de confirmation à la commande, puis un second avec votre numéro de suivi dès que le colis part. Aucun envoi ne se fait sans suivi.</p><p>Vous avez 30 jours à compter de la réception pour changer d'avis, sans avoir à vous justifier. Un retour, un échange : vous écrivez, on s'en occupe.</p></div></details><details class=\"bb-acc\"><summary>Accordage &amp; contrôle</summary><div class=\"bb-acc-body\"><p>Chaque instrument est <strong>joué note par note et contrôlé avant d'entrer au catalogue</strong>, au diapason que vous avez choisi : 440 Hz ou 432 Hz. Accordage vérifié, finitions contrôlées, soudures éprouvées.</p><p>Nous gardons peu de modèles, volontairement. Un instrument qui ne passe pas le contrôle d'accordage ne part pas en ligne — c'est plus simple à dire qu'à faire, mais c'est ce qui vous évite les mauvaises surprises.</p></div></details><details class=\"bb-acc\"><summary>Garantie légale de conformité 2 ans</summary><div class=\"bb-acc-body\"><p>Chaque produit Zensea est couvert par une <strong>garantie légale de conformité 2 ans</strong>, incluse d'office et sans surcoût.</p><p>Un souci en 18 mois ? Vous nous écrivez à contact@zensea.fr, notre support répond du lundi au vendredi en français, et on remplace ou on rembourse. Pas de formulaire à rallonge, pas d'expertise à faire à vos frais.</p></div></details>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "cc_infocard": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>\n  .zensea-info-card {\n    display: flex;\n    align-items: center;\n    gap: 14px;\n    width: 100%;\n    margin: 16px 0;\n    padding: 13px 14px;\n    border: 1px solid #DCE6D8;\n    border-radius: 14px;\n    background: #ffffff;\n    text-decoration: none;\n    color: inherit;\n    box-sizing: border-box;\n    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;\n  }\n\n  .zensea-info-card:hover {\n    border-color: #2E5E46;\n    box-shadow: 0 8px 22px rgba(46, 94, 70, 0.12);\n    transform: translateY(-1px);\n  }\n\n  .zensea-info-card__image {\n    width: 82px;\n    height: 82px;\n    min-width: 82px;\n    border-radius: 12px;\n    overflow: hidden;\n    background: #F6F9F8;\n  }\n\n  .zensea-info-card__image img {\n    width: 100%;\n    height: 100%;\n    display: block;\n    object-fit: cover;\n    object-position: center;\n  }\n\n  .zensea-info-card__content {\n    flex: 1;\n    min-width: 0;\n  }\n\n  .zensea-info-card__title {\n    margin: 0 0 5px;\n    color: #22332A;\n    font-size: 15.5px;\n    line-height: 1.2;\n    font-weight: 800;\n    letter-spacing: -0.01em;\n  }\n\n  .zensea-info-card__text {\n    margin: 0 0 8px;\n    color: #5A6B60;\n    font-size: 13px;\n    line-height: 1.35;\n    font-weight: 400;\n  }\n\n  .zensea-info-card__link {\n    display: inline-flex;\n    align-items: center;\n    gap: 5px;\n    color: #22332A;\n    font-size: 13px;\n    line-height: 1.2;\n    font-weight: 750;\n    text-decoration: underline;\n    text-underline-offset: 3px;\n    white-space: nowrap;\n  }\n\n  .zensea-info-card__arrow {\n    color: #2E5E46;\n    font-size: 16px;\n    font-weight: 900;\n    line-height: 1;\n    transition: transform 0.2s ease;\n  }\n\n  .zensea-info-card:hover .zensea-info-card__arrow {\n    transform: translateX(3px);\n  }\n\n  @media screen and (max-width: 480px) {\n    .zensea-info-card {\n      gap: 11px;\n      padding: 12px;\n      margin: 14px 0;\n      border-radius: 13px;\n    }\n\n    .zensea-info-card__image {\n      width: 70px;\n      height: 70px;\n      min-width: 70px;\n      border-radius: 10px;\n    }\n\n    .zensea-info-card__title {\n      font-size: 14px;\n      margin-bottom: 4px;\n    }\n\n    .zensea-info-card__text {\n      font-size: 12.2px;\n      line-height: 1.32;\n      margin-bottom: 7px;\n    }\n\n    .zensea-info-card__link {\n      font-size: 12.3px;\n    }\n\n    .zensea-info-card__arrow {\n      font-size: 15px;\n    }\n  }\n</style>\n\n<a href=\"/pages/notre-promesse\" class=\"zensea-info-card\">\n  <div class=\"zensea-info-card__image\">\n    <img \n      src=\"https://cdn.shopify.com/s/files/1/1077/9439/9581/files/ChatGPT_Image_22_juil._2026_01_21_47.png?v=1784676121\" \n      alt=\"Engagement qualité Zensea\" \n      loading=\"lazy\"\n    >\n  </div>\n\n  <div class=\"zensea-info-card__content\">\n    <p class=\"zensea-info-card__title\">Notre engagement qualité</p>\n\n    <p class=\"zensea-info-card__text\">Garantie légale de conformité 2 ans, contrôle d'accordage avant mise en ligne, et un interlocuteur qui répond à contact@zensea.fr.</p>\n\n    <span class=\"zensea-info-card__link\">Lire notre promesse <span class=\"zensea-info-card__arrow\">→</span>\n    </span>\n  </div>\n</a>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "product_media_gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "hide_variants": false,
+            "media_display": "carrousel",
+            "media_ratio": "1 / 1",
+            "media_rounded": true,
+            "grid_columns": "2",
+            "grid_gap": 10,
+            "main_image_full_width": true,
+            "show_a_bit_of_next_image_on_mobile": false,
+            "show_arrows": false,
+            "show_pagination": false,
+            "show_thumbnails": true,
+            "show_thumbnails_on_display": "desktop_and_mobile",
+            "thumbnails_show_arrows": false,
+            "video_loop": true,
+            "enable_video_controls": true,
+            "show_badges": true,
+            "additional_class": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "cc_banner",
+        "text_zLqMQw",
+        "rating_stars_Krck47",
+        "price_yEeMeb",
+        "cc_delivery",
+        "cc_compat",
+        "cc_benefits",
+        "text_yQdqF8",
+        "cc_offert",
+        "product_form_grYQk6",
+        "payment_methods_BdjpFB",
+        "velluce_3d_mini",
+        "cc_trust",
+        "group_dddxG7",
+        "cc_accordions",
+        "cc_infocard"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_product_info_card": false,
+        "color_scheme_product_info": "",
+        "image_position": "row",
+        "product_info_width": 50,
+        "gap": 60,
+        "carrousel_sticky": false,
+        "product_info_sticky": false,
+        "carrousel_full_width": true,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "zs_parcours": {
+      "type": "custom-code",
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "custom_liquid": "<style>\n.zs-pc{--g:#2E5E46;--ink:#22332A;--mut:#5A6B60;--soft:#F6F9F8;--line:#DFEAE4;background:var(--soft);padding:72px 20px}\n.zs-pc__w{max-width:1280px;margin:0 auto}\n.zs-pc__k{display:block;text-align:center;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--g);font-weight:600;margin-bottom:14px}\n.zs-pc__t{margin:0 0 14px;text-align:center;font-family:\"Playfair Display\",Georgia,serif;font-style:italic;font-weight:700;font-size:42px;line-height:1.12;color:var(--ink)}\n.zs-pc__s{margin:0 auto 40px;max-width:620px;text-align:center;font-size:16px;line-height:1.6;color:var(--mut)}\n.zs-pc__g{display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden}\n.zs-pc__c{position:relative;padding:30px 18px 26px;text-align:center;border-right:1px solid var(--line)}\n.zs-pc__c:last-child{border-right:0}\n.zs-pc__ic{width:46px;height:46px;margin:0 auto 14px;border-radius:50%;background:var(--soft);display:flex;align-items:center;justify-content:center;color:var(--g)}\n.zs-pc__ic svg{width:24px;height:24px}\n.zs-pc__e{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}\n.zs-pc__n{margin:0 0 9px;font-family:\"Playfair Display\",Georgia,serif;font-size:18px;font-weight:600;color:var(--ink);line-height:1.25}\n.zs-pc__d{display:inline-block;font-size:11.5px;font-weight:600;color:var(--g);background:#ECF1E8;border-radius:99px;padding:4px 11px;margin-bottom:13px}\n.zs-pc__x{margin:0;font-size:13px;line-height:1.55;color:var(--mut)}\n@media(max-width:1099px){.zs-pc__g{display:flex;grid-template-columns:none;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#2E5E46 #DFEAE4}.zs-pc__g::-webkit-scrollbar{height:3px}.zs-pc__g::-webkit-scrollbar-track{background:#DFEAE4}.zs-pc__g::-webkit-scrollbar-thumb{background:#2E5E46;border-radius:99px}.zs-pc__c{flex:0 0 44%;scroll-snap-align:start;border-right:1px solid var(--line);border-bottom:0}.zs-pc__c:last-child{border-right:0}}\n@media(max-width:749px){.zs-pc{padding:44px 0}.zs-pc__k,.zs-pc__t,.zs-pc__s{padding:0 16px}.zs-pc__t{font-size:27px;margin-bottom:10px}.zs-pc__s{font-size:14px;margin-bottom:24px}.zs-pc__g{margin:0 16px;border-radius:16px}.zs-pc__c{flex:0 0 62%;padding:22px 14px 19px}.zs-pc__ic{width:40px;height:40px;margin-bottom:11px}.zs-pc__ic svg{width:19px;height:19px}.zs-pc__n{font-size:16px;margin-bottom:7px}.zs-pc__d{font-size:10.5px;padding:3px 9px;margin-bottom:9px}.zs-pc__x{font-size:12.5px;line-height:1.5}}\n</style>\n<div class=\"zs-pc\"><div class=\"zs-pc__w\">\n  <span class=\"zs-pc__k\">Le parcours de votre instrument</span>\n  <h2 class=\"zs-pc__t\">Martelé à la main, bien avant votre commande</h2>\n  <p class=\"zs-pc__s\">Nos handpans sont façonnés par des artisans partenaires, puis stockés en Europe. C'est ce qui vous évite six semaines d'attente.</p>\n  <div class=\"zs-pc__g\">\n    <div class=\"zs-pc__c\">\n      <div class=\"zs-pc__ic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12a9 5 0 0 0 18 0\"/><path d=\"M3 12a9 5 0 0 1 18 0\"/><circle cx=\"12\" cy=\"11.4\" r=\"1.5\"/><circle cx=\"7\" cy=\"12.6\" r=\"1\"/><circle cx=\"17\" cy=\"12.6\" r=\"1\"/></svg></div>\n      <span class=\"zs-pc__e\">Étape 1</span><h3 class=\"zs-pc__n\">Martelé et accordé</h3><span class=\"zs-pc__d\">En amont</span>\n      <p class=\"zs-pc__x\">Deux coques d'acier nitruré soudées, puis martelées à la main. L'artisan creuse chaque note et l'accorde à l'oreille.</p>\n    </div>\n    <div class=\"zs-pc__c\">\n      <div class=\"zs-pc__ic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 8.5 12 4l9 4.5v7L12 20l-9-4.5z\"/><path d=\"M3 8.5 12 13l9-4.5M12 13v7\"/></svg></div>\n      <span class=\"zs-pc__e\">Étape 2</span><h3 class=\"zs-pc__n\">Stocké en Europe</h3><span class=\"zs-pc__d\">Avant commande</span>\n      <p class=\"zs-pc__x\">Il attend déjà dans notre entrepôt européen, à l'abri de l'humidité. Le vôtre existe avant que vous le commandiez.</p>\n    </div>\n    <div class=\"zs-pc__c\">\n      <div class=\"zs-pc__ic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.55L21 8H6\"/><circle cx=\"10\" cy=\"20\" r=\"1.2\"/><circle cx=\"17.5\" cy=\"20\" r=\"1.2\"/></svg></div>\n      <span class=\"zs-pc__e\">Étape 3</span><h3 class=\"zs-pc__n\">Vous commandez</h3><span class=\"zs-pc__d\">Immédiat</span>\n      <p class=\"zs-pc__x\">Vous choisissez la gamme, le nombre de notes et le diapason. C'est ce qui identifie votre instrument.</p>\n    </div>\n    <div class=\"zs-pc__c\">\n      <div class=\"zs-pc__ic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3a9 9 0 1 1-6.4 2.6\"/><path d=\"m8.5 12 2.5 2.5L16 9.5\"/></svg></div>\n      <span class=\"zs-pc__e\">Étape 4</span><h3 class=\"zs-pc__n\">Recontrôlé, puis emballé</h3><span class=\"zs-pc__d\">24 à 48 h</span>\n      <p class=\"zs-pc__x\">Chaque note est rejouée, l'accordage vérifié, le sustain écouté. Puis housse, calage et double carton.</p>\n    </div>\n    <div class=\"zs-pc__c\">\n      <div class=\"zs-pc__ic\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 7.5h11v9H2z\"/><path d=\"M13 10.5h4l4 3.2v2.8h-8z\"/><circle cx=\"6.5\" cy=\"18.5\" r=\"1.6\"/><circle cx=\"17.5\" cy=\"18.5\" r=\"1.6\"/></svg></div>\n      <span class=\"zs-pc__e\">Étape 5</span><h3 class=\"zs-pc__n\">Expédié et livré</h3><span class=\"zs-pc__d\">7 à 13 jours ouvrés</span>\n      <p class=\"zs-pc__x\">Numéro de suivi dès le départ du colis. Vous jouez le soir même : rien à accorder, rien à régler.</p>\n    </div>\n  </div>\n</div></div>",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "additional_class": ""
+      }
+    },
+    "tout_est_dans_le_carton_P9V33C": {
+      "type": "tout-est-dans-le-carton",
+      "blocks": {
+        "item_BRYW6y": {
+          "type": "item",
+          "settings": {
+            "card_title": "Le handpan",
+            "card_desc": "Sa gamme et son nombre de notes sont écrits sur la fiche, pas cachés dans un « selon arrivage ».",
+            "highlight": false
+          }
+        },
+        "item_pQA7J9": {
+          "type": "item",
+          "settings": {
+            "card_title": "Le guide 3D numérique",
+            "card_desc": "Une forêt, un temple, et votre handpan jouable à l'écran : vous apprenez les premiers gestes le soir même, note par note.",
+            "highlight": false
+          }
+        },
+        "item_8iKt9f": {
+          "type": "item",
+          "settings": {
+            "card_title": "La housse de transport",
+            "card_desc": "Rembourrée, sangle réglable. Elle protège l'instrument des chocs et des écarts de température.",
+            "highlight": false
+          }
+        },
+        "item_PCaCVy": {
+          "type": "item",
+          "settings": {
+            "card_title": "Une paire de mailloches",
+            "card_desc": "Pour varier l'attaque quand vous en aurez envie. Le handpan se joue d'abord avec les mains.",
+            "highlight": false
+          }
+        },
+        "item_zkbw4G": {
+          "type": "item",
+          "settings": {
+            "card_title": "Le certificat d'accordage",
+            "card_desc": "La gamme, le nombre de notes et le diapason choisi, notés noir sur blanc.",
+            "highlight": false
+          }
+        },
+        "item_hcFA93": {
+          "type": "item",
+          "settings": {
+            "card_title": "Un numéro qui répond",
+            "card_desc": "+33 07 56 88 21 12 et contact@zensea.fr, du lundi au vendredi de 9h à 18h. Une vraie personne.",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "item_BRYW6y",
+        "item_pQA7J9",
+        "item_8iKt9f",
+        "item_PCaCVy",
+        "item_zkbw4G",
+        "item_hcFA93"
+      ],
+      "disabled": true,
+      "name": "Tout est dans le carton",
+      "settings": {
+        "title": "Ce qu'il y a vraiment dans le carton",
+        "bg_color": "#ffffff",
+        "card_color": "#ffffff",
+        "border_color": "#dce6d8",
+        "icon_color": "#2e5e46",
+        "check_color": "#ffffff",
+        "text_color": "#22332a",
+        "desc_color": "#5a6b60",
+        "title_size_desktop": 36,
+        "title_size_mobile": 28,
+        "card_title_size_desktop": 17,
+        "card_desc_size_desktop": 16,
+        "card_title_size_mobile": 12,
+        "card_desc_size_mobile": 11,
+        "mobile_desc_lines": 3,
+        "icon_size_mobile": 24,
+        "card_radius": 14,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "max_width": 1000
+      }
+    },
+    "assurance_jd4XHT": {
+      "type": "assurance",
+      "name": "Installation guidée",
+      "settings": {
+        "badge": "PREMIÈRE SESSION",
+        "title": "Vous n'allez pas apprendre à en jouer. Vous allez jouer.",
+        "description": "Les neuf, dix ou douze notes de votre handpan appartiennent toutes à la même gamme. Elles s'accordent entre elles quoi qu'il arrive. Jouer faux est mécaniquement impossible — c'est la seule promesse honnête qu'un instrument puisse faire, et elle est vraie ici.",
+        "step_1_title": "Posez-le sur vos genoux",
+        "step_1_text": "Le creux tourné vers vous, les avant-bras relâchés. La posture fait la moitié du son.",
+        "step_2_title": "Frappez du bout des doigts",
+        "step_2_text": "Jamais la paume, jamais la force. C'est le rebond qui fait chanter la note, pas la puissance.",
+        "step_3_title": "Arrêtez de réfléchir",
+        "step_3_text": "Deux notes, puis trois. En moins d'une heure, vous jouerez quelque chose d'écoutable. Sans solfège, sans cours.",
+        "video_url": "",
+        "video_autoplay": true,
+        "video_fit": "auto",
+        "video_height_desktop": 560,
+        "video_height_mobile": 450,
+        "image": "shopify://shop_images/ChatGPT_Image_9_sept._2026_00_26_45.png",
+        "image_position": "right",
+        "bg_color": "#f6f9f8",
+        "accent_color": "#2e5e46",
+        "title_size_desktop": 42,
+        "title_size_mobile": 28,
+        "padding_top_desktop": 96,
+        "padding_bottom_desktop": 96,
+        "padding_top_mobile": 56,
+        "padding_bottom_mobile": 56
+      }
+    },
+    "image_text_premium_KgNxUY": {
+      "type": "image-texte-premium",
+      "name": "Image + Texte Premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_11_sept._2026_22_31_15.png",
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "right",
+        "eyebrow": "Le son",
+        "title": "Achetez avec vos oreilles, pas avec vos yeux",
+        "text": "<p>On peut vous écrire trois pages sur l'épaisseur de l'acier. Au bout du compte, vous achetez un son que vous n'avez pas entendu — c'est la vraie raison pour laquelle on hésite avant de commander un handpan.</p><p>Alors écoutez l'extrait de ce modèle avant d'aller plus loin. S'il ne se passe rien, n'achetez pas. Et si vous hésitez entre deux gammes, écrivez-nous : on vous envoie l'enregistrement du modèle exact, pas une démo générique.</p>",
+        "point_1": "Résonance longue",
+        "point_1_sub": "plusieurs secondes après la frappe",
+        "point_2": "440 Hz ou 432 Hz",
+        "point_2_sub": "au choix, à la commande",
+        "point_3": "La gamme est écrite",
+        "point_3_sub": "sur la fiche, jamais « selon arrivage »",
+        "button_text": "Écouter les autres modèles",
+        "button_link": "",
+        "button_style": "link",
+        "section_bg": "#ffffff",
+        "title_color": "#22332a",
+        "text_color": "#22332a",
+        "accent_color": "#5a6b60",
+        "button_bg": "#22332a",
+        "button_text_color": "#ffffff",
+        "title_size_desktop": 44,
+        "title_size_mobile": 32,
+        "mobile_title_one_line": true,
+        "text_size_desktop": 17,
+        "text_size_mobile": 16,
+        "text_line_height": 1.8,
+        "paragraph_spacing": 16,
+        "button_text_size": 13,
+        "button_text_size_mobile": 12,
+        "button_height_desktop": 56,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 36,
+        "button_radius": 0,
+        "button_margin_top": 36,
+        "button_margin_top_mobile": 28,
+        "max_width": 1360,
+        "gap_desktop": 76,
+        "desktop_image_height": 540,
+        "desktop_padding_y": 10,
+        "image_radius": 4,
+        "mobile_image_height": 360,
+        "mobile_content_padding_y": 30,
+        "mobile_content_padding_left": 22,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "padding_top": 88,
+        "padding_bottom": 40
+      }
+    },
+    "image_text_premium_wBPW3U": {
+      "type": "image-text-premium",
+      "custom_css": [
+        ".itp-wrapper {direction: rtl;}",
+        ".itp-wrapper > * {direction: ltr;}"
+      ],
+      "name": "Image + Texte Premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_11_sept._2026_22_20_41.png",
+        "video_height_desktop": 420,
+        "video_height_mobile": 300,
+        "video_zoom": 100,
+        "media_position": "left",
+        "plaque": "",
+        "eyebrow": "",
+        "title": "Fait main. Le mot est galvaudé, alors soyons précis.",
+        "title_accent": "",
+        "feature_1_title": "Ce qui est fait à la main :",
+        "feature_1_desc": "le martelage des champs de notes et l'accordage, frappe après frappe, à l'oreille",
+        "feature_2_title": "Ce qui ne l'est pas :",
+        "feature_2_desc": "l'emboutissage des deux coques d'acier, fait à la presse — comme dans tous les ateliers du monde",
+        "paragraph": "Un handpan naît de deux demi-sphères d'acier nitruré embouties puis soudées. Ça, c'est de la machine, chez nous comme chez les facteurs suisses. Tout le reste est manuel, et c'est là que se joue la différence entre un instrument et un disque de tôle. L'artisan creuse chaque champ de note au marteau, puis l'accorde en écoutant : la fondamentale, l'octave, la quinte — trois harmoniques par note qui doivent s'aligner. Sur un handpan neuf notes, cela représente près de trente accords à ajuster, un par un, sans machine capable de le faire à sa place. C'est un métier qui prend des années, et c'est pour ça qu'un handpan ne coûtera jamais 90 €. Ce que nous avons construit, c'est un accès direct : nous travaillons avec les ateliers, sans galerie ni intermédiaire, et nous stockons en Europe pour que vous n'attendiez pas six semaines. Le savoir-faire est le même. C'est le circuit qui est plus court.",
+        "paragraph_first": false,
+        "cta_label": "",
+        "cta_link": "",
+        "frame_color": "#edf3f0",
+        "frame_pad": 14,
+        "frame_radius": 22,
+        "glow": true,
+        "bg_color": "#ffffff",
+        "ink_color": "#0d1712",
+        "icon_color": "#22332a",
+        "filet": true,
+        "reveal": true,
+        "padding_top": 32,
+        "padding_bottom": 60
+      }
+    },
+    "image_text_premium_xyThbp": {
+      "type": "image-text-premium",
+      "custom_css": [],
+      "name": "Image + Texte Premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_11_sept._2026_22_26_28.png",
+        "video_height_desktop": 420,
+        "video_height_mobile": 300,
+        "video_zoom": 100,
+        "media_position": "left",
+        "plaque": "",
+        "eyebrow": "",
+        "title": "Le risque, c'est nous qui le prenons.",
+        "title_accent": "",
+        "feature_1_title": "30 jours chez vous :",
+        "feature_1_desc": "jouez-en tous les soirs. Si le son ne vous parle pas, on rembourse",
+        "feature_2_title": "Si le colis arrive abîmé :",
+        "feature_2_desc": "deux photos, un e-mail sous 48 h. On renvoie ou on rembourse — pas de discussion",
+        "paragraph": "Départ sous 24 à 48 heures ouvrées, double emballage, coins renforcés, numéro de suivi dès l'expédition. Une fois l'instrument chez vous, il n'y a plus rien à faire : un handpan garde son accord des années, rien à tendre, rien à régler. Évitez simplement le coffre d'une voiture en plein été et rangez-le dans sa housse. C'est un instrument, pas un objet fragile.",
+        "paragraph_first": false,
+        "cta_label": "",
+        "cta_link": "",
+        "frame_color": "#edf3f0",
+        "frame_pad": 14,
+        "frame_radius": 22,
+        "glow": true,
+        "bg_color": "#f6f9f8",
+        "ink_color": "#0d1712",
+        "icon_color": "#22332a",
+        "filet": true,
+        "reveal": true,
+        "padding_top": 24,
+        "padding_bottom": 8
+      }
+    },
+    "comparatif_velluce": {
+      "type": "zensea-comparatif",
+      "blocks": {
+        "row_1": {
+          "type": "ligne",
+          "settings": {
+            "critere": "La gamme exacte, écrite sur la fiche produit"
+          }
+        },
+        "row_2": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Le choix entre 440 Hz et 432 Hz"
+          }
+        },
+        "row_3": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Un extrait sonore du modèle, écoutable avant d'acheter"
+          }
+        },
+        "row_4": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Le nombre de notes expliqué, pas seulement affiché"
+          }
+        },
+        "row_5": {
+          "type": "ligne",
+          "settings": {
+            "critere": "On vous dit aussi quand acheter moins cher ailleurs"
+          }
+        },
+        "row_6": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Aucun compte à rebours, aucune fausse urgence"
+          }
+        },
+        "row_7": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Une adresse, un SIREN, un téléphone qui répond"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5",
+        "row_6",
+        "row_7"
+      ],
+      "name": "Zensea — Comparatif",
+      "settings": {
+        "fond": "#ffffff",
+        "kicker_v2": "LA MAISON ZENSEA",
+        "titre_v2": "Notre exigence, ligne par ligne",
+        "sous_titre_v2": "Huit engagements écrits noir sur blanc. Rien qui ne puisse se vérifier avant de commander.",
+        "marque": "ZENSEA",
+        "marque_sous": "France",
+        "col_criteres_v2": "Nos engagements",
+        "col_nous_v2": "Zensea",
+        "col_ailleurs_v2": "Souvent ailleurs*",
+        "l1": "Martelé et accordé à la main, pièce par pièce",
+        "a1": false,
+        "l2": "La gamme et les notes exactes, écrites sur la fiche",
+        "a2": true,
+        "l3": "Aucun faux avis, aucun badge de confiance acheté",
+        "a3": false,
+        "l4": "L'accordage annoncé, 440 ou 432 Hz, vérifié avant l'envoi",
+        "a4": false,
+        "l5": "Le matériau nommé : acier nitruré, laiton martelé. Jamais « métal »",
+        "a5": false,
+        "l6": "Expédié de notre stock en Europe, sans frais de douane",
+        "a6": false,
+        "l7": "Garantie 2 ans, 30 jours d'essai, retour à notre charge",
+        "a7": false,
+        "l8": "Une réponse humaine, en français, avant et après l'achat",
+        "a8": true,
+        "note1_v2": "*Les pratiques les plus souvent constatées sur les boutiques d'instruments en ligne. Aucune marque n'est visée.",
+        "note2_v2": "",
+        "use_blocks": false
+      }
+    },
+    "image_texte_promesse_velluce": {
+      "type": "image-texte-premium",
+      "name": "Image texte premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_11_sept._2026_21_51_32.png",
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "left",
+        "eyebrow": "Les avis",
+        "title": "On préfère quarante avis vrais à trois mille faux",
+        "text": "<p>Le même chiffre revient sur presque toutes les boutiques de handpan : « 4,8 / 5 · plus de 3 000 avis vérifiés », logo vert bien visible. Prenez trente secondes avant d'acheter, où que ce soit : ouvrez Trustpilot et tapez le nom de la boutique. Il arrive souvent que la vraie fiche affiche deux étoiles — ou qu'il n'y ait aucune fiche du tout. Le badge sur leur page n'était qu'une image.</p><p>Nous, on ne joue pas à ça. Nos avis sont peu nombreux, parce que la boutique est jeune. Ils sont écrits par des gens qui ont reçu leur instrument, avec leurs mots, et vous pouvez les lire un par un. C'est moins impressionnant qu'un badge. C'est vérifiable.</p>",
+        "point_1": "Aucun avis acheté",
+        "point_1_sub": "ni généré, ni copié-collé",
+        "point_2": "Aucun badge décoratif",
+        "point_2_sub": "un logo n'est pas une note",
+        "point_3": "Vérifiez avant d'acheter",
+        "point_3_sub": "chez nous comme chez les autres",
+        "button_text": "Voir nos avis clients",
+        "button_link": "/pages/avis-clients",
+        "button_style": "link",
+        "section_bg": "#ffffff",
+        "title_color": "#22332a",
+        "text_color": "#22332a",
+        "accent_color": "#5a6b60",
+        "button_bg": "#22332a",
+        "button_text_color": "#ffffff",
+        "title_size_desktop": 44,
+        "title_size_mobile": 32,
+        "mobile_title_one_line": true,
+        "text_size_desktop": 17,
+        "text_size_mobile": 16,
+        "text_line_height": 1.8,
+        "paragraph_spacing": 16,
+        "button_text_size": 13,
+        "button_text_size_mobile": 12,
+        "button_height_desktop": 56,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 36,
+        "button_radius": 0,
+        "button_margin_top": 36,
+        "button_margin_top_mobile": 28,
+        "max_width": 1360,
+        "gap_desktop": 76,
+        "desktop_image_height": 540,
+        "desktop_padding_y": 10,
+        "image_radius": 4,
+        "mobile_image_height": 360,
+        "mobile_content_padding_y": 30,
+        "mobile_content_padding_left": 22,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "av_apres_premium_QxjAAq": {
+      "type": "av-apres-premium",
+      "disabled": true,
+      "name": "Avant Apres Premium",
+      "settings": {
+        "title": "Avant / Après",
+        "subtitle": "Le même salon, la même fin de journée. Ce qui change tient dans une caisse en acier de 56 cm.",
+        "title_font": "times",
+        "max_width": 1560,
+        "side_padding_desktop": 80,
+        "height_desktop": 900,
+        "height_mobile": 300,
+        "border_radius": 40,
+        "bg_color": "#f6f9f8",
+        "title_size_desktop": 36,
+        "title_size_mobile": 28,
+        "subtitle_size_desktop": 15,
+        "subtitle_size_mobile": 15
+      }
+    },
+    "featured_products": {
+      "type": "zensea-vous-aimerez",
+      "settings": {
+        "collection": "",
+        "max_products": 12,
+        "eyebrow": "Dans le même esprit",
+        "title": "Vous aimerez aussi",
+        "subtitle": "Les modèles que nos clients regardent juste après celui-ci.",
+        "link_text": "Voir tous les handpans",
+        "link_url": "",
+        "image_ratio": "4 / 5",
+        "image_fit": "cover",
+        "hover_second_image": true,
+        "show_badge": true,
+        "card_radius": 6,
+        "per_view": 4,
+        "per_view_tablet": 3,
+        "per_view_mobile": 1,
+        "peek": 70,
+        "peek_m": 120,
+        "gap": 20,
+        "gap_mobile": 14,
+        "section_bg": "#ffffff",
+        "card_bg": "#ecf1e8",
+        "title_color": "#22332a",
+        "accent_color": "#5a6b60",
+        "badge_color": "#b4c9be",
+        "badge_ink": "#0b1510",
+        "title_size": 38,
+        "title_size_mobile": 28,
+        "max_width": 1440,
+        "padding_top": 84,
+        "padding_bottom": 84
+      }
+    },
+    "garantie_24_mois_velluce": {
+      "type": "image-texte-premium",
+      "name": "Image texte premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_9_sept._2026_00_03_45.png",
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "right",
+        "eyebrow": "L'engagement Zensea",
+        "title": "30 jours pour l'écouter chez vous",
+        "text": "<p>Un extrait sonore, aussi bon soit-il, ne remplace pas l'instrument dans votre salon. C'est pour ça que la vraie garantie n'est pas un badge en bas de page : c'est le droit de le renvoyer.</p><p>Vous avez 30 jours à compter de la réception. Vous le sortez, vous le jouez, vous le faites écouter. S'il ne vous parle pas, vous nous écrivez et vous le renvoyez — les frais de retour sont à votre charge, le reste est remboursé sous 7 à 14 jours. Et pendant deux ans, la garantie légale de conformité couvre tout défaut de l'instrument.</p>",
+        "point_1": "30 jours",
+        "point_1_sub": "pour changer d'avis, sans justification",
+        "point_2": "Remboursement 7 à 14 jours",
+        "point_2_sub": "sur votre moyen de paiement d'origine",
+        "point_3": "Garantie 2 ans",
+        "point_3_sub": "garantie légale de conformité",
+        "button_text": "Lire notre politique de retour",
+        "button_link": "",
+        "button_style": "link",
+        "section_bg": "#ffffff",
+        "title_color": "#22332a",
+        "text_color": "#22332a",
+        "accent_color": "#5a6b60",
+        "button_bg": "#22332a",
+        "button_text_color": "#ffffff",
+        "title_size_desktop": 44,
+        "title_size_mobile": 32,
+        "mobile_title_one_line": true,
+        "text_size_desktop": 17,
+        "text_size_mobile": 16,
+        "text_line_height": 1.8,
+        "paragraph_spacing": 16,
+        "button_text_size": 13,
+        "button_text_size_mobile": 12,
+        "button_height_desktop": 56,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 36,
+        "button_radius": 0,
+        "button_margin_top": 36,
+        "button_margin_top_mobile": 28,
+        "max_width": 1360,
+        "gap_desktop": 76,
+        "desktop_image_height": 540,
+        "desktop_padding_y": 10,
+        "image_radius": 4,
+        "mobile_image_height": 360,
+        "mobile_content_padding_y": 30,
+        "mobile_content_padding_left": 22,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "padding_top": 40,
+        "padding_bottom": 88
+      }
+    },
+    "carrousel_images_bbly": {
+      "type": "carrousel-images",
+      "blocks": {
+        "image_HmWd3L": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/Handpans 9 10 et 12 Notes Ré Mineur Zenbalya (2).mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_iJqLFW": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/Handpans 9 10 et 12 Notes Ré Mineur Zenbalya (1).mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_6ahqgJ": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/Handpans 9 10 et 12 Notes Ré Mineur Zenbalya.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_3dWiyV": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-14.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_UQPcEp": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-07.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_hXg6YA": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-09.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_8kFRxP": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-10.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_fAzA3n": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-12.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_tFFAkg": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-06.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_QEN8dx": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-13.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_G9QBHX": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-16.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_bRWVdP": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-15.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_VaQFbK": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-08.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_GegmRn": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-11.mp4",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_HGBFH7": {
+          "type": "image",
+          "settings": {
+            "video": "shopify://files/videos/zenbalya-communaute-02.mp4",
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_HmWd3L",
+        "image_iJqLFW",
+        "image_6ahqgJ",
+        "image_3dWiyV",
+        "image_UQPcEp",
+        "image_hXg6YA",
+        "image_8kFRxP",
+        "image_fAzA3n",
+        "image_tFFAkg",
+        "image_QEN8dx",
+        "image_G9QBHX",
+        "image_bRWVdP",
+        "image_VaQFbK",
+        "image_GegmRn",
+        "image_HGBFH7"
+      ],
+      "name": "Carrousel d'images",
+      "settings": {
+        "title": "Ce que ça donne, chez eux",
+        "subtitle": "Aucun d'entre eux n'était musicien avant.",
+        "title_size": 38,
+        "title_size_m": 26,
+        "title_weight": "400",
+        "title_italic": true,
+        "title_color": "#22332a",
+        "sub_size": 15,
+        "sub_size_m": 14,
+        "sub_color": "#5a6b60",
+        "center_h": 630,
+        "side_h": 490,
+        "center_h_m": 470,
+        "side_h_m": 360,
+        "cardpx": 440,
+        "cardpx_m": 300,
+        "gap": 14,
+        "radius": 16,
+        "side_opacity": 100,
+        "autoplay": true,
+        "interval": 4,
+        "show_arrows": true,
+        "cap_size": 13,
+        "cap_color": "#5a6b60",
+        "cap_align": "center",
+        "nav_bg": "#ffffff",
+        "nav_color": "#22332a",
+        "bg": "#ffffff",
+        "pad_top": 56,
+        "pad_bot": 56,
+        "pad_top_m": 36,
+        "pad_bot_m": 36
+      }
+    },
+    "faq_premium_Jj3fCF": {
+      "type": "faq-premium",
+      "blocks": {
+        "faq_item_JzaUMe": {
+          "type": "faq_item",
+          "settings": {
+            "question": "9, 10 ou 12 notes : je vais être limité si je prends 9 ?",
+            "answer": "<p>Non. Neuf notes est la configuration la plus vendue et elle couvre l'immense majorité de ce qui se joue au handpan. Les notes supplémentaires élargissent la palette, elles ne débloquent aucune technique : le geste est rigoureusement le même.</p><p>La vraie différence est ailleurs. À neuf notes, on repère tout d'un coup d'œil et on est à l'aise plus vite. À douze, il faut quelques semaines de plus avant de se sentir chez soi. Si c'est votre premier handpan, prenez neuf notes.</p>"
+          }
+        },
+        "faq_item_6LMmnE": {
+          "type": "faq_item",
+          "settings": {
+            "question": "440 Hz ou 432 Hz : lequel choisir ?",
+            "answer": "<p>Le 440 Hz est le diapason standard dans le monde entier. Prenez-le si vous voulez pouvoir jouer avec une guitare, un piano, un autre musicien, ou enregistrer par-dessus une bande.</p><p>Le 432 Hz est légèrement plus bas. Certains joueurs le trouvent plus doux et le préfèrent pour jouer seuls. Nous proposons les deux, sans militer pour l'un ou pour l'autre : ce sont deux hauteurs de référence, aucune n'est plus « juste » que l'autre. Le seul point concret : un instrument en 432 Hz ne se joue pas avec un instrument en 440 Hz.</p>"
+          }
+        },
+        "faq_item_4yVCdJ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Pourquoi c'est plus cher qu'un handpan à 90 € ?",
+            "answer": "<p>Parce qu'à 90 €, ce n'est pas un handpan. C'est un disque de tôle fine dont les zones de notes se chevauchent : les harmoniques bavent, l'instrument sonne faux dès l'ouverture du carton et il ne peut pas être réaccordé.</p><p>Et pour être complet dans l'autre sens : si votre budget est en dessous de 150 €, ne prenez pas un mauvais handpan. Prenez un tongue drum. C'est un autre instrument, plus compact, honnête à son prix, et vous y prendrez bien plus de plaisir qu'avec une imitation.</p>"
+          }
+        },
+        "faq_item_9yEcQN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Est-ce que ça va déranger mes voisins ?",
+            "answer": "<p>Nettement moins qu'un piano numérique ou qu'une guitare acoustique. Le handpan produit un son rond, sans attaque agressive, dont le volume dépend directement de la force de la frappe — et un handpan se joue doucement, c'est même la condition pour qu'il sonne bien.</p><p>En appartement, jouez-le posé sur les genoux plutôt que sur une table : le meuble amplifie les vibrations et les transmet au sol. Ce seul détail change tout.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_JzaUMe",
+        "faq_item_6LMmnE",
+        "faq_item_4yVCdJ",
+        "faq_item_9yEcQN"
+      ],
+      "name": "FAQ Premium",
+      "settings": {
+        "title": "Les questions que vous vous posez, là, maintenant",
+        "subtitle": "Y compris celles qu'on préférerait éviter.",
+        "button_text": "Voir toutes les questions",
+        "button_link": "",
+        "single_open": true,
+        "title_size": 40,
+        "title_size_m": 30,
+        "sub_size": 16,
+        "sub_size_m": 15,
+        "q_size": 18,
+        "q_size_m": 16,
+        "a_size": 16,
+        "a_size_m": 15,
+        "row_pad": 20,
+        "bg": "#ffffff",
+        "title_color": "#181c1a",
+        "sub_color": "#65716b",
+        "q_color": "#181c1a",
+        "a_color": "#59655f",
+        "ico_color": "#8aaa9a",
+        "divider": "#ebedec",
+        "btn_bg": "#181c1a",
+        "btn_text": "#ffffff",
+        "btn_size": 15,
+        "btn_radius": 8,
+        "max_width": 820,
+        "pad_top": 64,
+        "pad_bot": 64,
+        "pad_top_m": 40,
+        "pad_bot_m": 40
+      }
+    },
+    "support_steps_hmqFkC": {
+      "type": "support-steps",
+      "blocks": {
+        "step_card_ithhNW": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Avant de commander",
+            "card_text": "On vous envoie l'extrait sonore du modèle qui vous intéresse et on vous dit franchement s'il correspond à ce que vous décrivez."
+          }
+        },
+        "step_card_bqEn4n": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Les premiers jours",
+            "card_text": "Une note qui sonne mate, une main qui fatigue, un doute sur la posture : écrivez-nous, on répond avec des exemples concrets."
+          }
+        },
+        "step_card_xTdVK4": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Longtemps après",
+            "card_text": "Entretien, huile de protection, housse à remplacer, question d'accordage : on reste joignable bien après la fin de la garantie."
+          }
+        }
+      },
+      "block_order": [
+        "step_card_ithhNW",
+        "step_card_bqEn4n",
+        "step_card_xTdVK4"
+      ],
+      "name": "Support WhatsApp Steps",
+      "settings": {
+        "label_text": "AVANT • PENDANT • APRÈS",
+        "title": "Quelqu'un qui connaît l'instrument, au bout du fil",
+        "cta_title": "Un doute avant de commander ?",
+        "cta_desc": "Dites-nous ce que vous écoutez et ce que vous cherchez. On vous répond avec une gamme, un nombre de notes et un diapason — pas avec un lien vers le catalogue.",
+        "whatsapp_link": "https://wa.me/message/V5U35J5ZWYZOA1",
+        "whatsapp_btn_text": "Nous écrire par WhatsApp",
+        "bg_image_opacity": 10,
+        "primary_color": "#2e5e46",
+        "bg_color": "#ffffff",
+        "title_size_desktop": 48,
+        "title_size_mobile": 28,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36,
+        "max_width": 1200
+      }
+    },
+    "bas_footer_kpatWN": {
+      "type": "zensea-dunes",
+      "settings": {
+        "height_desktop": 300,
+        "height_mobile": 180,
+        "sun_x": 65,
+        "sun_y": 57,
+        "sun_size": 70,
+        "sky": "#f6f9f8",
+        "sun": "#f8edd7",
+        "sun_edge": "#f0d7a6",
+        "glow": "#f8ebd2",
+        "rim": "#dfeae4",
+        "dune_1": "#c7d9d0",
+        "dune_2": "#b0c9bc",
+        "dune_3": "#96b4a3",
+        "dune_4": "#7ba089",
+        "dune_5": "#5f8a70",
+        "dune_6": "#467358",
+        "ligne": "#dfeae4",
+        "ground": "#2e5e46"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main",
+    "zs_parcours",
+    "tout_est_dans_le_carton_P9V33C",
+    "assurance_jd4XHT",
+    "image_text_premium_KgNxUY",
+    "image_text_premium_wBPW3U",
+    "image_text_premium_xyThbp",
+    "comparatif_velluce",
+    "image_texte_promesse_velluce",
+    "av_apres_premium_QxjAAq",
+    "featured_products",
+    "garantie_24_mois_velluce",
+    "carrousel_images_bbly",
+    "faq_premium_Jj3fCF",
+    "support_steps_hmqFkC",
+    "bas_footer_kpatWN"
+  ]
+}
