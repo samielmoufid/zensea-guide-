@@ -1,0 +1,2884 @@
+{
+  "sections": {
+    "image_banner_VXNP89": {
+      "type": "image-banner",
+      "blocks": {
+        "image_banner_dBEabG": {
+          "type": "_image-banner",
+          "disabled": true,
+          "settings": {
+            "media_type": "image",
+            "image": "shopify://shop_images/ChatGPT_Image_5_juil._2026_23_47_27_2.png",
+            "image_mobile": "shopify://shop_images/ChatGPT_Image_5_juil._2026_23_47_27_1.png",
+            "source": "uploaded",
+            "video_url": "",
+            "color_scheme": "scheme-4",
+            "banner_height": "medium",
+            "layout_justify": "flex-end",
+            "layout_align_items": "flex-start",
+            "same_as_desktop": true,
+            "banner_height_mobile": "medium",
+            "layout_justify_mobile": "center",
+            "layout_align_items_mobile": "flex-start",
+            "image_filter_opacity": 50,
+            "image_filter_color": "#000000",
+            "padding_horizontal": 0,
+            "padding_vertical": 15
+          },
+          "blocks": {
+            "reviews_badge_464qB9": {
+              "type": "reviews-badge",
+              "name": "t:reviews_badge_trustpilot",
+              "settings": {
+                "review_badge_style": "trustpilot",
+                "wrap_in_a_badge": false,
+                "color_scheme": "scheme-1",
+                "show_badge_border": false,
+                "text_1": "Excellent",
+                "stars": "5",
+                "text_2": "+2 000 parents accompagnés",
+                "link": "",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": "/* Étoiles style Trustpilot */.rating-stars {  display: inline-flex !important;  align-items: center !important;  gap: 3px !important;}/* Chaque étoile dans un carré vert */.rating-stars svg,.rating-stars .star,.rating-stars span {  background: #00b67a !important;  color: #ffffff !important;  fill: #ffffff !important;  width: 22px !important;  height: 22px !important;  min-width: 22px !important;  min-height: 22px !important;  padding: 3px !important;  box-sizing: border-box !important;  border-radius: 0px !important;}/* Si les étoiles sont en icônes SVG */.rating-stars svg path {  fill: #ffffff !important;}"
+              },
+              "blocks": {}
+            },
+            "reviews_badge_qUUwbt": {
+              "type": "reviews-badge",
+              "name": "t:reviews_badge_trustpilot",
+              "disabled": true,
+              "settings": {
+                "review_badge_style": "google",
+                "wrap_in_a_badge": false,
+                "color_scheme": "scheme-3",
+                "show_badge_border": false,
+                "text_1": "Excellent",
+                "stars": "4,5",
+                "text_2": "1988 avis sur",
+                "link": "",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            },
+            "group_nypGzr": {
+              "type": "group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "card_link": "",
+                "color_scheme": "",
+                "show_card_border": false,
+                "layout_type": "grid",
+                "width_desktop": 67,
+                "layout_direction_desktop": "row",
+                "layout_grid_columns_desktop": 3,
+                "layout_gap_desktop": 0,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": false,
+                "width_mobile": 98,
+                "layout_direction_mobile": "column",
+                "layout_grid_columns_mobile": 1,
+                "layout_gap_mobile": 0,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "use_global_container_padding": true,
+                "padding_horizontal": 30,
+                "padding_vertical": 30,
+                "margin_top": 10,
+                "margin_bottom": 10,
+                "additional_class": ""
+              },
+              "blocks": {
+                "rating_stars_4NUd3p": {
+                  "type": "rating-stars",
+                  "name": "t:rating_stars",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "",
+                    "hide_rating_when_no_reviews": true,
+                    "rating": 4.5,
+                    "show_note": true,
+                    "show_review_count": true,
+                    "review_count": 123,
+                    "link": "",
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": "/* Étoiles style Trustpilot */.rating-stars {  display: inline-flex !important;  align-items: center !important;  gap: 3px !important;}/* Chaque étoile dans un carré vert */.rating-stars svg,.rating-stars .star,.rating-stars span {  background: #00b67a !important;  color: #ffffff !important;  fill: #ffffff !important;  width: 22px !important;  height: 22px !important;  min-width: 22px !important;  min-height: 22px !important;  padding: 3px !important;  box-sizing: border-box !important;  border-radius: 0px !important;}/* Si les étoiles sont en icônes SVG */.rating-stars svg path {  fill: #ffffff !important;}"
+                  },
+                  "blocks": {}
+                },
+                "group_wibFDH": {
+                  "type": "group",
+                  "name": "Avis client (Groupe)",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "wrap_in_card": false,
+                    "card_link": "",
+                    "color_scheme": "",
+                    "show_card_border": false,
+                    "layout_type": "flex",
+                    "width_desktop": 100,
+                    "layout_direction_desktop": "row",
+                    "layout_grid_columns_desktop": 3,
+                    "layout_gap_desktop": 3,
+                    "layout_wrap_desktop": "nowrap",
+                    "layout_justify_desktop": "flex-start",
+                    "layout_align_items_desktop": "center",
+                    "same_as_desktop": true,
+                    "width_mobile": 100,
+                    "layout_direction_mobile": "column",
+                    "layout_grid_columns_mobile": 1,
+                    "layout_gap_mobile": 10,
+                    "layout_wrap_mobile": "nowrap",
+                    "layout_justify_mobile": "flex-start",
+                    "layout_align_items_mobile": "flex-start",
+                    "use_global_container_padding": true,
+                    "padding_horizontal": 30,
+                    "padding_vertical": 30,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {
+                    "rating_stars_z9LL3m": {
+                      "type": "rating-stars",
+                      "disabled": true,
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "product": "",
+                        "hide_rating_when_no_reviews": true,
+                        "rating": 4.7,
+                        "show_note": true,
+                        "show_review_count": true,
+                        "review_count": 123,
+                        "link": "",
+                        "margin_top": 0,
+                        "margin_bottom": 18,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    },
+                    "text_mLtNpU": {
+                      "type": "text",
+                      "settings": {
+                        "show_on_display": "desktop_only",
+                        "text": "<p>La sélection douce et pratique pour les jeunes parents</p>",
+                        "text_style": "paragraph",
+                        "paragraph_font_size": "normal",
+                        "font_weight": 400,
+                        "alignment": "left",
+                        "alignment_mobile": "left",
+                        "show_read_more": false,
+                        "read_more_length": 50,
+                        "read_more_text": "Voir plus",
+                        "read_less_text": "Voir moins",
+                        "truncate": false,
+                        "truncate_length": 2,
+                        "margin_top": 0,
+                        "margin_bottom": 0,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "rating_stars_z9LL3m",
+                    "text_mLtNpU"
+                  ]
+                },
+                "text_VJtMDF": {
+                  "type": "text",
+                  "name": "Proposition de valeur",
+                  "disabled": true,
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<h1>Tout pour accueillir bébé avec douceur, confort et sécurité</h1>",
+                    "text_style": "h2",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_cJcTQA": {
+                  "type": "text",
+                  "name": "t:title",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<h3>Le confort de bébé, la sérénité des parents</h3><h3></h3>",
+                    "text_style": "h3",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_8GW6GA": {
+                  "type": "text",
+                  "name": "Sous titre",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Une sélection douce, pratique et fiable pour accompagner chaque moment du quotidien : sommeil, sorties et premiers repas.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "large",
+                    "font_weight": 500,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 4,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "group_rFrEU8": {
+                  "type": "group",
+                  "name": "Appel(s) à l'action (Groupe)",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "wrap_in_card": false,
+                    "card_link": "",
+                    "color_scheme": "",
+                    "show_card_border": false,
+                    "layout_type": "flex",
+                    "width_desktop": 100,
+                    "layout_direction_desktop": "row",
+                    "layout_grid_columns_desktop": 3,
+                    "layout_gap_desktop": 10,
+                    "layout_wrap_desktop": "nowrap",
+                    "layout_justify_desktop": "flex-start",
+                    "layout_align_items_desktop": "flex-start",
+                    "same_as_desktop": true,
+                    "width_mobile": 100,
+                    "layout_direction_mobile": "column",
+                    "layout_grid_columns_mobile": 1,
+                    "layout_gap_mobile": 10,
+                    "layout_wrap_mobile": "nowrap",
+                    "layout_justify_mobile": "flex-start",
+                    "layout_align_items_mobile": "flex-start",
+                    "use_global_container_padding": true,
+                    "padding_horizontal": 30,
+                    "padding_vertical": 30,
+                    "margin_top": 10,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {
+                    "button_JteLrC": {
+                      "type": "button",
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "link": "shopify://collections",
+                        "open_in_new_tab": false,
+                        "label": "Découvrir la collection",
+                        "button_style": "primary",
+                        "button_shape": "default",
+                        "icon": "none",
+                        "icon_custom": "",
+                        "icon_position": "end",
+                        "margin_top": 0,
+                        "margin_bottom": 7,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    },
+                    "button_bebe2nd": {
+                      "type": "button",
+                      "disabled": true,
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "link": "shopify://collections/poussette",
+                        "open_in_new_tab": false,
+                        "label": "Voir les poussettes 3 en 1",
+                        "button_style": "secondary",
+                        "button_shape": "default",
+                        "icon": "none",
+                        "icon_custom": "",
+                        "icon_position": "end",
+                        "margin_top": 0,
+                        "margin_bottom": 0,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "button_JteLrC",
+                    "button_bebe2nd"
+                  ]
+                },
+                "group_3Pie6V": {
+                  "type": "group",
+                  "name": "Badges de confiance (Groupe)",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "wrap_in_card": false,
+                    "card_link": "",
+                    "color_scheme": "",
+                    "show_card_border": false,
+                    "layout_type": "flex",
+                    "width_desktop": 100,
+                    "layout_direction_desktop": "row",
+                    "layout_grid_columns_desktop": 3,
+                    "layout_gap_desktop": 20,
+                    "layout_wrap_desktop": "wrap",
+                    "layout_justify_desktop": "flex-start",
+                    "layout_align_items_desktop": "flex-start",
+                    "same_as_desktop": false,
+                    "width_mobile": 100,
+                    "layout_direction_mobile": "column",
+                    "layout_grid_columns_mobile": 1,
+                    "layout_gap_mobile": 10,
+                    "layout_wrap_mobile": "wrap",
+                    "layout_justify_mobile": "center",
+                    "layout_align_items_mobile": "flex-start",
+                    "use_global_container_padding": true,
+                    "padding_horizontal": 30,
+                    "padding_vertical": 30,
+                    "margin_top": 5,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {
+                    "icon_with_text_MPKKCD": {
+                      "type": "icon-with-text",
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "layout_direction_desktop": "row",
+                        "layout_gap_desktop": 5,
+                        "same_as_desktop": true,
+                        "layout_direction_mobile": "column",
+                        "layout_gap_mobile": 10,
+                        "icon_type": "icon",
+                        "icon": "delivery_truck_speed",
+                        "icon_custom": "",
+                        "icon_size": 22,
+                        "icon_position": "start",
+                        "text": "<p>Livraison suivie en France</p>",
+                        "text_style": "paragraph",
+                        "font_weight": 400,
+                        "margin_top": 0,
+                        "margin_bottom": 0,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    },
+                    "icon_with_text_AdYCCm": {
+                      "type": "icon-with-text",
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "layout_direction_desktop": "row",
+                        "layout_gap_desktop": 5,
+                        "same_as_desktop": true,
+                        "layout_direction_mobile": "column",
+                        "layout_gap_mobile": 10,
+                        "icon_type": "icon",
+                        "icon": "package_2",
+                        "icon_custom": "",
+                        "icon_size": 22,
+                        "icon_position": "start",
+                        "text": "<p>Retours sous 30 jours</p>",
+                        "text_style": "paragraph",
+                        "font_weight": 400,
+                        "margin_top": 0,
+                        "margin_bottom": 0,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "icon_with_text_MPKKCD",
+                    "icon_with_text_AdYCCm"
+                  ]
+                }
+              },
+              "block_order": [
+                "rating_stars_4NUd3p",
+                "group_wibFDH",
+                "text_VJtMDF",
+                "text_cJcTQA",
+                "text_8GW6GA",
+                "group_rFrEU8",
+                "group_3Pie6V"
+              ]
+            }
+          },
+          "block_order": [
+            "reviews_badge_464qB9",
+            "reviews_badge_qUUwbt",
+            "group_nypGzr"
+          ]
+        }
+      },
+      "block_order": [
+        "image_banner_dBEabG"
+      ],
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "full_width": true,
+        "color_scheme": "scheme-1",
+        "show_arrows": false,
+        "show_pagination": true,
+        "autoplay": false,
+        "rewind": true,
+        "autoplay_speed": 4,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "anchor_id": "",
+        "additional_class": ""
+      }
+    },
+    "banniere_hero_gMxea8": {
+      "type": "banniere-hero",
+      "name": "Bebelys Hero Impact",
+      "settings": {
+        "desktop_video_url": "",
+        "desktop_image": "shopify://shop_images/ChatGPT_Image_5_juil._2026_23_47_27_2.png",
+        "desktop_position": "right center",
+        "mobile_video_url": "",
+        "mobile_image": "shopify://shop_images/ChatGPT_Image_5_juil._2026_23_47_27_1.png",
+        "mobile_position": "center center",
+        "overlay_opacity": 35,
+        "desktop_height": 780,
+        "mobile_height": 620,
+        "rating_text": "4,7/5, + de 2 000 parents accompagnés",
+        "eyebrow": "n°1 niche bébé",
+        "title": "Le confort de bébé, la sérénité des parents",
+        "mobile_title": "Le confort de bébé, la sérénité des parents",
+        "description": "Poussettes 3 en 1, lits cododo et essentiels bébé pensés pour simplifier les premiers mois avec douceur, praticité et confiance.",
+        "mobile_description": "Des essentiels doux, pratiques et rassurants pour accompagner les premiers mois de bébé.",
+        "primary_label": "Découvrir nos essentiels",
+        "primary_link": "shopify://collections/best-seller",
+        "secondary_label": "",
+        "secondary_link": ""
+      }
+    },
+    "par_espace_pfTfWn": {
+      "type": "par-espace",
+      "blocks": {
+        "espace_apky7a": {
+          "type": "espace",
+          "settings": {
+            "collection": "espace-sommeil",
+            "image": "shopify://shop_images/ChatGPT_Image_13_juil._2026_23_06_14_2.png",
+            "image_mobile": "shopify://shop_images/ChatGPT_Image_13_juil._2026_22_17_54.png",
+            "title": "Espace sommeil",
+            "link_text": "Découvrir",
+            "custom_url": "shopify://collections/espace-sommeil",
+            "size": "third",
+            "text_pos": "bottom-left"
+          }
+        },
+        "espace_mk4cU8": {
+          "type": "espace",
+          "settings": {
+            "collection": "espace-jeux-eveil",
+            "image": "shopify://shop_images/ChatGPT_Image_13_juil._2026_22_37_37.png",
+            "image_mobile": "shopify://shop_images/ChatGPT_Image_13_juil._2026_22_33_13.png",
+            "title": "Espace Jeux & Éveil",
+            "link_text": "Découvrir",
+            "custom_url": "",
+            "size": "twothirds",
+            "text_pos": "bottom-left"
+          }
+        },
+        "espace_Xz9PmP": {
+          "type": "espace",
+          "settings": {
+            "collection": "espace-repas",
+            "image": "shopify://shop_images/ChatGPT_Image_13_juil._2026_23_06_15_3.png",
+            "title": "Espace repas",
+            "link_text": "Découvrir",
+            "custom_url": "",
+            "size": "third",
+            "text_pos": "bottom-left"
+          }
+        },
+        "espace_pYC8rV": {
+          "type": "espace",
+          "settings": {
+            "collection": "espace-bain-soin",
+            "image": "shopify://shop_images/ChatGPT_Image_13_juil._2026_22_49_53.png",
+            "image_mobile": "shopify://shop_images/ChatGPT_Image_13_juil._2026_22_49_53.png",
+            "title": "Espace bain & soin",
+            "link_text": "Découvrir",
+            "custom_url": "",
+            "size": "third",
+            "text_pos": "bottom-left"
+          }
+        },
+        "espace_jLDBmp": {
+          "type": "espace",
+          "settings": {
+            "collection": "espace-balades",
+            "image": "shopify://shop_images/ChatGPT_Image_13_juil._2026_23_06_14_1.png",
+            "image_mobile": "shopify://shop_images/ChatGPT_Image_13_juil._2026_22_55_01.png",
+            "title": "ESPACE BALADE",
+            "link_text": "Découvrir",
+            "custom_url": "",
+            "size": "third",
+            "text_pos": "bottom-left"
+          }
+        }
+      },
+      "block_order": [
+        "espace_apky7a",
+        "espace_mk4cU8",
+        "espace_Xz9PmP",
+        "espace_pYC8rV",
+        "espace_jLDBmp"
+      ],
+      "name": "Espaces de vie",
+      "settings": {
+        "title": "Espaces de vie",
+        "subtitle": "Parce que chaque instant avec bébé est précieux",
+        "button_text": "Découvrir tous les espaces",
+        "button_url": "",
+        "button_desktop": false,
+        "title_font": "serif",
+        "title_size": 42,
+        "title_size_m": 30,
+        "title_weight": "400",
+        "title_italic": true,
+        "title_spacing": 0,
+        "title_color": "#1a1a1a",
+        "subtitle_size": 15,
+        "subtitle_size_m": 14,
+        "subtitle_color": "#555555",
+        "card_title_size": 20,
+        "card_title_size_m": 18,
+        "card_title_uppercase": true,
+        "card_title_weight": "700",
+        "card_title_color": "#ffffff",
+        "link_size": 16,
+        "link_size_m": 15,
+        "link_italic": true,
+        "show_arrow": true,
+        "link_color": "#ffffff",
+        "layout_desktop": "custom",
+        "gap": 8,
+        "height_mode": "fixed",
+        "card_height": 540,
+        "ratio_desktop": "landscape",
+        "radius": 0,
+        "overlay_opacity": 90,
+        "overlay_color": "#000000",
+        "hover_zoom": true,
+        "zoom_scale": 105,
+        "anim_scroll": true,
+        "mobile_layout": "carousel",
+        "card_width_m": 85,
+        "card_height_m": 460,
+        "show_dots": true,
+        "btn_text_size": 15,
+        "btn_text_color": "#1a1a1a",
+        "btn_bg_color": "#ffffff",
+        "btn_border_color": "#1a1a1a",
+        "btn_radius": 0,
+        "bg_color": "#ffffff",
+        "full_width": true,
+        "pad_top": 60,
+        "pad_bot": 60,
+        "pad_top_m": 40,
+        "pad_bot_m": 40
+      }
+    },
+    "collections_premium_AHr9UK": {
+      "type": "collections-premium",
+      "blocks": {
+        "collection_X9CMgW": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_14_juil._2026_00_16_31.png",
+            "image_alt": "",
+            "title": "Lit Cododo",
+            "collection_url": "shopify://collections/lit-cododo"
+          }
+        },
+        "collection_n6iYJz": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_14_juil._2026_00_08_34.png",
+            "image_alt": "",
+            "title": "Poussete 3 en 1",
+            "collection_url": "shopify://collections/poussette"
+          }
+        },
+        "collection_6N8ei8": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_03_31_31.png",
+            "image_alt": "",
+            "title": "Sac à Langer",
+            "collection_url": "shopify://collections/sacs-a-langer"
+          }
+        },
+        "collection_prhfQg": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_14_juil._2026_03_01_11_2.png",
+            "image_alt": "",
+            "title": "Chaise haute",
+            "collection_url": "shopify://collections/chaise-haute"
+          }
+        }
+      },
+      "block_order": [
+        "collection_X9CMgW",
+        "collection_n6iYJz",
+        "collection_6N8ei8",
+        "collection_prhfQg"
+      ],
+      "name": "Bebelys collections",
+      "settings": {
+        "title": "Collections vedettes",
+        "title_size_desktop": 48,
+        "title_size_mobile": 28,
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "max_width": 1560,
+        "section_padding_vertical": 60,
+        "card_gap": 16,
+        "border_radius": 16,
+        "image_height_desktop": 470,
+        "image_height_mobile": 300,
+        "single_card_max_width": 760,
+        "cards_desktop": 3,
+        "cards_mobile": 1,
+        "enable_carousel": true,
+        "enable_arrows": true,
+        "enable_dots": true
+      }
+    },
+    "collection_featured_ajDTpX": {
+      "type": "collection-featured",
+      "blocks": {
+        "group_TnrcY3": {
+          "type": "group",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "wrap_in_card": false,
+            "card_link": "",
+            "color_scheme": "scheme-3",
+            "show_card_border": false,
+            "layout_type": "flex",
+            "width_desktop": 100,
+            "layout_direction_desktop": "row",
+            "layout_grid_columns_desktop": 3,
+            "layout_gap_desktop": 10,
+            "layout_wrap_desktop": "nowrap",
+            "layout_justify_desktop": "space-between",
+            "layout_align_items_desktop": "center",
+            "same_as_desktop": true,
+            "width_mobile": 100,
+            "layout_direction_mobile": "column",
+            "layout_grid_columns_mobile": 1,
+            "layout_gap_mobile": 10,
+            "layout_wrap_mobile": "nowrap",
+            "layout_justify_mobile": "flex-start",
+            "layout_align_items_mobile": "flex-start",
+            "use_global_container_padding": true,
+            "padding_horizontal": 30,
+            "padding_vertical": 30,
+            "margin_top": 10,
+            "margin_bottom": 30,
+            "additional_class": ""
+          },
+          "blocks": {
+            "group_rQPBJn": {
+              "type": "group",
+              "name": "Groupe titre",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "card_link": "",
+                "color_scheme": "",
+                "show_card_border": false,
+                "layout_type": "flex",
+                "width_desktop": 70,
+                "layout_direction_desktop": "column",
+                "layout_grid_columns_desktop": 3,
+                "layout_gap_desktop": 10,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": false,
+                "width_mobile": 100,
+                "layout_direction_mobile": "column",
+                "layout_grid_columns_mobile": 1,
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "use_global_container_padding": true,
+                "padding_horizontal": 30,
+                "padding_vertical": 30,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "text_WeyhME": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>LES INDISPENSABLES</p><p></p>",
+                    "text_style": "h3",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_qzWhd3": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Ce sont eux qu'on nous demande le plus. Approuvés au quotidien par des centaines de familles.Si vous ne savez pas par où commencer, c'est ici.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_WeyhME",
+                "text_qzWhd3"
+              ]
+            },
+            "button_LtrWA3": {
+              "type": "button",
+              "settings": {
+                "show_on_display": "desktop_only",
+                "link": "{{ closest.collection.url }}",
+                "open_in_new_tab": false,
+                "label": "Voir toutes les poussettes",
+                "button_style": "secondary",
+                "button_shape": "small",
+                "icon": "arrow_forward",
+                "icon_custom": "arrow_forward",
+                "icon_position": "end",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_rQPBJn",
+            "button_LtrWA3"
+          ]
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "wrap_in_card": false,
+            "color_scheme": "",
+            "layout_gap": 15
+          },
+          "blocks": {
+            "product_card_media_gallery_J4tKmY": {
+              "type": "_product-card-media-gallery",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "show_slider": true,
+                "media_rounded": true,
+                "show_badges": true,
+                "media_ratio": "1 / 1",
+                "additional_class": ""
+              },
+              "blocks": {}
+            },
+            "product_card_group_9Ctb38": {
+              "type": "_product-card-group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "color_scheme": "scheme-3",
+                "layout_direction_desktop": "column",
+                "layout_gap_desktop": 5,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": true,
+                "layout_direction_mobile": "column",
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "margin_top": 5,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "text_UqjdpF": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<h2>{{ closest.product.title }}</h2>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 500,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "product_price_qEEaqN": {
+                  "type": "product-price",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "{{ closest.product }}",
+                    "sales_badge": "amount",
+                    "show_sales_badge_text": false,
+                    "show_unit_price": false,
+                    "text_style": "paragraph",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "product_card_swatches_LJX6gJ": {
+                  "type": "_product-card-swatches",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "swatches_size": "small",
+                    "swatches_rounded": true,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "rating_stars_w3MWUh": {
+                  "type": "rating-stars",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "{{ closest.product }}",
+                    "hide_rating_when_no_reviews": true,
+                    "rating": 4.5,
+                    "show_note": true,
+                    "show_review_count": true,
+                    "review_count": 123,
+                    "link": "",
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_UqjdpF",
+                "product_price_qEEaqN",
+                "product_card_swatches_LJX6gJ",
+                "rating_stars_w3MWUh"
+              ]
+            }
+          },
+          "block_order": [
+            "product_card_media_gallery_J4tKmY",
+            "product_card_group_9Ctb38"
+          ]
+        }
+      },
+      "block_order": [
+        "group_TnrcY3"
+      ],
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "color_scheme": "",
+        "collection": "best-seller",
+        "max_products": 6,
+        "layout_type": "slider",
+        "grid_columns": 4,
+        "grid_columns_mobile": "2",
+        "slider_items": 4,
+        "slider_items_mobile": "1.8",
+        "show_arrows": true,
+        "show_pagination": false,
+        "rewind": true,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "anchor_id": "",
+        "additional_class": ""
+      }
+    },
+    "choisir_bebelys_dcVbQ7": {
+      "type": "choisir-bebelys",
+      "blocks": {
+        "bloc_ETKdHR": {
+          "type": "bloc",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_14_juil._2026_02_22_54.png",
+            "title": "On choisit, vous profitez",
+            "text": "Marre de comparer 50 fiches produits à 23h ? On a déjà trié, testé et choisi pour vous. Il ne reste que le meilleur"
+          }
+        },
+        "bloc_aLmCAH": {
+          "type": "bloc",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_14_juil._2026_02_27_46.png",
+            "title": "Il grandit, ça suit",
+            "text": "Cododo qui devient berceau, chaise qui suit ses premières années. Vous achetez une fois , il en profite longtemps"
+          }
+        },
+        "bloc_6b6VjG": {
+          "type": "bloc",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_14_juil._2026_02_38_23.png",
+            "title": "Dormez tranquille, vous aussi",
+            "text": "Chaque produit est vérifié avant d'arriver chez vous. Livraison rapide, garantie 24 mois  ,il ne vous reste qu'à profiter."
+          }
+        }
+      },
+      "block_order": [
+        "bloc_ETKdHR",
+        "bloc_aLmCAH",
+        "bloc_6b6VjG"
+      ],
+      "name": "Choisir Bebelys",
+      "settings": {
+        "title": "Et pourquoi Bebelys ?",
+        "title_desktop": 48,
+        "title_mobile": 28,
+        "image_desktop": 250,
+        "image_mobile": 200,
+        "padding_desktop": 20,
+        "padding_mobile": 20,
+        "gap": 80,
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "show_nav": true,
+        "nav_color": "#dbccb6",
+        "nav_active_color": "#DBCCB6"
+      }
+    },
+    "image_texte_premium_LeWPkN": {
+      "type": "image-texte-premium",
+      "name": "Image texte premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_14_juil._2026_01_40_25.png",
+        "image_position": "right",
+        "title": "Pensé pour lui. Conçu pour vous.",
+        "text": "<p>Un bébé ne demande pas grand-chose. Un endroit sûr pour dormir. Un siège stable pour manger. De quoi explorer sans se faire mal.</p><p>Bébélys s'occupe du reste : des produits évolutifs qui grandissent avec lui, faciles à vivre au quotidien, choisis pour que vous n'ayez jamais de doute. Vous équipez une fois, sereinement, et il en profite longtemps.</p>",
+        "button_text": "EXPLORER NOS ESPACES",
+        "button_link": "shopify://pages/espaces-de-vie",
+        "section_bg": "#ffffff",
+        "content_bg": "#ffffff",
+        "title_color": "#111111",
+        "text_color": "#111111",
+        "button_bg": "#dbccb6",
+        "button_text_color": "#ffffff",
+        "title_size_desktop": 46,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_width_desktop": 46,
+        "button_max_width_desktop": 360,
+        "button_height_desktop": 58,
+        "button_padding_x_desktop": 44,
+        "button_width_mobile": 96,
+        "button_max_width_mobile": 380,
+        "button_height_mobile": 54,
+        "button_padding_x_mobile": 12,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "button_radius": 10,
+        "max_width": 1280,
+        "desktop_gap": 12,
+        "desktop_image_height": 400,
+        "desktop_padding_y": 50,
+        "desktop_padding_x": 45,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "mobile_content_padding_right": 14,
+        "image_radius": 8,
+        "content_radius": 0,
+        "mobile_image_radius": 26,
+        "mobile_content_radius": 0,
+        "padding_top": 48,
+        "padding_bottom": 80,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 28
+      }
+    },
+    "17849106896a37e7ff": {
+      "type": "bl-temoignages",
+      "settings": {
+        "source": "boutique",
+        "titre": "Ils en parlent bien mieux que nous",
+        "moyenne_boutique": true,
+        "photos": true,
+        "photos_seules": true,
+        "max": 50,
+        "hauteur_photo": 300,
+        "fond": "rgba(0,0,0,0)"
+      }
+    },
+    "collection_featured_JXRpw3": {
+      "type": "collection-featured",
+      "blocks": {
+        "group_9NwHBp": {
+          "type": "group",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "wrap_in_card": false,
+            "card_link": "",
+            "color_scheme": "scheme-3",
+            "show_card_border": false,
+            "layout_type": "flex",
+            "width_desktop": 100,
+            "layout_direction_desktop": "row",
+            "layout_grid_columns_desktop": 3,
+            "layout_gap_desktop": 10,
+            "layout_wrap_desktop": "nowrap",
+            "layout_justify_desktop": "space-between",
+            "layout_align_items_desktop": "center",
+            "same_as_desktop": true,
+            "width_mobile": 100,
+            "layout_direction_mobile": "column",
+            "layout_grid_columns_mobile": 1,
+            "layout_gap_mobile": 10,
+            "layout_wrap_mobile": "nowrap",
+            "layout_justify_mobile": "flex-start",
+            "layout_align_items_mobile": "flex-start",
+            "use_global_container_padding": true,
+            "padding_horizontal": 30,
+            "padding_vertical": 30,
+            "margin_top": 10,
+            "margin_bottom": 30,
+            "additional_class": ""
+          },
+          "blocks": {
+            "group_TwitGb": {
+              "type": "group",
+              "name": "Groupe titre",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "card_link": "",
+                "color_scheme": "",
+                "show_card_border": false,
+                "layout_type": "flex",
+                "width_desktop": 70,
+                "layout_direction_desktop": "column",
+                "layout_grid_columns_desktop": 3,
+                "layout_gap_desktop": 10,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": false,
+                "width_mobile": 100,
+                "layout_direction_mobile": "column",
+                "layout_grid_columns_mobile": 1,
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "use_global_container_padding": true,
+                "padding_horizontal": 30,
+                "padding_vertical": 30,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "text_QEHkGh": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<h2>Nos poussettes 3 en 1</h2>",
+                    "text_style": "h3",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_6LANC3": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Le cœur de Bebelys : une seule poussette pour toutes les étapes, de la naissance aux grandes balades.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_QEHkGh",
+                "text_6LANC3"
+              ]
+            },
+            "button_DFrQyK": {
+              "type": "button",
+              "settings": {
+                "show_on_display": "desktop_only",
+                "link": "{{ closest.collection.url }}",
+                "open_in_new_tab": false,
+                "label": "Voir toutes les poussettes",
+                "button_style": "secondary",
+                "button_shape": "small",
+                "icon": "arrow_forward",
+                "icon_custom": "arrow_forward",
+                "icon_position": "end",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_TwitGb",
+            "button_DFrQyK"
+          ]
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "wrap_in_card": false,
+            "color_scheme": "",
+            "layout_gap": 15
+          },
+          "blocks": {
+            "product_card_media_gallery_QnTjNe": {
+              "type": "_product-card-media-gallery",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "show_slider": true,
+                "media_rounded": true,
+                "show_badges": true,
+                "media_ratio": "1 / 1",
+                "additional_class": ""
+              },
+              "blocks": {}
+            },
+            "product_card_group_8YB86f": {
+              "type": "_product-card-group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "color_scheme": "scheme-3",
+                "layout_direction_desktop": "column",
+                "layout_gap_desktop": 5,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": true,
+                "layout_direction_mobile": "column",
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "margin_top": 5,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "text_kW3cUN": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<h2>{{ closest.product.title }}</h2>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 500,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "product_price_wqjabM": {
+                  "type": "product-price",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "{{ closest.product }}",
+                    "sales_badge": "amount",
+                    "show_sales_badge_text": false,
+                    "show_unit_price": false,
+                    "text_style": "paragraph",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "product_card_swatches_67NCxp": {
+                  "type": "_product-card-swatches",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "swatches_size": "small",
+                    "swatches_rounded": true,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "rating_stars_VJ6F6G": {
+                  "type": "rating-stars",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "{{ closest.product }}",
+                    "hide_rating_when_no_reviews": true,
+                    "rating": 4.5,
+                    "show_note": true,
+                    "show_review_count": true,
+                    "review_count": 123,
+                    "link": "",
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_kW3cUN",
+                "product_price_wqjabM",
+                "product_card_swatches_67NCxp",
+                "rating_stars_VJ6F6G"
+              ]
+            }
+          },
+          "block_order": [
+            "product_card_media_gallery_QnTjNe",
+            "product_card_group_8YB86f"
+          ]
+        }
+      },
+      "block_order": [
+        "group_9NwHBp"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "color_scheme": "",
+        "collection": "poussette",
+        "max_products": 6,
+        "layout_type": "slider",
+        "grid_columns": 4,
+        "grid_columns_mobile": "2",
+        "slider_items": 4,
+        "slider_items_mobile": "1.8",
+        "show_arrows": true,
+        "show_pagination": false,
+        "rewind": true,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "anchor_id": "",
+        "additional_class": ""
+      }
+    },
+    "collection_featured_MkNEmD": {
+      "type": "collection-featured",
+      "blocks": {
+        "group_rkYWMQ": {
+          "type": "group",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "wrap_in_card": false,
+            "card_link": "",
+            "color_scheme": "scheme-3",
+            "show_card_border": false,
+            "layout_type": "flex",
+            "width_desktop": 100,
+            "layout_direction_desktop": "row",
+            "layout_grid_columns_desktop": 3,
+            "layout_gap_desktop": 10,
+            "layout_wrap_desktop": "nowrap",
+            "layout_justify_desktop": "space-between",
+            "layout_align_items_desktop": "center",
+            "same_as_desktop": true,
+            "width_mobile": 100,
+            "layout_direction_mobile": "column",
+            "layout_grid_columns_mobile": 1,
+            "layout_gap_mobile": 10,
+            "layout_wrap_mobile": "nowrap",
+            "layout_justify_mobile": "flex-start",
+            "layout_align_items_mobile": "flex-start",
+            "use_global_container_padding": true,
+            "padding_horizontal": 30,
+            "padding_vertical": 30,
+            "margin_top": 10,
+            "margin_bottom": 30,
+            "additional_class": ""
+          },
+          "blocks": {
+            "group_hcJ69q": {
+              "type": "group",
+              "name": "Groupe titre",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "card_link": "",
+                "color_scheme": "",
+                "show_card_border": false,
+                "layout_type": "flex",
+                "width_desktop": 70,
+                "layout_direction_desktop": "column",
+                "layout_grid_columns_desktop": 3,
+                "layout_gap_desktop": 10,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": false,
+                "width_mobile": 100,
+                "layout_direction_mobile": "column",
+                "layout_grid_columns_mobile": 1,
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "use_global_container_padding": true,
+                "padding_horizontal": 30,
+                "padding_vertical": 30,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "text_ewR9jg": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<h2>Nos Sac à Langer</h2>",
+                    "text_style": "h3",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_pKFjGV": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Le change, les biberons, les affaires de rechange : tout organisé, rien oublié, l'esprit léger</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_ewR9jg",
+                "text_pKFjGV"
+              ]
+            },
+            "button_aYtjaa": {
+              "type": "button",
+              "settings": {
+                "show_on_display": "desktop_only",
+                "link": "{{ closest.collection.url }}",
+                "open_in_new_tab": false,
+                "label": "Voir toutes les poussettes",
+                "button_style": "secondary",
+                "button_shape": "small",
+                "icon": "arrow_forward",
+                "icon_custom": "arrow_forward",
+                "icon_position": "end",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_hcJ69q",
+            "button_aYtjaa"
+          ]
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "wrap_in_card": false,
+            "color_scheme": "",
+            "layout_gap": 15
+          },
+          "blocks": {
+            "product_card_media_gallery_zAmcTP": {
+              "type": "_product-card-media-gallery",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "show_slider": true,
+                "media_rounded": true,
+                "show_badges": true,
+                "media_ratio": "1 / 1",
+                "additional_class": ""
+              },
+              "blocks": {}
+            },
+            "product_card_group_RkWWxr": {
+              "type": "_product-card-group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "color_scheme": "scheme-3",
+                "layout_direction_desktop": "column",
+                "layout_gap_desktop": 5,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": true,
+                "layout_direction_mobile": "column",
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "margin_top": 5,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "text_hgTnae": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<h2>{{ closest.product.title }}</h2>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 500,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "product_price_MweaMh": {
+                  "type": "product-price",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "{{ closest.product }}",
+                    "sales_badge": "amount",
+                    "show_sales_badge_text": false,
+                    "show_unit_price": false,
+                    "text_style": "paragraph",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "product_card_swatches_KEiBhm": {
+                  "type": "_product-card-swatches",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "swatches_size": "small",
+                    "swatches_rounded": true,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "rating_stars_PUx6LU": {
+                  "type": "rating-stars",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "{{ closest.product }}",
+                    "hide_rating_when_no_reviews": true,
+                    "rating": 4.5,
+                    "show_note": true,
+                    "show_review_count": true,
+                    "review_count": 123,
+                    "link": "",
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_hgTnae",
+                "product_price_MweaMh",
+                "product_card_swatches_KEiBhm",
+                "rating_stars_PUx6LU"
+              ]
+            }
+          },
+          "block_order": [
+            "product_card_media_gallery_zAmcTP",
+            "product_card_group_RkWWxr"
+          ]
+        }
+      },
+      "block_order": [
+        "group_rkYWMQ"
+      ],
+      "disabled": true,
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "color_scheme": "",
+        "collection": "sacs-a-langer",
+        "max_products": 18,
+        "layout_type": "slider",
+        "grid_columns": 4,
+        "grid_columns_mobile": "2",
+        "slider_items": 4,
+        "slider_items_mobile": "1.8",
+        "show_arrows": true,
+        "show_pagination": false,
+        "rewind": true,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "anchor_id": "",
+        "additional_class": ""
+      }
+    },
+    "carrousel_images_RDapf6": {
+      "type": "carrousel-images",
+      "blocks": {
+        "image_HmWd3L": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_24_juil._2026_23_02_52.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_iJqLFW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_24_juil._2026_23_04_34.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_6ahqgJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_02_44_54_5.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_3dWiyV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_24_juil._2026_23_04_21.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_UQPcEp": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_02_44_53_1.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_hXg6YA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_24_juil._2026_23_02_44.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_8kFRxP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_02_44_58_10.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_fAzA3n": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_24_juil._2026_23_17_15.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_tFFAkg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_24_juil._2026_23_17_48.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_QEN8dx": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_02_44_58_9.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_G9QBHX": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_24_juil._2026_23_18_40.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_bRWVdP": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_24_juil._2026_23_19_08.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_VaQFbK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_02_44_55_7.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_GegmRn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_24_juil._2026_23_45_56.png",
+            "caption": "",
+            "link": ""
+          }
+        },
+        "image_HGBFH7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_02_44_54_4.png",
+            "caption": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_HmWd3L",
+        "image_iJqLFW",
+        "image_6ahqgJ",
+        "image_3dWiyV",
+        "image_UQPcEp",
+        "image_hXg6YA",
+        "image_8kFRxP",
+        "image_fAzA3n",
+        "image_tFFAkg",
+        "image_QEN8dx",
+        "image_G9QBHX",
+        "image_bRWVdP",
+        "image_VaQFbK",
+        "image_GegmRn",
+        "image_HGBFH7"
+      ],
+      "name": "Carrousel d'images",
+      "settings": {
+        "title": "Ils l'adoptent au quotidien",
+        "subtitle": "Des familles comme la vôtre",
+        "title_size": 38,
+        "title_size_m": 26,
+        "title_weight": "400",
+        "title_italic": true,
+        "title_color": "#1a1a1a",
+        "sub_size": 15,
+        "sub_size_m": 14,
+        "sub_color": "#666666",
+        "center_h": 630,
+        "side_h": 490,
+        "center_h_m": 470,
+        "side_h_m": 360,
+        "cardpx": 440,
+        "cardpx_m": 300,
+        "gap": 14,
+        "radius": 16,
+        "side_opacity": 100,
+        "autoplay": true,
+        "interval": 4,
+        "show_arrows": true,
+        "cap_size": 13,
+        "cap_color": "#555555",
+        "cap_align": "center",
+        "nav_bg": "#ffffff",
+        "nav_color": "#1a1a1a",
+        "bg": "#ffffff",
+        "pad_top": 56,
+        "pad_bot": 56,
+        "pad_top_m": 36,
+        "pad_bot_m": 36
+      }
+    },
+    "image_texte_premium_cbMhXQ": {
+      "type": "image-texte-premium",
+      "name": "Image texte premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_22_juil._2026_00_05_34.png",
+        "image_position": "right",
+        "title": "Choisi comme pour nos enfants",
+        "text": "<p>Pas de catalogue interminable, pas de références « pour faire du volume ».</p><p> Chez Bébélys, on sélectionne peu, mais bien : uniquement des produits qu'on mettrait dans la chambre de nos propres enfants. Chacun est testé, vérifié et gardé seulement s'il sert vraiment au quotidien. Vous gagnez du temps, vous évitez les mauvais achats, et vous avancez sereinement.</p>",
+        "button_text": "",
+        "button_link": "",
+        "section_bg": "#ffffff",
+        "content_bg": "#ffffff",
+        "title_color": "#111111",
+        "text_color": "#111111",
+        "button_bg": "#dbccb6",
+        "button_text_color": "#ffffff",
+        "title_size_desktop": 46,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_width_desktop": 46,
+        "button_max_width_desktop": 360,
+        "button_height_desktop": 58,
+        "button_padding_x_desktop": 34,
+        "button_width_mobile": 96,
+        "button_max_width_mobile": 380,
+        "button_height_mobile": 54,
+        "button_padding_x_mobile": 12,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "button_radius": 10,
+        "max_width": 1280,
+        "desktop_gap": 12,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "desktop_padding_x": 45,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "mobile_content_padding_right": 14,
+        "image_radius": 8,
+        "content_radius": 0,
+        "mobile_image_radius": 26,
+        "mobile_content_radius": 0,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 56,
+        "mobile_padding_bottom": 36
+      }
+    },
+    "image_texte_premium_f7qYgE": {
+      "type": "image-texte-premium",
+      "name": "Image texte premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_15_juil._2026_00_16_41.png",
+        "image_position": "left",
+        "title": "Éveiller en douceur",
+        "text": "<p>Ramper, attraper, empiler, découvrir : pour bébé, chaque jeu est une leçon. On a réuni ici tout ce qui accompagne son éveil : tapis, parcs, portiques et jouets sensoriels, dans un espace pensé pour sa curiosité et votre tranquillité.</p>",
+        "button_text": "",
+        "button_link": "",
+        "section_bg": "#ffffff",
+        "content_bg": "#ffffff",
+        "title_color": "#111111",
+        "text_color": "#111111",
+        "button_bg": "#dbccb6",
+        "button_text_color": "#ffffff",
+        "title_size_desktop": 46,
+        "title_size_mobile": 26,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_width_desktop": 46,
+        "button_max_width_desktop": 360,
+        "button_height_desktop": 58,
+        "button_padding_x_desktop": 34,
+        "button_width_mobile": 96,
+        "button_max_width_mobile": 380,
+        "button_height_mobile": 54,
+        "button_padding_x_mobile": 12,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "button_radius": 10,
+        "max_width": 1280,
+        "desktop_gap": 12,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "desktop_padding_x": 45,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "mobile_content_padding_right": 14,
+        "image_radius": 18,
+        "content_radius": 0,
+        "mobile_image_radius": 26,
+        "mobile_content_radius": 0,
+        "padding_top": 80,
+        "padding_bottom": 0,
+        "mobile_padding_top": 56,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "collections_premium_xJTVnW": {
+      "type": "collections-premium",
+      "blocks": {
+        "collection_CfYmgw": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_7rff757rff757rff.png",
+            "image_mobile": "shopify://shop_images/Gemini_Generated_Image_7rff757rff757rff.png",
+            "image_alt": "",
+            "title": "Parcs bébé",
+            "collection_url": "shopify://collections/parcs-bebe"
+          }
+        },
+        "collection_hqiyNF": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_03_29_12.png",
+            "image_alt": "",
+            "title": "Tipis & Cabanes",
+            "collection_url": "shopify://collections/tipis-cabanes"
+          }
+        },
+        "collection_NCcwhF": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_20_juil._2026_23_06_38.png",
+            "image_alt": "",
+            "title": "Tapis d'éveil & Arches",
+            "collection_url": "shopify://collections/tapis-eveil"
+          }
+        },
+        "collection_hcy7CG": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/2fb7d343-360a-48d8-9a72-8dd543b2e26d.jpg",
+            "image_alt": "",
+            "title": "Piscines à balles",
+            "collection_url": "shopify://collections/piscines-a-balles"
+          }
+        }
+      },
+      "block_order": [
+        "collection_CfYmgw",
+        "collection_hqiyNF",
+        "collection_NCcwhF",
+        "collection_hcy7CG"
+      ],
+      "name": "Bebelys collections",
+      "settings": {
+        "title": "Notre espace Jeux & Éveil",
+        "title_size_desktop": 28,
+        "title_size_mobile": 28,
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "max_width": 1280,
+        "section_padding_vertical": 20,
+        "card_gap": 16,
+        "border_radius": 16,
+        "image_height_desktop": 340,
+        "image_height_mobile": 300,
+        "single_card_max_width": 760,
+        "cards_desktop": 3,
+        "cards_mobile": 1,
+        "enable_carousel": true,
+        "enable_arrows": true,
+        "enable_dots": true
+      }
+    },
+    "image_texte_premium_E3gH3F": {
+      "type": "image-texte-premium",
+      "name": "Image texte premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_15_juil._2026_00_37_28.png",
+        "image_position": "right",
+        "title": "L'heure du repas !",
+        "text": "<p>De la première cuillère aux repas en famille, chaque bouchée est une étape. On a réuni ici tout ce qui rend ce moment plus simple, chaises hautes, transats, coussins d'allaitement et vaisselle, pensé pour le confort de bébé et la tranquillité des parents.</p>",
+        "button_text": "",
+        "button_link": "",
+        "section_bg": "#ffffff",
+        "content_bg": "#ffffff",
+        "title_color": "#111111",
+        "text_color": "#111111",
+        "button_bg": "#dbccb6",
+        "button_text_color": "#ffffff",
+        "title_size_desktop": 46,
+        "title_size_mobile": 26,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_width_desktop": 46,
+        "button_max_width_desktop": 360,
+        "button_height_desktop": 58,
+        "button_padding_x_desktop": 34,
+        "button_width_mobile": 96,
+        "button_max_width_mobile": 380,
+        "button_height_mobile": 54,
+        "button_padding_x_mobile": 12,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "button_radius": 10,
+        "max_width": 1280,
+        "desktop_gap": 12,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "desktop_padding_x": 45,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "mobile_content_padding_right": 14,
+        "image_radius": 18,
+        "content_radius": 0,
+        "mobile_image_radius": 26,
+        "mobile_content_radius": 0,
+        "padding_top": 80,
+        "padding_bottom": 0,
+        "mobile_padding_top": 56,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "collections_premium_4BkRBA": {
+      "type": "collections-premium",
+      "blocks": {
+        "collection_Lp68dR": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_03_35_02.png",
+            "image_alt": "",
+            "title": "Chaise Haute",
+            "collection_url": "shopify://collections/chaise-haute"
+          }
+        },
+        "collection_HG67JJ": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_21_juil._2026_22_47_21.png",
+            "image_alt": "",
+            "title": "Transats & Balancelles",
+            "collection_url": "shopify://collections/transats-balancelles"
+          }
+        },
+        "collection_RPecky": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/S179f1cf88fa242a29602dbbba51fd3c1t.webp",
+            "image_alt": "",
+            "title": "Coussins d'allaitement",
+            "collection_url": "shopify://collections/coussins-allaitement"
+          }
+        },
+        "collection_DAJJkB": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "image_alt": "",
+            "title": "Tipis & Cabanes",
+            "collection_url": "shopify://collections/tipis-cabanes"
+          }
+        }
+      },
+      "block_order": [
+        "collection_Lp68dR",
+        "collection_HG67JJ",
+        "collection_RPecky",
+        "collection_DAJJkB"
+      ],
+      "name": "Bebelys collections",
+      "settings": {
+        "title": "Notre espace Repas",
+        "title_size_desktop": 28,
+        "title_size_mobile": 28,
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "max_width": 1280,
+        "section_padding_vertical": 76,
+        "card_gap": 16,
+        "border_radius": 16,
+        "image_height_desktop": 340,
+        "image_height_mobile": 300,
+        "single_card_max_width": 760,
+        "cards_desktop": 3,
+        "cards_mobile": 1,
+        "enable_carousel": true,
+        "enable_arrows": true,
+        "enable_dots": true
+      }
+    },
+    "video_promo_cknbEL": {
+      "type": "video-promo",
+      "name": "Bebelys Video promo",
+      "settings": {
+        "video": "shopify://files/videos/Mother_cradling_baby_in_living_202607150154.mov",
+        "video_url": "",
+        "video_desktop": "shopify://files/videos/Mother_cradling_baby_in_living_202607150154_f806dcaf-c214-436d-9293-bb7064ec39e8.mov",
+        "video_url_desktop": "",
+        "overlay_color": "#2c2c2c",
+        "overlay_opacity": 80,
+        "eyebrow": "POUR LUI, VOUS VOULEZ LE MEILLEUR",
+        "title": "Nous aussi.",
+        "subtitle": "C'est pour ça que rien n'entre chez Bébélys sans être vérifié, certifié et approuvé. Comme si c'était pour notre propre enfant.",
+        "text_color": "#ffffff",
+        "accent_color": "#dbccb6",
+        "title_size": 52,
+        "title_size_mobile": 32,
+        "subtitle_size": 18,
+        "subtitle_size_mobile": 18,
+        "button_label": "",
+        "button_link": "",
+        "button_bg": "#ffffff",
+        "button_text_color": "#2c2c2c",
+        "button_radius": 30,
+        "height": 95,
+        "height_mobile": 60,
+        "content_max_width": 720
+      }
+    },
+    "custom_section_NJxRD7": {
+      "type": "custom-section",
+      "blocks": {
+        "slider_XywcYe": {
+          "type": "slider",
+          "name": "t:slider",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "per_page_desktop": 4,
+            "per_page_mobile": "1",
+            "gap": 5,
+            "show_arrows": false,
+            "show_pagination": true,
+            "rewind": false,
+            "autoplay": true,
+            "autoplay_speed": 4,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {
+            "slide_3jn6VD": {
+              "type": "_slide",
+              "name": "t:slide",
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "layout_direction": "column",
+                "layout_wrap": "nowrap",
+                "layout_gap": 10,
+                "layout_justify": "center",
+                "layout_align_items": "center",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "icon_QFn4W7": {
+                  "type": "icon",
+                  "name": "t:icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "featured_seasonal_and_gifts",
+                    "icon_custom": "",
+                    "icon_size": 42,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": "bbly-icon-beige"
+                  },
+                  "blocks": {}
+                },
+                "text_6Ym7L4": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Livraison offerte </p>",
+                    "text_style": "h6",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_iBFrW4": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Sans aucun minimim d'achat, les frais de port sont pour nous.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_QFn4W7",
+                "text_6Ym7L4",
+                "text_iBFrW4"
+              ]
+            },
+            "slide_RW8GLP": {
+              "type": "_slide",
+              "name": "t:slide",
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "layout_direction": "column",
+                "layout_wrap": "nowrap",
+                "layout_gap": 10,
+                "layout_justify": "center",
+                "layout_align_items": "center",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "icon_gijhrF": {
+                  "type": "icon",
+                  "name": "t:icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "delivery_truck_speed",
+                    "icon_custom": "",
+                    "icon_size": 42,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": "bbly-icon-beige"
+                  },
+                  "blocks": {}
+                },
+                "text_HFNaPW": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Expédié en 24 à 48 h</p>",
+                    "text_style": "h6",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_U8mQc9": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Votre commande est préparée et part de notre entrepôt sous 24 à 48 h.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_gijhrF",
+                "text_HFNaPW",
+                "text_U8mQc9"
+              ]
+            },
+            "slide_e7r7wK": {
+              "type": "_slide",
+              "name": "t:slide",
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "layout_direction": "column",
+                "layout_wrap": "nowrap",
+                "layout_gap": 10,
+                "layout_justify": "center",
+                "layout_align_items": "center",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "icon_6mtVWT": {
+                  "type": "icon",
+                  "name": "t:icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "encrypted",
+                    "icon_custom": "",
+                    "icon_size": 42,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": "bbly-icon-beige"
+                  },
+                  "blocks": {}
+                },
+                "text_i9Cyej": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Paiement 100 % sécurisé</p>",
+                    "text_style": "h6",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_XVrxp8": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>CB, Apple Pay, PayPal ou Klarna — vos données sont chiffrées en SSL.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_6mtVWT",
+                "text_i9Cyej",
+                "text_XVrxp8"
+              ]
+            },
+            "slide_FVXyh8": {
+              "type": "_slide",
+              "name": "t:slide",
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "layout_direction": "column",
+                "layout_wrap": "nowrap",
+                "layout_gap": 10,
+                "layout_justify": "center",
+                "layout_align_items": "center",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "icon_xdzmxK": {
+                  "type": "icon",
+                  "name": "t:icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "verified",
+                    "icon_custom": "",
+                    "icon_size": 42,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": "bbly-icon-beige"
+                  },
+                  "blocks": {}
+                },
+                "text_daEqnk": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Garanti 24 mois</p>",
+                    "text_style": "h6",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_RN7htP": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Chaque produit est vérifié avant l'envoi et garanti 2 ans.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_xdzmxK",
+                "text_daEqnk",
+                "text_RN7htP"
+              ]
+            }
+          },
+          "block_order": [
+            "slide_3jn6VD",
+            "slide_RW8GLP",
+            "slide_e7r7wK",
+            "slide_FVXyh8"
+          ]
+        }
+      },
+      "block_order": [
+        "slider_XywcYe"
+      ],
+      "name": "t:reassurances_slider",
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "color_scheme": "",
+        "wrap_in_card": false,
+        "color_scheme_card": "",
+        "section_width": "normal",
+        "layout_type": "flex",
+        "layout_flex_direction_desktop": "column",
+        "layout_grid_columns_desktop": 3,
+        "layout_gap_desktop": 20,
+        "layout_wrap_desktop": "nowrap",
+        "layout_flex_justify_desktop": "flex-start",
+        "layout_flex_align_items_desktop": "flex-start",
+        "same_as_desktop": true,
+        "layout_flex_direction_mobile": "column",
+        "layout_gap_mobile": 20,
+        "layout_wrap_mobile": "nowrap",
+        "layout_flex_justify_mobile": "flex-start",
+        "layout_flex_align_items_mobile": "flex-start",
+        "layout_grid_columns_mobile": 1,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "anchor_id": "",
+        "additional_class": ""
+      }
+    },
+    "image_texte_premium_iydDU4": {
+      "type": "image-texte-premium",
+      "name": "Image texte premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_15_juil._2026_01_14_10.png",
+        "image_position": "right",
+        "title": "Petits pas, grandes découvertes",
+        "text": "<p>Premières sorties au parc, courses en ville ou grandes vadrouilles du dimanche, dehors, tout est découverte.</p><p> On a rassemblé ici l'essentiel pour partir sereins : poussettes, porte-bébés, sac à langer et accessoires, pensés pour que bébé voyage confortablement et que vous gardiez les mains (presque) libres.</p><p>.</p>",
+        "button_text": "",
+        "button_link": "",
+        "section_bg": "#ffffff",
+        "content_bg": "#ffffff",
+        "title_color": "#111111",
+        "text_color": "#111111",
+        "button_bg": "#dbccb6",
+        "button_text_color": "#ffffff",
+        "title_size_desktop": 46,
+        "title_size_mobile": 26,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_width_desktop": 46,
+        "button_max_width_desktop": 360,
+        "button_height_desktop": 58,
+        "button_padding_x_desktop": 34,
+        "button_width_mobile": 96,
+        "button_max_width_mobile": 380,
+        "button_height_mobile": 54,
+        "button_padding_x_mobile": 12,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "button_radius": 10,
+        "max_width": 1280,
+        "desktop_gap": 12,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "desktop_padding_x": 45,
+        "mobile_image_height": 290,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "mobile_content_padding_right": 14,
+        "image_radius": 18,
+        "content_radius": 0,
+        "mobile_image_radius": 26,
+        "mobile_content_radius": 0,
+        "padding_top": 80,
+        "padding_bottom": 0,
+        "mobile_padding_top": 56,
+        "mobile_padding_bottom": 0
+      }
+    },
+    "collections_premium_ah9aaR": {
+      "type": "collections-premium",
+      "blocks": {
+        "collection_4JexzA": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_22_juil._2026_01_45_38.png",
+            "image_alt": "",
+            "title": "Poussettes 3 en 1",
+            "collection_url": "shopify://collections/poussette"
+          }
+        },
+        "collection_6rPJHK": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_25_juil._2026_03_31_31.png",
+            "image_alt": "",
+            "title": "Sacs à langer",
+            "collection_url": "shopify://collections/sacs-a-langer"
+          }
+        },
+        "collection_DPaRre": {
+          "type": "collection",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_22_juil._2026_01_43_50.png",
+            "image_alt": "",
+            "title": "Porte-bébés",
+            "collection_url": "shopify://collections/porte-bebes"
+          }
+        }
+      },
+      "block_order": [
+        "collection_4JexzA",
+        "collection_6rPJHK",
+        "collection_DPaRre"
+      ],
+      "name": "Bebelys collections",
+      "settings": {
+        "title": "Espace Balade",
+        "title_size_desktop": 28,
+        "title_size_mobile": 28,
+        "bg_color": "#ffffff",
+        "text_color": "#1a1a1a",
+        "max_width": 1280,
+        "section_padding_vertical": 36,
+        "card_gap": 16,
+        "border_radius": 16,
+        "image_height_desktop": 340,
+        "image_height_mobile": 300,
+        "single_card_max_width": 760,
+        "cards_desktop": 3,
+        "cards_mobile": 1,
+        "enable_carousel": true,
+        "enable_arrows": true,
+        "enable_dots": true
+      }
+    },
+    "image_texte_premium_dbmmzi": {
+      "type": "image-texte-premium",
+      "name": "Image texte premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_14_juil._2026_01_35_56.png",
+        "image_position": "left",
+        "title": "Garantie 24 mois",
+        "text": "<p>Votre bébé va grandir. Le produit, lui, doit tenir.</p><p>Chaque référence Bebelys est vérifiée, certifiée et conforme aux normes en vigueur  ,et couverte par une <strong>garantie de 24 mois</strong>. Si quelque chose ne va pas, vous écrivez, on répond, on règle.</p>",
+        "button_text": "NOTRE PROMESSE DE QUALITÉ",
+        "button_link": "shopify://pages/notre-promesse",
+        "section_bg": "#ffffff",
+        "content_bg": "#ffffff",
+        "title_color": "#111111",
+        "text_color": "#111111",
+        "button_bg": "#dbccb6",
+        "button_text_color": "#ffffff",
+        "title_size_desktop": 46,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_width_desktop": 46,
+        "button_max_width_desktop": 360,
+        "button_height_desktop": 58,
+        "button_padding_x_desktop": 34,
+        "button_width_mobile": 96,
+        "button_max_width_mobile": 380,
+        "button_height_mobile": 54,
+        "button_padding_x_mobile": 12,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "button_radius": 10,
+        "max_width": 1280,
+        "desktop_gap": 12,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "desktop_padding_x": 45,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "mobile_content_padding_right": 14,
+        "image_radius": 8,
+        "content_radius": 0,
+        "mobile_image_radius": 26,
+        "mobile_content_radius": 0,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "mobile_padding_top": 88,
+        "mobile_padding_bottom": 28
+      }
+    },
+    "faq_premium_HYDcNb": {
+      "type": "faq-premium",
+      "name": "FAQ Premium",
+      "settings": {
+        "title": "Vos questions, nos réponses.",
+        "subtitle": "Tout ce qu'il faut savoir avant de commander chez Bebelys.",
+        "button_link": ""
+      }
+    },
+    "support_steps_ihi6Df": {
+      "type": "support-steps",
+      "blocks": {
+        "step_card_iDjqW7": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Avant l'achat",
+            "card_text": "Nos experts vous conseillent pour bien choisir."
+          }
+        },
+        "step_card_PRnhki": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Pendant la commande",
+            "card_text": "Nous vous tenons informé à chaque étape."
+          }
+        },
+        "step_card_PTUN9c": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Après la livraison",
+            "card_text": "Nous restons disponibles si vous avez besoin de nous."
+          }
+        }
+      },
+      "block_order": [
+        "step_card_iDjqW7",
+        "step_card_PRnhki",
+        "step_card_PTUN9c"
+      ],
+      "name": "Support whatsapp Steps",
+      "settings": {
+        "label_text": "AVANT • PENDANT • APRÈS",
+        "title": "On vous aide à chaque étape",
+        "cta_title": "Besoin d'un accompagnement humain ?",
+        "cta_desc": "Notre équipe est là pour vous, rapidement et avec bienveillance.",
+        "whatsapp_link": "https://wa.me/message/V5U35J5ZWYZOA1",
+        "whatsapp_btn_text": "Nous écrire sur whatsapp",
+        "bg_image_opacity": 10,
+        "primary_color": "#dbccb6",
+        "bg_color": "#ffffff",
+        "title_size_desktop": 48,
+        "title_size_mobile": 28,
+        "padding_top": 80,
+        "padding_bottom": 80,
+        "padding_top_mobile": 36,
+        "padding_bottom_mobile": 36,
+        "max_width": 1200
+      }
+    },
+    "newsletter_bebelys": {
+      "type": "newsletter-bebelys",
+      "blocks": {
+        "benefit_1": {
+          "type": "benefit",
+          "settings": {
+            "title": "Des conseils qui servent vraiment",
+            "text": "Sommeil, repas, sorties : nos repères concrets pour les premiers mois."
+          }
+        },
+        "benefit_2": {
+          "type": "benefit",
+          "settings": {
+            "title": "Les nouveautés en avant-première",
+            "text": "Vous voyez les nouveaux produits avant tout le monde."
+          }
+        },
+        "benefit_3": {
+          "type": "benefit",
+          "settings": {
+            "title": "Nos offres réservées aux inscrits",
+            "text": "Les ventes privées partent d'abord par e-mail."
+          }
+        }
+      },
+      "block_order": [
+        "benefit_1",
+        "benefit_2",
+        "benefit_3"
+      ],
+      "settings": {
+        "eyebrow": "La lettre Bébélys",
+        "title": "Préparez l'arrivée de bébé en toute sérénité",
+        "subtitle": "Deux e-mails par mois maximum, écrits par des parents : nos conseils, nos nouveautés et nos offres en avant-première. Rien d'autre.",
+        "form_heading": "Rejoignez la communauté Bébélys",
+        "label_email": "Votre e-mail",
+        "email_placeholder": "marie.dupont@email.com",
+        "button_label": "Je m'inscris",
+        "legal_text": "En vous inscrivant, vous acceptez de recevoir nos e-mails. Désinscription en un clic.",
+        "reassurance": "Vos données restent chez nous. Aucun partage, aucun spam.",
+        "success_message": "C'est fait, bienvenue chez Bébélys ! Votre premier e-mail arrive très vite.",
+        "color_beige": "#DBCCB6",
+        "color_accent": "#D4A373",
+        "color_ink": "#2C2C2C",
+        "color_soft": "#FAF8F5",
+        "max_width": 1400,
+        "padding_top": 64,
+        "padding_bottom": 72,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 44
+      }
+    },
+    "bas_footer_NhGUjw": {
+      "type": "bas-footer",
+      "name": "Séparateur géométrique",
+      "settings": {
+        "blue_color": "#dbccb6",
+        "height_desktop": 100,
+        "height_mobile": 150
+      }
+    }
+  },
+  "order": [
+    "image_banner_VXNP89",
+    "banniere_hero_gMxea8",
+    "par_espace_pfTfWn",
+    "collections_premium_AHr9UK",
+    "collection_featured_ajDTpX",
+    "choisir_bebelys_dcVbQ7",
+    "image_texte_premium_LeWPkN",
+    "17849106896a37e7ff",
+    "collection_featured_JXRpw3",
+    "collection_featured_MkNEmD",
+    "carrousel_images_RDapf6",
+    "image_texte_premium_cbMhXQ",
+    "image_texte_premium_f7qYgE",
+    "collections_premium_xJTVnW",
+    "image_texte_premium_E3gH3F",
+    "collections_premium_4BkRBA",
+    "video_promo_cknbEL",
+    "custom_section_NJxRD7",
+    "image_texte_premium_iydDU4",
+    "collections_premium_ah9aaR",
+    "image_texte_premium_dbmmzi",
+    "faq_premium_HYDcNb",
+    "support_steps_ihi6Df",
+    "newsletter_bebelys",
+    "bas_footer_NhGUjw"
+  ]
+}

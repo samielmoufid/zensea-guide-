@@ -1,0 +1,35 @@
+{%- comment -%}
+  Ligne de note « 4.8 /5 ★★★★★ (667 avis) », à l'identique du bloc « Star
+  rating » de l'application. Note du produit si la section est sur une fiche
+  qui a des avis, sinon celle de toute la boutique (métachamp avis.resume).
+{%- endcomment -%}
+{%- assign r = product.metafields.avis.resume.value -%}
+{%- if r == blank or r.n == 0 or section.settings.source == 'boutique' -%}{%- assign r = shop.metafields.avis.resume.value -%}{%- endif -%}
+{%- if r and r.n > 0 -%}
+{%- render 'bl-avis-css' -%}
+<div class="bl-note-zone" style="text-align: {{ section.settings.alignement }}; padding: {{ section.settings.marge_haut }}px 0 {{ section.settings.marge_bas }}px;">
+  <a class="bl-note bl-note--{{ section.settings.taille }} bl-note--cliquable" href="{{ section.settings.lien | default: '#' }}" data-rating-position="{{ section.settings.position }}">
+    {%- if section.settings.position == 'left' -%}<span class="bl-note__chiffre">{{ r.moy | round: 1 }} /5</span>{%- endif -%}
+    {%- render 'bl-etoiles', note: r.moy -%}
+    {%- if section.settings.position == 'right' -%}<span class="bl-note__chiffre">{{ r.moy | round: 1 }} /5</span>{%- endif -%}
+    {%- if section.settings.nombre -%}<span class="bl-note__nombre">({{ r.n }} avis)</span>{%- endif -%}
+  </a>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Note en étoiles (Bébélys)",
+  "settings": [
+    { "type": "select", "id": "source", "label": "Note affichée", "options": [ { "value": "auto", "label": "Produit si possible, sinon boutique" }, { "value": "boutique", "label": "Toute la boutique" } ], "default": "auto" },
+    { "type": "select", "id": "taille", "label": "Taille", "options": [ { "value": "extra_small", "label": "Très petite" }, { "value": "small", "label": "Petite" }, { "value": "medium", "label": "Moyenne" }, { "value": "large", "label": "Grande" }, { "value": "extra_large", "label": "Très grande" } ], "default": "extra_small" },
+    { "type": "select", "id": "position", "label": "Chiffre", "options": [ { "value": "left", "label": "À gauche des étoiles" }, { "value": "right", "label": "À droite" }, { "value": "none", "label": "Masqué" } ], "default": "left" },
+    { "type": "checkbox", "id": "nombre", "label": "Afficher le nombre d'avis", "default": true },
+    { "type": "select", "id": "alignement", "label": "Alignement", "options": [ { "value": "left", "label": "Gauche" }, { "value": "center", "label": "Centre" }, { "value": "right", "label": "Droite" } ], "default": "center" },
+    { "type": "url", "id": "lien", "label": "Lien au clic" },
+    { "type": "range", "id": "marge_haut", "label": "Marge haute", "min": 0, "max": 60, "step": 2, "default": 0, "unit": "px" },
+    { "type": "range", "id": "marge_bas", "label": "Marge basse", "min": 0, "max": 60, "step": 2, "default": 0, "unit": "px" }
+  ],
+  "presets": [ { "name": "Note en étoiles (Bébélys)" } ]
+}
+{% endschema %}

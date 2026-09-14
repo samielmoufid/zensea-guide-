@@ -1,0 +1,87 @@
+{%- comment -%}
+  Slider d'avis de la fiche produit, à l'identique du bloc « Review slider »
+  de l'application : cartes blanches (étoiles, titre, texte replié sur trois
+  lignes avec « Lire la suite », auteur, date), flèches, défilement
+  automatique toutes les cinq secondes, carrousel infini centré, et sous le
+  slider « Noté 4.8/5 basé sur 133 avis ».
+  Données : métachamp produit avis.liste (JSON) et avis.resume {moy, n}.
+{%- endcomment -%}
+{%- assign avis = product.metafields.avis.liste.value -%}
+{%- assign resume = product.metafields.avis.resume.value -%}
+{%- if avis and avis.size > 0 -%}
+{%- assign moy = resume.moy | default: 0 -%}
+{%- assign n = resume.n | default: avis.size -%}
+{%- render 'bl-avis-css' -%}
+<div class="bl-slider" id="bl-avis-{{ section.id }}" data-bl-slider data-start-position="{{ section.settings.depart }}" style="background: {{ section.settings.fond }};">
+  <div class="bl-slider__zone">
+    <button class="bl-slider__nav prev" type="button" aria-label="Avis précédent">‹</button>
+    <div class="bl-slider__piste" data-bl-piste>
+      {%- for a in avis -%}
+      <div class="bl-slider__carte" data-bl-carte>
+        <div class="bl-slider__entete">{%- render 'bl-etoiles', note: a.r -%}</div>
+        {%- if a.titre != blank -%}<h4 class="bl-slider__titre">{{ a.titre }}</h4>{%- endif -%}
+        <p class="bl-slider__texte" data-bl-texte>{{ a.t }}</p>
+        <button class="bl-lire hidden" type="button" data-bl-lire data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        <div class="bl-slider__pied">
+          <span class="bl-slider__auteur">{{ a.n }}</span>
+          {%- if a.d != blank -%}<span class="bl-slider__date" data-date="{{ a.d }}">{{ a.d | date: '%-d %B %Y' }}</span>{%- endif -%}
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+    <button class="bl-slider__nav next" type="button" aria-label="Avis suivant">›</button>
+  </div>
+  {%- if section.settings.resume -%}
+  <div class="bl-slider__resume">Noté {{ moy | round: 1 }}/5 basé sur {{ n }} avis</div>
+  {%- endif -%}
+</div>
+
+<script>
+  (function () {
+    var slider = document.getElementById('bl-avis-{{ section.id }}'); if (!slider) return;
+    // Dates en français, texte replié.
+    slider.querySelectorAll('[data-date]').forEach(function (el) { var d = new Date(el.getAttribute('data-date')); if (!isNaN(d)) el.textContent = new Intl.DateTimeFormat('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' }).format(d) });
+    slider.querySelectorAll('[data-bl-carte]').forEach(function (c) { var t = c.querySelector('[data-bl-texte]'), b = c.querySelector('[data-bl-lire]'); if (t.scrollHeight > t.clientHeight) b.classList.remove('hidden') });
+    document.addEventListener('click', function (e) { var b = e.target.closest('#bl-avis-{{ section.id }} [data-bl-lire]'); if (!b) return; var t = b.closest('[data-bl-carte]').querySelector('[data-bl-texte]'); e.preventDefault(); e.stopImmediatePropagation(); var o = t.classList.toggle('is-ouvert'); b.textContent = o ? b.getAttribute('data-less') : b.getAttribute('data-more') }, true);
+    // Carrousel : clones aux deux bouts pour l'infini, centrage, flèches, auto-défilement.
+    var wrap = slider.querySelector('[data-bl-piste]'), prev = slider.querySelector('.prev'), next = slider.querySelector('.next'), zone = slider.querySelector('.bl-slider__zone');
+    var orig = Array.prototype.slice.call(slider.querySelectorAll('[data-bl-carte]')); if (!orig.length) return;
+    var start = slider.dataset.startPosition || 'first', infini = start === 'center' && orig.length > 2, N = orig.length, C = infini ? Math.min(N, 6) : 0, timer = null, idx = 0, repos = false;
+    if (infini) { for (var i = C; i > 0; i--) { var cl = orig[N - i].cloneNode(true); cl.setAttribute('aria-hidden', 'true'); wrap.insertBefore(cl, wrap.firstChild) } for (var j = 0; j < C; j++) { var cl2 = orig[j].cloneNode(true); cl2.setAttribute('aria-hidden', 'true'); wrap.appendChild(cl2) } }
+    var all = Array.prototype.slice.call(wrap.querySelectorAll('[data-bl-carte]'));
+    var toAll = function (o) { return o + C }, toOrig = function (a) { return (((a - C) % N) + N) % N };
+    var courant = function () { var cx = wrap.scrollLeft + wrap.clientWidth / 2, best = 0, d0 = Infinity; all.forEach(function (c, i) { var d = Math.abs(cx - (c.offsetLeft + c.offsetWidth / 2)); if (d < d0) { d0 = d; best = i } }); return best };
+    var pad = function () { var c = all[0]; if (!c || !zone) return; var p = Math.max(0, (zone.clientWidth - c.offsetWidth) / 2); wrap.style.paddingLeft = p + 'px'; wrap.style.paddingRight = p + 'px' };
+    var vers = function (a, inst) { if (a < 0 || a >= all.length) return; var c = all[a]; wrap.scrollTo({ left: Math.max(0, c.offsetLeft + c.offsetWidth / 2 - wrap.clientWidth / 2), behavior: inst ? 'instant' : 'smooth' }) };
+    var versOrig = function (o, inst) { if (o < 0 || o >= N) return; idx = o; vers(toAll(o), inst) };
+    var bPrep = 0, bApp = 0;
+    var bornes = function () { if (!infini) return; var f = all[C], l = all[C + N - 1]; if (f && l) { bPrep = f.offsetLeft - wrap.clientWidth / 2; bApp = l.offsetLeft + l.offsetWidth - wrap.clientWidth / 2 } };
+    var replacer = function () { if (!infini || repos) return; var sl = wrap.scrollLeft; if (sl >= bPrep && sl <= bApp) { idx = toOrig(courant()); return } var a = courant(), o = toOrig(a), cible = toAll(o); if (cible === a) { idx = o; return } repos = true; wrap.style.scrollSnapType = 'none'; wrap.style.scrollBehavior = 'auto'; vers(cible, true); idx = o; requestAnimationFrame(function () { requestAnimationFrame(function () { wrap.style.scrollSnapType = ''; wrap.style.scrollBehavior = ''; repos = false }) }) };
+    var suivant = function () { if (infini) vers(courant() + 1, false); else { var k = idx + 1; if (k >= N) { if (start === 'center') versOrig(0) } else versOrig(k) } };
+    var precedent = function () { if (infini) vers(courant() - 1, false); else { var k = idx - 1; if (k < 0) { if (start === 'center') versOrig(N - 1) } else versOrig(k) } };
+    var auto = function () { if (timer) clearInterval(timer); timer = setInterval(suivant, 5000) }, stop = function () { if (timer) { clearInterval(timer); timer = null } };
+    prev.addEventListener('click', function () { precedent(); stop(); setTimeout(auto, 10000) });
+    next.addEventListener('click', function () { suivant(); stop(); setTimeout(auto, 10000) });
+    slider.addEventListener('mouseenter', stop); slider.addEventListener('mouseleave', auto);
+    wrap.addEventListener('scroll', function () { if (repos) return; if (infini) { replacer(); prev.disabled = false; next.disabled = false } else { idx = toOrig(courant()); prev.disabled = idx === 0; next.disabled = idx === N - 1 } });
+    var deborde = function () { wrap.classList.remove('is-scroll'); wrap.style.paddingLeft = ''; wrap.style.paddingRight = ''; var ok = wrap.scrollWidth > wrap.clientWidth + 1; if (ok) { wrap.classList.add('is-scroll'); pad() } prev.style.display = ok ? '' : 'none'; next.style.display = ok ? '' : 'none'; if (!ok) stop(); return ok };
+    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { if (deborde()) { bornes(); versOrig(idx, true); auto() } }, 150) });
+    var s0 = start === 'center' ? Math.floor(N / 2) : 0;
+    if (deborde()) auto(); bornes(); versOrig(s0, true);
+    if (!infini) { prev.disabled = s0 === 0; next.disabled = s0 === N - 1 }
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Slider d'avis (Bébélys)",
+  "settings": [
+    { "type": "paragraph", "content": "Les avis viennent du métachamp produit « avis.liste ». Rien ne s'affiche si le produit n'a pas d'avis." },
+    { "type": "select", "id": "depart", "label": "Position de départ", "options": [ { "value": "center", "label": "Au centre, en boucle" }, { "value": "first", "label": "Premier avis" } ], "default": "center" },
+    { "type": "checkbox", "id": "resume", "label": "Afficher « Noté X/5 basé sur N avis »", "default": true },
+    { "type": "color_background", "id": "fond", "label": "Fond", "default": "rgba(0,0,0,0)" }
+  ],
+  "presets": [ { "name": "Slider d'avis (Bébélys)" } ]
+}
+{% endschema %}

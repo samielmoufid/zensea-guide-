@@ -1,0 +1,79 @@
+{%- comment -%}
+  Styles communs des avis Bébélys (étoiles vertes, slider d'avis, marquee de
+  témoignages, ligne de note). À rendre une seule fois dans theme.liquid,
+  avant </head> : {% render 'bl-avis-css' %}
+  La couleur des étoiles est celle de l'application : #00b27e.
+{%- endcomment -%}
+<style>
+  :root{--bl-star:#00b27e;--bl-star-vide:#dcdce6}
+  .bl-stars{display:inline-flex;align-items:center;gap:.15em}
+  .bl-star{display:inline-flex;align-items:center;justify-content:center;width:1.1em;height:1.1em;flex-shrink:0;position:relative;overflow:hidden}
+  .bl-star--full{background-color:var(--bl-star)}
+  .bl-star--partial{background:linear-gradient(to right,var(--bl-star) var(--partial-width,50%),var(--bl-star-vide) var(--partial-width,50%))}
+  .bl-star--empty{background-color:var(--bl-star-vide)}
+  .bl-star-icon{width:70%;height:70%;display:block}
+
+  /* Ligne de note (collections, fiches) */
+  .bl-note{display:inline-flex;align-items:center;gap:.4em;margin:.5em 0;line-height:1;font-family:inherit;color:inherit;text-decoration:none}
+  .bl-note--extra_small{font-size:.6rem}.bl-note--small{font-size:1rem}.bl-note--medium{font-size:1.125rem}.bl-note--large{font-size:1.375rem}.bl-note--extra_large{font-size:1.625rem}
+  .bl-note__chiffre{font-weight:600;font-size:1.125em}
+  .bl-note__nombre{opacity:.7;font-size:1em}
+  .bl-note--cliquable{cursor:pointer;transition:transform .2s ease,opacity .2s ease}
+  .bl-note--cliquable:hover{transform:scale(1.02);opacity:.85}
+
+  /* Slider d'avis (fiche produit) */
+  .bl-slider{margin:.5em 0;width:100%;padding:0;box-sizing:border-box;font-family:inherit;container-type:inline-size;container-name:bl-slider}
+  .bl-slider__zone{position:relative;padding:0 clamp(1em,3%,2em);max-width:100%;overflow:hidden}
+  .bl-slider__piste{display:flex;justify-content:center;overflow-x:auto;overflow-y:hidden;gap:1em;scroll-behavior:smooth;max-width:100%;padding:.5em;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;-webkit-mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent);mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent)}
+  .bl-slider__piste.is-scroll{justify-content:flex-start}
+  .bl-slider__piste::-webkit-scrollbar{display:none}
+  .bl-slider__piste *{max-width:100%}
+  .bl-slider__carte{flex:0 0 auto;width:clamp(250px,85%,350px);background:#fff;border-radius:.75em;padding:1.25em;box-shadow:0 2px 8px rgba(0,0,0,.08);box-sizing:border-box;overflow:hidden;display:flex;flex-direction:column;scroll-snap-align:center;position:relative}
+  .bl-slider__entete{display:flex;align-items:center;gap:.5em;margin-bottom:.75em;flex-shrink:0;flex-wrap:wrap;max-width:100%}
+  .bl-slider__titre{font-size:1em;font-weight:600;color:inherit;line-height:1.3;margin:0 0 .5em;word-wrap:break-word;overflow-wrap:break-word;flex-shrink:0}
+  .bl-slider__texte{color:inherit;opacity:.8;line-height:1.5;font-size:.9375em;margin:0;word-break:break-word;flex:1;min-height:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;pointer-events:none}
+  .bl-slider__texte.is-ouvert{-webkit-line-clamp:unset;overflow:visible;pointer-events:auto}
+  .bl-lire{display:block;background:none;border:none;padding:.5em 0;margin:0;color:inherit;opacity:.5;font-size:.8125em;cursor:pointer;text-decoration:underline;font-family:inherit;flex-shrink:0;position:relative;z-index:2}
+  .bl-lire:hover{opacity:.8}
+  .bl-lire.hidden{display:none}
+  .bl-slider__pied{color:inherit;opacity:.7;font-size:.8125em;flex-shrink:0;padding-top:.75em;display:flex;flex-direction:column;word-break:break-word}
+  .bl-slider__auteur{font-weight:400}
+  .bl-slider__date{opacity:.6}
+  .bl-slider__nav{position:absolute;top:50%;transform:translateY(-50%);width:2em;height:2em;border-radius:.25em;background:transparent;border:none;color:inherit;font-size:1.5em;line-height:1;cursor:pointer;transition:opacity .2s;z-index:2;font-weight:300;padding:0}
+  .bl-slider__nav:hover{opacity:.7}.bl-slider__nav:disabled{opacity:.3;cursor:not-allowed}
+  .bl-slider__nav.prev{left:0}.bl-slider__nav.next{right:0}
+  .bl-slider__resume{text-align:center;margin-top:1.25em;padding:0;font-size:.875em;color:inherit;opacity:.8}
+  @container bl-slider (max-width:600px){.bl-slider__carte{width:clamp(220px,90%,300px);padding:1em}.bl-slider__texte{max-height:180px}}
+  @container bl-slider (max-width:400px){.bl-slider__carte{width:100%;min-width:200px}.bl-slider__texte{max-height:160px}}
+
+  /* Témoignages qui défilent (marquee) */
+  .bl-temoignages{display:block;margin:.5em 0;width:100%;max-width:100%;min-width:100%;font-family:inherit;overflow-x:hidden;box-sizing:border-box}
+  .bl-temoignages__entete{text-align:center;padding:1.25em}
+  .bl-temoignages__titre{font-size:1.5em;font-weight:700;color:inherit;margin:0 0 .75em}
+  .bl-temoignages__note{display:flex;align-items:center;justify-content:center;gap:.5em}
+  .bl-temoignages__moyenne{font-size:1em;font-weight:600;color:inherit}
+  .bl-marquee{--gap:1.25em;position:relative;display:flex;overflow:hidden;gap:var(--gap);padding:.5em 0;-webkit-mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent);mask-image:linear-gradient(to right,transparent,black 5%,black 95%,transparent)}
+  .bl-marquee:hover .bl-marquee__piste{animation-play-state:paused}
+  .bl-marquee__piste{flex-shrink:0;display:flex;min-width:100%;gap:var(--gap);will-change:transform;animation:bl-defile var(--marquee-duration,40s) linear infinite}
+  @keyframes bl-defile{from{transform:translateX(0)}to{transform:translateX(calc(-100% - var(--gap)))}}
+  .bl-temoignage{background:#fff;border-radius:.875em;padding:1.25em;box-shadow:0 2px 8px rgba(0,0,0,.08);min-width:280px;max-width:280px;display:flex;flex-direction:column;justify-content:space-between;text-align:center;flex-shrink:0}
+  .bl-temoignage .bl-stars{justify-content:center;margin-bottom:.5em}
+  .bl-temoignage .bl-star{width:1em;height:1em}
+  .bl-temoignage__titre{font-size:1em;font-weight:600;color:inherit;margin:0 0 .4em}
+  .bl-temoignage__texte{color:inherit;opacity:.8;line-height:1.5;font-size:.9375em;flex-grow:1;margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;word-wrap:break-word;overflow-wrap:break-word;pointer-events:none}
+  .bl-temoignage__texte.is-ouvert{-webkit-line-clamp:unset;overflow:visible;pointer-events:auto}
+  .bl-temoignage__photo{margin:.75em 0;display:flex;justify-content:center}
+  .bl-temoignage__photo img{width:100%;object-fit:cover;border-radius:.5em}
+  .bl-temoignage__auteur{display:flex;flex-direction:column;align-items:center;gap:.4em;margin-top:.75em}
+  .bl-temoignage__nom{font-weight:600;color:inherit;font-size:.9375em}
+  .bl-temoignage__badge{width:3em;height:3em;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .bl-temoignage__initiale{font-weight:600;color:inherit;opacity:.6;font-size:1.25em}
+  @media (max-width:768px){
+    .bl-temoignages__titre{font-size:1.25em}
+    .bl-temoignage{min-width:240px;max-width:240px;padding:1em}
+    .bl-temoignage__texte{font-size:.875em;padding:.5em 0}
+    .bl-temoignage .bl-stars{margin-bottom:.375em}
+    .bl-temoignage__titre{margin:0 0 .25em}
+    .bl-marquee__piste{animation:bl-defile var(--marquee-duration,30s) linear infinite}
+  }
+</style>

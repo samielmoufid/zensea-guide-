@@ -1,0 +1,85 @@
+{%- comment -%}
+  Témoignages qui défilent, à l'identique du bloc « Testimonial slider » de
+  l'application : titre, note moyenne avec étoiles, deux pistes de cartes
+  blanches (étoiles, titre, texte replié, photo, prénom ou initiale) qui
+  défilent en continu et s'arrêtent au survol.
+  Source : les avis du produit (métachamp avis.liste) ou les témoignages de
+  toute la boutique (métachamp boutique avis.temoignages, ceux avec photo).
+{%- endcomment -%}
+{%- if section.settings.source == 'boutique' or product == blank -%}
+  {%- assign avis = shop.metafields.avis.temoignages.value -%}
+  {%- assign resume = shop.metafields.avis.resume.value -%}
+{%- else -%}
+  {%- assign avis = product.metafields.avis.liste.value -%}
+  {%- assign resume = product.metafields.avis.resume.value -%}
+{%- endif -%}
+{%- if avis and avis.size > 0 -%}
+{%- assign moy = section.settings.moyenne_boutique | default: false -%}
+{%- if moy -%}{%- assign moy = shop.metafields.avis.resume.value.moy -%}{%- else -%}{%- assign moy = resume.moy | default: 0 -%}{%- endif -%}
+{%- render 'bl-avis-css' -%}
+<div class="bl-temoignages" id="bl-temoignages-{{ section.id }}" style="background: {{ section.settings.fond }}; border-radius: 8px; padding: 8px 0 8px 0;">
+  <div class="bl-temoignages__entete">
+    {%- if section.settings.titre != blank -%}<h3 class="bl-temoignages__titre">{{ section.settings.titre }}</h3>{%- endif -%}
+    <div class="bl-temoignages__note">
+      {%- render 'bl-etoiles', note: moy -%}
+      <span class="bl-temoignages__moyenne">{{ moy | round: 1 }}/5</span>
+    </div>
+  </div>
+  <div class="bl-marquee" data-bl-marquee>
+    {%- for piste in (1..2) -%}
+    <div class="bl-marquee__piste"{% if piste == 2 %} aria-hidden="true"{% endif %}>
+      {%- for a in avis limit: section.settings.max -%}
+      {%- assign photo = a.i | first -%}
+      {%- if section.settings.photos_seules and photo == blank -%}{%- continue -%}{%- endif -%}
+      <div class="bl-temoignage">
+        <div>
+          {%- render 'bl-etoiles', note: a.r -%}
+          {%- if a.titre != blank -%}<h4 class="bl-temoignage__titre">{{ a.titre }}</h4>{%- endif -%}
+          <p class="bl-temoignage__texte" data-bl-texte>{{ a.t }}</p>
+          <button class="bl-lire hidden" type="button" data-bl-lire data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+          {%- if photo != blank and section.settings.photos -%}
+          <div class="bl-temoignage__photo"><img src="{{ photo }}" alt="{{ a.titre | default: a.n | escape }}" loading="lazy" width="280" height="{{ section.settings.hauteur_photo }}" style="max-height: {{ section.settings.hauteur_photo }}px;"></div>
+          {%- endif -%}
+        </div>
+        <div class="bl-temoignage__auteur">
+          <span class="bl-temoignage__nom">{{ a.n }}</span>
+          {%- if photo == blank or section.settings.photos == false -%}<span class="bl-temoignage__badge"><span class="bl-temoignage__initiale">{{ a.n | slice: 0 | upcase }}</span></span>{%- endif -%}
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- endfor -%}
+  </div>
+</div>
+<script>
+  (function () {
+    var root = document.getElementById('bl-temoignages-{{ section.id }}'); if (!root) return;
+    var m = root.querySelector('[data-bl-marquee]'), pistes = m.querySelectorAll('.bl-marquee__piste'); if (!pistes.length) return;
+    // Trop peu de cartes pour remplir la largeur : on les répète.
+    var cartes = pistes[0].querySelectorAll('.bl-temoignage'), largeur = m.offsetWidth;
+    if (cartes.length && largeur) { var gap = parseFloat(getComputedStyle(pistes[0]).gap) || 0, tot = 0; cartes.forEach(function (c) { tot += c.offsetWidth }); tot += Math.max(0, cartes.length - 1) * gap; if (tot < largeur) { var k = Math.ceil(largeur / tot); for (var s = 1; s < k; s++) cartes.forEach(function (c) { pistes[0].appendChild(c.cloneNode(true)) }); pistes[1].innerHTML = pistes[0].innerHTML } }
+    root.querySelectorAll('.bl-temoignage').forEach(function (c) { var t = c.querySelector('[data-bl-texte]'), b = c.querySelector('[data-bl-lire]'); if (t && b && t.scrollHeight > t.clientHeight) b.classList.remove('hidden') });
+    document.addEventListener('click', function (e) { var b = e.target.closest('#bl-temoignages-{{ section.id }} [data-bl-lire]'); if (!b) return; var t = b.closest('.bl-temoignage').querySelector('[data-bl-texte]'); e.preventDefault(); e.stopImmediatePropagation(); var o = t.classList.toggle('is-ouvert'); b.textContent = o ? b.getAttribute('data-less') : b.getAttribute('data-more') }, true);
+    // Vitesse constante : ~50 px/s (35 sur mobile).
+    var w = pistes[0].scrollWidth, v = window.innerWidth <= 768 ? 35 : 50; m.style.setProperty('--marquee-duration', Math.max(10, Math.round(w / v)) + 's');
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { es.forEach(function (en) { pistes.forEach(function (p) { p.style.animationPlayState = en.isIntersecting ? 'running' : 'paused' }) }) }, { threshold: 0.1, rootMargin: '50px' }).observe(m);
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Témoignages qui défilent (Bébélys)",
+  "settings": [
+    { "type": "select", "id": "source", "label": "Source des avis", "options": [ { "value": "produit", "label": "Avis de ce produit" }, { "value": "boutique", "label": "Témoignages de toute la boutique (avec photos)" } ], "default": "produit" },
+    { "type": "text", "id": "titre", "label": "Titre" },
+    { "type": "checkbox", "id": "moyenne_boutique", "label": "Afficher la note moyenne de la boutique plutôt que celle du produit", "default": true },
+    { "type": "checkbox", "id": "photos", "label": "Afficher les photos", "default": true },
+    { "type": "checkbox", "id": "photos_seules", "label": "Seulement les avis avec photo", "default": false },
+    { "type": "range", "id": "max", "label": "Nombre de cartes au maximum", "min": 5, "max": 60, "step": 1, "default": 50 },
+    { "type": "range", "id": "hauteur_photo", "label": "Hauteur des photos", "min": 120, "max": 500, "step": 10, "default": 300, "unit": "px" },
+    { "type": "color_background", "id": "fond", "label": "Fond", "default": "rgba(0,0,0,0)" }
+  ],
+  "presets": [ { "name": "Témoignages qui défilent (Bébélys)" } ]
+}
+{% endschema %}

@@ -1,0 +1,17 @@
+{%- comment -%}
+  Étoiles « carrées » vertes, comme l'application : pleines, partielle
+  (dégradé), vides. Usage : {% render 'bl-etoiles', note: 4.8, classe: 'bl-stars--row' %}
+{%- endcomment -%}
+{%- assign bl_note = note | default: 0 | times: 1.0 -%}
+<div class="bl-stars {{ classe }}" aria-label="{{ bl_note | round: 1 }} sur 5">
+  {%- for i in (1..5) -%}
+    {%- assign reste = bl_note | minus: i | plus: 1 -%}
+    {%- if reste >= 0.999 -%}
+      <span class="bl-star bl-star--full"><svg viewBox="0 0 24 24" class="bl-star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="white"/></svg></span>
+    {%- elsif reste > 0 -%}
+      <span class="bl-star bl-star--partial" style="--partial-width: {{ reste | times: 100 | round: 1 }}%"><svg viewBox="0 0 24 24" class="bl-star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="white"/></svg></span>
+    {%- else -%}
+      <span class="bl-star bl-star--empty"><svg viewBox="0 0 24 24" class="bl-star-icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="white"/></svg></span>
+    {%- endif -%}
+  {%- endfor -%}
+</div>
