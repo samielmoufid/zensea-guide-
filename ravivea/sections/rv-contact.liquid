@@ -77,7 +77,7 @@
               <input type="email" id="rvc-email-{{ sid }}" name="contact[email]" autocomplete="email" required aria-required="true" value="{{ form.email }}">
             </div>
             <div class="rvc__champ">
-              <label for="rvc-commande-{{ sid }}">Numéro de commande <small>(si vous en avez un)</small></label>
+              <label for="rvc-commande-{{ sid }}">Numéro de commande <small>(facultatif)</small></label>
               <input type="text" id="rvc-commande-{{ sid }}" name="contact[Numéro de commande]" placeholder="#1234" value="{{ form['Numéro de commande'] }}">
             </div>
             {%- if st.sujets != blank -%}
