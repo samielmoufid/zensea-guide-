@@ -1,0 +1,100 @@
+{
+  "sections": {
+    "main": {
+      "type": "rv-contact",
+      "blocks": {
+        "canal_mail": {
+          "type": "canal",
+          "settings": {
+            "icone": "mail",
+            "titre": "E-mail",
+            "valeur": "contact@ravivea.fr",
+            "note": "Le moyen le plus simple pour nous joindre, avec votre numéro de commande si vous en avez un.",
+            "lien": "mailto:contact@ravivea.fr",
+            "libelle": "Nous écrire"
+          }
+        },
+        "canal_whatsapp": {
+          "type": "canal",
+          "settings": {
+            "icone": "whatsapp",
+            "titre": "WhatsApp",
+            "valeur": "+33 7 56 88 21 12",
+            "note": "Messages uniquement, nous ne prenons pas d'appels téléphoniques.",
+            "lien": "https://wa.me/33756882112",
+            "libelle": "Ouvrir WhatsApp"
+          }
+        },
+        "canal_horaires": {
+          "type": "canal",
+          "settings": {
+            "icone": "horaire",
+            "titre": "Horaires",
+            "valeur": "Lundi au vendredi, 9h à 18h",
+            "note": "Nous répondons sous 24 à 48 heures ouvrées.",
+            "libelle": ""
+          }
+        },
+        "lien_faq": {
+          "type": "lien",
+          "settings": {
+            "titre": "F.A.Q",
+            "texte": "Les réponses aux questions les plus fréquentes.",
+            "url": "/pages/f-a-q"
+          }
+        },
+        "lien_expedition": {
+          "type": "lien",
+          "settings": {
+            "titre": "Politique d'expédition",
+            "texte": "Délais, transporteurs et suivi de votre colis.",
+            "url": "/pages/politique-d-expedition"
+          }
+        },
+        "lien_retours": {
+          "type": "lien",
+          "settings": {
+            "titre": "Retours et remboursements",
+            "texte": "30 jours pour changer d'avis, mode d'emploi.",
+            "url": "/pages/politique-de-retour-et-de-remboursement"
+          }
+        }
+      },
+      "block_order": [
+        "canal_mail",
+        "canal_whatsapp",
+        "canal_horaires",
+        "lien_faq",
+        "lien_expedition",
+        "lien_retours"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "largeur": 1100,
+        "surtitre": "Service client",
+        "titre": "Une question ? Écrivez-nous",
+        "intro": "<p>Notre équipe vous accompagne avant et après votre commande : choix du modèle, conseils d'utilisation, suivi de livraison, retour ou garantie.</p>",
+        "formulaire": true,
+        "form_titre": "Envoyez-nous un message",
+        "form_texte": "Décrivez votre demande, nous revenons vers vous par e-mail.",
+        "sujets": "Question avant commande\nSuivi de ma commande\nLivraison\nRetour ou remboursement\nGarantie ou produit défectueux\nAutre demande",
+        "form_bouton": "Envoyer le message",
+        "form_mention": "Réponse sous 24 à 48 heures ouvrées, du lundi au vendredi.",
+        "form_succes": "Merci, votre message est bien envoyé. Nous vous répondons sous 24 à 48 heures ouvrées.",
+        "adresse_titre": "Notre adresse",
+        "adresse": "<p>Ravivea — Abdellah El Moufid<br>10 rue de Provence<br>87220 Feytiat<br>France</p>",
+        "avertissement": "<p>Merci de ne pas renvoyer de colis à cette adresse sans accord préalable : écrivez-nous d'abord, l'adresse de retour vous sera communiquée avec votre numéro de dossier.</p>",
+        "delai": "<p><strong>Nous répondons du lundi au vendredi, de 9h à 18h</strong>, sous 24 à 48 heures ouvrées.</p>",
+        "liens_titre": "Pour aller plus vite",
+        "liens_texte": "Beaucoup de réponses se trouvent déjà dans nos pages d'aide.",
+        "marge_haut": 64,
+        "marge_bas": 80,
+        "marge_haut_mobile": 36,
+        "marge_bas_mobile": 48
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

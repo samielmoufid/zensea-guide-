@@ -1,0 +1,374 @@
+{%- comment -%}
+  Page « Contactez-nous » Ravivea : en-tête, cartes de contact, formulaire,
+  adresse et liens rapides. Tout le contenu se règle dans l'éditeur de thème.
+  Les couleurs et polices viennent de la palette choisie (variables du thème).
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign sid = section.id
+  assign scheme = st.color_scheme.id | remove_first: 'scheme-'
+  assign canaux = section.blocks | where: 'type', 'canal'
+  assign liens = section.blocks | where: 'type', 'lien'
+  assign sujets = st.sujets | newline_to_br | split: '<br />'
+-%}
+
+<div id="rvc-{{ sid }}" class="rvc color-scheme-{{ scheme }}">
+  <div class="rvc__inner">
+
+    <header class="rvc__entete">
+      {%- if st.surtitre != blank -%}<p class="rvc__surtitre">{{ st.surtitre }}</p>{%- endif -%}
+      {%- if st.titre != blank -%}<h1 class="rvc__titre">{{ st.titre }}</h1>{%- endif -%}
+      {%- if st.intro != blank -%}<div class="rvc__intro">{{ st.intro }}</div>{%- endif -%}
+    </header>
+
+    {%- if canaux.size > 0 -%}
+    <div class="rvc__canaux rvc__canaux--{{ canaux.size }}">
+      {%- for b in canaux -%}
+        {%- assign tag = 'div' -%}{%- if b.settings.lien != blank -%}{%- assign tag = 'a' -%}{%- endif -%}
+        <{{ tag }} class="rvc__carte rvc__canal"{% if tag == 'a' %} href="{{ b.settings.lien }}"{% if b.settings.lien contains 'http' %} target="_blank" rel="noopener"{% endif %}{% endif %} {{ b.shopify_attributes }}>
+          <span class="rvc__ico" aria-hidden="true">
+            {%- case b.settings.icone -%}
+              {%- when 'mail' -%}<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
+              {%- when 'whatsapp' -%}<svg viewBox="0 0 24 24"><path d="M4 20l1.3-3.8A8.5 8.5 0 1 1 8.2 19.1L4 20z"/><path d="M9.3 9.2c.2 2.3 2.9 5 5.3 5.4.6.1 1.4-.5 1.5-1.1l-1.7-.9-.9.7c-1-.3-2.3-1.6-2.6-2.6l.7-.9-.9-1.7c-.7.1-1.5.6-1.4 1.1z"/></svg>
+              {%- when 'horaire' -%}<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
+              {%- when 'adresse' -%}<svg viewBox="0 0 24 24"><path d="M12 21s6.5-5.6 6.5-10.5A6.5 6.5 0 0 0 5.5 10.5C5.5 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>
+              {%- else -%}<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            {%- endcase -%}
+          </span>
+          {%- if b.settings.titre != blank -%}<h3 class="rvc__canal-titre">{{ b.settings.titre }}</h3>{%- endif -%}
+          {%- if b.settings.valeur != blank -%}<p class="rvc__canal-valeur">{{ b.settings.valeur }}</p>{%- endif -%}
+          {%- if b.settings.note != blank -%}<p class="rvc__canal-note">{{ b.settings.note }}</p>{%- endif -%}
+          {%- if tag == 'a' and b.settings.libelle != blank -%}<span class="rvc__canal-action">{{ b.settings.libelle }} <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>{%- endif -%}
+        </{{ tag }}>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+
+    <div class="rvc__grille">
+
+      {%- if st.formulaire -%}
+      <section class="rvc__carte rvc__form" id="contact_form_zone">
+        {%- if st.form_titre != blank -%}<h2 class="rvc__h2">{{ st.form_titre }}</h2>{%- endif -%}
+        {%- if st.form_texte != blank -%}<p class="rvc__texte">{{ st.form_texte }}</p>{%- endif -%}
+
+        {%- form 'contact', id: 'contact_form', class: 'rvc__formulaire' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="rvc__message rvc__message--ok" role="status">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+              <span>{{ st.form_succes | default: 'Merci, votre message est bien envoyé. Nous vous répondons sous 24 à 48 heures ouvrées.' }}</span>
+            </div>
+          {%- elsif form.errors -%}
+            <div class="rvc__message rvc__message--erreur" role="alert">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <div class="rvc__champs">
+            <div class="rvc__champ">
+              <label for="rvc-prenom-{{ sid }}">Prénom</label>
+              <input type="text" id="rvc-prenom-{{ sid }}" name="contact[first_name]" autocomplete="given-name" value="{{ form.first_name }}">
+            </div>
+            <div class="rvc__champ">
+              <label for="rvc-nom-{{ sid }}">Nom</label>
+              <input type="text" id="rvc-nom-{{ sid }}" name="contact[last_name]" autocomplete="family-name" value="{{ form.last_name }}">
+            </div>
+            <div class="rvc__champ">
+              <label for="rvc-email-{{ sid }}">E-mail <span>*</span></label>
+              <input type="email" id="rvc-email-{{ sid }}" name="contact[email]" autocomplete="email" required aria-required="true" value="{{ form.email }}">
+            </div>
+            <div class="rvc__champ">
+              <label for="rvc-commande-{{ sid }}">Numéro de commande <small>(si vous en avez un)</small></label>
+              <input type="text" id="rvc-commande-{{ sid }}" name="contact[Numéro de commande]" placeholder="#1234" value="{{ form['Numéro de commande'] }}">
+            </div>
+            {%- if st.sujets != blank -%}
+            <div class="rvc__champ rvc__champ--large">
+              <label for="rvc-objet-{{ sid }}">Objet de votre message</label>
+              <div class="rvc__select">
+                <select id="rvc-objet-{{ sid }}" name="contact[Objet]">
+                  {%- for s in sujets -%}{%- assign sujet = s | strip -%}{%- if sujet != blank -%}
+                  <option value="{{ sujet | escape }}">{{ sujet }}</option>
+                  {%- endif -%}{%- endfor -%}
+                </select>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+            {%- endif -%}
+            <div class="rvc__champ rvc__champ--large">
+              <label for="rvc-message-{{ sid }}">Votre message <span>*</span></label>
+              <textarea id="rvc-message-{{ sid }}" name="contact[body]" rows="6" required aria-required="true">{{ form.body }}</textarea>
+            </div>
+          </div>
+
+          <div class="rvc__envoi">
+            <button type="submit" class="button rvc__bouton">{{ st.form_bouton | default: 'Envoyer le message' }}</button>
+            {%- if st.form_mention != blank -%}<p class="rvc__mention">{{ st.form_mention }}</p>{%- endif -%}
+          </div>
+        {%- endform -%}
+      </section>
+      {%- endif -%}
+
+      <aside class="rvc__cote">
+        {%- if st.adresse_titre != blank or st.adresse != blank -%}
+        <div class="rvc__carte rvc__bloc">
+          <span class="rvc__ico rvc__ico--petit" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s6.5-5.6 6.5-10.5A6.5 6.5 0 0 0 5.5 10.5C5.5 15.4 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg></span>
+          {%- if st.adresse_titre != blank -%}<h3 class="rvc__h3">{{ st.adresse_titre }}</h3>{%- endif -%}
+          {%- if st.adresse != blank -%}<div class="rvc__adresse">{{ st.adresse }}</div>{%- endif -%}
+        </div>
+        {%- endif -%}
+
+        {%- if st.avertissement != blank -%}
+        <div class="rvc__alerte">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9.5 17h-19L12 3z"/><path d="M12 10v4.5M12 17.5v.5"/></svg>
+          <div>{{ st.avertissement }}</div>
+        </div>
+        {%- endif -%}
+
+        {%- if st.delai != blank -%}
+        <div class="rvc__carte rvc__bloc rvc__bloc--accent">
+          <span class="rvc__ico rvc__ico--petit" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+          <div class="rvc__delai">{{ st.delai }}</div>
+        </div>
+        {%- endif -%}
+      </aside>
+
+    </div>
+
+    {%- if liens.size > 0 -%}
+    <section class="rvc__rapide">
+      {%- if st.liens_titre != blank -%}<h2 class="rvc__h2 rvc__h2--centre">{{ st.liens_titre }}</h2>{%- endif -%}
+      {%- if st.liens_texte != blank -%}<p class="rvc__texte rvc__texte--centre">{{ st.liens_texte }}</p>{%- endif -%}
+      <div class="rvc__liens rvc__liens--{{ liens.size }}">
+        {%- for b in liens -%}
+        <a class="rvc__carte rvc__lien" href="{{ b.settings.url | default: '#' }}" {{ b.shopify_attributes }}>
+          <span class="rvc__lien-texte">
+            {%- if b.settings.titre != blank -%}<strong>{{ b.settings.titre }}</strong>{%- endif -%}
+            {%- if b.settings.texte != blank -%}<span>{{ b.settings.texte }}</span>{%- endif -%}
+          </span>
+          <span class="rvc__lien-fleche" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        {%- endfor -%}
+      </div>
+    </section>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{%- style -%}
+  #rvc-{{ sid }} {
+    --rvc-accent: var(--color-primary-button-background, #0e6e7a);
+    --rvc-accent-text: var(--color-primary-button-text, #ffffff);
+    --rvc-fg: var(--color-foreground, #16242b);
+    --rvc-bg: var(--color-background, #ffffff);
+    --rvc-border: var(--color-border, rgba(22 36 43 / 0.12));
+    --rvc-radius: var(--card-border-radius, 16px);
+    --rvc-radius-input: var(--inputs-border-radius, 10px);
+    --rvc-radius-bouton: var(--button-border-radius, 10px);
+    color: var(--rvc-fg);
+    background: var(--rvc-bg);
+    padding: {{ st.marge_haut_mobile }}px 0 {{ st.marge_bas_mobile }}px;
+    font-family: var(--font-body--family, inherit);
+  }
+  #rvc-{{ sid }} .rvc__inner { width: min(var(--page-width, 1300px), 100% - 40px); max-width: {{ st.largeur }}px; margin: 0 auto; }
+
+  #rvc-{{ sid }} .rvc__entete { text-align: center; max-width: 720px; margin: 0 auto 36px; }
+  #rvc-{{ sid }} .rvc__surtitre {
+    display: inline-block; margin: 0 0 14px; padding: 6px 14px; border-radius: 999px;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--rvc-accent); background: color-mix(in srgb, var(--rvc-accent) 10%, transparent);
+  }
+  #rvc-{{ sid }} .rvc__titre {
+    margin: 0 0 14px; font-family: var(--font-heading--family, inherit); font-weight: var(--font-heading--weight, 500);
+    font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; letter-spacing: -0.02em;
+  }
+  #rvc-{{ sid }} .rvc__intro { font-size: 1.05rem; line-height: 1.6; opacity: 0.8; }
+  #rvc-{{ sid }} .rvc__intro p { margin: 0; }
+
+  #rvc-{{ sid }} .rvc__carte {
+    background: var(--rvc-bg); border: 1px solid var(--rvc-border); border-radius: var(--rvc-radius);
+    box-shadow: 0 1px 2px rgba(0 0 0 / 0.03);
+  }
+
+  #rvc-{{ sid }} .rvc__canaux { display: grid; gap: 16px; grid-template-columns: 1fr; margin-bottom: 20px; }
+  #rvc-{{ sid }} .rvc__canal {
+    display: flex; flex-direction: column; gap: 6px; padding: 26px 24px; text-decoration: none; color: inherit;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  #rvc-{{ sid }} a.rvc__canal:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(0 0 0 / 0.07); border-color: color-mix(in srgb, var(--rvc-accent) 45%, var(--rvc-border)); }
+  #rvc-{{ sid }} .rvc__ico {
+    display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; margin-bottom: 8px;
+    border-radius: 14px; color: var(--rvc-accent); background: color-mix(in srgb, var(--rvc-accent) 10%, transparent);
+  }
+  #rvc-{{ sid }} .rvc__ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  #rvc-{{ sid }} .rvc__ico--petit { width: 40px; height: 40px; border-radius: 12px; }
+  #rvc-{{ sid }} .rvc__canal-titre { margin: 0; font-family: var(--font-heading--family, inherit); font-size: 1.05rem; font-weight: 600; }
+  #rvc-{{ sid }} .rvc__canal-valeur { margin: 0; font-size: 1.05rem; font-weight: 500; overflow-wrap: anywhere; }
+  #rvc-{{ sid }} .rvc__canal-note { margin: 0; font-size: 0.875rem; line-height: 1.5; opacity: 0.7; }
+  #rvc-{{ sid }} .rvc__canal-action { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 0.875rem; font-weight: 600; color: var(--rvc-accent); }
+  #rvc-{{ sid }} .rvc__canal-action svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s ease; }
+  #rvc-{{ sid }} a.rvc__canal:hover .rvc__canal-action svg { transform: translateX(4px); }
+
+  #rvc-{{ sid }} .rvc__grille { display: grid; gap: 20px; grid-template-columns: 1fr; align-items: start; }
+  #rvc-{{ sid }} .rvc__form { padding: 30px 24px; }
+  #rvc-{{ sid }} .rvc__h2 { margin: 0 0 8px; font-family: var(--font-heading--family, inherit); font-weight: var(--font-heading--weight, 500); font-size: 1.6rem; letter-spacing: -0.01em; }
+  #rvc-{{ sid }} .rvc__h2--centre, #rvc-{{ sid }} .rvc__texte--centre { text-align: center; }
+  #rvc-{{ sid }} .rvc__h3 { margin: 0 0 8px; font-family: var(--font-heading--family, inherit); font-size: 1.1rem; font-weight: 600; }
+  #rvc-{{ sid }} .rvc__texte { margin: 0 0 22px; line-height: 1.6; opacity: 0.8; }
+
+  #rvc-{{ sid }} .rvc__champs { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  #rvc-{{ sid }} .rvc__champ { display: flex; flex-direction: column; gap: 6px; }
+  #rvc-{{ sid }} .rvc__champ label { font-size: 0.875rem; font-weight: 600; }
+  #rvc-{{ sid }} .rvc__champ label span { color: var(--rvc-accent); }
+  #rvc-{{ sid }} .rvc__champ label small { font-weight: 400; opacity: 0.65; }
+  #rvc-{{ sid }} .rvc__champ input, #rvc-{{ sid }} .rvc__champ textarea, #rvc-{{ sid }} .rvc__champ select {
+    width: 100%; box-sizing: border-box; padding: 13px 15px; font: inherit; font-size: 0.95rem; color: var(--rvc-fg);
+    background: var(--color-input-background, var(--rvc-bg)); border: 1px solid var(--color-input-border, var(--rvc-border));
+    border-radius: var(--rvc-radius-input); transition: border-color .2s ease, box-shadow .2s ease; -webkit-appearance: none; appearance: none;
+  }
+  #rvc-{{ sid }} .rvc__champ textarea { resize: vertical; min-height: 150px; line-height: 1.55; }
+  #rvc-{{ sid }} .rvc__champ input:focus, #rvc-{{ sid }} .rvc__champ textarea:focus, #rvc-{{ sid }} .rvc__champ select:focus {
+    outline: none; border-color: var(--rvc-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--rvc-accent) 18%, transparent);
+  }
+  #rvc-{{ sid }} .rvc__select { position: relative; }
+  #rvc-{{ sid }} .rvc__select select { padding-right: 44px; cursor: pointer; }
+  #rvc-{{ sid }} .rvc__select svg { position: absolute; right: 14px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); pointer-events: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: 0.6; }
+  #rvc-{{ sid }} .rvc__envoi { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+  #rvc-{{ sid }} .rvc__bouton {
+    width: 100%; padding: 16px 28px; border: 0; border-radius: var(--rvc-radius-bouton); cursor: pointer;
+    font: inherit; font-size: 1rem; font-weight: 600; color: var(--rvc-accent-text); background: var(--rvc-accent);
+    transition: transform .2s ease, filter .2s ease;
+  }
+  #rvc-{{ sid }} .rvc__bouton:hover { transform: translateY(-1px); filter: brightness(1.06); }
+  #rvc-{{ sid }} .rvc__mention { margin: 0; font-size: 0.8rem; line-height: 1.5; opacity: 0.65; text-align: center; }
+
+  #rvc-{{ sid }} .rvc__message { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 20px; padding: 14px 16px; border-radius: var(--rvc-radius-input); font-size: 0.95rem; line-height: 1.5; }
+  #rvc-{{ sid }} .rvc__message svg { flex: 0 0 auto; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  #rvc-{{ sid }} .rvc__message--ok { color: #0f5132; background: #e6f4ea; border: 1px solid #b7dfc3; }
+  #rvc-{{ sid }} .rvc__message--erreur { color: #7a1f1f; background: #fbeaea; border: 1px solid #f1c4c4; }
+  #rvc-{{ sid }} .rvc__message--erreur ul { margin: 0; padding-left: 18px; }
+
+  #rvc-{{ sid }} .rvc__cote { display: grid; gap: 16px; }
+  #rvc-{{ sid }} .rvc__bloc { padding: 24px; }
+  #rvc-{{ sid }} .rvc__adresse, #rvc-{{ sid }} .rvc__delai { line-height: 1.65; }
+  #rvc-{{ sid }} .rvc__adresse p, #rvc-{{ sid }} .rvc__delai p { margin: 0; }
+  #rvc-{{ sid }} .rvc__bloc--accent { display: flex; gap: 14px; align-items: flex-start; background: color-mix(in srgb, var(--rvc-accent) 7%, var(--rvc-bg)); border-color: color-mix(in srgb, var(--rvc-accent) 25%, transparent); }
+  #rvc-{{ sid }} .rvc__bloc--accent .rvc__ico { margin: 0; flex: 0 0 auto; }
+  #rvc-{{ sid }} .rvc__alerte {
+    display: flex; gap: 12px; align-items: flex-start; padding: 16px 18px; border-radius: var(--rvc-radius);
+    background: #fff7e6; border: 1px solid #f3d9a4; color: #6b4a06; font-size: 0.9rem; line-height: 1.55;
+  }
+  #rvc-{{ sid }} .rvc__alerte svg { flex: 0 0 auto; width: 20px; height: 20px; margin-top: 1px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  #rvc-{{ sid }} .rvc__alerte p { margin: 0; }
+
+  #rvc-{{ sid }} .rvc__rapide { margin-top: 44px; }
+  #rvc-{{ sid }} .rvc__liens { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  #rvc-{{ sid }} .rvc__lien {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 22px;
+    text-decoration: none; color: inherit; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  #rvc-{{ sid }} .rvc__lien:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(0 0 0 / 0.07); border-color: color-mix(in srgb, var(--rvc-accent) 45%, var(--rvc-border)); }
+  #rvc-{{ sid }} .rvc__lien-texte { display: flex; flex-direction: column; gap: 4px; }
+  #rvc-{{ sid }} .rvc__lien-texte strong { font-family: var(--font-heading--family, inherit); font-weight: 600; font-size: 1rem; }
+  #rvc-{{ sid }} .rvc__lien-texte span { font-size: 0.875rem; opacity: 0.7; line-height: 1.45; }
+  #rvc-{{ sid }} .rvc__lien-fleche { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; color: var(--rvc-accent); background: color-mix(in srgb, var(--rvc-accent) 10%, transparent); transition: transform .25s ease; }
+  #rvc-{{ sid }} .rvc__lien-fleche svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  #rvc-{{ sid }} .rvc__lien:hover .rvc__lien-fleche { transform: translateX(4px); }
+
+  @media (min-width: 750px) {
+    #rvc-{{ sid }} { padding: {{ st.marge_haut }}px 0 {{ st.marge_bas }}px; }
+    #rvc-{{ sid }} .rvc__entete { margin-bottom: 48px; }
+    #rvc-{{ sid }} .rvc__canaux { grid-template-columns: repeat(2, 1fr); margin-bottom: 28px; }
+    #rvc-{{ sid }} .rvc__canaux--3 { grid-template-columns: repeat(3, 1fr); }
+    #rvc-{{ sid }} .rvc__canaux--4 { grid-template-columns: repeat(4, 1fr); }
+    #rvc-{{ sid }} .rvc__champs { grid-template-columns: 1fr 1fr; }
+    #rvc-{{ sid }} .rvc__champ--large { grid-column: 1 / -1; }
+    #rvc-{{ sid }} .rvc__form { padding: 40px; }
+    #rvc-{{ sid }} .rvc__bouton { width: auto; align-self: flex-start; }
+    #rvc-{{ sid }} .rvc__envoi { flex-direction: row; align-items: center; justify-content: space-between; }
+    #rvc-{{ sid }} .rvc__mention { text-align: right; max-width: 55%; }
+    #rvc-{{ sid }} .rvc__liens { grid-template-columns: repeat(2, 1fr); }
+    #rvc-{{ sid }} .rvc__liens--3 { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 990px) {
+    #rvc-{{ sid }} .rvc__grille { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 28px; }
+    #rvc-{{ sid }} .rvc__rapide { margin-top: 60px; }
+  }
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Contact (Ravivea)",
+  "tag": "section",
+  "class": "section-rv-contact",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Palette de couleurs", "default": "scheme-1" },
+    { "type": "range", "id": "largeur", "label": "Largeur maximale", "min": 800, "max": 1400, "step": 20, "unit": "px", "default": 1100 },
+
+    { "type": "header", "content": "En-tête" },
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Service client" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Une question ? Écrivez-nous" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Notre équipe vous accompagne avant et après votre commande : choix du modèle, conseils d'utilisation, suivi de livraison, retour ou garantie.</p>" },
+
+    { "type": "header", "content": "Formulaire" },
+    { "type": "checkbox", "id": "formulaire", "label": "Afficher le formulaire", "default": true },
+    { "type": "text", "id": "form_titre", "label": "Titre du formulaire", "default": "Envoyez-nous un message" },
+    { "type": "text", "id": "form_texte", "label": "Texte sous le titre", "default": "Décrivez votre demande, nous revenons vers vous par e-mail." },
+    { "type": "textarea", "id": "sujets", "label": "Objets proposés (un par ligne)", "default": "Question avant commande\nSuivi de ma commande\nLivraison\nRetour ou remboursement\nGarantie ou produit défectueux\nAutre demande" },
+    { "type": "text", "id": "form_bouton", "label": "Texte du bouton", "default": "Envoyer le message" },
+    { "type": "text", "id": "form_mention", "label": "Mention sous le bouton", "default": "Réponse sous 24 à 48 heures ouvrées, du lundi au vendredi." },
+    { "type": "text", "id": "form_succes", "label": "Message de confirmation", "default": "Merci, votre message est bien envoyé. Nous vous répondons sous 24 à 48 heures ouvrées." },
+
+    { "type": "header", "content": "Colonne de droite" },
+    { "type": "text", "id": "adresse_titre", "label": "Titre de l'adresse", "default": "Notre adresse" },
+    { "type": "richtext", "id": "adresse", "label": "Adresse", "default": "<p>Ravivea — Abdellah El Moufid<br>10 rue de Provence<br>87220 Feytiat<br>France</p>" },
+    { "type": "richtext", "id": "avertissement", "label": "Avertissement retours", "default": "<p>Merci de ne pas renvoyer de colis à cette adresse sans accord préalable : écrivez-nous d'abord, l'adresse de retour vous sera communiquée avec votre numéro de dossier.</p>" },
+    { "type": "richtext", "id": "delai", "label": "Encart délai de réponse", "default": "<p><strong>Nous répondons du lundi au vendredi, de 9h à 18h</strong>, sous 24 à 48 heures ouvrées.</p>" },
+
+    { "type": "header", "content": "Liens rapides" },
+    { "type": "text", "id": "liens_titre", "label": "Titre", "default": "Pour aller plus vite" },
+    { "type": "text", "id": "liens_texte", "label": "Texte", "default": "Beaucoup de réponses se trouvent déjà dans nos pages d'aide." },
+
+    { "type": "header", "content": "Espacements" },
+    { "type": "range", "id": "marge_haut", "label": "Marge haute — ordinateur", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 64 },
+    { "type": "range", "id": "marge_bas", "label": "Marge basse — ordinateur", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80 },
+    { "type": "range", "id": "marge_haut_mobile", "label": "Marge haute — mobile", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 36 },
+    { "type": "range", "id": "marge_bas_mobile", "label": "Marge basse — mobile", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "canal",
+      "name": "Moyen de contact",
+      "settings": [
+        { "type": "select", "id": "icone", "label": "Icône", "options": [ { "value": "mail", "label": "E-mail" }, { "value": "whatsapp", "label": "WhatsApp" }, { "value": "horaire", "label": "Horaires" }, { "value": "adresse", "label": "Adresse" } ], "default": "mail" },
+        { "type": "text", "id": "titre", "label": "Titre", "default": "E-mail" },
+        { "type": "text", "id": "valeur", "label": "Valeur mise en avant", "default": "contact@ravivea.fr" },
+        { "type": "text", "id": "note", "label": "Note", "default": "Réponse sous 24 à 48 heures ouvrées" },
+        { "type": "url", "id": "lien", "label": "Lien au clic" },
+        { "type": "text", "id": "libelle", "label": "Texte du lien", "default": "Nous écrire" }
+      ]
+    },
+    {
+      "type": "lien",
+      "name": "Lien rapide",
+      "settings": [
+        { "type": "text", "id": "titre", "label": "Titre", "default": "F.A.Q" },
+        { "type": "text", "id": "texte", "label": "Texte", "default": "Les réponses aux questions les plus fréquentes." },
+        { "type": "url", "id": "url", "label": "Lien" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact (Ravivea)",
+      "blocks": [
+        { "type": "canal", "settings": { "icone": "mail", "titre": "E-mail", "valeur": "contact@ravivea.fr", "note": "Le moyen le plus simple pour nous joindre, avec votre numéro de commande si vous en avez un.", "lien": "mailto:contact@ravivea.fr", "libelle": "Nous écrire" } },
+        { "type": "canal", "settings": { "icone": "whatsapp", "titre": "WhatsApp", "valeur": "+33 7 56 88 21 12", "note": "Messages uniquement, nous ne prenons pas d'appels téléphoniques.", "lien": "https://wa.me/33756882112", "libelle": "Ouvrir WhatsApp" } },
+        { "type": "canal", "settings": { "icone": "horaire", "titre": "Horaires", "valeur": "Lundi au vendredi, 9h à 18h", "note": "Nous répondons sous 24 à 48 heures ouvrées.", "libelle": "" } },
+        { "type": "lien", "settings": { "titre": "F.A.Q", "texte": "Les réponses aux questions les plus fréquentes.", "url": "/pages/f-a-q" } },
+        { "type": "lien", "settings": { "titre": "Politique d'expédition", "texte": "Délais, transporteurs et suivi de votre colis.", "url": "/pages/politique-d-expedition" } },
+        { "type": "lien", "settings": { "titre": "Retours et remboursements", "texte": "30 jours pour changer d'avis, mode d'emploi.", "url": "/pages/politique-de-retour-et-de-remboursement" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
