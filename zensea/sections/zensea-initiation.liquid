@@ -44,24 +44,52 @@
     {%- if guides.size > 0 -%}
     <div class="zni__grille">
       {%- for b in guides -%}
-      <div class="zni__carte" {{ b.shopify_attributes }}>
-        <div class="zni__haut">
-          {%- if b.settings.numero != blank -%}<span class="zni__num">{{ b.settings.numero }}</span>{%- endif -%}
+      {%- liquid
+        assign vign = b.settings.image
+        assign alt_vign = b.settings.titre
+        if vign != blank and vign.alt != blank
+          assign alt_vign = vign.alt
+        endif
+      -%}
+      <div class="zni__carte{% if vign != blank %} zni__carte--img{% endif %}" {{ b.shopify_attributes }}>
+        {%- if vign != blank -%}
+        <div class="zni__vign">
+          {{ vign | image_url: width: 1100 | image_tag:
+               loading: 'lazy',
+               widths: '320,480,640,860,1100',
+               sizes: '(min-width: 990px) 32vw, (min-width: 750px) 46vw, 92vw',
+               alt: alt_vign,
+               class: 'zni__img' }}
+          <span class="zni__voile" aria-hidden="true"></span>
+          {%- if b.settings.numero != blank -%}
+          <span class="zni__num zni__num--sur">{{ b.settings.numero }}</span>
+          {%- endif -%}
           {%- if b.settings.niveau != blank -%}
-          <span class="zni__niv{% if b.settings.niveau_dore %} zni__niv--o{% endif %}">{{ b.settings.niveau }}</span>
+          <span class="zni__niv zni__niv--sur{% if b.settings.niveau_dore %} zni__niv--o{% endif %}">{{ b.settings.niveau }}</span>
           {%- endif -%}
         </div>
-        {%- if b.settings.titre != blank -%}<h3>{{ b.settings.titre }}</h3>{%- endif -%}
-        {%- if b.settings.description != blank -%}<p class="d">{{ b.settings.description }}</p>{%- endif -%}
-        <div class="zni__pied">
-          {%- if b.settings.meta != blank -%}<span class="zni__meta">{{ b.settings.meta }}</span>{%- endif -%}
-          {%- if b.settings.fichier != blank -%}
-          <a class="zni__dl" href="{{ b.settings.fichier }}" target="_blank" rel="noopener"
-             {% if b.settings.titre != blank %}aria-label="Télécharger : {{ b.settings.titre | escape }}"{% endif %}>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg>
-            {{ b.settings.libelle | default: 'Télécharger' }}
-          </a>
+        {%- endif -%}
+        <div class="zni__corps">
+          {%- if vign == blank -%}
+          <div class="zni__haut">
+            {%- if b.settings.numero != blank -%}<span class="zni__num">{{ b.settings.numero }}</span>{%- endif -%}
+            {%- if b.settings.niveau != blank -%}
+            <span class="zni__niv{% if b.settings.niveau_dore %} zni__niv--o{% endif %}">{{ b.settings.niveau }}</span>
+            {%- endif -%}
+          </div>
           {%- endif -%}
+          {%- if b.settings.titre != blank -%}<h3>{{ b.settings.titre }}</h3>{%- endif -%}
+          {%- if b.settings.description != blank -%}<p class="d">{{ b.settings.description }}</p>{%- endif -%}
+          <div class="zni__pied">
+            {%- if b.settings.meta != blank -%}<span class="zni__meta">{{ b.settings.meta }}</span>{%- endif -%}
+            {%- if b.settings.fichier != blank -%}
+            <a class="zni__dl" href="{{ b.settings.fichier }}" target="_blank" rel="noopener"
+               {% if b.settings.titre != blank %}aria-label="Télécharger : {{ b.settings.titre | escape }}"{% endif %}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg>
+              {{ b.settings.libelle | default: 'Télécharger' }}
+            </a>
+            {%- endif -%}
+          </div>
         </div>
       </div>
       {%- endfor -%}
@@ -143,8 +171,21 @@
 
   #zni-{{ sid }} .zni__grille{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:44px}
   #zni-{{ sid }} .zni__carte{display:flex;flex-direction:column;background:var(--zni-carte);
-    border:1px solid {{ st.c_texte }}1A;border-radius:16px;padding:26px 24px 24px;
+    border:1px solid {{ st.c_texte }}1A;border-radius:16px;overflow:hidden;
     transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+  #zni-{{ sid }} .zni__corps{display:flex;flex-direction:column;flex:1;padding:26px 24px 24px}
+  #zni-{{ sid }} .zni__carte--img .zni__corps{padding-top:20px}
+  #zni-{{ sid }} .zni__vign{position:relative;display:block;overflow:hidden;
+    background:var(--zni-clair);aspect-ratio:{{ st.img_ratio | default: '4 / 3' }}}
+  #zni-{{ sid }} .zni__vign .zni__img{display:block;width:100%;height:100%;object-fit:cover;
+    transition:transform .6s cubic-bezier(.22,.68,.18,1)}
+  #zni-{{ sid }} .zni__carte--img:hover .zni__img{transform:scale(1.05)}
+  #zni-{{ sid }} .zni__voile{position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(to top,{{ st.c_sombre }}3D,transparent 46%)}
+  #zni-{{ sid }} .zni__num--sur{position:absolute;left:14px;bottom:14px;margin:0;
+    background:{{ st.c_carte }}F2;box-shadow:0 4px 14px {{ st.c_sombre }}2E}
+  #zni-{{ sid }} .zni__niv--sur{position:absolute;right:14px;top:14px;
+    background:{{ st.c_carte }}F2;box-shadow:0 4px 14px {{ st.c_sombre }}24}
   #zni-{{ sid }} .zni__carte:hover{transform:translateY(-4px);box-shadow:0 18px 40px {{ st.c_sombre }}1F;
     border-color:{{ st.c_accent }}73}
   #zni-{{ sid }} .zni__haut{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:10px}
@@ -221,6 +262,18 @@
     { "type": "text", "id": "collection_titre", "label": "Titre", "default": "Les guides du handpan" },
     { "type": "text", "id": "collection_texte", "label": "Texte", "default": "Chaque volume contient 23 leçons courtes, une séance guidée, une auto-évaluation et un plan de travail sur sept jours. Téléchargez-les dans l'ordre, ou piochez selon vos besoins." },
 
+    { "type": "header", "content": "Cartes des guides" },
+    { "type": "select", "id": "img_ratio", "label": "Format des images",
+      "info": "S'applique à toutes les cartes qui ont une image.",
+      "options": [
+        { "value": "4 / 3", "label": "Paysage 4:3" },
+        { "value": "3 / 2", "label": "Paysage 3:2" },
+        { "value": "16 / 9", "label": "Panoramique 16:9" },
+        { "value": "1 / 1", "label": "Carré 1:1" },
+        { "value": "4 / 5", "label": "Portrait 4:5" }
+      ],
+      "default": "4 / 3" },
+
     { "type": "header", "content": "Appel à l'action" },
     { "type": "text", "id": "cta_titre", "label": "Titre", "default": "Prêt à jouer sur votre propre instrument ?" },
     { "type": "text", "id": "cta_texte", "label": "Texte", "default": "Tous nos handpans sont accordés en ré mineur Kurd, au choix en 440 Hz ou 432 Hz, et livrés avec leur housse de transport." },
@@ -273,6 +326,7 @@
         { "type": "text", "id": "numero", "label": "Numéro", "default": "01" },
         { "type": "text", "id": "niveau", "label": "Niveau", "default": "Débutant" },
         { "type": "checkbox", "id": "niveau_dore", "label": "Pastille dorée", "default": false },
+        { "type": "image_picker", "id": "image", "label": "Image de la carte", "info": "Facultatif. Sans image, la carte garde sa mise en page actuelle." },
         { "type": "text", "id": "titre", "label": "Titre du guide" },
         { "type": "textarea", "id": "description", "label": "Description" },
         { "type": "text", "id": "meta", "label": "Mention", "default": "PDF · 30 pages" },
