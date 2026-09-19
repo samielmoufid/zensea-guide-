@@ -1,0 +1,288 @@
+{%- comment -%}
+  Page « Initiation » : bandeau d'accueil, grille des guides offerts et appel à l'action.
+  Chaque guide est un bloc : titre, description, niveau et lien vers le fichier PDF.
+  Tous les textes, couleurs et liens se règlent depuis l'éditeur de thème.
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign sid = section.id
+  assign guides = section.blocks | where: 'type', 'guide'
+  assign chiffres = section.blocks | where: 'type', 'chiffre'
+  assign questions = section.blocks | where: 'type', 'question'
+-%}
+
+<section id="zni-{{ sid }}" class="zni">
+  <div class="zni__inner">
+
+    {%- if st.afficher_bandeau -%}
+    <div class="zni__hero">
+      <div class="zni__hero-in">
+        {%- if st.surtitre != blank -%}<div class="zni__eyebrow">{{ st.surtitre }}</div>{%- endif -%}
+        {%- if st.titre != blank -%}<h1 class="zni__h1">{{ st.titre }}</h1>{%- endif -%}
+        {%- if st.intro != blank -%}<div class="zni__intro">{{ st.intro }}</div>{%- endif -%}
+        {%- if chiffres.size > 0 -%}
+        <div class="zni__chiffres">
+          {%- for b in chiffres -%}
+          <div class="zni__chiffre" {{ b.shopify_attributes }}>
+            <b>{{ b.settings.valeur }}</b><span>{{ b.settings.libelle }}</span>
+          </div>
+          {%- endfor -%}
+        </div>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+    {%- if st.collection_titre != blank or st.collection_texte != blank -%}
+    <div class="zni__st">
+      {%- if st.collection_surtitre != blank -%}<div class="k">{{ st.collection_surtitre }}</div>{%- endif -%}
+      {%- if st.collection_titre != blank -%}<h2>{{ st.collection_titre }}</h2>{%- endif -%}
+      {%- if st.collection_texte != blank -%}<p>{{ st.collection_texte }}</p>{%- endif -%}
+    </div>
+    {%- endif -%}
+
+    {%- if guides.size > 0 -%}
+    <div class="zni__grille">
+      {%- for b in guides -%}
+      <div class="zni__carte" {{ b.shopify_attributes }}>
+        <div class="zni__haut">
+          {%- if b.settings.numero != blank -%}<span class="zni__num">{{ b.settings.numero }}</span>{%- endif -%}
+          {%- if b.settings.niveau != blank -%}
+          <span class="zni__niv{% if b.settings.niveau_dore %} zni__niv--o{% endif %}">{{ b.settings.niveau }}</span>
+          {%- endif -%}
+        </div>
+        {%- if b.settings.titre != blank -%}<h3>{{ b.settings.titre }}</h3>{%- endif -%}
+        {%- if b.settings.description != blank -%}<p class="d">{{ b.settings.description }}</p>{%- endif -%}
+        <div class="zni__pied">
+          {%- if b.settings.meta != blank -%}<span class="zni__meta">{{ b.settings.meta }}</span>{%- endif -%}
+          {%- if b.settings.fichier != blank -%}
+          <a class="zni__dl" href="{{ b.settings.fichier }}" target="_blank" rel="noopener"
+             {% if b.settings.titre != blank %}aria-label="Télécharger : {{ b.settings.titre | escape }}"{% endif %}>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg>
+            {{ b.settings.libelle | default: 'Télécharger' }}
+          </a>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+
+    {%- if st.cta_titre != blank -%}
+    <div class="zni__cta">
+      <h2>{{ st.cta_titre }}</h2>
+      {%- if st.cta_texte != blank -%}<p>{{ st.cta_texte }}</p>{%- endif -%}
+      <div class="zni__btns">
+        {%- if st.cta_b1 != blank -%}<a class="zni__b1" href="{{ st.cta_b1_lien | default: '#' }}">{{ st.cta_b1 }}</a>{%- endif -%}
+        {%- if st.cta_b2 != blank -%}<a class="zni__b2" href="{{ st.cta_b2_lien | default: '#' }}">{{ st.cta_b2 }}</a>{%- endif -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+    {%- if questions.size > 0 -%}
+    {%- if st.faq_titre != blank -%}
+    <div class="zni__st zni__st--faq">
+      {%- if st.faq_surtitre != blank -%}<div class="k">{{ st.faq_surtitre }}</div>{%- endif -%}
+      <h2>{{ st.faq_titre }}</h2>
+    </div>
+    {%- endif -%}
+    <div class="zni__faq">
+      {%- for b in questions -%}
+      <div class="zni__q" {{ b.shopify_attributes }}>
+        {%- if b.settings.question != blank -%}<h3>{{ b.settings.question }}</h3>{%- endif -%}
+        {%- if b.settings.reponse != blank -%}<div class="r">{{ b.settings.reponse }}</div>{%- endif -%}
+      </div>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{%- style -%}
+  #zni-{{ sid }}{
+    --zni-accent:{{ st.c_accent }};
+    --zni-sombre:{{ st.c_sombre }};
+    --zni-clair:{{ st.c_clair }};
+    --zni-txt:{{ st.c_texte }};
+    --zni-gris:{{ st.c_gris }};
+    --zni-or:{{ st.c_or }};
+    --zni-carte:{{ st.c_carte }};
+    background:{{ st.c_fond }};
+    color:var(--zni-txt);
+    padding:{{ st.pad_haut_mobile }}px 0 {{ st.pad_bas_mobile }}px;
+    font-family:inherit;line-height:1.6;
+  }
+  #zni-{{ sid }} *{box-sizing:border-box}
+  #zni-{{ sid }} .zni__inner{width:100%;max-width:{{ st.largeur }}px;margin:0 auto;padding:0 20px}
+  #zni-{{ sid }} p{margin:0 0 14px}
+  #zni-{{ sid }} a{text-decoration:none}
+
+  #zni-{{ sid }} .zni__hero{background:var(--zni-sombre);color:#FBF9F4;border-radius:20px;
+    padding:40px 26px;margin-bottom:40px;position:relative;overflow:hidden}
+  #zni-{{ sid }} .zni__hero::after{content:'';position:absolute;width:420px;height:420px;border-radius:50%;
+    right:-150px;top:-170px;background:radial-gradient(circle,{{ st.c_or }}38 0%,{{ st.c_or }}00 68%)}
+  #zni-{{ sid }} .zni__hero-in{position:relative;max-width:720px}
+  #zni-{{ sid }} .zni__eyebrow{display:inline-block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    font-weight:600;color:var(--zni-or);border:1px solid {{ st.c_or }}73;border-radius:99px;padding:6px 14px;margin-bottom:20px}
+  #zni-{{ sid }} .zni__h1{font-size:clamp(28px,4.4vw,46px);line-height:1.14;font-weight:600;margin:0 0 18px;
+    letter-spacing:-.02em;color:#FBF9F4}
+  #zni-{{ sid }} .zni__intro{font-size:clamp(15px,1.7vw,18px);color:#FBF9F4D9;max-width:600px}
+  #zni-{{ sid }} .zni__intro p{margin:0}
+  #zni-{{ sid }} .zni__chiffres{display:flex;flex-wrap:wrap;gap:24px;margin-top:30px;padding-top:24px;
+    border-top:1px solid #FBF9F433}
+  #zni-{{ sid }} .zni__chiffre b{display:block;font-size:26px;font-weight:600;color:var(--zni-or);line-height:1.1}
+  #zni-{{ sid }} .zni__chiffre span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#FBF9F4B3}
+
+  #zni-{{ sid }} .zni__st{text-align:center;max-width:620px;margin:0 auto 30px}
+  #zni-{{ sid }} .zni__st .k{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
+    color:var(--zni-or);margin-bottom:10px}
+  #zni-{{ sid }} .zni__st h2{font-size:clamp(23px,3vw,32px);font-weight:600;color:var(--zni-sombre);
+    margin:0 0 12px;letter-spacing:-.015em;line-height:1.2}
+  #zni-{{ sid }} .zni__st p{color:var(--zni-gris);margin:0}
+
+  #zni-{{ sid }} .zni__grille{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:44px}
+  #zni-{{ sid }} .zni__carte{display:flex;flex-direction:column;background:var(--zni-carte);
+    border:1px solid {{ st.c_texte }}1A;border-radius:16px;padding:26px 24px 24px;
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+  #zni-{{ sid }} .zni__carte:hover{transform:translateY(-4px);box-shadow:0 18px 40px {{ st.c_sombre }}1F;
+    border-color:{{ st.c_accent }}73}
+  #zni-{{ sid }} .zni__haut{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:10px}
+  #zni-{{ sid }} .zni__num{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;
+    border-radius:12px;background:var(--zni-clair);color:var(--zni-accent);font-weight:600;font-size:15px}
+  #zni-{{ sid }} .zni__niv{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+    color:var(--zni-accent);background:var(--zni-clair);border-radius:99px;padding:5px 11px;white-space:nowrap}
+  #zni-{{ sid }} .zni__niv--o{color:#8a6d1f;background:{{ st.c_or }}2E}
+  #zni-{{ sid }} .zni__carte h3{font-size:17px;font-weight:600;color:var(--zni-sombre);margin:0 0 10px;
+    line-height:1.32;letter-spacing:-.01em}
+  #zni-{{ sid }} .zni__carte .d{font-size:13.5px;color:var(--zni-gris);line-height:1.6;margin:0 0 20px;flex:1}
+  #zni-{{ sid }} .zni__pied{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding-top:16px;border-top:1px solid {{ st.c_texte }}17}
+  #zni-{{ sid }} .zni__meta{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--zni-gris);
+    font-weight:500;white-space:nowrap}
+  #zni-{{ sid }} .zni__dl{display:inline-flex;align-items:center;gap:8px;background:var(--zni-accent);color:#fff;
+    font-size:13px;font-weight:600;padding:11px 18px;border-radius:10px;white-space:nowrap;
+    transition:filter .2s ease,transform .2s ease}
+  #zni-{{ sid }} .zni__dl:hover{filter:brightness(1.12);transform:translateY(-1px);color:#fff}
+  #zni-{{ sid }} .zni__dl svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+
+  #zni-{{ sid }} .zni__cta{background:var(--zni-clair);border-radius:20px;padding:34px 22px;text-align:center}
+  #zni-{{ sid }} .zni__cta h2{font-size:clamp(22px,2.8vw,30px);font-weight:600;color:var(--zni-sombre);
+    margin:0 0 12px;letter-spacing:-.015em}
+  #zni-{{ sid }} .zni__cta p{color:var(--zni-gris);max-width:540px;margin:0 auto 24px}
+  #zni-{{ sid }} .zni__btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  #zni-{{ sid }} .zni__b1,#zni-{{ sid }} .zni__b2{display:inline-block;font-size:14px;font-weight:600;
+    padding:14px 28px;border-radius:10px;transition:filter .2s ease,transform .2s ease}
+  #zni-{{ sid }} .zni__b1{background:var(--zni-accent);color:#fff}
+  #zni-{{ sid }} .zni__b1:hover{filter:brightness(1.12);transform:translateY(-1px);color:#fff}
+  #zni-{{ sid }} .zni__b2{background:var(--zni-carte);color:var(--zni-accent);border:1px solid {{ st.c_accent }}59}
+  #zni-{{ sid }} .zni__b2:hover{transform:translateY(-1px);color:var(--zni-accent);border-color:var(--zni-accent)}
+
+  @media screen and (min-width:750px){
+    #zni-{{ sid }}{padding:{{ st.pad_haut }}px 0 {{ st.pad_bas }}px}
+    #zni-{{ sid }} .zni__hero{padding:56px 44px;margin-bottom:48px}
+    #zni-{{ sid }} .zni__chiffres{gap:34px}
+    #zni-{{ sid }} .zni__grille{grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px;margin-bottom:52px}
+    #zni-{{ sid }} .zni__st{margin-bottom:34px}
+    #zni-{{ sid }} .zni__cta{padding:44px 36px}
+  }
+  @media screen and (max-width:749px){
+    #zni-{{ sid }} .zni__pied{flex-direction:column;align-items:stretch}
+    #zni-{{ sid }} .zni__dl{justify-content:center}
+    #zni-{{ sid }} .zni__meta{text-align:center}
+  }
+  #zni-{{ sid }} .zni__st--faq{margin-top:44px}
+  #zni-{{ sid }} .zni__faq{max-width:780px;margin:0 auto}
+  #zni-{{ sid }} .zni__q{background:var(--zni-carte);border:1px solid {{ st.c_texte }}1A;border-radius:14px;
+    padding:22px 24px;margin-bottom:12px}
+  #zni-{{ sid }} .zni__q h3{font-size:15.5px;font-weight:600;color:var(--zni-sombre);margin:0 0 8px;line-height:1.4}
+  #zni-{{ sid }} .zni__q .r{font-size:14px;color:var(--zni-gris)}
+  #zni-{{ sid }} .zni__q .r p{margin:0 0 10px}
+  #zni-{{ sid }} .zni__q .r p:last-child{margin:0}
+{%- endstyle -%}
+
+{% schema %}
+{
+  "name": "Initiation (Zensea)",
+  "tag": "section",
+  "class": "zensea-initiation-section",
+  "settings": [
+    { "type": "range", "id": "largeur", "label": "Largeur maximale", "min": 900, "max": 1500, "step": 20, "default": 1180, "unit": "px" },
+
+    { "type": "header", "content": "Bandeau d'accueil" },
+    { "type": "checkbox", "id": "afficher_bandeau", "label": "Afficher le bandeau", "default": true },
+    { "type": "text", "id": "surtitre", "label": "Surtitre", "default": "Ressources offertes" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Vous n'avez jamais joué de musique ? Commencez ici." },
+    { "type": "richtext", "id": "intro", "label": "Texte d'introduction", "default": "<p>Neuf guides pratiques à télécharger librement, écrits par Zensea pour apprendre le handpan pas à pas : les gestes, le son, le rythme, la mélodie, l'improvisation et l'entretien de votre instrument. Aucune connaissance en solfège n'est nécessaire.</p>" },
+
+    { "type": "header", "content": "Titre de la collection" },
+    { "type": "text", "id": "collection_surtitre", "label": "Surtitre", "default": "La collection" },
+    { "type": "text", "id": "collection_titre", "label": "Titre", "default": "Les guides du handpan" },
+    { "type": "text", "id": "collection_texte", "label": "Texte", "default": "Chaque volume contient 23 leçons courtes, une séance guidée, une auto-évaluation et un plan de travail sur sept jours. Téléchargez-les dans l'ordre, ou piochez selon vos besoins." },
+
+    { "type": "header", "content": "Appel à l'action" },
+    { "type": "text", "id": "cta_titre", "label": "Titre", "default": "Prêt à jouer sur votre propre instrument ?" },
+    { "type": "text", "id": "cta_texte", "label": "Texte", "default": "Tous nos handpans sont accordés en ré mineur Kurd, au choix en 440 Hz ou 432 Hz, et livrés avec leur housse de transport." },
+    { "type": "text", "id": "cta_b1", "label": "Bouton 1", "default": "Voir les instruments" },
+    { "type": "url", "id": "cta_b1_lien", "label": "Lien du bouton 1" },
+    { "type": "text", "id": "cta_b2", "label": "Bouton 2", "default": "Comment choisir son handpan" },
+    { "type": "url", "id": "cta_b2_lien", "label": "Lien du bouton 2" },
+
+    { "type": "header", "content": "Questions fréquentes" },
+    { "type": "text", "id": "faq_surtitre", "label": "Surtitre", "default": "Notions de base" },
+    { "type": "text", "id": "faq_titre", "label": "Titre", "default": "Les questions que tout le monde se pose" },
+
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "c_fond", "label": "Fond de la section", "default": "#FBF9F4" },
+    { "type": "color", "id": "c_sombre", "label": "Vert foncé (bandeau, titres)", "default": "#1F3D2F" },
+    { "type": "color", "id": "c_accent", "label": "Vert d'accent (boutons)", "default": "#2E5E46" },
+    { "type": "color", "id": "c_clair", "label": "Vert clair (pastilles)", "default": "#ECF1E8" },
+    { "type": "color", "id": "c_or", "label": "Doré", "default": "#C8A24B" },
+    { "type": "color", "id": "c_texte", "label": "Texte", "default": "#22332A" },
+    { "type": "color", "id": "c_gris", "label": "Texte secondaire", "default": "#5A6B60" },
+    { "type": "color", "id": "c_carte", "label": "Fond des cartes", "default": "#FFFFFF" },
+
+    { "type": "header", "content": "Espacements" },
+    { "type": "range", "id": "pad_haut", "label": "Espacement haut — ordinateur", "min": 0, "max": 120, "step": 4, "default": 24, "unit": "px" },
+    { "type": "range", "id": "pad_bas", "label": "Espacement bas — ordinateur", "min": 0, "max": 120, "step": 4, "default": 56, "unit": "px" },
+    { "type": "range", "id": "pad_haut_mobile", "label": "Espacement haut — mobile", "min": 0, "max": 100, "step": 4, "default": 16, "unit": "px" },
+    { "type": "range", "id": "pad_bas_mobile", "label": "Espacement bas — mobile", "min": 0, "max": 100, "step": 4, "default": 36, "unit": "px" }
+  ],
+  "blocks": [
+    {
+      "type": "chiffre",
+      "name": "Chiffre clé",
+      "settings": [
+        { "type": "text", "id": "valeur", "label": "Chiffre", "default": "9" },
+        { "type": "text", "id": "libelle", "label": "Libellé", "default": "Guides complets" }
+      ]
+    },
+    {
+      "type": "question",
+      "name": "Question fréquente",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "reponse", "label": "Réponse" }
+      ]
+    },
+    {
+      "type": "guide",
+      "name": "Guide à télécharger",
+      "settings": [
+        { "type": "text", "id": "numero", "label": "Numéro", "default": "01" },
+        { "type": "text", "id": "niveau", "label": "Niveau", "default": "Débutant" },
+        { "type": "checkbox", "id": "niveau_dore", "label": "Pastille dorée", "default": false },
+        { "type": "text", "id": "titre", "label": "Titre du guide" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "text", "id": "meta", "label": "Mention", "default": "PDF · 30 pages" },
+        { "type": "url", "id": "fichier", "label": "Fichier PDF", "info": "Choisissez le PDF dans Contenu › Fichiers." },
+        { "type": "text", "id": "libelle", "label": "Texte du bouton", "default": "Télécharger" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Initiation (Zensea)" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,252 @@
+{
+  "sections": {
+    "initiation": {
+      "type": "zensea-initiation",
+      "blocks": {
+        "chiffre_9": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "9",
+            "libelle": "Guides complets"
+          }
+        },
+        "chiffre_270": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "270",
+            "libelle": "Pages au total"
+          }
+        },
+        "chiffre_207": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "207",
+            "libelle": "Leçons et exercices"
+          }
+        },
+        "chiffre_0e": {
+          "type": "chiffre",
+          "settings": {
+            "valeur": "0 €",
+            "libelle": "Sans inscription"
+          }
+        },
+        "guide_01": {
+          "type": "guide",
+          "settings": {
+            "numero": "01",
+            "niveau": "Débutant",
+            "niveau_dore": false,
+            "titre": "Le handpan : les bases essentielles",
+            "description": "Comprendre votre instrument, trouver une posture confortable, obtenir une frappe nette et relier vos premières notes en phrases qui tiennent debout. Le point de départ si vous venez de recevoir votre handpan.",
+            "meta": "PDF · 30 pages",
+            "fichier": "https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-01-bases-essentielles.pdf?v=1789823199",
+            "libelle": "Télécharger"
+          }
+        },
+        "guide_02": {
+          "type": "guide",
+          "settings": {
+            "numero": "02",
+            "niveau": "Débutant",
+            "niveau_dore": false,
+            "titre": "Un son propre et expressif",
+            "description": "La mécanique du toucher : point de frappe, doigts détendus, poignet souple, équilibre entre les deux mains. Apprenez pourquoi un son sonne sale, et comment obtenir ce timbre rond et long qui fait la réputation de l'instrument.",
+            "meta": "PDF · 30 pages",
+            "fichier": "https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-02-son-propre-expressif.pdf?v=1789823199",
+            "libelle": "Télécharger"
+          }
+        },
+        "guide_03": {
+          "type": "guide",
+          "settings": {
+            "numero": "03",
+            "niveau": "Débutant",
+            "niveau_dore": false,
+            "titre": "Rythme & groove au handpan",
+            "description": "Sentir la pulsation, tenir un tempo, placer des accents et construire des boucles qui tournent vraiment. Tout est expliqué sans solfège : des temps, des frappes et des silences.",
+            "meta": "PDF · 30 pages",
+            "fichier": "https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-03-rythme-groove.pdf?v=1789823200",
+            "libelle": "Télécharger"
+          }
+        },
+        "guide_04": {
+          "type": "guide",
+          "settings": {
+            "numero": "04",
+            "niveau": "Intermédiaire",
+            "niveau_dore": false,
+            "titre": "Créer des mélodies au handpan",
+            "description": "Transformer trois notes en véritables phrases musicales : motifs, contours, refrain et couplet, variations. À la fin du volume, vous aurez composé une minute de musique entièrement à vous.",
+            "meta": "PDF · 30 pages",
+            "fichier": "https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-04-creer-melodies.pdf?v=1789823272",
+            "libelle": "Télécharger"
+          }
+        },
+        "guide_05": {
+          "type": "guide",
+          "settings": {
+            "numero": "05",
+            "niveau": "Intermédiaire",
+            "niveau_dore": false,
+            "titre": "Improviser sans se perdre",
+            "description": "Jouer librement tout en gardant une direction. Des contraintes simples, des contrastes et une structure claire pour improviser trois puis cinq minutes sans avoir l'impression de tourner en rond.",
+            "meta": "PDF · 30 pages",
+            "fichier": "https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-05-improviser.pdf?v=1789823271",
+            "libelle": "Télécharger"
+          }
+        },
+        "guide_06": {
+          "type": "guide",
+          "settings": {
+            "numero": "06",
+            "niveau": "Programme",
+            "niveau_dore": true,
+            "titre": "Programme handpan · 30 jours",
+            "description": "Un mois entièrement organisé, semaine par semaine : le son, le tempo, les motifs, les silences, la mélodie puis l'improvisation. Avec ce qu'il faut faire les jours de fatigue et les jours sans inspiration.",
+            "meta": "PDF · 30 pages",
+            "fichier": "https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-06-programme-30-jours.pdf?v=1789823199",
+            "libelle": "Télécharger"
+          }
+        },
+        "guide_07": {
+          "type": "guide",
+          "settings": {
+            "numero": "07",
+            "niveau": "Tous niveaux",
+            "niveau_dore": false,
+            "titre": "Handpan, calme & respiration",
+            "description": "Des séquences lentes et aérées, construites sur peu de notes, de longs silences et une écoute attentive de la résonance. Pour les moments où l'on cherche le calme plutôt que la performance.",
+            "meta": "PDF · 30 pages",
+            "fichier": "https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-07-calme-respiration.pdf?v=1789823199",
+            "libelle": "Télécharger"
+          }
+        },
+        "guide_08": {
+          "type": "guide",
+          "settings": {
+            "numero": "08",
+            "niveau": "Avancé",
+            "niveau_dore": false,
+            "titre": "Jouer à plusieurs",
+            "description": "Duos, jams et accompagnement : choisir son rôle, partager le registre, tenir un ostinato, entrer et sortir proprement. Et comment cohabiter avec une guitare, une percussion, une voix ou une basse.",
+            "meta": "PDF · 30 pages",
+            "fichier": "https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-08-jouer-a-plusieurs.pdf?v=1789823199",
+            "libelle": "Télécharger"
+          }
+        },
+        "guide_09": {
+          "type": "guide",
+          "settings": {
+            "numero": "09",
+            "niveau": "Entretien",
+            "niveau_dore": true,
+            "titre": "Entretenir et protéger son handpan",
+            "description": "Nettoyage après chaque session, huile de protection, housse, transport, stockage et humidité. Les habitudes simples qui conservent l'apparence et la justesse de votre instrument pendant des années.",
+            "meta": "PDF · 30 pages",
+            "fichier": "https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-09-entretien-protection.pdf?v=1789823199",
+            "libelle": "Télécharger"
+          }
+        },
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "Faut-il connaître le solfège pour jouer du handpan ?",
+            "reponse": "<p>Non. Le handpan se joue directement avec les doigts, sans lecture de partition. Toutes les notes d'un instrument appartiennent à la même gamme : il est donc impossible de jouer une fausse note.</p><p>Quelques repères aident tout de même à progresser vite : reconnaître la note centrale, comprendre que les notes du cercle alternent d'une main à l'autre, et sentir le tempo avant de chercher la vitesse. C'est exactement ce que couvre le volume 01.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "Ces guides fonctionnent-ils avec n'importe quel handpan ?",
+            "reponse": "<p>Oui. Aucun exercice ne dépend d'une gamme particulière : on parle de note centrale, de note voisine ou de note aiguë, jamais d'une note nommée. Que votre instrument ait 9, 10 ou 12 notes, tout est adaptable.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Combien de temps faut-il pratiquer chaque jour ?",
+            "reponse": "<p>Quinze à vingt-cinq minutes attentives suffisent, et valent bien mieux qu'une longue séance forcée une fois par semaine. Chaque volume propose une séance guidée de vingt minutes et un plan sur sept jours.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "Dois-je créer un compte pour télécharger ?",
+            "reponse": "<p>Non. Les neuf guides sont librement téléchargeables au format PDF, sans inscription ni adresse e-mail à laisser. Vous pouvez les consulter sur téléphone, sur ordinateur ou les imprimer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "chiffre_9",
+        "chiffre_270",
+        "chiffre_207",
+        "chiffre_0e",
+        "guide_01",
+        "guide_02",
+        "guide_03",
+        "guide_04",
+        "guide_05",
+        "guide_06",
+        "guide_07",
+        "guide_08",
+        "guide_09",
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4"
+      ],
+      "settings": {
+        "largeur": 1180,
+        "afficher_bandeau": true,
+        "surtitre": "Ressources offertes",
+        "titre": "Vous n'avez jamais joué de musique ? Commencez ici.",
+        "intro": "<p>Neuf guides pratiques à télécharger librement, écrits par Zensea pour apprendre le handpan pas à pas : les gestes, le son, le rythme, la mélodie, l'improvisation et l'entretien de votre instrument. Aucune connaissance en solfège n'est nécessaire.</p>",
+        "collection_surtitre": "La collection",
+        "collection_titre": "Les guides du handpan",
+        "collection_texte": "Chaque volume contient 23 leçons courtes, une séance guidée, une auto-évaluation et un plan de travail sur sept jours. Téléchargez-les dans l'ordre, ou piochez selon vos besoins.",
+        "cta_titre": "Prêt à jouer sur votre propre instrument ?",
+        "cta_texte": "Tous nos handpans sont accordés en ré mineur Kurd, au choix en 440 Hz ou 432 Hz, et livrés avec leur housse de transport.",
+        "cta_b1": "Voir les instruments",
+        "cta_b1_lien": "/collections/tous-les-handpans",
+        "cta_b2": "Comment choisir son handpan",
+        "cta_b2_lien": "/pages/guide",
+        "faq_surtitre": "Notions de base",
+        "faq_titre": "Les questions que tout le monde se pose",
+        "c_fond": "#FBF9F4",
+        "c_sombre": "#1F3D2F",
+        "c_accent": "#2E5E46",
+        "c_clair": "#ECF1E8",
+        "c_or": "#C8A24B",
+        "c_texte": "#22332A",
+        "c_gris": "#5A6B60",
+        "c_carte": "#FFFFFF",
+        "pad_haut": 24,
+        "pad_bas": 56,
+        "pad_haut_mobile": 16,
+        "pad_bas_mobile": 36
+      }
+    },
+    "dunes": {
+      "type": "zensea-dunes",
+      "settings": {
+        "height_desktop": 300,
+        "height_mobile": 180,
+        "rim": "#DFEAE4",
+        "dune_1": "#C7D9D0",
+        "dune_2": "#B0C9BC",
+        "dune_3": "#96B4A3",
+        "dune_4": "#7BA089",
+        "dune_5": "#5F8A70",
+        "dune_6": "#467358",
+        "ligne": "#DFEAE4",
+        "ground": "#2E5E46",
+        "sky": "#F6F9F8"
+      }
+    }
+  },
+  "order": [
+    "initiation",
+    "dunes"
+  ]
+}
