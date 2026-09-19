@@ -1,0 +1,1279 @@
+{% doc %}
+  Affiche le menu mobile.
+
+  @param menu_links - Les liens du menu.
+  @param localization_markup - Le markup de la localisation.
+  @param [uppercase] - Indique si les éléments doivent être en majuscule.
+  @param [font_weight] - Poids de la police.
+
+  @example
+  {% content_for 'block', type: '_header-drawer-menu', id: 'header-drawer-menu' %}
+{% enddoc %}
+
+<!-- Menu mobile overlay -->
+<div class="header__mobile-menu-overlay" data-ref="mobile-menu-overlay">
+  <div class="header__mobile-menu color-{{ block.settings.color_scheme }}" data-ref="mobile-menu">
+    {%- liquid
+      assign pinned_count = block.settings.pinned_count
+      if pinned_count == blank
+        assign pinned_count = 3
+      endif
+      assign total_links = menu_links.size
+      assign main_count = total_links | minus: pinned_count
+      if main_count < 1
+        assign main_count = total_links
+        assign pinned_count = 0
+      endif
+    -%}
+
+    <div class="vllc-topbar">
+      <a href="{{ routes.root_url }}" class="vllc-home" aria-label="Retour à l'accueil">
+        {% render 'icon', icon: 'home' %}
+      </a>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="vllc-msearch">
+        <span class="vllc-msearch__ic">{% render 'icon', icon: 'search' %}</span>
+        <input
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Rechercher un handpan, une gamme…"
+          autocomplete="off"
+          aria-label="Rechercher"
+        >
+      </form>
+      <button class="vllc-close" type="button" data-ref="menu-close" aria-label="Fermer le menu">
+        {% render 'icon', icon: 'close' %}
+      </button>
+    </div>
+
+    {%- if block.settings.show_guide -%}
+      <div class="vdm-tabs" role="tablist" aria-label="Sections du menu">
+        <button type="button" class="vdm-tab is-on" data-vdm-tab="cols" role="tab" aria-selected="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span>{{ block.settings.tab1_label | default: 'Collections' }}</span>
+        </button>
+        <button type="button" class="vdm-tab" data-vdm-tab="guide" role="tab" aria-selected="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21h6M10 17.5h4M12 3a6 6 0 0 0-3.5 10.9c.8.6 1.2 1.4 1.3 2.3h4.4c.1-.9.5-1.7 1.3-2.3A6 6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          <span>{{ block.settings.tab2_label | default: 'Bien choisir' }}</span>
+        </button>
+      </div>
+    {%- endif -%}
+
+    <div class="vllc-scrollrail" aria-hidden="true"><span class="vllc-scrollrail__thumb" data-ref="vllc-thumb"></span></div>
+
+    <nav data-vdm-pane="cols" class="header__mobile-menu-nav{% if uppercase %} header__mobile-menu-nav--uppercase{% endif %}" style="--font-weight: {{ font_weight }};">
+      {% content_for 'block', type: '_header-drawer-menu-header', id: 'header-drawer-menu-header' %}
+
+      {% for link in menu_links %}
+        {% if forloop.index > main_count %}
+          {% continue %}
+        {% endif %}
+        {%- liquid
+          # Vignette imposée depuis les réglages, par handle de collection puis par titre.
+          assign menu_thumb = ''
+          assign thumb_title = link.title | downcase | strip
+          assign thumb_handle = ''
+          if link.object != blank and link.object.handle != blank
+            assign thumb_handle = link.object.handle
+          endif
+          if thumb_handle == 'tous-les-handpans' or thumb_title == 'handpans'
+            assign menu_thumb = block.settings.thumb_handpans
+          elsif thumb_handle == 'tongue-drums' or thumb_title == 'tongue drums'
+            assign menu_thumb = block.settings.thumb_tongue_drums
+          elsif thumb_handle == 'kalimbas' or thumb_title == 'kalimbas'
+            assign menu_thumb = block.settings.thumb_kalimbas
+          elsif thumb_handle == 'bols-chantants' or thumb_title == 'bols chantants'
+            assign menu_thumb = block.settings.thumb_bols_chantants
+          endif
+        -%}
+        {% if link.links.size > 0 %}
+          <!-- Lien avec sous-menu -->
+          <div class="accordion-animation">
+            <details class="header__mobile-menu-accordion">
+              <summary class="header__mobile-menu-link header__mobile-menu-link--parent">
+                {% render 'zensea-menu-thumb', link: link, size: 44, image: menu_thumb %}
+                <span class="header__mobile-menu-link-text">{{ link.title }}</span>
+                {% render 'icon', icon: 'keyboard_arrow_down' %}
+              </summary>
+              <div class="header__mobile-menu-submenu">
+                <a href="{{ link.url }}" class="header__mobile-menu-link header__mobile-menu-link--child vllc-seeall">
+                  <span class="header__mobile-menu-link-text">Tout voir en {{ link.title }}</span>
+                  <span class="vllc-seeall__arrow" aria-hidden="true">&#8594;</span>
+                </a>
+                {% for child_link in link.links %}
+                  {% if child_link.links.size > 0 %}
+                    <!-- Sous-lien avec sous-sous-menu -->
+                    <div class="accordion-animation">
+                      <details class="header__mobile-menu-accordion">
+                        <summary class="header__mobile-menu-link header__mobile-menu-link--child">
+                          <span class="header__mobile-menu-link-text">{{ child_link.title }}</span>
+                          {% render 'icon', icon: 'keyboard_arrow_down' %}
+                        </summary>
+                        <div class="header__mobile-menu-submenu header__mobile-menu-submenu--level-2">
+                          {% for grandchild_link in child_link.links %}
+                            <a
+                              href="{{ grandchild_link.url }}"
+                              class="header__mobile-menu-link header__mobile-menu-link--grandchild"
+                            >
+                              <span class="header__mobile-menu-link-text">{{ grandchild_link.title }}</span>
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </details>
+                    </div>
+                  {% else %}
+                    <!-- Sous-lien simple -->
+                    <a href="{{ child_link.url }}" class="header__mobile-menu-link header__mobile-menu-link--child">
+                      <span class="header__mobile-menu-link-text">{{ child_link.title }}</span>
+                    </a>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </details>
+          </div>
+        {% else %}
+          <!-- Lien simple sans sous-menu -->
+          <a href="{{ link.url }}" class="header__mobile-menu-link">
+            {% render 'zensea-menu-thumb', link: link, size: 44, image: menu_thumb %}
+            <span class="header__mobile-menu-link-text">{{ link.title }}</span>
+          </a>
+        {% endif %}
+      {% endfor %}
+
+      {% content_for 'block', type: '_header-drawer-menu-under-menu', id: 'header-drawer-menu-under-menu' %}
+    </nav>
+
+    {%- if block.settings.show_guide -%}
+      <div class="vdm-guide" data-vdm-pane="guide" hidden>
+        <a class="vdm-hero" href="/pages/initiation">
+          <span class="vdm-hero__art">{% render 'zensea-illus-guide', key: 'jouer', uid: 'zg0', name: 'Les guides offerts' %}</span>
+          <span class="vdm-hero__body">
+            <span class="vdm-hero__t">Les neuf guides offerts</span>
+            <span class="vdm-hero__s">Apprendre le handpan pas à pas, sans lire une note. 270 pages, 207 leçons, zéro inscription.</span>
+            <span class="vdm-hero__go">Tout voir &#8594;</span>
+          </span>
+        </a>
+
+        {%- if block.settings.show_guides_list -%}
+          <p class="vdm-guide__label">{{ block.settings.guides_label | default: 'Les guides offerts' }}</p>
+
+          <!-- ============================================================
+               Les neuf guides à télécharger.
+               Une ligne = un volume. Pour en modifier un, changez ici son
+               numéro, son titre, son niveau et l'adresse de son PDF.
+               ============================================================ -->
+          <div class="vdm-rows">
+            <a class="vdm-row vdm-row--guide" href="https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-01-bases-essentielles.pdf?v=1789823199" target="_blank" rel="noopener">
+              <span class="vdm-row__thumb vdm-num">01</span>
+              <span class="vdm-row__body"><span class="vdm-row__t">Les bases essentielles</span><span class="vdm-row__s">Débutant &middot; PDF 30 pages</span></span>
+              <span class="vdm-row__dl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></span>
+            </a>
+            <a class="vdm-row vdm-row--guide" href="https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-02-son-propre-expressif.pdf?v=1789823199" target="_blank" rel="noopener">
+              <span class="vdm-row__thumb vdm-num">02</span>
+              <span class="vdm-row__body"><span class="vdm-row__t">Un son propre et expressif</span><span class="vdm-row__s">Débutant &middot; PDF 30 pages</span></span>
+              <span class="vdm-row__dl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></span>
+            </a>
+            <a class="vdm-row vdm-row--guide" href="https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-03-rythme-groove.pdf?v=1789823200" target="_blank" rel="noopener">
+              <span class="vdm-row__thumb vdm-num">03</span>
+              <span class="vdm-row__body"><span class="vdm-row__t">Rythme &amp; groove</span><span class="vdm-row__s">Débutant &middot; PDF 30 pages</span></span>
+              <span class="vdm-row__dl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></span>
+            </a>
+            <a class="vdm-row vdm-row--guide" href="https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-04-creer-melodies.pdf?v=1789823272" target="_blank" rel="noopener">
+              <span class="vdm-row__thumb vdm-num">04</span>
+              <span class="vdm-row__body"><span class="vdm-row__t">Créer des mélodies</span><span class="vdm-row__s">Intermédiaire &middot; PDF 30 pages</span></span>
+              <span class="vdm-row__dl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></span>
+            </a>
+            <a class="vdm-row vdm-row--guide" href="https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-05-improviser.pdf?v=1789823271" target="_blank" rel="noopener">
+              <span class="vdm-row__thumb vdm-num">05</span>
+              <span class="vdm-row__body"><span class="vdm-row__t">Improviser sans se perdre</span><span class="vdm-row__s">Intermédiaire &middot; PDF 30 pages</span></span>
+              <span class="vdm-row__dl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></span>
+            </a>
+            <a class="vdm-row vdm-row--guide" href="https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-06-programme-30-jours.pdf?v=1789823199" target="_blank" rel="noopener">
+              <span class="vdm-row__thumb vdm-num">06</span>
+              <span class="vdm-row__body"><span class="vdm-row__t">Programme 30 jours</span><span class="vdm-row__s">Programme &middot; PDF 30 pages</span></span>
+              <span class="vdm-row__dl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></span>
+            </a>
+            <a class="vdm-row vdm-row--guide" href="https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-07-calme-respiration.pdf?v=1789823199" target="_blank" rel="noopener">
+              <span class="vdm-row__thumb vdm-num">07</span>
+              <span class="vdm-row__body"><span class="vdm-row__t">Calme &amp; respiration</span><span class="vdm-row__s">Tous niveaux &middot; PDF 30 pages</span></span>
+              <span class="vdm-row__dl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></span>
+            </a>
+            <a class="vdm-row vdm-row--guide" href="https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-08-jouer-a-plusieurs.pdf?v=1789823199" target="_blank" rel="noopener">
+              <span class="vdm-row__thumb vdm-num">08</span>
+              <span class="vdm-row__body"><span class="vdm-row__t">Jouer à plusieurs</span><span class="vdm-row__s">Avancé &middot; PDF 30 pages</span></span>
+              <span class="vdm-row__dl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></span>
+            </a>
+            <a class="vdm-row vdm-row--guide" href="https://cdn.shopify.com/s/files/1/1016/6652/1462/files/zensea-guide-09-entretien-protection.pdf?v=1789823199" target="_blank" rel="noopener">
+              <span class="vdm-row__thumb vdm-num">09</span>
+              <span class="vdm-row__body"><span class="vdm-row__t">Entretenir son handpan</span><span class="vdm-row__s">Entretien &middot; PDF 30 pages</span></span>
+              <span class="vdm-row__dl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg></span>
+            </a>
+          </div>
+        {%- endif -%}
+
+        <p class="vdm-guide__label">{{ block.settings.questions_label | default: 'Avant de choisir' }}</p>
+
+        <!-- Les deux questions que tout le monde pose avant d'acheter. -->
+        <div class="vdm-notes">
+          <div class="vdm-note">
+            <div class="vdm-note__head">
+              <span class="vdm-note__thumb">{% render 'zensea-illus-guide', key: 'notes', uid: 'zn1', name: 'Nombre de notes' %}</span>
+              <span class="vdm-note__t">9, 10, 12, 14 ou 17 notes ?</span>
+            </div>
+            <p class="vdm-note__p">Nos handpans se commandent en 9, 10, 12 ou 14 notes : c'est un choix à faire sur la fiche produit. Il change le prix et l'étendue de l'instrument, jamais sa gamme. Le 17 notes est un modèle à part, la Cathédrale, avec son gong au dos.</p>
+            <div class="vdm-note__links">
+              <a href="/collections/tous-les-handpans">Voir les handpans</a>
+              <a href="/products/handpan-125-dore-grande-gamme-17-notes">Le 17 notes</a>
+            </div>
+          </div>
+
+          <div class="vdm-note">
+            <div class="vdm-note__head">
+              <span class="vdm-note__thumb">{% render 'zensea-illus-guide', key: 'gamme', uid: 'zn2', name: 'Quelle gamme' %}</span>
+              <span class="vdm-note__t">Quelle gamme ?</span>
+            </div>
+            <p class="vdm-note__p">Tous nos handpans sont accordés en ré mineur Kurd, en 440 Hz vérifié avant l'envoi. Une seule gamme, donc aucune fausse note possible : toutes les notes vont ensemble, quoi que vous jouiez.</p>
+            <div class="vdm-note__links">
+              <a href="/collections/handpans-re-mineur">Les handpans en ré mineur</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if pinned_count > 0 -%}
+      <div class="vllc-pinned">
+        {% for link in menu_links %}
+          {% if forloop.index <= main_count %}
+            {% continue %}
+          {% endif %}
+          {% if link.links.size > 0 %}
+            <details class="vllc-pinned__acc">
+              <summary class="vllc-pinned__row">
+                <span>{{ link.title }}</span>
+                {% render 'icon', icon: 'keyboard_arrow_down' %}
+              </summary>
+              <div class="vllc-pinned__sub">
+                {% for child_link in link.links %}
+                  <a href="{{ child_link.url }}" class="vllc-pinned__sublink">{{ child_link.title }}</a>
+                {% endfor %}
+              </div>
+            </details>
+          {% else %}
+            <a href="{{ link.url }}" class="vllc-pinned__row">
+              <span>{{ link.title }}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {%- endif -%}
+
+    {% if localization_markup %}
+      <div class="header__mobile-menu-footer">
+        {{ localization_markup }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+  (function () {
+    function init(root) {
+      var nav = root.querySelector('.header__mobile-menu-nav');
+      var rail = root.querySelector('.vllc-scrollrail');
+      var thumb = rail && rail.querySelector('.vllc-scrollrail__thumb');
+      if (!nav || !rail || !thumb) return;
+
+      var raf = null;
+
+      function update() {
+        raf = null;
+        var visible = nav.clientHeight;
+        var total = nav.scrollHeight;
+        if (total <= visible + 4) {
+          rail.classList.remove('is-visible');
+          return;
+        }
+        rail.classList.add('is-visible');
+        var railH = rail.clientHeight;
+        var thumbH = Math.max(28, Math.round((visible / total) * railH));
+        var maxTravel = railH - thumbH;
+        var progress = nav.scrollTop / (total - visible);
+        thumb.style.height = thumbH + 'px';
+        thumb.style.transform = 'translateY(' + Math.round(progress * maxTravel) + 'px)';
+      }
+
+      function schedule() {
+        if (raf) return;
+        raf = requestAnimationFrame(update);
+      }
+
+      var idleTimer = null;
+      function wake() {
+        rail.classList.remove('is-idle');
+        if (idleTimer) clearTimeout(idleTimer);
+        idleTimer = setTimeout(function () { rail.classList.add('is-idle'); }, 900);
+      }
+
+      nav.addEventListener('scroll', function () { schedule(); wake(); }, { passive: true });
+      window.addEventListener('resize', schedule);
+      nav.addEventListener('toggle', schedule, true);
+      if (window.ResizeObserver) new ResizeObserver(schedule).observe(nav);
+      setTimeout(function () { update(); rail.classList.add('is-idle'); }, 60);
+      setTimeout(update, 400);
+    }
+
+    document.querySelectorAll('.header__mobile-menu').forEach(init);
+  })();
+</script>
+
+<script>
+  (function () {
+    document.querySelectorAll('.header__mobile-menu').forEach(function (root) {
+      var tabs = root.querySelectorAll('[data-vdm-tab]');
+      if (!tabs.length) return;
+      var panes = root.querySelectorAll('[data-vdm-pane]');
+      tabs.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var k = btn.getAttribute('data-vdm-tab');
+          tabs.forEach(function (b) {
+            var on = b === btn;
+            b.classList.toggle('is-on', on);
+            b.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          panes.forEach(function (p) {
+            p.hidden = p.getAttribute('data-vdm-pane') !== k;
+          });
+        });
+      });
+    });
+  })();
+</script>
+
+<script>
+  (function () {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    function settle(el, cb) {
+      var done = false;
+      function fin(e) {
+        if (done || e.target !== el || e.propertyName !== 'height') return;
+        done = true;
+        el.removeEventListener('transitionend', fin);
+        cb();
+      }
+      el.addEventListener('transitionend', fin);
+      setTimeout(function () {
+        if (done) return;
+        done = true;
+        el.removeEventListener('transitionend', fin);
+        cb();
+      }, 500);
+    }
+
+    function bind(det) {
+      var sum = det.querySelector(':scope > summary');
+      var body = sum ? sum.nextElementSibling : null;
+      if (!sum || !body) return;
+      body.classList.add('vdm-acc');
+
+      sum.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (det.dataset.vdmAnim === '1') return;
+        det.dataset.vdmAnim = '1';
+
+        if (det.open) {
+          body.style.height = body.scrollHeight + 'px';
+          body.style.opacity = '1';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              body.style.height = '0px';
+              body.style.opacity = '0';
+            });
+          });
+          settle(body, function () {
+            det.open = false;
+            body.style.height = '';
+            body.style.opacity = '';
+            det.dataset.vdmAnim = '';
+          });
+        } else {
+          det.open = true;
+          body.style.height = '0px';
+          body.style.opacity = '0';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              body.style.height = body.scrollHeight + 'px';
+              body.style.opacity = '1';
+            });
+          });
+          settle(body, function () {
+            body.style.height = '';
+            body.style.opacity = '';
+            det.dataset.vdmAnim = '';
+          });
+        }
+      });
+    }
+
+    document.querySelectorAll('.header__mobile-menu details.header__mobile-menu-accordion, .header__mobile-menu details.vllc-pinned__acc').forEach(bind);
+  })();
+</script>
+
+{% stylesheet %}
+  /* Menu mobile */
+  .header__mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--color-shadow));
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-backdrop-filter: brightness(1);
+    backdrop-filter: brightness(1);
+    transition: opacity var(--animation-speed) var(--animation-easing), visibility var(--animation-speed) var(--animation-easing);
+  }
+
+  .header__mobile-menu-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    -webkit-backdrop-filter: brightness(0.75);
+    backdrop-filter: brightness(0.75);
+    transition: opacity var(--animation-speed) var(--animation-easing), visibility var(--animation-speed) var(--animation-easing),
+      -webkit-backdrop-filter var(--animation-speed) var(--animation-easing), backdrop-filter var(--animation-speed) var(--animation-easing);
+  }
+
+  .header__mobile-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90vw;
+    max-width: 400px;
+    height: 100%;
+    background: var(--color-background);
+    box-shadow: var(--modal-shadow);
+    transform: translateX(-100%);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__mobile-menu-overlay.is-open .header__mobile-menu {
+    animation: modalSlideInLeft var(--animation-speed) var(--animation-easing) forwards;
+  }
+
+  .header__mobile-menu-overlay.is-closing .header__mobile-menu {
+    animation: modalSlideOutLeft var(--animation-speed) var(--animation-easing) forwards;
+  }
+
+  .header__mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: var(--padding-xs);
+  }
+
+  /* Barre du haut : recherche + croix sur une seule ligne */
+  .vllc-topbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 10px 6px 14px;
+    flex-shrink: 0;
+  }
+
+  .vllc-home {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: inherit;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .vllc-home:hover {
+    background: rgba(46, 94, 70, 0.1);
+    color: inherit;
+  }
+
+  .vllc-home .icon {
+    font-size: 21px !important;
+  }
+
+  .vllc-seeall {
+    justify-content: space-between;
+  }
+
+  .vllc-seeall .header__mobile-menu-link-text {
+    font-weight: 600;
+    color: #2E5E46;
+  }
+
+  .vllc-seeall__arrow {
+    color: #2E5E46;
+    font-size: 15px;
+    transition: transform 0.25s ease;
+  }
+
+  .vllc-seeall:hover .vllc-seeall__arrow {
+    transform: translateX(4px);
+  }
+
+  .vllc-close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .vllc-close:hover {
+    background: rgba(46, 94, 70, 0.1);
+  }
+
+  .vllc-close .icon {
+    font-size: 22px !important;
+  }
+
+  .header__mobile-menu-footer {
+    padding: var(--padding-sm);
+    border-top: var(--separator-border-width) solid var(--color-border);
+  }
+
+  .header__mobile-menu-close .icon--close {
+    font-size: 22px !important;
+  }
+
+  .header__mobile-menu-nav {
+    flex: 1;
+    padding: 2px 10px 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .header__mobile-menu-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header__mobile-menu-nav--uppercase .header__mobile-menu-link-text {
+    text-transform: uppercase;
+  }
+
+  .header__mobile-menu-link-text {
+    font-weight: var(--font-weight);
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Barre de recherche du menu mobile */
+  .vllc-msearch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0 12px;
+    border-radius: 10px;
+    background: #EFF4F2;
+    border: 1px solid rgba(46, 94, 70, 0.14);
+  }
+
+  .vllc-msearch__ic {
+    display: flex;
+    align-items: center;
+    color: #739182;
+    pointer-events: none;
+  }
+
+  .vllc-msearch__ic .icon {
+    font-size: 19px !important;
+  }
+
+  .vllc-msearch input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    padding: 10px 8px;
+    font-size: 15px;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  .vllc-msearch input::placeholder {
+    color: #85A092;
+  }
+
+  .vllc-msearch input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  /* Rail de défilement premium (à gauche) */
+  .vllc-scrollrail {
+    position: absolute;
+    left: 4px;
+    top: 62px;
+    bottom: 8px;
+    width: 2px;
+    background: transparent;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 3;
+  }
+
+  .vllc-scrollrail.is-visible {
+    opacity: 0.55;
+  }
+
+  .vllc-scrollrail.is-idle {
+    opacity: 0;
+  }
+
+  .vllc-scrollrail__thumb {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    min-height: 24px;
+    border-radius: 2px;
+    background: rgba(41, 47, 44, 0.22);
+    transition: transform 0.08s linear;
+  }
+
+  /* Bloc épinglé en bas du menu (Aide & Contact, Suivi, Espace pro) */
+  .vllc-pinned {
+    flex-shrink: 0;
+    border-top: 1px solid rgba(46, 94, 70, 0.16);
+    background: #F6F9F8;
+    padding: 6px 16px 10px;
+    max-height: 56vh;
+    overflow-y: auto;
+  }
+
+  .vllc-pinned__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 2px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 15px;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    list-style: none;
+    border-bottom: 1px solid rgba(46, 94, 70, 0.14);
+  }
+
+  .vllc-pinned > *:last-child .vllc-pinned__row,
+  .vllc-pinned > a.vllc-pinned__row:last-child {
+    border-bottom: 0;
+  }
+
+  .vllc-pinned__row::-webkit-details-marker {
+    display: none;
+  }
+
+  .vllc-pinned__row .icon {
+    font-size: 18px !important;
+    transition: transform var(--animation-speed-fast) var(--animation-easing);
+  }
+
+  .vllc-pinned__acc[open] > .vllc-pinned__row .icon {
+    transform: rotate(180deg);
+  }
+
+  .vllc-pinned__sub {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 2px 0 8px 8px;
+  }
+
+  .vllc-pinned__sublink {
+    padding: 10px 8px;
+    text-decoration: none;
+    color: #4D6258;
+    font-size: 14.5px;
+    border-radius: 9px;
+  }
+
+  .vllc-pinned__sublink:hover {
+    background: rgba(180, 201, 190, 0.25);
+    color: inherit;
+  }
+
+  .header__mobile-menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 6px 6px 0;
+    text-decoration: none;
+    color: inherit;
+    font-size: var(--font-h6--size);
+    border-radius: var(--inputs-border-radius);
+    transition: background-color var(--animation-speed) var(--animation-easing);
+  }
+
+  /* Vignettes de collection dans le menu */
+  .vllc-menu-thumb {
+    flex-shrink: 0;
+    display: block;
+    width: var(--vllc-thumb-size, 46px);
+    height: var(--vllc-thumb-size, 46px);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #F0F4F2;
+  }
+
+  .vllc-menu-thumb img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .header__mobile-menu-link--parent .header__mobile-menu-link-text,
+  .header__mobile-menu-link--child .header__mobile-menu-link-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .header__mobile-menu-link:hover {
+    background-color: var(--color-input-border-low-opacity);
+  }
+
+  /* Accordéons des sous-menus */
+  .header__mobile-menu-accordion {
+    width: 100%;
+  }
+
+  .header__mobile-menu-accordion summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .header__mobile-menu-accordion summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .header__mobile-menu-link--parent,
+  .header__mobile-menu-link--child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .header__mobile-menu-link--parent .icon,
+  .header__mobile-menu-link--child .icon {
+    transition: transform var(--animation-speed-fast) var(--animation-easing);
+    flex-shrink: 0;
+  }
+
+  .header__mobile-menu-accordion[open] > summary .icon {
+    transform: rotate(180deg);
+  }
+
+  .header__mobile-menu-submenu {
+    padding-left: var(--padding-sm);
+  }
+
+  /* Niveaux d'indentation */
+  .header__mobile-menu-link--child {
+    font-size: var(--font-body--size-emphasized);
+    padding-left: var(--padding-sm);
+  }
+
+  .header__mobile-menu-link--grandchild {
+    font-size: var(--font-body--size);
+    padding-left: var(--padding-sm);
+  }
+
+  .header__mobile-menu-submenu--level-2 {
+    padding-left: var(--padding-sm);
+  }
+
+  /* Onglets Collections / Bien choisir */
+  .vdm-tabs {
+    display: flex;
+    gap: 4px;
+    margin: 6px 10px 6px 14px;
+    padding: 4px;
+    background: #E9F1ED;
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  .vdm-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 9px 6px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: #576F63;
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .vdm-tab svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .vdm-tab.is-on {
+    background: #ffffff;
+    color: #0D1712;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(31, 61, 47, 0.12);
+  }
+
+  .header__mobile-menu-nav[hidden],
+  .vdm-guide[hidden] {
+    display: none !important;
+  }
+
+  /* Volet Bien choisir */
+  .vdm-guide {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px 14px 16px;
+    scrollbar-width: none;
+  }
+
+  .vdm-guide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vdm-guide__label {
+    margin: 16px 2px 8px;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #7C988A;
+    font-weight: 600;
+  }
+
+  .vdm-hero {
+    display: flex;
+    align-items: stretch;
+    text-decoration: none;
+    color: inherit;
+    background: #ffffff;
+    border: 1px solid rgba(46, 94, 70, 0.16);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px -18px rgba(31, 61, 47, 0.3);
+    transition: transform 0.2s ease;
+  }
+
+  .vdm-hero:active {
+    transform: scale(0.985);
+  }
+
+  .vdm-hero__art {
+    display: block;
+    width: 128px;
+    flex-shrink: 0;
+  }
+
+  .vdm-hero__art .vig {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .vdm-hero__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    padding: 14px 14px 14px 13px;
+    min-width: 0;
+  }
+
+  .vdm-hero__t {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0D1712;
+    line-height: 1.2;
+  }
+
+  .vdm-hero__s {
+    font-size: 12px;
+    line-height: 1.45;
+    color: #739182;
+  }
+
+  .vdm-hero__go {
+    margin-top: 5px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #2E5E46;
+    font-weight: 600;
+  }
+
+  .vdm-rows {
+    border: 1px solid rgba(46, 94, 70, 0.14);
+    border-radius: 14px;
+    background: #ffffff;
+    overflow: hidden;
+  }
+
+  .vdm-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 8px 10px 8px 8px;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid rgba(46, 94, 70, 0.1);
+    transition: background 0.2s ease;
+  }
+
+  .vdm-rows > .vdm-row:last-child {
+    border-bottom: 0;
+  }
+
+  .vdm-row:active {
+    background: #F5F7F6;
+  }
+
+  .vdm-row__thumb {
+    flex-shrink: 0;
+    display: block;
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(46, 94, 70, 0.1);
+  }
+
+  .vdm-row__thumb svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .vdm-row__body {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .vdm-row__t {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0D1712;
+    line-height: 1.25;
+  }
+
+  .vdm-row__s {
+    font-size: 11px;
+    line-height: 1.4;
+    color: #739182;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .vdm-row__chev {
+    flex-shrink: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: #ABC2B6;
+  }
+
+  /* Pastille numérotée des guides offerts */
+  .vdm-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FBF9F4;
+    border-color: rgba(200, 162, 75, 0.38);
+    color: #A9832F;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  /* Flèche de téléchargement des lignes guides */
+  .vdm-row__dl {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: rgba(46, 94, 70, 0.08);
+    color: #2E5E46;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .vdm-row__dl svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .vdm-row--guide:active .vdm-row__dl {
+    background: rgba(46, 94, 70, 0.16);
+    transform: translateY(1px);
+  }
+
+  /* Cartes explicatives « Avant de choisir » */
+  .vdm-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .vdm-note {
+    background: #ffffff;
+    border: 1px solid rgba(46, 94, 70, 0.14);
+    border-radius: 14px;
+    padding: 14px 14px 12px;
+  }
+
+  .vdm-note__head {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 9px;
+  }
+
+  .vdm-note__thumb {
+    flex-shrink: 0;
+    display: block;
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(46, 94, 70, 0.1);
+  }
+
+  .vdm-note__thumb svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .vdm-note__t {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: #0D1712;
+    line-height: 1.25;
+  }
+
+  .vdm-note__p {
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #5A6B60;
+  }
+
+  .vdm-note__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 11px;
+  }
+
+  .vdm-note__links a {
+    display: inline-block;
+    padding: 7px 13px;
+    border-radius: 99px;
+    background: rgba(46, 94, 70, 0.08);
+    color: #2E5E46;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .vdm-note__links a:active {
+    background: rgba(46, 94, 70, 0.16);
+    color: #2E5E46;
+  }
+
+  /* Ouverture progressive des accordéons */
+  .vdm-acc {
+    overflow: hidden;
+    transition: height 0.42s cubic-bezier(0.33, 1, 0.36, 1), opacity 0.34s ease;
+    will-change: height;
+  }
+
+  .header__mobile-menu-accordion > .header__mobile-menu-submenu > * {
+    transition: transform 0.4s cubic-bezier(0.33, 1, 0.36, 1), opacity 0.34s ease;
+  }
+
+  .header__mobile-menu-accordion:not([open]) > .header__mobile-menu-submenu > * {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+
+  /* Menu collections plus compact */
+  .header__mobile-menu-link {
+    gap: 11px;
+    padding: 5px 6px 5px 0;
+    font-size: 15.5px;
+  }
+
+  .header__mobile-menu-link--child {
+    font-size: 14.5px;
+  }
+
+  .header__mobile-menu-link--grandchild {
+    font-size: 14px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:header_drawer_menu",
+  "tag": null,
+  "blocks": [
+    {
+      "type": "_header-drawer-menu-header"
+    },
+    {
+      "type": "_header-drawer-menu-under-menu"
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_guide",
+      "label": "Afficher l'onglet Bien choisir",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "tab1_label",
+      "label": "Nom de l'onglet 1",
+      "default": "Collections"
+    },
+    {
+      "type": "text",
+      "id": "tab2_label",
+      "label": "Nom de l'onglet 2",
+      "default": "Bien choisir"
+    },
+    {
+      "type": "header",
+      "content": "Contenu de l'onglet 2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_guides_list",
+      "label": "Afficher les neuf guides offerts",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "guides_label",
+      "label": "Intertitre des guides",
+      "default": "Les guides offerts"
+    },
+    {
+      "type": "text",
+      "id": "questions_label",
+      "label": "Intertitre des questions",
+      "default": "Avant de choisir"
+    },
+    {
+      "type": "header",
+      "content": "Vignettes du menu mobile"
+    },
+    {
+      "type": "paragraph",
+      "content": "Les entrées au-dessus du bloc épinglé affichent une vignette carrée. Sans image choisie ici, la vignette reprend l'image de la collection, sinon celle de son premier produit."
+    },
+    {
+      "type": "range",
+      "id": "pinned_count",
+      "label": "Entrées épinglées en bas du menu",
+      "info": "Les N dernières entrées du menu sont regroupées en bas, sans vignette.",
+      "min": 0,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_handpans",
+      "label": "Vignette Handpans"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_tongue_drums",
+      "label": "Vignette Tongue drums"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_kalimbas",
+      "label": "Vignette Kalimbas"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_bols_chantants",
+      "label": "Vignette Bols chantants"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:header_drawer_menu"
+    }
+  ]
+}
+{% endschema %}
