@@ -128,7 +128,15 @@
 
     /* Version panier : compacte, et surtout entièrement compressible pour ne
        jamais pousser la quantité ni la croix hors du panier. */
+    /* La ligne de panier est une grille ou une rangée flex : on force la carte
+       à occuper toute la largeur et à passer en dessous. */
+    .cart-drawer__item, .cart__item { flex-wrap: wrap; }
+
     .zs-cr--panier {
+      flex: 1 1 100%;
+      flex-basis: 100%;
+      grid-column: 1 / -1;
+      order: 99;
       width: 100%;
       max-width: 100%;
       min-width: 0;
@@ -141,13 +149,10 @@
     .zs-cr--panier .zs-cr__txt { min-width: 0; flex: 1 1 auto; overflow: hidden; }
     .zs-cr--panier .zs-cr__lab { font-size: 8.5px; letter-spacing: .08em; }
     .zs-cr--panier .zs-cr__nom {
-      font-size: 11px;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      font-size: 11.5px;
+      white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
     }
     .zs-cr--panier .zs-cr__px { flex: 0 0 auto; }
     .zs-cr--panier .zs-cr__was { font-size: 9.5px; }
@@ -207,8 +212,10 @@
       /* ---------- 3. les lignes du panier ---------- */
       /* Le tiroir utilise .cart-drawer__item-*, la page panier .cart__item-*.
          On vise la colonne de contenu de la ligne : la carte se pose dessous. */
-      var SEL_LIGNE = '.cart-drawer__item-content, .cart__item-content, ' +
-                      '.cart-drawer__item, .cart__item, .cart-item, [class*="line-item"], li, tr';
+      /* On vise la LIGNE entière, pas la colonne de texte : sinon la carte se
+         retrouve coincée à côté du sélecteur de quantité et s'écrase. */
+      var SEL_LIGNE = '.cart-drawer__item, .cart__item, .cart-item, ' +
+                      '[class*="line-item"], li, tr';
 
       function conteneurLigne(el) {
         return (el.closest && el.closest(SEL_LIGNE)) || el.parentElement;
