@@ -431,8 +431,15 @@
       /* Le retrait ne vient pas forcément du parent direct : on mesure l'écart
          réel entre la barre et le bord du tiroir, et on le compense. */
       function caler(bd) {
-        /* Le panneau visible, pas l'enveloppe plein écran du tiroir. */
-        var cadre = bd.closest('.cart-drawer__inner, dialog, .cart-drawer__content, .cart-drawer__body');
+        /* Le panneau visible du tiroir : le dernier élément avant <cart-drawer>,
+           celui qui porte le retrait intérieur. Pas l'enveloppe plein écran. */
+        var tiroir = bd.closest('cart-drawer, .cart-drawer');
+        var cadre = null;
+        if (tiroir) {
+          var e = bd.parentElement;
+          while (e && e.parentElement && e.parentElement !== tiroir) e = e.parentElement;
+          cadre = e;
+        }
         bd.style.marginLeft = '';
         bd.style.marginRight = '';
         bd.style.marginTop = '';
@@ -445,7 +452,6 @@
         if (g > 0) bd.style.marginLeft = (-g) + 'px';
         if (d > 0) bd.style.marginRight = (-d) + 'px';
         /* Puis on la colle au titre du panier. */
-        var tiroir = bd.closest('cart-drawer, .cart-drawer');
         var tete = tiroir ? tiroir.querySelector('.cart-drawer__header, header') : null;
         if (tete) {
           var h = Math.round(bd.getBoundingClientRect().top - tete.getBoundingClientRect().bottom);
