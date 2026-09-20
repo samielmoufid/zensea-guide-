@@ -22,6 +22,8 @@
     {
       "nom": {{ zsc_gift.title | json }},
       "propriete": "Tongue drum offert",
+      "format": {{ shop.money_format | json }},
+      "zeros": {% if settings.show_trailing_zeros %}true{% else %}false{% endif %},
       "prix": {{ zsc_prix }},
       "prixTexte": {{ zsc_prix | money | json }},
       "imageDefaut": {{ zsc_gift.featured_media | image_url: width: 120 | json }},
@@ -204,12 +206,21 @@
       var parTitre = {};
       D.coloris.forEach(function (c) { parTitre[c.titre] = c; });
 
+      /* On reprend le format monétaire de la boutique, décimales comprises :
+         un « 1.339,40 € » maison à côté du « €1.339,40 » du thème se verrait. */
       function euros(centimes) {
-        try {
-          return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(centimes / 100);
-        } catch (e) {
-          return (centimes / 100).toFixed(2).replace('.', ',') + ' €';
-        }
+        var f = D.format || '\u20ac{{amount_with_comma_separator}}';
+        var rond = (centimes % 100) === 0;
+        return f.replace(/\{\{\s*(\w+)\s*\}\}/g, function (_, cle) {
+          var dec = (cle.indexOf('no_decimals') >= 0 || (!D.zeros && rond)) ? 0 : 2;
+          var mille = ',', virgule = '.';
+          if (cle.indexOf('comma_separator') >= 0) { mille = '.'; virgule = ','; }
+          else if (cle.indexOf('apostrophe_separator') >= 0) { mille = "'"; virgule = '.'; }
+          else if (cle.indexOf('space_separator') >= 0) { mille = ' '; virgule = ','; }
+          var p = (centimes / 100).toFixed(dec).split('.');
+          p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, mille);
+          return p.length > 1 ? p[0] + virgule + p[1] : p[0];
+        });
       }
 
       function carte(coloris, panier) {
@@ -278,7 +289,11 @@
       /* ---------- 4. le pied de panier : ligne cadeau puis total ---------- */
       function cadeauxDuPanier() {
         var n = 0, coloris = null;
-        document.querySelectorAll('.cart-drawer__item, .cart__item').forEach(function (l) {
+        /* La page panier contient ses lignes .cart__item ET celles du tiroir :
+           compter les deux doublerait la quantité. On n'en retient qu'un jeu. */
+        var lignes = document.querySelectorAll('.cart__item');
+        if (!lignes.length) lignes = document.querySelectorAll('.cart-drawer__item');
+        lignes.forEach(function (l) {
           var c = l.querySelector('[data-zs-cr]');
           if (!c) return;
           if (!coloris) coloris = c.getAttribute('data-col');
