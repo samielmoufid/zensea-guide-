@@ -126,11 +126,41 @@
     }
     sticky-add-to-cart .compare-at-price { opacity: .62; }
 
-    /* Version panier : un peu plus compacte */
-    .zs-cr--panier { max-width: 100%; margin: 8px 0 0; padding: 7px 9px 7px 7px; }
-    .zs-cr--panier .zs-cr__img { width: 32px; height: 32px; border-radius: 7px; }
-    .zs-cr--panier .zs-cr__nom { font-size: 11.5px; }
-    .zs-cr--panier .zs-cr__lab { font-size: 9px; }
+    /* Version panier : compacte, et surtout entièrement compressible pour ne
+       jamais pousser la quantité ni la croix hors du panier. */
+    .zs-cr--panier {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      margin: 8px 0 0;
+      padding: 7px 9px 7px 7px;
+      gap: 8px;
+      box-sizing: border-box;
+    }
+    .zs-cr--panier .zs-cr__img { width: 28px; height: 28px; border-radius: 7px; }
+    .zs-cr--panier .zs-cr__txt { min-width: 0; flex: 1 1 auto; overflow: hidden; }
+    .zs-cr--panier .zs-cr__lab { font-size: 8.5px; letter-spacing: .08em; }
+    .zs-cr--panier .zs-cr__nom {
+      font-size: 11px;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .zs-cr--panier .zs-cr__px { flex: 0 0 auto; }
+    .zs-cr--panier .zs-cr__was { font-size: 9.5px; }
+    .zs-cr--panier .zs-cr__free { font-size: 10.5px; }
+
+    /* Le thème laisse les colonnes du panier grossir : on les borne, sinon la
+       quantité et le bouton de suppression sortent du cadre. */
+    .cart-drawer__item-content,
+    .cart__item-content,
+    .cart-drawer__item-wrapper,
+    .cart__item-wrapper { min-width: 0; }
+    .cart-drawer__item-name,
+    .cart__item-name { overflow-wrap: anywhere; }
 
     @media (max-width: 749px) {
       .zs-cr { max-width: 100%; }
