@@ -188,8 +188,20 @@
       /* ---------- 2. le prix barré à côté du prix ---------- */
       function poserPrixBarre() {
         var btn = document.querySelector('.product-add-to-cart-button[data-price]');
-        var prixEl = document.querySelector('.product-price-container .prices .price[data-ref="price"]');
-        if (!btn || !prixEl || !prixEl.parentNode) return;
+        if (!btn) return;
+        /* Le tiroir de panier contient un bloc prix identique, plus haut dans le DOM :
+           on reste donc dans la section de la fiche produit. */
+        var cadre = btn.closest('.shopify-section-product-section')
+                 || btn.closest('[class*="product-section"]')
+                 || btn.closest('form')
+                 || btn.parentElement;
+        if (!cadre) return;
+        var prixEl = cadre.querySelector('.product-price-container .prices .price[data-ref="price"]');
+        if (!prixEl && cadre.parentElement) {
+          prixEl = cadre.parentElement.querySelector('.product-price-container .prices .price[data-ref="price"]');
+        }
+        if (!prixEl || !prixEl.parentNode) return;
+        if (prixEl.closest('[class*="cart-drawer"], [class*="cart__"], .cart')) return;
         var base = parseInt(btn.getAttribute('data-price'), 10);
         if (!base || isNaN(base)) return;
         var total = base + D.prix;

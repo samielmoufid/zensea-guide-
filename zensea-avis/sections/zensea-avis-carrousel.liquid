@@ -50,7 +50,11 @@
         assign retenus = retenus | plus: 1
         assign prenom = a.firstName | default: ''
         assign nom = a.lastName | default: ''
-        assign affiche = prenom | append: ' ' | append: nom | strip
+        assign initiale = ''
+        if nom != blank
+          assign initiale = nom | slice: 0 | append: '.'
+        endif
+        assign affiche = prenom | append: ' ' | append: initiale | strip
       -%}
       <div class="zsa-testimonial-card">
         {% render 'zsa-etoiles', note: a.starRating, couleur: st.star_color, classe: 'zsa-testimonial-stars-row' %}
