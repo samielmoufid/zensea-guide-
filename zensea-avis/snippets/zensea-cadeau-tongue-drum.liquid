@@ -72,8 +72,9 @@
 .zs-gd__oname{flex:1 1 auto;font-size:12.5px;line-height:1.25;color:#22332A;min-width:0}
 .zs-gd__ochk{flex:0 0 auto;width:12px;height:12px;color:#2E5E46;opacity:0}
 .zs-gd__opt.is-on .zs-gd__ochk{opacity:1}
-/* La barre collante ne doit porter que le bouton : jamais ce bloc. */
-[class*="sticky-add-to-cart"] .zs-gd{display:none}
+/* La barre fixe ne doit porter que le bouton : jamais ce bloc. */
+sticky-add-to-cart .zs-gd{display:none!important}
+.zs-gd{margin-top:14px;margin-bottom:14px}
 @media(max-width:749px){
   .zs-gd{max-width:100%;padding:10px 10px 11px}
   .zs-gd__title{font-size:14.5px;margin:6px 0 8px}
@@ -86,19 +87,16 @@
 (function () {
   var gd = null;
 
-  /* Le bloc se pose au-dessus du bouton « Ajouter au panier » DE LA FICHE.
-     La barre collante possède un bouton identique : on l'écarte, sinon le bloc
-     la suit au défilement et occupe tout le bas de l'écran. */
+  /* Le bouton « Ajouter au panier » de ce thème vit dans une barre FIXE en bas
+     d'écran. Y accrocher ce bloc le ferait suivre au défilement et manger la
+     moitié de l'écran. On le pose donc DANS le formulaire produit, juste avant
+     cette barre : il reste dans le flux de la page, et son champ caché part
+     bien avec le formulaire. */
   function anchor() {
-    var tous = document.querySelectorAll('.product-add-to-cart-button');
-    for (var i = 0; i < tous.length; i++) {
-      if (!tous[i].closest('[class*="sticky-add-to-cart"]') &&
-          tous[i].closest('.shopify-section-product-section')) return tous[i];
-    }
-    for (var j = 0; j < tous.length; j++) {
-      if (!tous[j].closest('[class*="sticky-add-to-cart"]')) return tous[j];
-    }
-    return null;
+    var form = document.querySelector('.shopify-section-product-section form.product-form__form')
+            || document.querySelector('form.product-form__form');
+    if (!form) return null;
+    return { form: form, avant: form.querySelector('sticky-add-to-cart') };
   }
 
   function select(opt) {
@@ -132,16 +130,16 @@
   }
 
   function build() {
-    var target = anchor();
+    var cible = anchor();
     var tpl = document.getElementById('zs-gd-tpl');
-    if (!tpl || !target || !target.parentNode) return;
-    if (gd && gd.isConnected && gd.nextElementSibling === target) return;
+    if (!tpl || !cible) return;
+    if (gd && gd.isConnected && gd.parentElement === cible.form) return;
 
     var keep = gd ? gd.querySelector('[data-zs-gd-input]').value : '';
     if (gd && gd.parentNode) gd.parentNode.removeChild(gd);
 
     gd = tpl.content.firstElementChild.cloneNode(true);
-    target.parentNode.insertBefore(gd, target);
+    if (cible.avant) { cible.form.insertBefore(gd, cible.avant); } else { cible.form.appendChild(gd); }
 
     var opts = gd.querySelectorAll('.zs-gd__opt');
     var start = opts[0];

@@ -1,12 +1,14 @@
 {%- comment -%}
   Zensea — rappel visuel du tongue drum offert.
 
-  Trois endroits, une seule source de vérité (le produit cadeau et ses coloris) :
-    1. fiche handpan, juste SOUS le bouton « Ajouter au panier » : la carte du coloris choisi ;
-    2. panier et tiroir de panier : la même carte sur chaque ligne qui porte la propriété.
+  Deux rôles :
+    1. panier et tiroir de panier : la carte du tongue drum offert sur chaque
+       ligne qui porte la propriété, à la place du texte brut ;
+    2. barre fixe « Ajouter au panier » : on n'y laisse que le bouton, sur une
+       seule ligne.
 
-  La ligne de prix n'est pas touchée : l'économie y est annoncée une seule fois,
-  par le badge du thème.
+  Sur la fiche produit, c'est le sélecteur zensea-cadeau-tongue-drum qui affiche
+  déjà le coloris choisi et son prix barré : on ne double pas l'information.
 
   Le choix du coloris est fait par le widget zensea-cadeau-tongue-drum, qui écrit
   la propriété de ligne « Tongue drum offert ». On se contente de la lire.
@@ -96,6 +98,12 @@
     .zs-cr__was { font-size: 10px; color: #8A968F; text-decoration: line-through; white-space: nowrap; }
     .zs-cr__free { font-size: 11.5px; font-weight: 700; color: #2E5E46; white-space: nowrap; }
 
+    /* La barre fixe ne porte que « Ajouter au panier », sur une seule ligne. */
+    sticky-add-to-cart .button__separator,
+    sticky-add-to-cart .product-price-container { display: none !important; }
+    sticky-add-to-cart .button__content { white-space: nowrap; }
+    sticky-add-to-cart .zs-cr { display: none !important; }
+
     /* Version panier : un peu plus compacte */
     .zs-cr--panier { max-width: 100%; margin: 8px 0 0; padding: 7px 9px 7px 7px; }
     .zs-cr--panier .zs-cr__img { width: 32px; height: 32px; border-radius: 7px; }
@@ -115,7 +123,6 @@
       try { D = JSON.parse(noeud.textContent); } catch (e) { return; }
       if (!D || !D.coloris || !D.coloris.length) return;
 
-      var surFiche = !!document.getElementById('zs-cadeau-produit');
       var parTitre = {};
       D.coloris.forEach(function (c) { parTitre[c.titre] = c; });
 
@@ -143,40 +150,6 @@
             '<b class="zs-cr__free">Offert</b>' +
           '</span>';
         return el;
-      }
-
-      /* ---------- 1. la carte sous le bouton « Ajouter au panier » ---------- */
-      function coloriChoisi() {
-        var input = document.querySelector('[data-zs-gd-input]');
-        if (input && input.value) return input.value;
-        var on = document.querySelector('.zs-gd__opt.is-on');
-        if (on) return on.getAttribute('data-val');
-        return D.coloris[0].titre;
-      }
-
-      function boutonFiche() {
-        /* La barre collante contient un bouton identique : on veut celui de la fiche. */
-        var tous = document.querySelectorAll('.product-add-to-cart-button');
-        for (var i = 0; i < tous.length; i++) {
-          if (tous[i].closest('.shopify-section-product-section') &&
-              !tous[i].closest('[class*="sticky"]')) return tous[i];
-        }
-        for (var j = 0; j < tous.length; j++) {
-          if (!tous[j].closest('[class*="sticky"]')) return tous[j];
-        }
-        return tous[0] || null;
-      }
-
-      function poserSousBouton() {
-        var btn = boutonFiche();
-        if (!btn || !btn.parentNode) return;
-        var col = coloriChoisi();
-        var deja = btn.parentNode.querySelector(':scope > [data-zs-cr]');
-        if (deja && deja.getAttribute('data-col') === col && deja.previousElementSibling === btn) return;
-        if (deja) deja.remove();
-        var el = carte(col, false);
-        el.setAttribute('data-col', col);
-        btn.parentNode.insertBefore(el, btn.nextSibling);
       }
 
       /* ---------- 3. les lignes du panier ---------- */
@@ -223,7 +196,6 @@
       }
 
       function tout() {
-        if (surFiche) { poserSousBouton(); }
         poserPanier();
       }
 
