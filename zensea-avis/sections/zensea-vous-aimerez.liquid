@@ -82,7 +82,12 @@
                     <s class="vya__was">{{ p.compare_at_price | money }}</s>
                     {%- if s.show_badge -%}
                       {%- assign eco = p.compare_at_price | minus: p.price -%}
-                      <span class="vya__save">-{{ eco | money }}</span>
+                      {%- if settings.show_trailing_zeros -%}
+                        {%- assign eco_txt = eco | money -%}
+                      {%- else -%}
+                        {%- assign eco_txt = eco | money_without_trailing_zeros -%}
+                      {%- endif -%}
+                      <span class="vya__save">-{{ eco_txt }}</span>
                     {%- endif -%}
                   {%- endif -%}
                 </p>
