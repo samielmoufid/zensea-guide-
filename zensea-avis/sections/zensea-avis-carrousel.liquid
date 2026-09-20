@@ -1,0 +1,526 @@
+{%- comment -%}
+  Carrousel d'avis — reprise native du bloc testimonial_slider de l'application.
+  Source des données : métachamps avis.reviews (produit) ou avis.vitrine (boutique).
+  Défilement continu en CSS, deux pistes identiques, la seconde masquée aux lecteurs d'écran.
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign sid = section.id
+
+  if st.source == 'global'
+    assign bruts = shop.metafields.avis.vitrine.value
+    assign resume = shop.metafields.avis.global.value
+  else
+    assign bruts = product.metafields.avis.reviews.value
+    assign resume = product.metafields.avis.summary.value
+  endif
+
+  assign moyenne = 0
+  if resume != blank
+    assign moyenne = resume.averageRating | plus: 0
+  endif
+-%}
+
+{%- assign retenus = 0 -%}
+
+{%- if bruts != blank -%}
+  {%- capture zsa_cartes -%}
+    {%- for a in bruts -%}
+      {%- liquid
+        if retenus >= st.limite
+          break
+        endif
+        assign photo = a.imageUrl
+        if st.show_only_with_images and photo == blank
+          continue
+        endif
+        unless st.show_customer_photos
+          assign photo = ''
+        endunless
+        assign actif = a.isActive
+        if actif == false
+          continue
+        endif
+        assign retenus = retenus | plus: 1
+        assign prenom = a.firstName | default: ''
+        assign nom = a.lastName | default: ''
+        assign affiche = prenom | append: ' ' | append: nom | strip
+      -%}
+      <div class="zsa-testimonial-card">
+        {% render 'zsa-etoiles', note: a.starRating, couleur: st.star_color, classe: 'zsa-testimonial-stars-row' %}
+        {%- if a.reviewTitle != blank -%}
+          <h4 class="zsa-testimonial-review-title">{{ a.reviewTitle }}</h4>
+        {%- endif -%}
+        <p class="zsa-testimonial-text">{{ a.reviewText }}</p>
+        <button class="zsa-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if photo != blank -%}
+          <div class="zsa-testimonial-image-wrapper">
+            <img
+              src="{{ photo }}"
+              alt="{{ a.reviewTitle | default: affiche | escape }}"
+              class="zsa-testimonial-image"
+              loading="lazy"
+              width="280"
+              height="{{ st.image_height }}"
+              style="max-height: {{ st.image_height }}px;"
+            >
+          </div>
+        {%- endif -%}
+        <div class="zsa-testimonial-author">
+          <span class="zsa-testimonial-name">{{ affiche }}</span>
+        </div>
+      </div>
+    {%- endfor -%}
+  {%- endcapture -%}
+{%- endif -%}
+
+{%- if retenus > 0 -%}
+  <div
+    id="zsa-{{ sid }}"
+    class="zsa-testimonial-slider"
+    style="background: {{ st.background_color }}; border-radius: 8px; padding: {{ st.padding_top }}px 0 {{ st.padding_bottom }}px 0;"
+  >
+    {%- if st.header_title != blank or st.show_average_rating -%}
+      <div class="zsa-testimonial-header">
+        {%- if st.header_title != blank -%}
+          <h3 class="zsa-testimonial-title">{{ st.header_title }}</h3>
+        {%- endif -%}
+        {%- if st.show_average_rating and moyenne > 0 -%}
+          <div class="zsa-testimonial-rating">
+            {% render 'zsa-etoiles', note: moyenne, couleur: st.star_color, classe: 'zsa-testimonial-stars' %}
+            <span class="zsa-testimonial-average">{{ moyenne }}/5</span>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="zsa-testimonial-marquee">
+      <div class="zsa-testimonial-track">{{ zsa_cartes }}</div>
+      <div class="zsa-testimonial-track" aria-hidden="true">{{ zsa_cartes }}</div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .zsa-testimonial-slider {
+    display: block;
+    margin: 0.5em 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    font-family: inherit;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .zsa-testimonial-header {
+    text-align: center;
+    padding: 1.25em;
+  }
+
+  .zsa-testimonial-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: inherit;
+    margin: 0 0 0.75em 0;
+  }
+
+  .zsa-testimonial-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+  }
+
+  .zsa-testimonial-stars {
+    display: flex;
+    gap: 0.15em;
+  }
+
+  .zsa-testimonial-stars .zsa-star,
+  .zsa-testimonial-stars-row .zsa-star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zsa-testimonial-stars .zsa-star {
+    width: 1.1em;
+    height: 1.1em;
+  }
+
+  .zsa-testimonial-stars-row .zsa-star {
+    width: 1em;
+    height: 1em;
+  }
+
+  .zsa-testimonial-stars .zsa-star--full,
+  .zsa-testimonial-stars-row .zsa-star--full {
+    background-color: var(--star-color, #00b27e);
+  }
+
+  .zsa-testimonial-stars .zsa-star--partial,
+  .zsa-testimonial-stars-row .zsa-star--partial {
+    background: linear-gradient(
+      to right,
+      var(--star-color, #00b27e) var(--partial-width, 50%),
+      #dcdce6 var(--partial-width, 50%)
+    );
+  }
+
+  .zsa-testimonial-stars .zsa-star--empty,
+  .zsa-testimonial-stars-row .zsa-star--empty {
+    background-color: #dcdce6;
+  }
+
+  .zsa-testimonial-stars .zsa-star-icon,
+  .zsa-testimonial-stars-row .zsa-star-icon {
+    width: 70%;
+    height: 70%;
+    display: block;
+  }
+
+  .zsa-testimonial-average {
+    font-size: 1em;
+    font-weight: 600;
+    color: inherit;
+  }
+
+  .zsa-testimonial-marquee {
+    --gap: 1.25em;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    gap: var(--gap);
+    padding: 0.5em 0;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+
+  .zsa-testimonial-marquee:hover .zsa-testimonial-track {
+    animation-play-state: paused;
+  }
+
+  .zsa-testimonial-track {
+    flex-shrink: 0;
+    display: flex;
+    min-width: 100%;
+    gap: var(--gap);
+    will-change: transform;
+    animation: zsa-scroll-testimonials var(--marquee-duration, 40s) linear infinite;
+  }
+
+  @keyframes zsa-scroll-testimonials {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - var(--gap))); }
+  }
+
+  .zsa-testimonial-card {
+    background: white;
+    border-radius: 0.875em;
+    padding: 1.25em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    min-width: 280px;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .zsa-testimonial-stars-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.15em;
+    margin-bottom: 0.5em;
+  }
+
+  .zsa-testimonial-review-title {
+    font-size: 1em;
+    font-weight: 600;
+    color: inherit;
+    margin: 0 0 0.4em 0;
+  }
+
+  .zsa-testimonial-text {
+    color: inherit;
+    opacity: 0.8;
+    line-height: 1.5;
+    font-size: 0.9375em;
+    flex-grow: 1;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    pointer-events: none;
+  }
+
+  .zsa-testimonial-text.expanded {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    pointer-events: auto;
+  }
+
+  .zsa-testimonial-read-more {
+    display: block;
+    background: none;
+    border: none;
+    padding: 0.5em 0;
+    margin: 0;
+    color: inherit;
+    opacity: 0.5;
+    font-size: 0.8125em;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 999;
+    touch-action: manipulation;
+    pointer-events: auto !important;
+    -webkit-tap-highlight-color: transparent;
+    isolation: isolate;
+  }
+
+  .zsa-testimonial-read-more:hover { opacity: 0.8; }
+  .zsa-testimonial-read-more.hidden { display: none; }
+
+  .zsa-testimonial-image-wrapper {
+    margin: 0.75em 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .zsa-testimonial-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.5em;
+  }
+
+  .zsa-testimonial-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: 0.75em;
+  }
+
+  .zsa-testimonial-name {
+    font-weight: 600;
+    color: inherit;
+    font-size: 0.9375em;
+  }
+
+  @media (max-width: 768px) {
+    .zsa-testimonial-title { font-size: 1.25em; }
+
+    .zsa-testimonial-card {
+      min-width: 240px;
+      max-width: 240px;
+      padding: 1em;
+    }
+
+    .zsa-testimonial-text {
+      font-size: 0.875em;
+      padding: 0.5em 0;
+    }
+
+    .zsa-testimonial-stars-row { margin-bottom: 0.375em; }
+    .zsa-testimonial-review-title { margin: 0 0 0.25em 0; }
+
+    .zsa-testimonial-track {
+      animation: zsa-scroll-testimonials var(--marquee-duration, 30s) linear infinite;
+    }
+  }
+{% endstylesheet %}
+
+<script>
+  (function () {
+    'use strict';
+
+    function remplirPistes(marquee) {
+      var pistes = marquee.querySelectorAll('.zsa-testimonial-track');
+      if (pistes.length < 2) return;
+      var premiere = pistes[0];
+      var cartes = premiere.querySelectorAll('.zsa-testimonial-card');
+      if (!cartes.length) return;
+      var largeurConteneur = marquee.offsetWidth;
+      if (!largeurConteneur) return;
+
+      var ecart = parseFloat(getComputedStyle(premiere).gap) || 0;
+      var largeurTotale = 0;
+      cartes.forEach(function (c) { largeurTotale += c.offsetWidth; });
+      largeurTotale += Math.max(0, cartes.length - 1) * ecart;
+      if (largeurTotale >= largeurConteneur) return;
+
+      var jeux = Math.ceil(largeurConteneur / largeurTotale);
+      for (var s = 1; s < jeux; s++) {
+        cartes.forEach(function (c) { premiere.appendChild(c.cloneNode(true)); });
+      }
+      pistes[1].innerHTML = premiere.innerHTML;
+    }
+
+    function initLireLaSuite(racine) {
+      racine.querySelectorAll('.zsa-testimonial-card').forEach(function (carte) {
+        var texte = carte.querySelector('.zsa-testimonial-text');
+        var bouton = carte.querySelector('.zsa-testimonial-read-more');
+        if (!texte || !bouton) return;
+        if (texte.scrollHeight > texte.clientHeight) bouton.classList.remove('hidden');
+      });
+    }
+
+    if (!window.__zsaLireLaSuite) {
+      window.__zsaLireLaSuite = true;
+      document.addEventListener('click', function (e) {
+        var bouton = e.target.closest('.zsa-testimonial-read-more');
+        if (!bouton) return;
+        var carte = bouton.closest('.zsa-testimonial-card');
+        if (!carte) return;
+        var texte = carte.querySelector('.zsa-testimonial-text');
+        if (!texte) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var ouvert = texte.classList.toggle('expanded');
+        bouton.textContent = ouvert ? bouton.getAttribute('data-less') : bouton.getAttribute('data-more');
+      }, true);
+    }
+
+    function init() {
+      document.querySelectorAll('.zsa-testimonial-slider').forEach(function (slider) {
+        if (slider.dataset.zsaPret) return;
+        slider.dataset.zsaPret = '1';
+        var marquee = slider.querySelector('.zsa-testimonial-marquee');
+        if (!marquee) return;
+        var pistes = marquee.querySelectorAll('.zsa-testimonial-track');
+        if (!pistes.length) return;
+
+        remplirPistes(marquee);
+        initLireLaSuite(slider);
+
+        var largeur = pistes[0].scrollWidth;
+        var mobile = window.innerWidth <= 768;
+        var vitesse = mobile ? 35 : 50;
+        marquee.style.setProperty('--marquee-duration', Math.max(10, Math.round(largeur / vitesse)) + 's');
+
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (entrees) {
+            entrees.forEach(function (entree) {
+              pistes.forEach(function (p) {
+                p.style.animationPlayState = entree.isIntersecting ? 'running' : 'paused';
+              });
+            });
+          }, { threshold: 0.1, rootMargin: '50px' }).observe(marquee);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+    document.addEventListener('shopify:section:load', init);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Carrousel avis (Zensea)",
+  "tag": "section",
+  "class": "zsa-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Avis affichés",
+      "info": "« Tous les avis » reprend la sélection vitrine de la boutique, comme le faisait Trustap sur l'accueil et les fiches handpan.",
+      "options": [
+        { "value": "produit", "label": "Ce produit" },
+        { "value": "global", "label": "Tous les avis" }
+      ],
+      "default": "produit"
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Titre",
+      "info": "Laissez vide pour masquer le titre."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_average_rating",
+      "label": "Afficher la note moyenne",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Couleur des étoiles",
+      "default": "#00b27e"
+    },
+    {
+      "type": "color_background",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_customer_photos",
+      "label": "Afficher les photos des clients",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_only_with_images",
+      "label": "Uniquement les avis avec photo",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Hauteur des photos",
+      "min": 100,
+      "max": 400,
+      "step": 10,
+      "default": 300,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "limite",
+      "label": "Nombre d'avis affichés",
+      "min": 4,
+      "max": 40,
+      "step": 1,
+      "default": 20
+    },
+    { "type": "header", "content": "Espacements" },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacement haut",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 8,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacement bas",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 8,
+      "unit": "px"
+    }
+  ],
+  "presets": [{ "name": "Carrousel avis (Zensea)" }]
+}
+{% endschema %}

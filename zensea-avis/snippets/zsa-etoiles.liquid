@@ -1,0 +1,37 @@
+{%- comment -%}
+  Rangée de cinq étoiles, reprise à l'identique du rendu de l'application.
+  Chaque étoile est un carré coloré sur lequel on pose un glyphe blanc ;
+  l'étoile partielle utilise un dégradé coupé à --partial-width.
+
+  Paramètres :
+    note    — la note sur 5 (nombre)
+    couleur — couleur des étoiles
+    classe  — classe du conteneur (zsa-stars, zsa-testimonial-stars, zsa-testimonial-stars-row)
+{%- endcomment -%}
+{%- liquid
+  assign zsa_note = note | plus: 0
+  assign zsa_pleines = zsa_note | floor
+  assign zsa_reste = zsa_note | minus: zsa_pleines
+  assign zsa_pct = zsa_reste | times: 100 | round: 1
+  assign zsa_suivante = zsa_pleines | plus: 1
+  assign zsa_couleur = couleur | default: '#00b27e'
+-%}
+<div class="{{ classe | default: 'zsa-stars' }}">
+  {%- for i in (1..5) -%}
+    {%- liquid
+      assign zsa_cls = 'zsa-star--empty'
+      assign zsa_w = 0
+      if i <= zsa_pleines
+        assign zsa_cls = 'zsa-star--full'
+      elsif i == zsa_suivante and zsa_pct > 0
+        assign zsa_cls = 'zsa-star--partial'
+        assign zsa_w = zsa_pct
+      endif
+    -%}
+    <span class="zsa-star {{ zsa_cls }}" style="--star-color: {{ zsa_couleur }}; --partial-width: {{ zsa_w }}%">
+      <svg viewBox="0 0 24 24" class="zsa-star-icon">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="white" />
+      </svg>
+    </span>
+  {%- endfor -%}
+</div>

@@ -1,0 +1,281 @@
+{%- comment -%}
+  Bloc « Évaluation par étoiles », reprise native du bloc star_rating de l'application.
+  Source des données : métachamps avis.summary (produit) ou avis.global (boutique).
+{%- endcomment -%}
+{%- liquid
+  assign st = block.settings
+  assign donnees = null
+  if st.source == 'global'
+    assign donnees = shop.metafields.avis.global.value
+  else
+    assign donnees = closest.product.metafields.avis.summary.value
+  endif
+
+  assign note = 0
+  assign total = 0
+  if donnees != blank
+    assign note = donnees.averageRating | plus: 0
+    assign total = donnees.totalCount | plus: 0
+  endif
+
+  assign cliquable = false
+  if st.scroll_to_block != blank
+    assign cliquable = true
+  endif
+-%}
+
+{%- if total > 0 -%}
+  <div class="zsa-star-rating-wrapper" style="text-align: {{ st.alignment }};">
+    <div
+      class="zsa-star-rating zsa-star-rating--{{ st.size }}{% if cliquable %} zsa-star-rating--clickable{% endif %}"
+      data-rating-position="{{ st.rating_position }}"
+      {% if cliquable %}data-scroll-to="{{ st.scroll_to_block }}"{% endif %}
+      {{ block.shopify_attributes }}
+    >
+      {%- capture zsa_chiffre -%}
+        {%- if st.show_rating_number -%}
+          <span class="zsa-rating-number">
+            {%- if st.custom_rating_text != blank -%}
+              {{ st.custom_rating_text }}
+            {%- else -%}
+              {{ note }}{% if st.show_max_rating %}/5{% endif %}
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- if st.rating_position == 'left' -%}{{ zsa_chiffre }}{%- endif -%}
+
+      {% render 'zsa-etoiles', note: note, couleur: st.star_color, classe: 'zsa-stars' %}
+
+      {%- if st.rating_position == 'right' -%}{{ zsa_chiffre }}{%- endif -%}
+
+      {%- if st.show_count -%}
+        <span class="zsa-review-count">({{ total }} avis)</span>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .zsa-star-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    margin: 0.5em 0;
+    line-height: 1;
+    font-family: inherit;
+  }
+
+  .zsa-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15em;
+  }
+
+  .zsa-star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zsa-star--full {
+    background-color: var(--star-color, #00b27e);
+  }
+
+  .zsa-star--partial {
+    background: linear-gradient(
+      to right,
+      var(--star-color, #00b27e) var(--partial-width, 50%),
+      #dcdce6 var(--partial-width, 50%)
+    );
+  }
+
+  .zsa-star--empty {
+    background-color: #dcdce6;
+  }
+
+  .zsa-star-icon {
+    width: 70%;
+    height: 70%;
+    display: block;
+  }
+
+  .zsa-star-rating--extra_small { font-size: 0.6rem; }
+  .zsa-star-rating--small { font-size: 1rem; }
+  .zsa-star-rating--medium { font-size: 1.125rem; }
+  .zsa-star-rating--large { font-size: 1.375rem; }
+  .zsa-star-rating--extra_large { font-size: 1.625rem; }
+
+  .zsa-rating-number {
+    font-weight: 600;
+    color: inherit;
+    font-size: 1.125em;
+  }
+
+  .zsa-review-count {
+    color: inherit;
+    opacity: 0.7;
+    font-size: 1em;
+  }
+
+  .zsa-star-rating--clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .zsa-star-rating--clickable[role='button'] {
+    background-color: transparent !important;
+    color: inherit !important;
+    font-weight: inherit !important;
+    letter-spacing: inherit !important;
+    text-transform: inherit !important;
+  }
+
+  .zsa-star-rating--clickable:hover {
+    transform: scale(1.02);
+    opacity: 0.85;
+  }
+
+  .zsa-star-rating--clickable:active {
+    transform: scale(0.98);
+  }
+
+  .zsa-star-rating--clickable:focus {
+    outline: 2px solid var(--star-color, #00b27e);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+{% endstylesheet %}
+
+<script>
+  (function () {
+    function init() {
+      document.querySelectorAll('.zsa-star-rating--clickable').forEach(function (rating) {
+        if (rating.dataset.zsaBound) return;
+        rating.dataset.zsaBound = '1';
+        var cible = rating.getAttribute('data-scroll-to');
+        if (!cible) return;
+        var selecteurs = { carrousel: '.zsa-testimonial-slider' };
+        var selecteur = selecteurs[cible];
+        if (!selecteur) return;
+
+        rating.setAttribute('role', 'button');
+        rating.setAttribute('tabindex', '0');
+        rating.setAttribute('aria-label', 'Aller aux avis');
+
+        rating.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var el = document.querySelector(selecteur);
+          if (!el) return;
+          window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+        });
+        rating.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); rating.click(); }
+        });
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Étoiles (avis Zensea)",
+  "settings": [
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Avis pris en compte",
+      "info": "« Tous les avis » affiche la note de la boutique entière, comme le faisait Trustap sur les fiches handpan.",
+      "options": [
+        { "value": "produit", "label": "Ce produit" },
+        { "value": "global", "label": "Tous les avis" }
+      ],
+      "default": "produit"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignement",
+      "options": [
+        { "value": "left", "label": "Gauche" },
+        { "value": "center", "label": "Centre" },
+        { "value": "right", "label": "Droite" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Taille",
+      "options": [
+        { "value": "extra_small", "label": "Très petite" },
+        { "value": "small", "label": "Petite" },
+        { "value": "medium", "label": "Moyenne" },
+        { "value": "large", "label": "Grande" },
+        { "value": "extra_large", "label": "Très grande" }
+      ],
+      "default": "extra_small"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Couleur des étoiles",
+      "default": "#00b27e"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating_number",
+      "label": "Afficher la note chiffrée",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "rating_position",
+      "label": "Position de la note",
+      "options": [
+        { "value": "left", "label": "Avant les étoiles" },
+        { "value": "right", "label": "Après les étoiles" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_max_rating",
+      "label": "Afficher « /5 »",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "custom_rating_text",
+      "label": "Texte à la place de la note",
+      "info": "Laissez vide pour afficher la note réelle."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_count",
+      "label": "Afficher le nombre d'avis",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "scroll_to_block",
+      "label": "Au clic, descendre vers",
+      "options": [
+        { "value": "", "label": "Rien" },
+        { "value": "carrousel", "label": "Le carrousel d'avis" }
+      ],
+      "default": ""
+    }
+  ],
+  "presets": [{ "name": "Étoiles (avis Zensea)" }]
+}
+{% endschema %}
