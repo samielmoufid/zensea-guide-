@@ -193,6 +193,69 @@
     @media (max-width: 749px) {
       .zs-cr { max-width: 100%; }
     }
+
+    /* Ligne de panier : vignette à gauche, titre et prix à sa droite.
+       La carte cadeau garde sa ligne entière grâce à flex-basis: 100%. */
+    .cart-drawer__item,
+    .cart__item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .cart-drawer__item > a:first-of-type,
+    .cart__item > a:first-of-type {
+      flex: 0 0 auto;
+      width: 78px;
+      max-width: 78px;
+    }
+    .cart-drawer__item > a:first-of-type img,
+    .cart__item > a:first-of-type img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+    .cart-drawer__item-wrapper,
+    .cart__item-wrapper {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .cart-drawer__item-actions,
+    .cart__item-actions {
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
+    .cart-drawer__item-name,
+    .cart__item-name {
+      display: block;
+      font-size: 13.5px;
+      line-height: 1.3;
+    }
+
+    /* Bandeau de rassurance, en haut du panier */
+    .zs-bd {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 0 14px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #2E5E46;
+      color: #FBF9F4;
+      font-size: 13px;
+      line-height: 1.3;
+      font-weight: 600;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .zs-bd__et { color: #C8A24B; font-size: 14px; line-height: 1; }
+    @media (max-width: 749px) {
+      .zs-bd { font-size: 12.5px; padding: 9px 12px; }
+      .cart-drawer__item > a:first-of-type,
+      .cart__item > a:first-of-type { width: 72px; max-width: 72px; }
+    }
   </style>
 
   <script>
@@ -359,7 +422,22 @@
         });
       }
 
+      /* ---------- 5. bandeau en haut du panier ---------- */
+      function poserBandeau() {
+        document.querySelectorAll('.cart-drawer__items, .cart__items').forEach(function (zone) {
+          var avant = zone.previousElementSibling;
+          if (avant && avant.classList && avant.classList.contains('zs-bd')) return;
+          if (!zone.querySelector('.cart-drawer__item, .cart__item')) return;
+          var bd = document.createElement('div');
+          bd.className = 'zs-bd';
+          bd.innerHTML = '<span class="zs-bd__et" aria-hidden="true">\u2726</span>' +
+                         '<span>Votre panier est pr\u00eat \u2014 il ne reste qu\u2019une \u00e9tape.</span>';
+          zone.parentNode.insertBefore(bd, zone);
+        });
+      }
+
       function tout() {
+        poserBandeau();
         poserPanier();
         poserTotal();
       }
