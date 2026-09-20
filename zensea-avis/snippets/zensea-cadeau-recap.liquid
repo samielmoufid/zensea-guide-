@@ -218,15 +218,13 @@
       }
 
       /* ---------- 3. les lignes du panier ---------- */
+      /* Le tiroir utilise .cart-drawer__item-*, la page panier .cart__item-*.
+         On vise la colonne de contenu de la ligne : la carte se pose dessous. */
+      var SEL_LIGNE = '.cart-drawer__item-content, .cart__item-content, ' +
+                      '.cart-drawer__item, .cart__item, .cart-item, [class*="line-item"], li, tr';
+
       function conteneurLigne(el) {
-        var n = el;
-        for (var i = 0; i < 8 && n; i++) {
-          n = n.parentElement;
-          if (!n) break;
-          var cl = (n.className || '') + '';
-          if (/cart-item|cart__item|line-item|cart-line/i.test(cl) || n.tagName === 'LI' || n.tagName === 'TR') return n;
-        }
-        return el.parentElement;
+        return (el.closest && el.closest(SEL_LIGNE)) || el.parentElement;
       }
 
       function poserPanier() {
@@ -246,7 +244,9 @@
           }
           if (!val) continue;
 
-          el.setAttribute('data-zs-cr-cache', '');
+          /* On masque la ligne d'option entière, pas seulement le libellé. */
+          var enveloppe = (el.closest && el.closest('.cart-drawer__item-option, .cart__item-option')) || el;
+          enveloppe.setAttribute('data-zs-cr-cache', '');
 
           var ligne = conteneurLigne(el);
           if (!ligne) continue;
