@@ -428,6 +428,29 @@
       }
 
       /* ---------- 5. bandeau en haut du panier ---------- */
+      /* Le retrait ne vient pas forcément du parent direct : on mesure l'écart
+         réel entre la barre et le bord du tiroir, et on le compense. */
+      function caler(bd) {
+        var cadre = bd.closest('cart-drawer, .cart-drawer');
+        bd.style.marginLeft = '';
+        bd.style.marginRight = '';
+        bd.style.marginTop = '';
+        var ref = cadre || bd.parentNode;
+        var rb = bd.getBoundingClientRect();
+        var rc = ref.getBoundingClientRect();
+        if (!rb.width || !rc.width) return;
+        var g = Math.round(rb.left - rc.left);
+        var d = Math.round(rc.right - rb.right);
+        if (g > 0) bd.style.marginLeft = (-g) + 'px';
+        if (d > 0) bd.style.marginRight = (-d) + 'px';
+        /* Puis on la colle au titre du panier. */
+        var tete = cadre ? cadre.querySelector('.cart-drawer__header, header') : null;
+        if (tete) {
+          var h = Math.round(bd.getBoundingClientRect().top - tete.getBoundingClientRect().bottom);
+          if (h > 4) bd.style.marginTop = (4 - h) + 'px';
+        }
+      }
+
       function poserBandeau() {
         document.querySelectorAll('.cart-drawer__items, .cart__items').forEach(function (zone) {
           var avant = zone.previousElementSibling;
@@ -438,15 +461,13 @@
           bd.innerHTML = '<span class="zs-bd__et" aria-hidden="true">\u2726</span>' +
                          '<span>Votre panier est pr\u00eat \u2014 plus qu\u2019une \u00e9tape.</span>';
           zone.parentNode.insertBefore(bd, zone);
-          /* Bord à bord : on annule le retrait horizontal du conteneur. */
-          var st = window.getComputedStyle(zone.parentNode);
-          if (st.paddingLeft && st.paddingLeft !== '0px') bd.style.marginLeft = '-' + st.paddingLeft;
-          if (st.paddingRight && st.paddingRight !== '0px') bd.style.marginRight = '-' + st.paddingRight;
+          caler(bd);
         });
       }
 
       function tout() {
         poserBandeau();
+        document.querySelectorAll('.zs-bd').forEach(caler);
         poserPanier();
         poserTotal();
       }
