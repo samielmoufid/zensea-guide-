@@ -431,7 +431,8 @@
       /* Le retrait ne vient pas forcément du parent direct : on mesure l'écart
          réel entre la barre et le bord du tiroir, et on le compense. */
       function caler(bd) {
-        var cadre = bd.closest('cart-drawer, .cart-drawer');
+        /* Le panneau visible, pas l'enveloppe plein écran du tiroir. */
+        var cadre = bd.closest('.cart-drawer__inner, dialog, .cart-drawer__content, .cart-drawer__body');
         bd.style.marginLeft = '';
         bd.style.marginRight = '';
         bd.style.marginTop = '';
@@ -444,7 +445,8 @@
         if (g > 0) bd.style.marginLeft = (-g) + 'px';
         if (d > 0) bd.style.marginRight = (-d) + 'px';
         /* Puis on la colle au titre du panier. */
-        var tete = cadre ? cadre.querySelector('.cart-drawer__header, header') : null;
+        var tiroir = bd.closest('cart-drawer, .cart-drawer');
+        var tete = tiroir ? tiroir.querySelector('.cart-drawer__header, header') : null;
         if (tete) {
           var h = Math.round(bd.getBoundingClientRect().top - tete.getBoundingClientRect().bottom);
           if (h > 4) bd.style.marginTop = (4 - h) + 'px';
