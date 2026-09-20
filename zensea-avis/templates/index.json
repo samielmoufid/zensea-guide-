@@ -792,7 +792,7 @@
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_8_sept._2026_01_03_59.png",
             "title": "Et si le son ne vous parle pas",
-            "text": "30 jours pour changer d'avis, sans avoir à vous justifier. Un instrument, ça se ressent — on préfère un retour à un objet qui prend la poussière dans un coin. Et au-delà de ces 30 jours, la garantie à vie prend le relais sur tout défaut de fabrication."
+            "text": "14 jours pour changer d'avis, sans avoir à vous justifier. Un instrument, ça se ressent, on préfère un retour à un objet qui prend la poussière dans un coin. Et au-delà de ces 14 jours, la garantie à vie prend le relais sur tout défaut de fabrication."
           }
         }
       },
@@ -897,7 +897,7 @@
         "a5": false,
         "l6": "Expédié de notre stock en Europe, sans frais de douane",
         "a6": false,
-        "l7": "Garantie à vie, 30 jours d'essai, retour à notre charge",
+        "l7": "Garantie à vie, 14 jours pour changer d'avis, retour à notre charge",
         "a7": false,
         "l8": "Une réponse humaine, en français, avant et après l'achat",
         "a8": true,
@@ -927,7 +927,7 @@
           "type": "fact",
           "settings": {
             "label": "ESSAI",
-            "value": "30 jours inclus"
+            "value": "14 jours inclus"
           }
         },
         "fact_4": {
@@ -1444,7 +1444,7 @@
                   "name": "t:text",
                   "settings": {
                     "show_on_display": "desktop_and_mobile",
-                    "text": "<p>Dès 30 € d'achat, partout en France. Colis suivi et calage renforcé pour l'instrument.</p>",
+                    "text": "<p>Sans minimum d'achat, partout en France. Colis suivi et calage renforcé pour l'instrument.</p>",
                     "text_style": "paragraph",
                     "paragraph_font_size": "normal",
                     "font_weight": 400,
@@ -1528,7 +1528,7 @@
                   "name": "t:text",
                   "settings": {
                     "show_on_display": "desktop_and_mobile",
-                    "text": "<p>Préparation sous 24 à 48 h ouvrées, puis 7 à 13 jours ouvrés jusqu'à chez vous.</p>",
+                    "text": "<p>Préparation sous 24 à 48 h ouvrées, puis 8 à 12 jours ouvrés jusqu'à chez vous.</p>",
                     "text_style": "paragraph",
                     "paragraph_font_size": "normal",
                     "font_weight": 400,
@@ -1696,7 +1696,7 @@
                   "name": "t:text",
                   "settings": {
                     "show_on_display": "desktop_and_mobile",
-                    "text": "<p>Joué note par note et contrôlé au diapason 440 Hz. 30 jours pour changer d'avis.</p>",
+                    "text": "<p>Joué note par note et contrôlé au diapason 440 Hz. 14 jours pour changer d'avis.</p>",
                     "text_style": "paragraph",
                     "paragraph_font_size": "normal",
                     "font_weight": 400,
@@ -1890,8 +1890,8 @@
         "point_1": "Accordage vérifié",
         "point_1_sub": "à l'oreille, en 432 & 440 Hz",
         "point_2": "Livraison offerte",
-        "point_2_sub": "dès 30 € d'achat",
-        "point_3": "30 jours pour changer d'avis",
+        "point_2_sub": "sans minimum d'achat",
+        "point_3": "14 jours pour changer d'avis",
         "point_3_sub": "retour simple, sans justification",
         "button_text": "LIRE NOTRE PROMESSE",
         "button_link": "/pages/notre-promesse",
@@ -1968,21 +1968,21 @@
           "type": "faq_item",
           "settings": {
             "question": "Quels sont les délais de livraison ?",
-            "answer": "<p>Votre commande est préparée sous 24 à 48 heures ouvrées, puis expédiée avec suivi. Comptez ensuite 7 à 13 jours ouvrés, soit 8 à 15 jours ouvrés au total. La livraison est offerte dès 30 € d'achat, et vous recevez un numéro de suivi dès le départ du colis.</p>"
+            "answer": "<p>Votre commande est préparée sous 24 à 48 heures ouvrées, puis expédiée avec suivi. Comptez ensuite 8 à 12 jours ouvrés, soit 9 à 14 jours ouvrés au total. La livraison est offerte sans minimum d'achat, et vous recevez un numéro de suivi dès le départ du colis.</p>"
           }
         },
         "faq_item_home_6": {
           "type": "faq_item",
           "settings": {
             "question": "Et si le son ne me plaît pas ?",
-            "answer": "<p>Vous avez 30 jours à compter de la réception pour changer d'avis, sans avoir à vous justifier. Les frais de retour sont à votre charge et le remboursement intervient sous 7 à 14 jours. C'est aussi pour ça qu'on écrit la gamme exacte sur chaque fiche et qu'on vous répond avant l'achat : le meilleur retour est celui qui n'a pas lieu.</p>"
+            "answer": "<p>Vous avez 14 jours à compter de la réception pour changer d'avis, sans avoir à vous justifier. Les frais de retour sont à votre charge et le remboursement intervient sous 7 à 14 jours. C'est aussi pour ça qu'on écrit la gamme exacte sur chaque fiche et qu'on vous répond avant l'achat : le meilleur retour est celui qui n'a pas lieu.</p>"
           }
         },
         "faq_item_home_7": {
           "type": "faq_item",
           "settings": {
             "question": "L'instrument est garanti combien de temps ?",
-            "answer": "<p><strong>À vie</strong>, sur tout le catalogue, incluse dans le prix. Aucune extension à acheter, aucune case à cocher au moment de payer.</p><p>Elle couvre les défauts de fabrication : une soudure qui cède, une note qui décroche alors que l'instrument a été traité normalement, un accessoire défectueux à la réception. Vous écrivez, on répond en français, on remplace ou on rembourse — sans expertise à vos frais.</p><p>À ne pas confondre avec les 30 jours pour changer d'avis : ça, c'est le droit de nous renvoyer l'instrument parce que le son ne vous parle pas. Les deux se cumulent.</p>"
+            "answer": "<p><strong>À vie</strong>, sur tout le catalogue, incluse dans le prix. Aucune extension à acheter, aucune case à cocher au moment de payer.</p><p>Elle couvre les défauts de fabrication : une soudure qui cède, une note qui décroche alors que l'instrument a été traité normalement, un accessoire défectueux à la réception. Vous écrivez, on répond en français, on remplace ou on rembourse — sans expertise à vos frais.</p><p>À ne pas confondre avec les 14 jours pour changer d'avis : ça, c'est le droit de nous renvoyer l'instrument parce que le son ne vous parle pas. Les deux se cumulent.</p>"
           }
         }
       },
