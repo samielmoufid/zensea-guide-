@@ -258,7 +258,8 @@
     .cart-drawer__items,
     .cart__items { padding-top: 0; margin-top: 0; }
     .cart-drawer__header:has(.zs-bd) { padding-bottom: 0 !important; }
-    .cart-drawer__header .zs-bd { width: 100%; flex-basis: 100%; margin-bottom: 0; }
+    /* width auto : les marges négatives doivent pouvoir l'étirer jusqu'aux bords. */
+    .cart-drawer__header .zs-bd { width: auto; align-self: stretch; margin-bottom: 0; }
     .cart-drawer__header .cart-drawer__header_title { margin-bottom: 0 !important; }
 
     /* Ligne « Livraison — Offerte », entre le cadeau et le total. */
