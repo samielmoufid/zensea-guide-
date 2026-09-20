@@ -158,6 +158,27 @@
     .zs-cr--panier .zs-cr__was { font-size: 9.5px; }
     .zs-cr--panier .zs-cr__free { font-size: 10.5px; }
 
+    /* Ligne « cadeau offert » juste au-dessus du total */
+    .zs-tt {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0 0 10px;
+      padding: 8px 10px 8px 8px;
+      border: 1px dashed #9DBBAC;
+      border-radius: 12px;
+      background: #F3F7F4;
+    }
+    .zs-tt .zs-cr__img { width: 28px; height: 28px; }
+    .zs-tt .zs-cr__txt { min-width: 0; flex: 1 1 auto; line-height: 1.25; overflow: hidden; }
+    .zs-tt .zs-cr__lab { font-size: 8.5px; letter-spacing: .08em; }
+    .zs-tt .zs-cr__nom { font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .zs-tt .zs-cr__px { flex: 0 0 auto; }
+    .zs-tt .zs-cr__was { font-size: 9.5px; }
+    .zs-tt .zs-cr__free { font-size: 10.5px; }
+
     /* Le thème laisse les colonnes du panier grossir : on les borne, sinon la
        quantité et le bouton de suppression sortent du cadre. */
     .cart-drawer__item-content,
@@ -254,8 +275,78 @@
         document.querySelectorAll('[data-zs-cr-cache]').forEach(function (e) { e.style.display = 'none'; });
       }
 
+      /* ---------- 4. le pied de panier : ligne cadeau puis total ---------- */
+      function cadeauxDuPanier() {
+        var n = 0, coloris = null;
+        document.querySelectorAll('.cart-drawer__item, .cart__item').forEach(function (l) {
+          var c = l.querySelector('[data-zs-cr]');
+          if (!c) return;
+          if (!coloris) coloris = c.getAttribute('data-col');
+          var q = l.querySelector('input[name="updates[]"], input[type="number"], [data-ref="quantity-input"]');
+          var v = q ? parseInt(q.value, 10) : 1;
+          n += (isNaN(v) || v < 1) ? 1 : v;
+        });
+        return { nb: n, coloris: coloris };
+      }
+
+      function poserTotal() {
+        var g = cadeauxDuPanier();
+        document.querySelectorAll('.cart__totals').forEach(function (tot) {
+          var lab = tot.querySelector('p');
+          if (lab && /Total\s+estim/i.test(lab.textContent)) lab.textContent = 'Total';
+
+          var prixEl = tot.querySelector('.price[data-ref="price"]');
+          var cmpEl = tot.querySelector('.compare-at-price[data-ref="compare-at-price"]');
+          var badge = tot.querySelector('.badge__savings');
+          var avant = tot.previousElementSibling;
+          var ligne = (avant && avant.hasAttribute && avant.hasAttribute('data-zs-tt')) ? avant : null;
+
+          if (!g.nb) {
+            if (ligne) ligne.remove();
+            return;
+          }
+
+          var c = parTitre[g.coloris] || D.coloris[0];
+          var nom = D.nom + ' · ' + c.titre + (g.nb > 1 ? ' × ' + g.nb : '');
+          if (!ligne) {
+            ligne = document.createElement('div');
+            ligne.className = 'zs-tt';
+            ligne.setAttribute('data-zs-tt', '');
+            tot.parentNode.insertBefore(ligne, tot);
+          }
+          var voulu =
+            '<span class="zs-cr__img"><img src="' + c.image + '" alt="" width="28" height="28" loading="lazy"></span>' +
+            '<span class="zs-cr__txt">' +
+              '<span class="zs-cr__lab">Cadeau offert avec la commande</span>' +
+              '<span class="zs-cr__nom">' + nom + '</span>' +
+            '</span>' +
+            '<span class="zs-cr__px">' +
+              '<s class="zs-cr__was">' + euros(D.prix * g.nb) + '</s>' +
+              '<b class="zs-cr__free">Offert</b>' +
+            '</span>';
+          if (ligne.innerHTML !== voulu) ligne.innerHTML = voulu;
+
+          /* Le prix barré du total inclut aussi la valeur des tongue drums. */
+          if (prixEl && cmpEl) {
+            var px = parseInt(prixEl.getAttribute('data-value'), 10) || 0;
+            var base = parseInt(cmpEl.getAttribute('data-value'), 10) || 0;
+            if (base < px) base = px;
+            var total = base + D.prix * g.nb;
+            var txt = euros(total);
+            if (cmpEl.textContent.trim() !== txt) cmpEl.textContent = txt;
+            if (badge) {
+              var eco = '-' + euros(total - px);
+              if (badge.textContent.trim() !== eco) badge.textContent = eco;
+              var enveloppe = badge.closest('.badge');
+              if (enveloppe) enveloppe.style.display = '';
+            }
+          }
+        });
+      }
+
       function tout() {
         poserPanier();
+        poserTotal();
       }
 
       if (document.readyState === 'loading') {
