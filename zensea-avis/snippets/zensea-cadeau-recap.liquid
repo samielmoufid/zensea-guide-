@@ -1,0 +1,269 @@
+{%- comment -%}
+  Zensea — rappel visuel du tongue drum offert.
+
+  Trois endroits, une seule source de vérité (le produit cadeau et ses coloris) :
+    1. fiche handpan, juste SOUS le bouton « Ajouter au panier » : la carte du coloris choisi ;
+    2. fiche handpan, à côté du prix : un prix barré qui inclut la valeur du cadeau ;
+    3. panier et tiroir de panier : la même carte sur chaque ligne qui porte la propriété.
+
+  Le choix du coloris est fait par le widget zensea-cadeau-tongue-drum, qui écrit
+  la propriété de ligne « Tongue drum offert ». On se contente de la lire.
+{%- endcomment -%}
+
+{%- assign zsc_gift = all_products['tongue-drum-debutant-11-notes'] -%}
+{%- if zsc_gift != blank and zsc_gift.variants.size > 0 -%}
+  {%- assign zsc_prix = zsc_gift.variants.first.price -%}
+
+  <script type="application/json" id="zs-cadeau-data">
+    {
+      "nom": {{ zsc_gift.title | json }},
+      "propriete": "Tongue drum offert",
+      "prix": {{ zsc_prix }},
+      "prixTexte": {{ zsc_prix | money | json }},
+      "imageDefaut": {{ zsc_gift.featured_media | image_url: width: 120 | json }},
+      "coloris": [
+        {%- for v in zsc_gift.variants -%}
+          {
+            "titre": {{ v.title | json }},
+            "prix": {{ v.price }},
+            "prixTexte": {{ v.price | money | json }},
+            "image": {% if v.featured_media %}{{ v.featured_media | image_url: width: 120 | json }}{% else %}{{ zsc_gift.featured_media | image_url: width: 120 | json }}{% endif %}
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+
+  {%- if template.suffix == 'handpan' and product != blank -%}
+    <script type="application/json" id="zs-cadeau-produit">
+      { "actif": true }
+    </script>
+  {%- endif -%}
+
+  <style>
+    .zs-cr {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      max-width: 470px;
+      margin: 10px 0 2px;
+      padding: 8px 11px 8px 8px;
+      border: 1px dashed #9DBBAC;
+      border-radius: 12px;
+      background: #F3F7F4;
+      box-sizing: border-box;
+    }
+    .zs-cr__img {
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #E3EDE7;
+      display: block;
+    }
+    .zs-cr__img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .zs-cr__txt { min-width: 0; flex: 1 1 auto; line-height: 1.25; }
+    .zs-cr__lab {
+      display: block;
+      font-size: 9.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #2E5E46;
+    }
+    .zs-cr__nom {
+      display: block;
+      margin-top: 2px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #22332A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .zs-cr__px {
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      line-height: 1;
+    }
+    .zs-cr__was { font-size: 10px; color: #8A968F; text-decoration: line-through; white-space: nowrap; }
+    .zs-cr__free { font-size: 11.5px; font-weight: 700; color: #2E5E46; white-space: nowrap; }
+
+    /* Le prix barré à côté du prix du handpan */
+    .zs-cr-eco {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-left: 8px;
+      white-space: nowrap;
+    }
+    .zs-cr-eco__was { color: #8A968F; text-decoration: line-through; font-size: 0.82em; }
+    .zs-cr-eco__pill {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #2E5E46;
+      background: #E4EDE8;
+      border-radius: 6px;
+      padding: 2px 7px;
+    }
+
+    /* Version panier : un peu plus compacte */
+    .zs-cr--panier { max-width: 100%; margin: 8px 0 0; padding: 7px 9px 7px 7px; }
+    .zs-cr--panier .zs-cr__img { width: 32px; height: 32px; border-radius: 7px; }
+    .zs-cr--panier .zs-cr__nom { font-size: 11.5px; }
+    .zs-cr--panier .zs-cr__lab { font-size: 9px; }
+
+    @media (max-width: 749px) {
+      .zs-cr { max-width: 100%; }
+      .zs-cr-eco { margin-left: 6px; }
+      .zs-cr-eco__pill { display: none; }
+    }
+  </style>
+
+  <script>
+    (function () {
+      var noeud = document.getElementById('zs-cadeau-data');
+      if (!noeud) return;
+      var D;
+      try { D = JSON.parse(noeud.textContent); } catch (e) { return; }
+      if (!D || !D.coloris || !D.coloris.length) return;
+
+      var surFiche = !!document.getElementById('zs-cadeau-produit');
+      var parTitre = {};
+      D.coloris.forEach(function (c) { parTitre[c.titre] = c; });
+
+      function euros(centimes) {
+        try {
+          return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(centimes / 100);
+        } catch (e) {
+          return (centimes / 100).toFixed(2).replace('.', ',') + ' €';
+        }
+      }
+
+      function carte(coloris, panier) {
+        var c = parTitre[coloris] || D.coloris[0];
+        var el = document.createElement('div');
+        el.className = 'zs-cr' + (panier ? ' zs-cr--panier' : '');
+        el.setAttribute('data-zs-cr', '');
+        el.innerHTML =
+          '<span class="zs-cr__img"><img src="' + c.image + '" alt="" width="38" height="38" loading="lazy"></span>' +
+          '<span class="zs-cr__txt">' +
+            '<span class="zs-cr__lab">Offert avec votre handpan</span>' +
+            '<span class="zs-cr__nom">' + D.nom + ' · ' + c.titre + '</span>' +
+          '</span>' +
+          '<span class="zs-cr__px">' +
+            '<s class="zs-cr__was">' + c.prixTexte + '</s>' +
+            '<b class="zs-cr__free">Offert</b>' +
+          '</span>';
+        return el;
+      }
+
+      /* ---------- 1. la carte sous le bouton « Ajouter au panier » ---------- */
+      function coloriChoisi() {
+        var input = document.querySelector('[data-zs-gd-input]');
+        if (input && input.value) return input.value;
+        var on = document.querySelector('.zs-gd__opt.is-on');
+        if (on) return on.getAttribute('data-val');
+        return D.coloris[0].titre;
+      }
+
+      function poserSousBouton() {
+        var btn = document.querySelector('.product-add-to-cart-button');
+        if (!btn || !btn.parentNode) return;
+        var col = coloriChoisi();
+        var deja = btn.parentNode.querySelector(':scope > [data-zs-cr]');
+        if (deja && deja.getAttribute('data-col') === col && deja.previousElementSibling === btn) return;
+        if (deja) deja.remove();
+        var el = carte(col, false);
+        el.setAttribute('data-col', col);
+        btn.parentNode.insertBefore(el, btn.nextSibling);
+      }
+
+      /* ---------- 2. le prix barré à côté du prix ---------- */
+      function poserPrixBarre() {
+        var btn = document.querySelector('.product-add-to-cart-button[data-price]');
+        var prixEl = document.querySelector('.product-price-container .prices .price[data-ref="price"]');
+        if (!btn || !prixEl || !prixEl.parentNode) return;
+        var base = parseInt(btn.getAttribute('data-price'), 10);
+        if (!base || isNaN(base)) return;
+        var total = base + D.prix;
+        var eco = prixEl.parentNode.querySelector('[data-zs-cr-eco]');
+        if (!eco) {
+          eco = document.createElement('span');
+          eco.className = 'zs-cr-eco';
+          eco.setAttribute('data-zs-cr-eco', '');
+          prixEl.parentNode.appendChild(eco);
+        }
+        var voulu = '<s class="zs-cr-eco__was">' + euros(total) + '</s>' +
+                    '<span class="zs-cr-eco__pill">−' + euros(D.prix) + '</span>';
+        if (eco.innerHTML !== voulu) eco.innerHTML = voulu;
+      }
+
+      /* ---------- 3. les lignes du panier ---------- */
+      function conteneurLigne(el) {
+        var n = el;
+        for (var i = 0; i < 8 && n; i++) {
+          n = n.parentElement;
+          if (!n) break;
+          var cl = (n.className || '') + '';
+          if (/cart-item|cart__item|line-item|cart-line/i.test(cl) || n.tagName === 'LI' || n.tagName === 'TR') return n;
+        }
+        return el.parentElement;
+      }
+
+      function poserPanier() {
+        var marque = D.propriete;
+        var candidats = document.querySelectorAll('dd, dt, li, p, span, div');
+        for (var i = 0; i < candidats.length; i++) {
+          var el = candidats[i];
+          if (el.children.length) continue;
+          var t = (el.textContent || '').trim();
+          if (t.indexOf(marque) !== 0) continue;
+
+          var val = t.slice(marque.length).replace(/^\s*[:：]\s*/, '').trim();
+          if (!val) {
+            var frere = el.nextElementSibling;
+            if (frere) val = (frere.textContent || '').trim();
+            if (frere && val) frere.setAttribute('data-zs-cr-cache', '');
+          }
+          if (!val) continue;
+
+          el.setAttribute('data-zs-cr-cache', '');
+
+          var ligne = conteneurLigne(el);
+          if (!ligne) continue;
+          var deja = ligne.querySelector('[data-zs-cr]');
+          if (deja && deja.getAttribute('data-col') === val) continue;
+          if (deja) deja.remove();
+          var c = carte(val, true);
+          c.setAttribute('data-col', val);
+          ligne.appendChild(c);
+        }
+        document.querySelectorAll('[data-zs-cr-cache]').forEach(function (e) { e.style.display = 'none'; });
+      }
+
+      function tout() {
+        if (surFiche) { poserSousBouton(); poserPrixBarre(); }
+        poserPanier();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', tout);
+      } else {
+        tout();
+      }
+      document.addEventListener('click', function (e) {
+        if (e.target.closest && e.target.closest('.zs-gd__opt')) setTimeout(tout, 40);
+      });
+      document.addEventListener('shopify:section:load', tout);
+      document.addEventListener('variant:change', tout);
+      window.setInterval(tout, 900);
+    })();
+  </script>
+{%- endif -%}
