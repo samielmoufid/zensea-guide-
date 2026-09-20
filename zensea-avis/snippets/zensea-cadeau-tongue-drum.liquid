@@ -1,0 +1,186 @@
+{%- assign gift = all_products['tongue-drum-debutant-11-notes'] -%}
+{%- if template.suffix == 'handpan' and product != blank and gift != blank and gift.variants.size > 0 -%}
+<template id="zs-gd-tpl">
+  <div class="zs-gd" data-zs-gd>
+    <span class="zs-gd__tag">Offre exclusive</span>
+    <p class="zs-gd__title">1 handpan acheté = 1 tongue drum offert</p>
+
+    <div class="zs-gd__pick">
+      <button type="button" class="zs-gd__trig" aria-haspopup="listbox" aria-expanded="false">
+        <span class="zs-gd__thumb" data-zs-gd-thumb></span>
+        <span class="zs-gd__txt">
+          <span class="zs-gd__lab">Votre tongue drum offert</span>
+          <span class="zs-gd__val" data-zs-gd-val></span>
+        </span>
+        <span class="zs-gd__price">
+          <s class="zs-gd__was" data-zs-gd-was></s>
+          <b class="zs-gd__free">0 €</b>
+        </span>
+        <svg class="zs-gd__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+
+      <div class="zs-gd__menu" role="listbox" aria-label="Coloris du tongue drum offert" hidden>
+        {%- for v in gift.variants -%}
+          {%- if v.featured_media -%}
+            {%- assign vimg = v.featured_media | image_url: width: 140 -%}
+          {%- else -%}
+            {%- assign vimg = gift.featured_media | image_url: width: 140 -%}
+          {%- endif -%}
+          <button type="button" class="zs-gd__opt{% if forloop.first %} is-on{% endif %}" role="option" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" data-val="{{ v.title | escape }}" data-img="{{ vimg }}" data-price="{{ v.price | money }}">
+            <span class="zs-gd__oimg"><img src="{{ vimg }}" alt="" decoding="async" width="30" height="30"></span>
+            <span class="zs-gd__oname">{{ v.title }}</span>
+            <span class="zs-gd__price">
+              <s class="zs-gd__was">{{ v.price | money }}</s>
+              <b class="zs-gd__free">0 €</b>
+            </span>
+            <svg class="zs-gd__ochk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          </button>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <input type="hidden" name="properties[Tongue drum offert]" value="" data-zs-gd-input>
+  </div>
+</template>
+
+<style>
+.zs-gd{position:relative;max-width:470px;margin:0 0 12px;padding:11px 12px 12px;border:1px solid #CFE0D6;border-radius:13px;background:#ECF1E8;box-sizing:border-box}
+.zs-gd__tag{display:block;width:fit-content;margin:0 auto;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#fff;background:#2E5E46;padding:3px 9px;border-radius:99px}
+.zs-gd__title{margin:7px 0 9px;font-family:"Playfair Display",Georgia,serif;font-style:italic;font-weight:700;font-size:15.5px;line-height:1.2;text-align:center;color:#22332A}
+.zs-gd__pick{position:relative}
+.zs-gd__trig{display:flex;align-items:center;gap:9px;width:100%;padding:7px 10px;border:1px solid #DFEAE4;border-radius:10px;background:#fff;cursor:pointer;text-align:left;line-height:1;box-sizing:border-box;transition:border-color .15s ease,box-shadow .15s ease}
+.zs-gd__trig:hover{border-color:#9DBBAC}
+.zs-gd[data-open] .zs-gd__trig{border-color:#2E5E46;box-shadow:0 0 0 1px #2E5E46 inset}
+.zs-gd__thumb{flex:0 0 auto;width:30px;height:30px;border-radius:7px;overflow:hidden;background:#fff;display:block}
+.zs-gd__thumb img{width:100%;height:100%;object-fit:contain;display:block}
+.zs-gd__txt{min-width:0;flex:1 1 auto}
+.zs-gd__lab{display:block;font-size:9.5px;line-height:1.25;color:#5A6B60;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zs-gd__val{display:block;margin-top:2px;font-size:12.5px;line-height:1.2;font-weight:600;color:#22332A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zs-gd__price{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:2px;line-height:1}
+.zs-gd__was{font-size:10px;color:#8A968F;text-decoration:line-through;white-space:nowrap}
+.zs-gd__free{font-size:11.5px;font-weight:700;color:#2E5E46;white-space:nowrap}
+.zs-gd__chev{flex:0 0 auto;width:12px;height:12px;color:#5A6B60;transition:transform .18s ease}
+.zs-gd[data-open] .zs-gd__chev{transform:rotate(180deg)}
+.zs-gd__menu{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:40;background:#fff;border:1px solid #DFEAE4;border-radius:10px;box-shadow:0 12px 28px rgba(34,51,42,.18);padding:4px;max-height:300px;overflow-y:auto}
+.zs-gd__menu.is-up{top:auto;bottom:calc(100% + 4px)}
+.zs-gd__menu[hidden]{display:none}
+.zs-gd__opt{display:flex;align-items:center;gap:9px;width:100%;padding:6px 7px;border:0;background:transparent;border-radius:8px;cursor:pointer;text-align:left}
+.zs-gd__opt:hover{background:#F2F7F4}
+.zs-gd__opt.is-on{background:#ECF1E8}
+.zs-gd__oimg{flex:0 0 auto;width:30px;height:30px;border-radius:7px;overflow:hidden;background:#fff;display:block}
+.zs-gd__oimg img{width:100%;height:100%;object-fit:contain;display:block}
+.zs-gd__oname{flex:1 1 auto;font-size:12.5px;line-height:1.25;color:#22332A;min-width:0}
+.zs-gd__ochk{flex:0 0 auto;width:12px;height:12px;color:#2E5E46;opacity:0}
+.zs-gd__opt.is-on .zs-gd__ochk{opacity:1}
+/* La barre collante ne doit porter que le bouton : jamais ce bloc. */
+[class*="sticky-add-to-cart"] .zs-gd{display:none}
+@media(max-width:749px){
+  .zs-gd{max-width:100%;padding:10px 10px 11px}
+  .zs-gd__title{font-size:14.5px;margin:6px 0 8px}
+  .zs-gd__was{font-size:9.5px}
+  .zs-gd__free{font-size:11px}
+}
+</style>
+
+<script>
+(function () {
+  var gd = null;
+
+  /* Le bloc se pose au-dessus du bouton « Ajouter au panier » DE LA FICHE.
+     La barre collante possède un bouton identique : on l'écarte, sinon le bloc
+     la suit au défilement et occupe tout le bas de l'écran. */
+  function anchor() {
+    var tous = document.querySelectorAll('.product-add-to-cart-button');
+    for (var i = 0; i < tous.length; i++) {
+      if (!tous[i].closest('[class*="sticky-add-to-cart"]') &&
+          tous[i].closest('.shopify-section-product-section')) return tous[i];
+    }
+    for (var j = 0; j < tous.length; j++) {
+      if (!tous[j].closest('[class*="sticky-add-to-cart"]')) return tous[j];
+    }
+    return null;
+  }
+
+  function select(opt) {
+    if (!opt || !gd) return;
+    gd.querySelectorAll('.zs-gd__opt').forEach(function (o) {
+      o.classList.toggle('is-on', o === opt);
+      o.setAttribute('aria-selected', o === opt ? 'true' : 'false');
+    });
+    gd.querySelector('[data-zs-gd-val]').textContent = opt.getAttribute('data-val');
+    gd.querySelector('[data-zs-gd-was]').textContent = opt.getAttribute('data-price') || '';
+    gd.querySelector('[data-zs-gd-thumb]').innerHTML =
+      '<img src="' + opt.getAttribute('data-img') + '" alt="" width="30" height="30">';
+    gd.querySelector('[data-zs-gd-input]').value = opt.getAttribute('data-val');
+  }
+
+  function open(v) {
+    if (!gd) return;
+    var menu = gd.querySelector('.zs-gd__menu');
+    var trig = gd.querySelector('.zs-gd__trig');
+    if (v) {
+      menu.hidden = false;
+      var r = trig.getBoundingClientRect();
+      var h = Math.min(menu.scrollHeight + 10, 310);
+      menu.classList.toggle('is-up', r.bottom + h > window.innerHeight - 12 && r.top - h > 8);
+    } else {
+      menu.hidden = true;
+      menu.classList.remove('is-up');
+    }
+    trig.setAttribute('aria-expanded', v ? 'true' : 'false');
+    if (v) { gd.setAttribute('data-open', ''); } else { gd.removeAttribute('data-open'); }
+  }
+
+  function build() {
+    var target = anchor();
+    var tpl = document.getElementById('zs-gd-tpl');
+    if (!tpl || !target || !target.parentNode) return;
+    if (gd && gd.isConnected && gd.nextElementSibling === target) return;
+
+    var keep = gd ? gd.querySelector('[data-zs-gd-input]').value : '';
+    if (gd && gd.parentNode) gd.parentNode.removeChild(gd);
+
+    gd = tpl.content.firstElementChild.cloneNode(true);
+    target.parentNode.insertBefore(gd, target);
+
+    var opts = gd.querySelectorAll('.zs-gd__opt');
+    var start = opts[0];
+    if (keep) {
+      opts.forEach(function (o) { if (o.getAttribute('data-val') === keep) start = o; });
+    }
+    select(start);
+
+    gd.querySelector('.zs-gd__trig').addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      open(gd.querySelector('.zs-gd__menu').hidden);
+    });
+
+    opts.forEach(function (o) {
+      o.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        select(o);
+        open(false);
+      });
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    if (gd && !gd.contains(e.target)) open(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') open(false);
+  });
+
+  function boot() { build(); }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+  setInterval(boot, 900);
+})();
+</script>
+{%- endif -%}

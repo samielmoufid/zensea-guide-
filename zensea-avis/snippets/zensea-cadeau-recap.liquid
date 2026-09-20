@@ -3,8 +3,10 @@
 
   Trois endroits, une seule source de vérité (le produit cadeau et ses coloris) :
     1. fiche handpan, juste SOUS le bouton « Ajouter au panier » : la carte du coloris choisi ;
-    2. fiche handpan, à côté du prix : un prix barré qui inclut la valeur du cadeau ;
-    3. panier et tiroir de panier : la même carte sur chaque ligne qui porte la propriété.
+    2. panier et tiroir de panier : la même carte sur chaque ligne qui porte la propriété.
+
+  La ligne de prix n'est pas touchée : l'économie y est annoncée une seule fois,
+  par le badge du thème.
 
   Le choix du coloris est fait par le widget zensea-cadeau-tongue-drum, qui écrit
   la propriété de ligne « Tongue drum offert ». On se contente de la lire.
@@ -94,25 +96,6 @@
     .zs-cr__was { font-size: 10px; color: #8A968F; text-decoration: line-through; white-space: nowrap; }
     .zs-cr__free { font-size: 11.5px; font-weight: 700; color: #2E5E46; white-space: nowrap; }
 
-    /* Le prix barré à côté du prix du handpan */
-    .zs-cr-eco {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-left: 8px;
-      white-space: nowrap;
-    }
-    .zs-cr-eco__was { color: #8A968F; text-decoration: line-through; font-size: 0.82em; }
-    .zs-cr-eco__pill {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: #2E5E46;
-      background: #E4EDE8;
-      border-radius: 6px;
-      padding: 2px 7px;
-    }
-
     /* Version panier : un peu plus compacte */
     .zs-cr--panier { max-width: 100%; margin: 8px 0 0; padding: 7px 9px 7px 7px; }
     .zs-cr--panier .zs-cr__img { width: 32px; height: 32px; border-radius: 7px; }
@@ -121,8 +104,6 @@
 
     @media (max-width: 749px) {
       .zs-cr { max-width: 100%; }
-      .zs-cr-eco { margin-left: 6px; }
-      .zs-cr-eco__pill { display: none; }
     }
   </style>
 
@@ -173,8 +154,21 @@
         return D.coloris[0].titre;
       }
 
+      function boutonFiche() {
+        /* La barre collante contient un bouton identique : on veut celui de la fiche. */
+        var tous = document.querySelectorAll('.product-add-to-cart-button');
+        for (var i = 0; i < tous.length; i++) {
+          if (tous[i].closest('.shopify-section-product-section') &&
+              !tous[i].closest('[class*="sticky"]')) return tous[i];
+        }
+        for (var j = 0; j < tous.length; j++) {
+          if (!tous[j].closest('[class*="sticky"]')) return tous[j];
+        }
+        return tous[0] || null;
+      }
+
       function poserSousBouton() {
-        var btn = document.querySelector('.product-add-to-cart-button');
+        var btn = boutonFiche();
         if (!btn || !btn.parentNode) return;
         var col = coloriChoisi();
         var deja = btn.parentNode.querySelector(':scope > [data-zs-cr]');
@@ -183,38 +177,6 @@
         var el = carte(col, false);
         el.setAttribute('data-col', col);
         btn.parentNode.insertBefore(el, btn.nextSibling);
-      }
-
-      /* ---------- 2. le prix barré à côté du prix ---------- */
-      function poserPrixBarre() {
-        var btn = document.querySelector('.product-add-to-cart-button[data-price]');
-        if (!btn) return;
-        /* Le tiroir de panier contient un bloc prix identique, plus haut dans le DOM :
-           on reste donc dans la section de la fiche produit. */
-        var cadre = btn.closest('.shopify-section-product-section')
-                 || btn.closest('[class*="product-section"]')
-                 || btn.closest('form')
-                 || btn.parentElement;
-        if (!cadre) return;
-        var prixEl = cadre.querySelector('.product-price-container .prices .price[data-ref="price"]');
-        if (!prixEl && cadre.parentElement) {
-          prixEl = cadre.parentElement.querySelector('.product-price-container .prices .price[data-ref="price"]');
-        }
-        if (!prixEl || !prixEl.parentNode) return;
-        if (prixEl.closest('[class*="cart-drawer"], [class*="cart__"], .cart')) return;
-        var base = parseInt(btn.getAttribute('data-price'), 10);
-        if (!base || isNaN(base)) return;
-        var total = base + D.prix;
-        var eco = prixEl.parentNode.querySelector('[data-zs-cr-eco]');
-        if (!eco) {
-          eco = document.createElement('span');
-          eco.className = 'zs-cr-eco';
-          eco.setAttribute('data-zs-cr-eco', '');
-          prixEl.parentNode.appendChild(eco);
-        }
-        var voulu = '<s class="zs-cr-eco__was">' + euros(total) + '</s>' +
-                    '<span class="zs-cr-eco__pill">−' + euros(D.prix) + '</span>';
-        if (eco.innerHTML !== voulu) eco.innerHTML = voulu;
       }
 
       /* ---------- 3. les lignes du panier ---------- */
@@ -261,7 +223,7 @@
       }
 
       function tout() {
-        if (surFiche) { poserSousBouton(); poserPrixBarre(); }
+        if (surFiche) { poserSousBouton(); }
         poserPanier();
       }
 

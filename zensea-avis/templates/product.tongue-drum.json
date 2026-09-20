@@ -86,7 +86,7 @@
           "settings": {
             "show_on_display": "desktop_and_mobile",
             "product": "{{ closest.product }}",
-            "sales_badge": "percentage",
+            "sales_badge": "amount",
             "show_sales_badge_text": false,
             "show_unit_price": false,
             "text_style": "paragraph",
