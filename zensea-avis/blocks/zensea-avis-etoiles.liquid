@@ -19,6 +19,13 @@
     assign total = donnees.totalCount | plus: 0
   endif
 
+  assign note_entier = note | round
+  if note == note_entier
+    assign note_aff = note_entier
+  else
+    assign note_aff = note
+  endif
+
   assign cliquable = false
   if st.scroll_to_block != blank
     assign cliquable = true
@@ -39,7 +46,7 @@
             {%- if st.custom_rating_text != blank -%}
               {{ st.custom_rating_text }}
             {%- else -%}
-              {{ note }}{% if st.show_max_rating %}/5{% endif %}
+              {{ note_aff }}{% if st.show_max_rating %}/5{% endif %}
             {%- endif -%}
           </span>
         {%- endif -%}

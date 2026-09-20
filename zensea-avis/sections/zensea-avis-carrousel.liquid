@@ -19,6 +19,12 @@
   if resume != blank
     assign moyenne = resume.averageRating | plus: 0
   endif
+  assign moyenne_entier = moyenne | round
+  if moyenne == moyenne_entier
+    assign moyenne_aff = moyenne_entier
+  else
+    assign moyenne_aff = moyenne
+  endif
 -%}
 
 {%- assign retenus = 0 -%}
@@ -88,7 +94,7 @@
         {%- if st.show_average_rating and moyenne > 0 -%}
           <div class="zsa-testimonial-rating">
             {% render 'zsa-etoiles', note: moyenne, couleur: st.star_color, classe: 'zsa-testimonial-stars' %}
-            <span class="zsa-testimonial-average">{{ moyenne }}/5</span>
+            <span class="zsa-testimonial-average">{{ moyenne_aff }}/5</span>
           </div>
         {%- endif -%}
       </div>
