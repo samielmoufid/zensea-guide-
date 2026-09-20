@@ -253,9 +253,13 @@
       box-sizing: border-box;
     }
     .zs-bd__et { color: #FBF9F4; font-size: 12px; line-height: 1; }
-    /* On colle la barre au titre du panier. */
+    /* On colle la barre au titre du panier : la barre est posée DANS l'en-tête,
+       juste sous le titre, et l'en-tête ne garde aucun rembourrage en bas. */
     .cart-drawer__items,
     .cart__items { padding-top: 0; margin-top: 0; }
+    .cart-drawer__header:has(.zs-bd) { padding-bottom: 0 !important; }
+    .cart-drawer__header .zs-bd { width: 100%; flex-basis: 100%; margin-bottom: 0; }
+    .cart-drawer__header .cart-drawer__header_title { margin-bottom: 0 !important; }
 
     /* Ligne « Livraison — Offerte », entre le cadeau et le total. */
     .zs-lv {
@@ -485,6 +489,7 @@
         if (g > 0) bd.style.marginLeft = (-g) + 'px';
         if (d > 0) bd.style.marginRight = (-d) + 'px';
         /* Puis on la colle au titre du panier. */
+        if (bd.closest('.cart-drawer__header')) return;
         var tete = tiroir ? tiroir.querySelector('.cart-drawer__header, header') : null;
         if (tete) {
           var h = Math.round(bd.getBoundingClientRect().top - tete.getBoundingClientRect().bottom);
@@ -492,15 +497,42 @@
         }
       }
 
+      function barre() {
+        var bd = document.createElement('div');
+        bd.className = 'zs-bd';
+        bd.innerHTML = '<span class="zs-bd__et" aria-hidden="true">\u2726</span>' +
+                       '<span>Votre panier est pr\u00eat \u2014 plus qu\u2019une \u00e9tape.</span>';
+        return bd;
+      }
+
       function poserBandeau() {
-        document.querySelectorAll('.cart-drawer__items, .cart__items').forEach(function (zone) {
+        /* Tiroir : la barre va DANS l'en-tête, en dernier, pour qu'il n'y ait
+           structurellement rien entre le titre « Panier » et elle. */
+        document.querySelectorAll('cart-drawer, .cart-drawer').forEach(function (t) {
+          var tete = t.querySelector('.cart-drawer__header');
+          if (!tete) return;
+          if (!t.querySelector('.cart-drawer__item')) return;
+          /* Un bloc d'en-tête vide (jauge non affichée) ne doit pas garder sa place. */
+          tete.querySelectorAll('.cart-header-blocks').forEach(function (e) {
+            if (e.querySelector('.zs-bd')) return;
+            if (!(e.textContent || '').trim() && !e.querySelector('img, svg, progress, input')) {
+              e.style.display = 'none';
+            }
+          });
+          var deja = tete.querySelector('.zs-bd');
+          if (deja) { caler(deja); return; }
+          var bd = barre();
+          tete.appendChild(bd);
+          caler(bd);
+        });
+
+        /* Page panier : au-dessus de la liste. */
+        document.querySelectorAll('.cart__items').forEach(function (zone) {
+          if (zone.closest('cart-drawer, .cart-drawer')) return;
           var avant = zone.previousElementSibling;
           if (avant && avant.classList && avant.classList.contains('zs-bd')) return;
-          if (!zone.querySelector('.cart-drawer__item, .cart__item')) return;
-          var bd = document.createElement('div');
-          bd.className = 'zs-bd';
-          bd.innerHTML = '<span class="zs-bd__et" aria-hidden="true">\u2726</span>' +
-                         '<span>Votre panier est pr\u00eat \u2014 plus qu\u2019une \u00e9tape.</span>';
+          if (!zone.querySelector('.cart__item')) return;
+          var bd = barre();
           zone.parentNode.insertBefore(bd, zone);
           caler(bd);
         });
