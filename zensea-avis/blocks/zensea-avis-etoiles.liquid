@@ -8,7 +8,8 @@
   if st.source == 'global'
     assign donnees = shop.metafields.avis.global.value
   else
-    assign donnees = closest.product.metafields.avis.summary.value
+    assign produit = st.product | default: closest.product
+    assign donnees = produit.metafields.avis.summary.value
   endif
 
   assign note = 0
@@ -189,7 +190,14 @@
 {% schema %}
 {
   "name": "Étoiles (avis Zensea)",
+  "tag": null,
   "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit",
+      "info": "Laissez vide pour utiliser le produit de la page."
+    },
     {
       "type": "select",
       "id": "source",

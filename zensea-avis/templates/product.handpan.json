@@ -79,6 +79,7 @@
         "zensea_avis_etoiles": {
           "type": "zensea-avis-etoiles",
           "settings": {
+            "product": "{{closest.product}}",
             "source": "global",
             "alignment": "left",
             "size": "extra_small",
