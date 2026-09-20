@@ -78,6 +78,11 @@
         {%- endif -%}
         <div class="zsa-testimonial-author">
           <span class="zsa-testimonial-name">{{ affiche }}</span>
+          {%- if st.show_customer_photos and photo == blank and prenom != blank -%}
+            <div class="zsa-testimonial-avatar-badge">
+              <span class="zsa-testimonial-avatar-initial">{{ prenom | slice: 0 | upcase }}</span>
+            </div>
+          {%- endif -%}
         </div>
       </div>
     {%- endfor -%}
@@ -326,6 +331,24 @@
     font-weight: 600;
     color: inherit;
     font-size: 0.9375em;
+  }
+
+  .zsa-testimonial-avatar-badge {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .zsa-testimonial-avatar-initial {
+    font-weight: 600;
+    color: inherit;
+    opacity: 0.6;
+    font-size: 1.25em;
   }
 
   @media (max-width: 768px) {
