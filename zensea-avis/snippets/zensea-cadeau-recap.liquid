@@ -98,11 +98,33 @@
     .zs-cr__was { font-size: 10px; color: #8A968F; text-decoration: line-through; white-space: nowrap; }
     .zs-cr__free { font-size: 11.5px; font-weight: 700; color: #2E5E46; white-space: nowrap; }
 
-    /* La barre fixe ne porte que « Ajouter au panier », sur une seule ligne. */
-    sticky-add-to-cart .button__separator,
-    sticky-add-to-cart .product-price-container { display: none !important; }
-    sticky-add-to-cart .button__content { white-space: nowrap; }
-    sticky-add-to-cart .zs-cr { display: none !important; }
+    /* La barre fixe porte « Ajouter au panier » puis le prix et le prix barré,
+       sur une seule ligne. Pas de badge d'économie, pas de bloc cadeau. */
+    sticky-add-to-cart .badge--sale { display: none !important; }
+    sticky-add-to-cart .zs-cr,
+    sticky-add-to-cart .zs-gd { display: none !important; }
+
+    sticky-add-to-cart .button__content {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    sticky-add-to-cart .product-price-container,
+    sticky-add-to-cart .price-container {
+      display: inline-flex;
+      align-items: baseline;
+      margin: 0;
+    }
+    sticky-add-to-cart .prices {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    sticky-add-to-cart .compare-at-price { opacity: .62; }
 
     /* Version panier : un peu plus compacte */
     .zs-cr--panier { max-width: 100%; margin: 8px 0 0; padding: 7px 9px 7px 7px; }
