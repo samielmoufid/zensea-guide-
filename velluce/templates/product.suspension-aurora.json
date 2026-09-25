@@ -1027,7 +1027,8 @@
         "limite": 50,
         "padding_top": 8,
         "padding_bottom": 8
-      }
+      },
+      "disabled": true
     },
     "faq_premium_Jj3fCF": {
       "type": "faq-premium",
