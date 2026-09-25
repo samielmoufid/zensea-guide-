@@ -15,9 +15,22 @@
     assign resume = shop.metafields.avis.global.value
   endif
 
+  # Secours : si les métachamps venaient à disparaître, on retombe sur les
+  # cartes figées livrées avec le thème.
+  assign secours = false
+  if st.source == 'produit' and bruts == blank
+    assign secours = true
+    capture note_secours
+      render 'velluce-avis-note'
+    endcapture
+    assign note_secours = note_secours | strip
+  endif
+
   assign moyenne = 0
   if resume != blank
     assign moyenne = resume.averageRating | plus: 0
+  elsif note_secours != blank
+    assign moyenne = note_secours | plus: 0
   endif
   assign moyenne_entier = moyenne | round
   if moyenne == moyenne_entier
@@ -38,6 +51,10 @@
 {%- elsif st.source == 'top' -%}
   {%- capture vla_cartes -%}{%- render 'velluce-avis-vitrine-top', st: st -%}{%- endcapture -%}
   {%- assign retenus = 50 -%}
+{%- elsif secours -%}
+  {%- capture vla_cartes -%}{%- render 'velluce-avis-secours', st: st -%}{%- endcapture -%}
+  {%- assign vla_test = vla_cartes | strip -%}
+  {%- if vla_test != blank -%}{%- assign retenus = 1 -%}{%- endif -%}
 {%- elsif bruts != blank -%}
   {%- capture vla_cartes -%}
     {%- for a in bruts -%}
