@@ -1,0 +1,868 @@
+{%- comment -%} Vitrine, partie 4/4. {%- endcomment -%}
+  {%- assign p = 162 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Installé tout seul en un rien de temps</h4>
+        <p class="vla-testimonial-text">Livraison rapide et ça fonctionne très bien. Je l'ai installé moi-même, c'est tout à fait faisable tellement le montage est simple. Il ne reste plus qu'à décorer autour.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S950f553f60514da3b518318514a4c6719.webp?v=1790367609" alt="Installé tout seul en un rien de temps" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Axel Q.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 163 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Ça fonctionne parfaitement</h4>
+        <p class="vla-testimonial-text">C'est top, ça fonctionne bien et la livraison est arrivée rapidement.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sc301cd0ea8344c1987133b60e3a62b4ck.webp?v=1790367610" alt="Ça fonctionne parfaitement" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Baptiste E.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 164 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Installé facilement avec la notice</h4>
+        <p class="vla-testimonial-text">La livraison a été rapide et le produit me plaît. Je l'ai installé facilement en suivant la notice. Il va falloir que j'en rachète pour équiper une autre pièce.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Se7e1970ace994362a0aab52d54fec078e.webp?v=1790368515" alt="Installé facilement avec la notice" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Colette T.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 165 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Arrivé en 3 jours</h4>
+        <p class="vla-testimonial-text">Il est arrivé en 3 jours ! Avant l'installation, j'ai regardé la vidéo de montage et j'ai trouvé une solive solide au plafond, donc l'installation n'a pas été difficile. La qualité est très bonne. J'espère juste qu'il durera longtemps.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Scdd0af0d94b048bdba972788fdc81850S.webp?v=1790368515" alt="Arrivé en 3 jours" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Malo D.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 166 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Bien reçu, merci</h4>
+        <p class="vla-testimonial-text">Bien reçu, merci beaucoup, vraiment merci pour tout.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S1595434f5bd041a39aa10a9c0701687d6.webp?v=1790367723" alt="Bien reçu, merci" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Khalil T.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 167 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Bien reçu, merci pour le service</h4>
+        <p class="vla-testimonial-text">Bien reçu, merci beaucoup, un grand merci pour le service.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Se7a28473695c4eefad7b34d69f53bcd3g.webp?v=1790367723" alt="Bien reçu, merci pour le service" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Nesrine C.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 168 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Livraison rapide, belle qualité</h4>
+        <p class="vla-testimonial-text">Livraison rapide et produit très bien, excellente qualité.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S19c66d6e95b74a6b9f6e3de9c29b8405N.webp?v=1790367609" alt="Livraison rapide, belle qualité" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Alexandre T.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 169 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">La pièce est devenue très agréable</h4>
+        <p class="vla-testimonial-text">L'installation a été très facile, j'ai passé plus de temps sur le renforcement que sur le reste. La qualité est vraiment là, et la pièce est devenue super agréable. Je vais devoir en racheter pour équiper toutes les pièces.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S8b770c45a62c4262863de025651d4624w.webp?v=1790367670" alt="La pièce est devenue très agréable" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Daniel A.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 170 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Plus robuste que prévu</h4>
+        <p class="vla-testimonial-text">Il est bien plus robuste et bien meilleur que ce à quoi je m'attendais, du coup j'en ai racheté un. On dirait qu'on peut en installer dans chaque pièce. Il rafraîchit très bien et il est silencieux.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sced4de7c8e54484182e59034c552856dF.webp?v=1790368515" alt="Plus robuste que prévu" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Marceau C.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 171 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">J'en rachète pour la chambre des enfants</h4>
+        <p class="vla-testimonial-text">Il est facile à installer et le produit est vraiment bon, donc j'en rachète un pour la chambre des enfants.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S8f6b25afa52f4d8ca0ebd1c95924cf2ex.webp?v=1790368515" alt="J&#x27;en rachète pour la chambre des enfants" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Suzanne S.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 172 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">La pièce est plus fraîche et agréable</h4>
+        <p class="vla-testimonial-text">Après avoir installé le ventilateur de plafond, la pièce est devenue plus agréable et plus fraîche. Le design est beau et je suis satisfait ! L'installation n'a pas été aussi difficile que je le craignais, j'aime beaucoup.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sa6df91833d974d0c8a6e044355d025eap.webp?v=1790367724" alt="La pièce est plus fraîche et agréable" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Swann V.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 173 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Je vais dormir au frais cet été</h4>
+        <p class="vla-testimonial-text">La luminosité est plus faible que mon ancien plafonnier, mais ce n'est pas sombre pour autant, et une seule vitesse suffit à sentir la fraîcheur, c'est agréable. Je vais bien dormir cet été !</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sc7b0672cf0db4e36b1a516709d19b1a5G.webp?v=1790367609" alt="Je vais dormir au frais cet été" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Anna E.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 174 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Même en étant peu bricoleur</h4>
+        <p class="vla-testimonial-text">Je suis un peu maladroit, donc je me suis fait aider, mais le produit est vraiment super.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sc7179ab13203432a90e45c8a30c1f536K.webp?v=1790367609" alt="Même en étant peu bricoleur" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Océane H.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 175 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Silencieux jusqu'à la vitesse 3</h4>
+        <p class="vla-testimonial-text">C'est très bien fabriqué, et la finition est excellente. Il n'y a quasiment aucun bruit des vitesses 1 à 3, le bruit du souffle apparaît vers les vitesses 5 et 6. La teinte de la lumière peut être changée entre trois options, en éteignant et rallumant plutôt qu'avec un bouton dédié. Si vous cherchez un souffle doux, c'est un choix très satisfaisant.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sc45c06c6513748c48db61f48b02ceda5b.webp?v=1790367670" alt="Silencieux jusqu&#x27;à la vitesse 3" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Thierry J.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 176 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Un très très bon produit</h4>
+        <p class="vla-testimonial-text">C'est un très très très bon produit. Il fonctionne bien, il rafraîchit et la qualité est excellente. J'ai envie d'en racheter plusieurs.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S2816335eaf1649b5b8439e8d79e2e087u.webp?v=1790368515" alt="Un très très bon produit" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Olympe B.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 177 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Frais et facile à installer</h4>
+        <p class="vla-testimonial-text">Il rafraîchit très bien et il est facile à installer. Je crois que j'ai fait un bon achat.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sc2632875990940428d49cafb14dbf273h.webp?v=1790367723" alt="Frais et facile à installer" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Tarik S.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 178 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Emballage nickel, livraison rapide</h4>
+        <p class="vla-testimonial-text">La livraison est rapide et l'emballage est en bon état. N'hésitez pas à commander ici.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sf44d3c28e17547d0b6f1a2ceebe014311.webp?v=1790367609" alt="Emballage nickel, livraison rapide" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Margaux T.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 179 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Il remplace vraiment la clim</h4>
+        <p class="vla-testimonial-text">C'est le meilleur. Il remplace complètement le ventilateur classique, et je n'ai même pas encore allumé la climatisation. Vraiment le top.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S5d69dbd8e0ba43c3a1b648e55f6ee761U.webp?v=1790368515" alt="Il remplace vraiment la clim" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Jean-Louis R.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 180 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">J'en ai repris pour chaque pièce</h4>
+        <p class="vla-testimonial-text">Après l'avoir installé dans le salon, j'en ai racheté pour équiper chaque pièce. Il rafraîchit vraiment bien et il fait même éclairage : excellent choix !!</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S8e0fa34df3274801968183dc6087bf25i.webp?v=1790368515" alt="J&#x27;en ai repris pour chaque pièce" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Léon G.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 181 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Un deuxième pour la chambre</h4>
+        <p class="vla-testimonial-text">Je l'adore, c'est mon deuxième achat. Celui du salon m'a tellement plu que j'en ai pris un pour la chambre parentale.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S1920c9fdeb9b4d0c93e84e75d7416407N.webp?v=1790368515" alt="Un deuxième pour la chambre" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Lucienne V.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 182 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Il remplace complètement le ventilateur</h4>
+        <p class="vla-testimonial-text">C'est le meilleur. Il remplace complètement le ventilateur classique, et je n'ai même pas encore allumé la climatisation.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S5d69dbd8e0ba43c3a1b648e55f6ee761U.webp?v=1790368515" alt="Il remplace complètement le ventilateur" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Naël T.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 183 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Je n'ai pas allumé la clim de l'été</h4>
+        <p class="vla-testimonial-text">C'est le meilleur. Il remplace complètement le ventilateur classique, et je n'ai même pas allumé la climatisation de l'été.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S5d69dbd8e0ba43c3a1b648e55f6ee761U.webp?v=1790368515" alt="Je n&#x27;ai pas allumé la clim de l&#x27;été" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Aurore C.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 184 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Livraison rapide, montage simple</h4>
+        <p class="vla-testimonial-text">La livraison a été rapide et l'installation n'a pas été difficile. C'est tout à fait faisable avec un peu d'huile de coude. Essayez, vous ne le regretterez pas !</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S4bb1414b24a54970af6a42ebe52a17e3U.webp?v=1790367723" alt="Livraison rapide, montage simple" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Rania G.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 185 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Installé et testé, ça marche</h4>
+        <p class="vla-testimonial-text">Je viens de finir l'installation et de le faire tourner, il fonctionne bien. Je pense que ce sera un bon complément à la climatisation cet été.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sa1874b2ba85b4ebeb5b3db8145b4d38cA.webp?v=1790368516" alt="Installé et testé, ça marche" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Églantine R.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 186 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Frais dès la vitesse 2</h4>
+        <p class="vla-testimonial-text">Entièrement satisfait... L'installation a pris un peu de temps, mais le résultat est top. Même en vitesse 2, le souffle est frais et il n'y a quasiment aucun bruit. Très bien ^^</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S7808b499b1d141f3aa180262c3e16860e.webp?v=1790367723" alt="Frais dès la vitesse 2" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Ulysse H.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 187 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Arrivé intact et très vite</h4>
+        <p class="vla-testimonial-text">La qualité a l'air très bonne. La livraison a été très rapide. Le luminaire est en parfait état, il n'a pas été abîmé pendant le transport.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S1ed0f765bbf746c19b0ce47ea716e683H.webp?v=1790367512" alt="Arrivé intact et très vite" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Malik J.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 188 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">J'ai vraiment bien fait de le prendre</h4>
+        <p class="vla-testimonial-text">Super, j'ai vraiment bien fait de le prendre. Je pense qu'il va bien me servir. Merci.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sc7c69c74a8bb49c08c1e96c07f63b3a2k.webp?v=1790367609" alt="J&#x27;ai vraiment bien fait de le prendre" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Lola M.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 189 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Plus frais que ce que j'imaginais</h4>
+        <p class="vla-testimonial-text">Le souffle est plus frais que ce à quoi je m'attendais, et l'installation n'est pas compliquée du tout... Je suis vraiment satisfait. L'éclairage n'est pas trop faible non plus.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sb51f2ff2819f43028b3042d2b363dfc9z.webp?v=1790367609" alt="Plus frais que ce que j&#x27;imaginais" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Gabin C.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 190 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Il fonctionne très bien une fois branché</h4>
+        <p class="vla-testimonial-text">Très bien. Chez nous il y avait plusieurs câbles, ce qui a compliqué un peu les choses. J'ai identifié les fils à raccorder et vérifié que tout était bien branché. Ça fonctionne bien et je suis très satisfait après l'installation.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S7249ef2ff7f543ce85d8427f4a47c2d7N.webp?v=1790367670" alt="Il fonctionne très bien une fois branché" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Kylian N.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 191 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Des performances au-delà des attentes</h4>
+        <p class="vla-testimonial-text">Le produit est plutôt bon. Dans une chambre parentale de 33 m², l'éclairage est légèrement plus faible que mes anciennes LED. C'est logique vu le nombre de LED. Pour un salon, un éclairage d'appoint me semble indispensable. Les performances du ventilateur, elles, dépassent les attentes. Aucune vibration, et la vitesse est réglable. J'espère juste qu'il durera longtemps.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S7038d79bd1494b4da597850d16ad2d54Q.webp?v=1790367670" alt="Des performances au-delà des attentes" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Nathalie Z.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 192 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Installé moi-même sans souci</h4>
+        <p class="vla-testimonial-text">Je l'ai installé moi-même. Comme le plafond était déjà équipé de spots encastrés, j'ai percé au milieu et trouvé un point renforcé pour la fixation. Il n'y avait pas de chevilles à expansion, j'en ai acheté et j'ai renforcé davantage. L'alimentation permanente est un plus, mais comme les spots encastrés étaient déjà en place, je me contente pour l'instant d'allumer et d'éteindre, et j'utilise la télécommande pour le ventilateur. Il rafraîchit bien. J'envisage d'en installer dans les autres pièces aussi.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S0f48a0f30bca4521a02f9370285534a5C.webp?v=1790367671" alt="Installé moi-même sans souci" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Martine G.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 193 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Bon matériau et pose facile</h4>
+        <p class="vla-testimonial-text">Le matériau est bon, la taille est bonne et l'installation est facile. Ça aurait été mieux si la télécommande permettait de piloter l'éclairage plus simplement. La lumière est plus forte que prévu.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S70d7a8e2a8b14e0091b5ad0894d32d94z.webp?v=1790367670" alt="Bon matériau et pose facile" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Monique L.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 194 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Le modèle Astréa tient ses promesses</h4>
+        <p class="vla-testimonial-text">L'applique murale LED orientable Astréa est vraiment pratique : on oriente le faisceau exactement où on veut et le design reste très épuré.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A2e7d2e397d2f44a3a8deb2b52fd127727.webp?v=1790367511" alt="Le modèle Astréa tient ses promesses" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Eulalie C.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 195 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Service client et livraison au top</h4>
+        <p class="vla-testimonial-text">Merci pour le service client vraiment à l'écoute et pour la rapidité de livraison. Cette suspension est superbe dans mon salon, elle a été très facile à installer et à ajuster. Je recommande vraiment Velluce, merci beaucoup.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Aec05fc4d89214e5099bd11c26da07831j.webp?v=1790367477" alt="Service client et livraison au top" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Isidore Y.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 196 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Câbles certifiés, ampoule de qualité</h4>
+        <p class="vla-testimonial-text">Conforme en tension, avec des câbles certifiés, et l'ampoule fournie est de bonne qualité.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sdae69e0c76ba41d5b852066b6c5663cde.webp?v=1790367606" alt="Câbles certifiés, ampoule de qualité" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Milan P.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 197 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Une expédition impressionnante</h4>
+        <p class="vla-testimonial-text">La rapidité d'expédition est impressionnante, très satisfait.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S3aa75d78b7044b5791c2f82208827cf4g.webp?v=1790367606" alt="Une expédition impressionnante" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Tessa N.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 198 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Le mélange de couleurs est parfait</h4>
+        <p class="vla-testimonial-text">Le mélange de couleurs est vraiment un excellent choix.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sdd28728b09ad4f6fa35fd9594185d1cbl.webp?v=1790367606" alt="Le mélange de couleurs est parfait" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Lya F.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 199 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Livré en 5 jours</h4>
+        <p class="vla-testimonial-text">Livré en 5 jours, très rapide.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S8c8f79b6c4eb44fea1657e6ad3b76c68J.webp?v=1790367606" alt="Livré en 5 jours" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Tiago V.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 200 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Qualité parfaite</h4>
+        <p class="vla-testimonial-text">Qualité parfaite.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S9f562a1dab884dc9bc965f9e91fcc9e2F.webp?v=1790367607" alt="Qualité parfaite" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Naïm H.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 201 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Ma deuxième commande, parfaite pour la salle de bain</h4>
+        <p class="vla-testimonial-text">Très joli luminaire, c'est la deuxième fois que je le commande. Il est parfait pour une salle de bain.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A800222ae2db3484aa5e47d8a0c3d9b50K.webp?v=1790367527" alt="Ma deuxième commande, parfaite pour la salle de bain" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Pénélope H.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 202 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Facile à poser et peu bruyant</h4>
+        <p class="vla-testimonial-text">Facile à installer, fonctionne bien et fait peu de bruit ! Le souffle est frais, parfait pour les petites pièces sans climatisation. Vraiment une belle qualité ! N'hésitez pas !</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S6d18222bdb1e412b89dfcb07e1f51e18R.webp?v=1790367670" alt="Facile à poser et peu bruyant" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Béatrice T.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 203 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Une vraie pierre, épaisse et qualitative</h4>
+        <p class="vla-testimonial-text">Les murs de ma maison ont une finition à la peinture à l'huile et la forme irrégulière de cette applique s'accorde très bien avec. Je suis très satisfait. La pierre est épaisse et de belle qualité, ça n'a rien à voir avec les modèles bas de gamme qu'on trouve ailleurs. Je recommande Velluce.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Ac13e50bb82844e48b30b802114b3665bw.webp?v=1790367512" alt="Une vraie pierre, épaisse et qualitative" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Karine E.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 204 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Très professionnels</h4>
+        <p class="vla-testimonial-text">Je recommande vivement Velluce, très professionnel, et les accessoires fournis sont de qualité.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Se49952bebebc4f97bf001d6c4218a8feN.webp?v=1790367606" alt="Très professionnels" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Lenny A.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 205 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">J'adore l'effet lave multicolore</h4>
+        <p class="vla-testimonial-text">J'aime beaucoup le lustre effet lave multicolore.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S0863f453fdf2469d9ff97bf011c14835E.webp?v=1790367606" alt="J&#x27;adore l&#x27;effet lave multicolore" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Lana E.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 206 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Installation sans souci</h4>
+        <p class="vla-testimonial-text">L'installation s'est bien passée.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S82bff992969b4a84968e37afdd5c2b1fq.webp?v=1790367605" alt="Installation sans souci" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Elena J.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 207 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Une aide très précieuse</h4>
+        <p class="vla-testimonial-text">Velluce a été d'une grande aide. Je recommande.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S1d92215a7f5a4e849125369bd234b358c.webp?v=1790367606" alt="Une aide très précieuse" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Sienna K.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 208 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Mes clients l'adorent</h4>
+        <p class="vla-testimonial-text">Mes clients apprécient beaucoup ce produit en ce moment. Je reviendrai chez Velluce pour sélectionner d'autres modèles.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sde7b4256b4194f909e646d2bd81e663eZ.webp?v=1790367512" alt="Mes clients l&#x27;adorent" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Loïs Z.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 209 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Très joli et livré vite</h4>
+        <p class="vla-testimonial-text">Très joli. Et surtout, la livraison a été très rapide.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S51719caa8eaa431bbe9250f89b1dd8d0N.webp?v=1790367477" alt="Très joli et livré vite" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Loan F.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 210 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">Un rendu vraiment joli</h4>
+        <p class="vla-testimonial-text">J'ai installé les luminaires aujourd'hui, le rendu est vraiment joli.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S94d9142917354eae9872fdb71602a9d3I.webp?v=1790367478" alt="Un rendu vraiment joli" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Liya Z.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 211 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">De la vraie pierre, livraison rapide</h4>
+        <p class="vla-testimonial-text">Tout est parfait : livraison rapide, excellente qualité, et c'est de la vraie pierre, ça se voit tout de suite.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A5ad6cd3a991240e995a800ff7e21fb8cP.webp?v=1790367527" alt="De la vraie pierre, livraison rapide" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Quentin J.</span>
+        </div>
+      </div>
+  {%- endif -%}
+  {%- assign p = 212 | minus: dep -%}{%- if p < 0 -%}{%- assign p = p | plus: total -%}{%- endif -%}
+  {%- if p < fenetre -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: 5, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        <h4 class="vla-testimonial-review-title">On était sceptiques, on a adoré</h4>
+        <p class="vla-testimonial-text">Vraiment un très bon achat. On était sceptiques sur son utilité, mais les différentes vitesses créent un joli brassage d'air, et l'éclairage supplémentaire peut être allumé fort ou tamisé, il éclaire bien la pièce.</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if st.show_customer_photos -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A45173abcae8c4e5b8bd77a10027309dbr.webp?v=1790367672" alt="On était sceptiques, on a adoré" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">Laurent R.</span>
+        </div>
+      </div>
+  {%- endif -%}
