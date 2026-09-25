@@ -7,7 +7,7 @@
         <h4 class="vla-testimonial-review-title">Parfaite au-dessus de la table</h4>
         <p class="vla-testimonial-text">La lumière au-dessus de la table à manger est superbe, c'est exactement l'ambiance que je cherchais.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Ac0fb817744094b39996867bcff79ca6fY.webp?v=1790367478" alt="Parfaite au-dessus de la table" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -25,7 +25,7 @@
         <h4 class="vla-testimonial-review-title">Exactement le luminaire que je voulais</h4>
         <p class="vla-testimonial-text">C'est exactement la suspension que je voulais pour ma salle à manger, parfaite du premier coup.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A4ac2699f504d4f0cb0c3fbc1997a28b0L.webp?v=1790367478" alt="Exactement le luminaire que je voulais" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -43,7 +43,7 @@
         <h4 class="vla-testimonial-review-title">Un rendu unique et plein d'ambiance</h4>
         <p class="vla-testimonial-text">Le rendu après installation est superbe, très original et vraiment plein d'atmosphère.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A8bd9dcf4b50a4d87ba6c035864a56b0bm.webp?v=1790367478" alt="Un rendu unique et plein d&#x27;ambiance" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -61,7 +61,7 @@
         <h4 class="vla-testimonial-review-title">Idéale pour une salle à manger</h4>
         <p class="vla-testimonial-text">Superbe suspension, parfaitement adaptée à une salle à manger. Elle donne du caractère à la pièce.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sc55fe10669f94e16bd8013eb31a3b97eu.webp?v=1790367478" alt="Idéale pour une salle à manger" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -79,7 +79,7 @@
         <h4 class="vla-testimonial-review-title">Installée dans la salle à manger</h4>
         <p class="vla-testimonial-text">Installée au-dessus de la table de la salle à manger, le rendu est parfait. Je ne regrette pas mon choix.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S263d44d28b08477490de3e641f6f7887B.webp?v=1790367478" alt="Installée dans la salle à manger" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -97,7 +97,7 @@
         <h4 class="vla-testimonial-review-title">Encore plus belle qu'en photo</h4>
         <p class="vla-testimonial-text">En vrai elle est bien plus impressionnante que sur les photos. Elle dégage une vraie atmosphère et mes amis la trouvent superbe.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S01dd3ce3ed1a4077a0fe73e6c87172b3Q.webp?v=1790367478" alt="Encore plus belle qu&#x27;en photo" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -117,7 +117,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Vianney C.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">V</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -131,7 +130,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Wilfried V.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">W</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -143,7 +141,7 @@
         <h4 class="vla-testimonial-review-title">Un emballage vraiment soigné</h4>
         <p class="vla-testimonial-text">L'emballage est très bien fait, de la mousse dans tout le carton. La suspension est superbe, je suis très satisfait.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sb55002bb30134f0082550bdd8b3b9d1eE.webp?v=1790367478" alt="Un emballage vraiment soigné" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -161,7 +159,7 @@
         <h4 class="vla-testimonial-review-title">Excellente qualité, emballage au top</h4>
         <p class="vla-testimonial-text">Excellente qualité et emballage très soigné. Je recommande vraiment ce fabricant.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A626c81b4321f441db21cdb026ab4be37s.webp?v=1790367478" alt="Excellente qualité, emballage au top" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -179,7 +177,7 @@
         <h4 class="vla-testimonial-review-title">Le design est fidèle aux photos</h4>
         <p class="vla-testimonial-text">Le design est très réussi et parfaitement fidèle aux photos du site. Aucune mauvaise surprise.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Af6885d2710684227901538d7f99ad7e9K.webp?v=1790367478" alt="Le design est fidèle aux photos" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -199,7 +197,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Apolline F.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">A</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -211,7 +208,7 @@
         <h4 class="vla-testimonial-review-title">Le rendu est magnifique</h4>
         <p class="vla-testimonial-text">C'est magnifique, le rendu est superbe une fois installée. Merci beaucoup.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A362807036c38432f9f70e2c7e0511c44e.webp?v=1790367478" alt="Le rendu est magnifique" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -229,7 +226,7 @@
         <h4 class="vla-testimonial-review-title">Encore mieux en vrai</h4>
         <p class="vla-testimonial-text">En vrai c'est bluffant, la qualité est vraiment bonne. Elle rend encore mieux que sur l'écran.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S71efd1bff0e34b6399f8dd04844ab9ccY.webp?v=1790367479" alt="Encore mieux en vrai" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -247,7 +244,7 @@
         <h4 class="vla-testimonial-review-title">Bien emballée et très jolie</h4>
         <p class="vla-testimonial-text">La suspension est bien emballée et le rendu est très joli. Rien à redire.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A50326c725afa4b4188ed8a36df079218n.webp?v=1790367479" alt="Bien emballée et très jolie" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -267,7 +264,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Élouan E.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">É</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -279,7 +275,7 @@
         <h4 class="vla-testimonial-review-title">Conforme à la photo</h4>
         <p class="vla-testimonial-text">Conforme à la photo, le rendu est exactement celui que j'espérais. Rien à signaler.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S12f67afc51404778b82f0ef9e1312dcbc.webp?v=1790367479" alt="Conforme à la photo" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -297,7 +293,7 @@
         <h4 class="vla-testimonial-review-title">Elle ne reste pas horizontale</h4>
         <p class="vla-testimonial-text">Le point d'équilibre de la suspension n'est pas bon : elle penche d'un côté et ne reste pas horizontale. On m'a répondu qu'il fallait l'ajuster soi-même, mais je ne comprends pas : une suspension devrait être parfaitement de niveau dès la sortie du carton, et il n'y a pas de réglage prévu pour ça. Vraiment déçu, elle avait l'air si jolie.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A2fcab6bc10cd4b7a88e63ffdb06bf85dB.webp?v=1790367478" alt="Elle ne reste pas horizontale" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -315,7 +311,7 @@
         <h4 class="vla-testimonial-review-title">Jolie, mais plus belle en photo qu'en vrai</h4>
         <p class="vla-testimonial-text">Elle est mignonne, mais comme souvent le rendu est plus flatteur sur les photos qu'en réalité. Ça reste un joli objet, simplement un peu moins impressionnant que ce que j'imaginais.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A1086df13b87d46978ba943845f74abb7Y.webp?v=1790367478" alt="Jolie, mais plus belle en photo qu&#x27;en vrai" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -333,7 +329,7 @@
         <h4 class="vla-testimonial-review-title">Service client et livraison au top</h4>
         <p class="vla-testimonial-text">Merci pour le service client vraiment à l'écoute et pour la rapidité de livraison. Cette suspension est superbe dans mon salon, elle a été très facile à installer et à ajuster. Je recommande vraiment Velluce, merci beaucoup.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Aec05fc4d89214e5099bd11c26da07831j.webp?v=1790367477" alt="Service client et livraison au top" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -351,7 +347,7 @@
         <h4 class="vla-testimonial-review-title">Joli, mais finition à revoir sur le support</h4>
         <p class="vla-testimonial-text">Le support du luminaire avait une trace de peinture et la pièce qui masque le trou au plafond est un peu petite. L'objet reste joli, mais ces détails méritent d'être corrigés.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A8430b716dc074d59a5b68fb32fe1aad0V.webp?v=1790367478" alt="Joli, mais finition à revoir sur le support" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -371,7 +367,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Kévin M.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">K</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -385,7 +380,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Lubin L.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">L</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -399,7 +393,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Maylis D.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">M</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -413,7 +406,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Nicaise R.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">N</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -427,7 +419,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Oriane P.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">O</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -441,7 +432,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Prudence C.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">P</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}

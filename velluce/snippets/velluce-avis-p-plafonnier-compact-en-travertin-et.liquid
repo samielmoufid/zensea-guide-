@@ -7,7 +7,7 @@
         <h4 class="vla-testimonial-review-title">Belle finition, mais ampoule qui dépasse</h4>
         <p class="vla-testimonial-text">La lampe est arrivée bien emballée, la qualité est là et les matériaux (bois, travertin) sont conformes à la description. Elle est aussi assez facile à installer. Pour tout ça, je mettrais cinq étoiles. Mais l'ampoule fournie, une E27 de type boule très compacte, dépasse de l'abat-jour, ce qui crée une lumière éblouissante et désagréable. Sur les photos, l'ampoule est bien contenue dans l'abat-jour. Comme la lampe me plaît, je vais peut-être reprendre un modèle avec un abat-jour plus long.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Aa3b4774970d7491a8589499a75af821b9.webp?v=1790367514" alt="Belle finition, mais ampoule qui dépasse" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -27,7 +27,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Fleur L.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">F</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -39,7 +38,7 @@
         <h4 class="vla-testimonial-review-title">Livraison rapide, qualité au rendez-vous</h4>
         <p class="vla-testimonial-text">Produit de bonne qualité, la livraison a été excellente et rapide. Je recommande ce luminaire, il est vraiment beau.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A2193a175d7c2440cada6f0e9ac31f95as.webp?v=1790367512" alt="Livraison rapide, qualité au rendez-vous" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -59,7 +58,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Honorine R.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">H</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -71,7 +69,7 @@
         <h4 class="vla-testimonial-review-title">Pierre mate, suivi impeccable</h4>
         <p class="vla-testimonial-text">Très satisfait : expédition très rapide et bon suivi de commande. L'article est très joli et la pierre est bien mate, exactement comme je le voulais.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A08d34593db2d46f2891a850f657711d6f.webp?v=1790367512" alt="Pierre mate, suivi impeccable" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -91,7 +89,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Jasmine C.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">J</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -103,7 +100,7 @@
         <h4 class="vla-testimonial-review-title">Très bien protégé à la livraison</h4>
         <p class="vla-testimonial-text">Vraiment magnifique, et arrivé très bien protégé dans son emballage.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Ad0c87ddd69ac47588faece2adbf899e58.webp?v=1790367512" alt="Très bien protégé à la livraison" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -123,7 +120,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Léopoldine G.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">L</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -137,7 +133,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Marius S.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">M</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -151,7 +146,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Nine A.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">N</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -165,7 +159,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Oscar F.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">O</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -177,7 +170,7 @@
         <h4 class="vla-testimonial-review-title">Ma deuxième commande, parfaite pour la salle de bain</h4>
         <p class="vla-testimonial-text">Très joli luminaire, c'est la deuxième fois que je le commande. Il est parfait pour une salle de bain.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A800222ae2db3484aa5e47d8a0c3d9b50K.webp?v=1790367527" alt="Ma deuxième commande, parfaite pour la salle de bain" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -195,7 +188,7 @@
         <h4 class="vla-testimonial-review-title">De la vraie pierre, livraison rapide</h4>
         <p class="vla-testimonial-text">Tout est parfait : livraison rapide, excellente qualité, et c'est de la vraie pierre, ça se voit tout de suite.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A5ad6cd3a991240e995a800ff7e21fb8cP.webp?v=1790367527" alt="De la vraie pierre, livraison rapide" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>

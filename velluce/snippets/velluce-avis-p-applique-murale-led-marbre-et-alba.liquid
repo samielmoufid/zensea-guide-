@@ -9,7 +9,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Joachim N.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">J</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -21,7 +20,7 @@
         <h4 class="vla-testimonial-review-title">Une vraie pierre, épaisse et qualitative</h4>
         <p class="vla-testimonial-text">Les murs de ma maison ont une finition à la peinture à l'huile et la forme irrégulière de cette applique s'accorde très bien avec. Je suis très satisfait. La pierre est épaisse et de belle qualité, ça n'a rien à voir avec les modèles bas de gamme qu'on trouve ailleurs. Je recommande Velluce.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Ac13e50bb82844e48b30b802114b3665bw.webp?v=1790367512" alt="Une vraie pierre, épaisse et qualitative" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -39,7 +38,7 @@
         <h4 class="vla-testimonial-review-title">Mes clients l'adorent</h4>
         <p class="vla-testimonial-text">Mes clients apprécient beaucoup ce produit en ce moment. Je reviendrai chez Velluce pour sélectionner d'autres modèles.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sde7b4256b4194f909e646d2bd81e663eZ.webp?v=1790367512" alt="Mes clients l&#x27;adorent" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -59,7 +58,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Mariette K.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">M</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -73,7 +71,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Nolwenn Q.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">N</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -87,7 +84,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Octavie Y.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">O</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}

@@ -72,7 +72,10 @@
             assign photo = base | append: '.webp' | file_url
           endunless
         endif
-        unless st.show_customer_photos
+        # Règle reprise de l'application : les photos ne s'affichent que dans les
+        # carrousels réglés sur « uniquement les avis avec photo ». Ailleurs, elle
+        # n'en montrait aucune.
+        unless st.show_customer_photos and st.show_only_with_images
           assign photo = ''
         endunless
         assign actif = a.isActive

@@ -7,7 +7,7 @@
         <h4 class="vla-testimonial-review-title">J'ai bien fait de les choisir</h4>
         <p class="vla-testimonial-text">Après avoir longtemps comparé, j'ai choisi Velluce. Je n'ai pas été déçu à la réception. Le noir est sobre et élégant, et le rendu une fois installé m'a beaucoup plu.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S84d98c5f804642e79586de2cc66eb6849.webp?v=1790367478" alt="J&#x27;ai bien fait de les choisir" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -25,7 +25,7 @@
         <h4 class="vla-testimonial-review-title">Réponses rapides et qualité au top</h4>
         <p class="vla-testimonial-text">Je vais ajouter quelques photos pour vous. Le rendu est superbe, j'aime vraiment beaucoup. Je recommande ce produit. La qualité est excellente et ils répondent très vite aux questions.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sca86f9ea07b54e77af03f16667db94c2d.webp?v=1790367478" alt="Réponses rapides et qualité au top" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -43,7 +43,7 @@
         <h4 class="vla-testimonial-review-title">Très lumineux et très beaux</h4>
         <p class="vla-testimonial-text">Les luminaires sont très lumineux et très beaux. Si ça vous plaît, n'hésitez pas à en prendre plusieurs, le rendu est encore mieux.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sb0adb4c7a7b14bf08c5b9593944466d1d.webp?v=1790367478" alt="Très lumineux et très beaux" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -61,7 +61,7 @@
         <h4 class="vla-testimonial-review-title">Installés dans mon nouveau logement</h4>
         <p class="vla-testimonial-text">La qualité est très bonne, je les ai installés aujourd'hui dans mon nouveau logement.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Sb63e0a3d88ec4b41ab79ff797777b6bch.webp?v=1790367478" alt="Installés dans mon nouveau logement" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -79,7 +79,7 @@
         <h4 class="vla-testimonial-review-title">Une jolie couleur</h4>
         <p class="vla-testimonial-text">C'est une jolie couleur.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S7914bd775318437b89d010e005d1a7e3j.webp?v=1790367478" alt="Une jolie couleur" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -97,7 +97,7 @@
         <h4 class="vla-testimonial-review-title">Très joli et livré vite</h4>
         <p class="vla-testimonial-text">Très joli. Et surtout, la livraison a été très rapide.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S51719caa8eaa431bbe9250f89b1dd8d0N.webp?v=1790367477" alt="Très joli et livré vite" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -117,7 +117,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Elias E.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">E</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -131,7 +130,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Milan J.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">M</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -143,7 +141,7 @@
         <h4 class="vla-testimonial-review-title">Un rendu vraiment joli</h4>
         <p class="vla-testimonial-text">J'ai installé les luminaires aujourd'hui, le rendu est vraiment joli.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/S94d9142917354eae9872fdb71602a9d3I.webp?v=1790367478" alt="Un rendu vraiment joli" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -161,7 +159,7 @@
         <h4 class="vla-testimonial-review-title">Élégants et lumière douce</h4>
         <p class="vla-testimonial-text">Les luminaires sont très beaux. Ils font élégants et stylés une fois installés, et la lumière est douce. Je suis très satisfait.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Se81782d2494c4104bb61da7179d295c3D.webp?v=1790367478" alt="Élégants et lumière douce" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>

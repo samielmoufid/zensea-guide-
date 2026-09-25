@@ -7,7 +7,7 @@
         <h4 class="vla-testimonial-review-title">Un plastique qui fait vraiment qualitatif</h4>
         <p class="vla-testimonial-text">La lampe rend vraiment bien, elle est en plastique qui fait très qualitatif, donc elle ne s'abîme pas et ne se déchire pas facilement.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Aeb1c7ca339f84f4d81da3888329ed1ff1.webp?v=1790367723" alt="Un plastique qui fait vraiment qualitatif" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -27,7 +27,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Emma M.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">E</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -41,7 +40,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Louis L.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">L</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -53,7 +51,7 @@
         <h4 class="vla-testimonial-review-title">Jolie lampe, belle qualité</h4>
         <p class="vla-testimonial-text">Jolie lampe. Elle a l'air de très bonne qualité.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A76348a012bb84d3abfad36a552b8d43dr.webp?v=1790367723" alt="Jolie lampe, belle qualité" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -73,7 +71,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Gabriel R.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">G</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -87,7 +84,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Léa T.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">L</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -99,7 +95,7 @@
         <h4 class="vla-testimonial-review-title">Le design torsadé que je cherchais</h4>
         <p class="vla-testimonial-text">La lampe à poser LOANA a exactement le design torsadé et la lumière douce que je cherchais. Très satisfaite.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A132329b2d3f04788a1c46c7d0bcc9057a.webp?v=1790367723" alt="Le design torsadé que je cherchais" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>

@@ -7,7 +7,7 @@
         <h4 class="vla-testimonial-review-title">Orientable et très moderne</h4>
         <p class="vla-testimonial-text">Magnifique ! On peut l'orienter dans différents angles, elle est facile à installer et le design est très moderne.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/Acaf51a1e0e184d96967662ec0028f973C.webp?v=1790367513" alt="Orientable et très moderne" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -27,7 +27,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Rosalie G.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">R</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -41,7 +40,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Servan S.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">S</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -53,7 +51,7 @@
         <h4 class="vla-testimonial-review-title">Arrivée nickel, belle qualité</h4>
         <p class="vla-testimonial-text">Arrivée en parfait état, fonctionne très bien, et la qualité s'avère vraiment bonne.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A62616be39c764e76b3f712fc55b27f1dx.webp?v=1790367512" alt="Arrivée nickel, belle qualité" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -73,7 +71,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Ombeline F.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">O</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -85,7 +82,7 @@
         <h4 class="vla-testimonial-review-title">Parfaite pour la décoration</h4>
         <p class="vla-testimonial-text">Un très bon achat, parfaite pour donner du cachet à la décoration d'une pièce.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A04b5d2ee94964cc0b0b4e0e2bf7d8072W.webp?v=1790367513" alt="Parfaite pour la décoration" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -105,7 +102,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Wenceslas J.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">W</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -119,7 +115,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Xavier N.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">X</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -133,7 +128,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Ysée E.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">Y</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -147,7 +141,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Zéphyr Z.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">Z</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -161,7 +154,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Auriane K.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">A</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -175,7 +167,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Brieuc Q.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">B</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -189,7 +180,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Cassandre Y.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">C</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -203,7 +193,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Diane B.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">D</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -217,7 +206,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Émilien M.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">É</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -229,7 +217,7 @@
         <h4 class="vla-testimonial-review-title">Le modèle Astréa tient ses promesses</h4>
         <p class="vla-testimonial-text">L'applique murale LED orientable Astréa est vraiment pratique : on oriente le faisceau exactement où on veut et le design reste très épuré.</p>
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
-        {%- if st.show_customer_photos -%}
+        {%- if st.show_customer_photos and st.show_only_with_images -%}
           <div class="vla-testimonial-image-wrapper">
             <img src="https://cdn.shopify.com/s/files/1/1015/2122/8163/files/A2e7d2e397d2f44a3a8deb2b52fd127727.webp?v=1790367511" alt="Le modèle Astréa tient ses promesses" class="vla-testimonial-image" loading="lazy" width="280" height="{{ st.image_height }}" style="max-height: {{ st.image_height }}px;">
           </div>
@@ -249,7 +237,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Firmin G.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">F</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
@@ -263,7 +250,6 @@
         <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
         <div class="vla-testimonial-author">
           <span class="vla-testimonial-name">Garance S.</span>
-          {%- if st.show_customer_photos -%}<div class="vla-testimonial-avatar-badge"><span class="vla-testimonial-avatar-initial">G</span></div>{%- endif -%}
         </div>
       </div>
       {%- endif -%}
