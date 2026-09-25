@@ -60,6 +60,9 @@
     {%- comment -%} Phrase visible en permanence : beaucoup de visiteurs ne cliquent pas sur une simple icone. {%- endcomment -%}
     <button class="vl-wa__label" type="button" data-vl-toggle>
       <span>{{ wa_label }}</span>
+      <i class="vl-wa__lx" data-vl-label-close role="button" tabindex="0" aria-label="Masquer ce message">
+        <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </i>
     </button>
   </div>
 </div>
@@ -98,10 +101,14 @@
   /* --- Libelle permanent a cote du bouton --- */
   .vl-wa__row{ display:flex; align-items:center; gap:10px; pointer-events:none; }
   .vl-wa__row > *{ pointer-events:auto; }
-  .vl-wa__label{ display:flex; align-items:center; max-width:230px; padding:8px 14px; border:1px solid rgba(0,0,0,.06); border-radius:999px; background:#fff; color:#12331f; font:inherit; font-size:13px; font-weight:600; line-height:1.25; text-align:left; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,.13); transition:transform .18s ease, box-shadow .18s ease, opacity .25s ease; }
+  .vl-wa__label{ position:relative; display:flex; align-items:center; max-width:230px; padding:8px 22px 8px 14px; border:1px solid rgba(0,0,0,.06); border-radius:999px; background:#fff; color:#12331f; font:inherit; font-size:13px; font-weight:600; line-height:1.25; text-align:left; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,.13); transition:transform .18s ease, box-shadow .18s ease, opacity .25s ease; }
   .vl-wa__label:hover{ transform:translateY(-1px); box-shadow:0 12px 26px rgba(0,0,0,.18); }
   .vl-wa__label::before{ content:''; flex:0 0 7px; width:7px; height:7px; margin-right:8px; border-radius:50%; background:#25D366; box-shadow:0 0 0 3px rgba(37,211,102,.18); }
+  .vl-wa__lx{ position:absolute; top:3px; right:5px; display:flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; color:#b4b0ab; cursor:pointer; transition:color .18s ease, background .18s ease; }
+  .vl-wa__lx:hover{ color:#3d3a36; background:rgba(0,0,0,.06); }
   .vl-wa.is-panel .vl-wa__label{ opacity:0; pointer-events:none; }
+  /* Le visiteur a ferme la phrase : il ne reste que l'icone. */
+  .vl-wa.is-nolabel .vl-wa__label{ display:none; }
 
   /* --- Bouton rond 3D --- */
   .vl-wa__btn{ position:relative; display:flex; align-items:center; justify-content:center; width:60px; height:60px; padding:0; border:0; border-radius:50%; cursor:pointer; background:radial-gradient(circle at 34% 26%, #5CEB8E 0%, #2FD968 34%, #22C65B 62%, #12A550 100%); box-shadow:0 10px 24px rgba(11,110,55,.36), 0 3px 8px rgba(0,0,0,.16), inset 0 2px 3px rgba(255,255,255,.55), inset 0 -4px 9px rgba(0,80,38,.34); transition:transform .2s ease, box-shadow .2s ease; -webkit-tap-highlight-color:transparent; }
@@ -149,6 +156,22 @@
 
     function openPanel() { root.classList.add('is-panel'); }
     function closePanel() { root.classList.remove('is-panel'); }
+
+    /* Petite croix : on masque la phrase et on s'en souvient pour la visite. */
+    var LKEY = 'vlWaLabel';
+    try { if (sessionStorage.getItem(LKEY) === '0') root.classList.add('is-nolabel'); } catch (e) {}
+    var croix = root.querySelector('[data-vl-label-close]');
+    if (croix) {
+      croix.addEventListener('click', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        root.classList.add('is-nolabel');
+        try { sessionStorage.setItem(LKEY, '0'); } catch (err) {}
+      });
+      croix.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); croix.click(); }
+      });
+    }
 
     root.querySelectorAll('[data-vl-toggle]').forEach(function (el) {
       el.addEventListener('click', function () {
