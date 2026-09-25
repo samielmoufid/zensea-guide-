@@ -1,0 +1,591 @@
+{%- comment -%}
+  Carrousel d'avis — reprise native du bloc testimonial_slider de l'application.
+  Source des données : métachamps avis.reviews (produit) ou avis.vitrine (boutique).
+  Défilement continu en CSS, deux pistes identiques, la seconde masquée aux lecteurs d'écran.
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign sid = section.id
+
+  assign bruts = ''
+  if st.source == 'produit'
+    assign bruts = product.metafields.trustap.reviews.value
+    assign resume = product.metafields.trustap.summary.value
+  else
+    assign resume = shop.metafields.avis.global.value
+  endif
+
+  assign moyenne = 0
+  if resume != blank
+    assign moyenne = resume.averageRating | plus: 0
+  endif
+  assign moyenne_entier = moyenne | round
+  if moyenne == moyenne_entier
+    assign moyenne_aff = moyenne_entier
+  else
+    assign moyenne_aff = moyenne
+  endif
+-%}
+
+{%- comment -%} Photos non encore réhébergées : on garde leur URL d'origine. {%- endcomment -%}
+{%- assign vla_absents = 'Af5f56fb05cf447bf86e6d0b08643705ai,Seb99c2a245c6492a998cfafb8c20c103f,Aa1203860984046369739afbc999a354ex,S5a3dcd0fd26246478e8dd821497d59b60,S955fecee765a4362af071baa7a05d8a72,A9f2a858265f94c69a56bc5a19ab2dd6fG,S5d69dbd8e0ba43c3a1b648e55f6ee761U,Se7e1970ace994362a0aab52d54fec078e,Sced4de7c8e54484182e59034c552856dF,S8f6b25afa52f4d8ca0ebd1c95924cf2ex,S8e0fa34df3274801968183dc6087bf25i,Sc72d8518f4f245749762faefc38e9389a,Sebfa47950f284f45a809d98b9b7a7cb5y,A6b753bdb82d744efb0e9832933edca28S,S1920c9fdeb9b4d0c93e84e75d7416407N,Sde706770e01f4f15bf9638877ec202ddL,A1a6cb03029b94b40b18927e47d7d150dd,Ae5d3ebaa9563452c84b26952d2b8e502J,S3ca7936a0eb04d02985c6e5cd6cb2035h,S2816335eaf1649b5b8439e8d79e2e087u,Ac4057a69039840299e2c50b53c79315fd,Scdd0af0d94b048bdba972788fdc81850S,Sa1874b2ba85b4ebeb5b3db8145b4d38cA,A1e24b380560146e382a25289d81cc63aY,Sebf5cdaf5aab4d3d83de649721399eb4o' | split: ',' -%}
+
+{%- assign retenus = 0 -%}
+
+{%- if st.source == 'boutique' -%}
+  {%- capture vla_cartes -%}{%- render 'velluce-avis-vitrine', st: st -%}{%- endcapture -%}
+  {%- assign retenus = 50 -%}
+{%- elsif st.source == 'top' -%}
+  {%- capture vla_cartes -%}{%- render 'velluce-avis-vitrine-top', st: st -%}{%- endcapture -%}
+  {%- assign retenus = 50 -%}
+{%- elsif bruts != blank -%}
+  {%- capture vla_cartes -%}
+    {%- for a in bruts -%}
+      {%- liquid
+        if retenus >= st.limite
+          break
+        endif
+        assign photo = a.imageUrl
+        if st.show_only_with_images and photo == blank
+          continue
+        endif
+        if photo != blank
+          assign base = photo | split: '/' | last | split: '.' | first
+          unless vla_absents contains base
+            assign photo = base | append: '.webp' | file_url
+          endunless
+        endif
+        unless st.show_customer_photos
+          assign photo = ''
+        endunless
+        assign actif = a.isActive
+        if actif == false
+          continue
+        endif
+        assign retenus = retenus | plus: 1
+        assign prenom = a.firstName | default: ''
+        assign nom = a.lastName | default: ''
+        assign initiale = ''
+        if nom != blank
+          assign initiale = nom | slice: 0 | append: '.'
+        endif
+        assign affiche = prenom | append: ' ' | append: initiale | strip
+      -%}
+      <div class="vla-testimonial-card">
+        {% render 'vla-etoiles', note: a.starRating, couleur: st.star_color, classe: 'vla-testimonial-stars-row' %}
+        {%- if a.reviewTitle != blank -%}
+          <h4 class="vla-testimonial-review-title">{{ a.reviewTitle }}</h4>
+        {%- endif -%}
+        <p class="vla-testimonial-text">{{ a.reviewText }}</p>
+        <button class="vla-testimonial-read-more hidden" data-more="Lire la suite" data-less="Lire moins">Lire la suite</button>
+        {%- if photo != blank -%}
+          <div class="vla-testimonial-image-wrapper">
+            <img
+              src="{{ photo }}"
+              alt="{{ a.reviewTitle | default: affiche | escape }}"
+              class="vla-testimonial-image"
+              loading="lazy"
+              width="280"
+              height="{{ st.image_height }}"
+              style="max-height: {{ st.image_height }}px;"
+            >
+          </div>
+        {%- endif -%}
+        <div class="vla-testimonial-author">
+          <span class="vla-testimonial-name">{{ affiche }}</span>
+          {%- if st.show_customer_photos and photo == blank and prenom != blank -%}
+            <div class="vla-testimonial-avatar-badge">
+              <span class="vla-testimonial-avatar-initial">{{ prenom | slice: 0 | upcase }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  {%- endcapture -%}
+{%- endif -%}
+
+{%- if retenus > 0 -%}
+  <div
+    id="vla-{{ sid }}"
+    class="vla-testimonial-slider"
+    style="background: {{ st.background_color }}; border-radius: 8px; padding: {{ st.padding_top }}px 0 {{ st.padding_bottom }}px 0;"
+  >
+    {%- if st.header_title != blank or st.show_average_rating -%}
+      <div class="vla-testimonial-header">
+        {%- if st.header_title != blank -%}
+          <h3 class="vla-testimonial-title">{{ st.header_title }}</h3>
+        {%- endif -%}
+        {%- if st.show_average_rating and moyenne > 0 -%}
+          <div class="vla-testimonial-rating">
+            {% render 'vla-etoiles', note: moyenne, couleur: st.star_color, classe: 'vla-testimonial-stars' %}
+            <span class="vla-testimonial-average">{{ moyenne_aff }}/5</span>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="vla-testimonial-marquee">
+      <div class="vla-testimonial-track">{{ vla_cartes }}</div>
+      <div class="vla-testimonial-track" aria-hidden="true">{{ vla_cartes }}</div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .vla-testimonial-slider {
+    display: block;
+    margin: 0.5em 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    font-family: inherit;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .vla-testimonial-header {
+    text-align: center;
+    padding: 1.25em;
+  }
+
+  .vla-testimonial-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: inherit;
+    margin: 0 0 0.75em 0;
+  }
+
+  .vla-testimonial-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+  }
+
+  .vla-testimonial-stars {
+    display: flex;
+    gap: 0.15em;
+  }
+
+  .vla-testimonial-stars .vla-star,
+  .vla-testimonial-stars-row .vla-star {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vla-testimonial-stars .vla-star {
+    width: 1.1em;
+    height: 1.1em;
+  }
+
+  .vla-testimonial-stars-row .vla-star {
+    width: 1em;
+    height: 1em;
+  }
+
+  .vla-testimonial-stars .vla-star--full,
+  .vla-testimonial-stars-row .vla-star--full {
+    background-color: var(--star-color, #00b27e);
+  }
+
+  .vla-testimonial-stars .vla-star--partial,
+  .vla-testimonial-stars-row .vla-star--partial {
+    background: linear-gradient(
+      to right,
+      var(--star-color, #00b27e) var(--partial-width, 50%),
+      #dcdce6 var(--partial-width, 50%)
+    );
+  }
+
+  .vla-testimonial-stars .vla-star--empty,
+  .vla-testimonial-stars-row .vla-star--empty {
+    background-color: #dcdce6;
+  }
+
+  .vla-testimonial-stars .vla-star-icon,
+  .vla-testimonial-stars-row .vla-star-icon {
+    width: 70%;
+    height: 70%;
+    display: block;
+  }
+
+  .vla-testimonial-average {
+    font-size: 1em;
+    font-weight: 600;
+    color: inherit;
+  }
+
+  .vla-testimonial-marquee {
+    --gap: 1.25em;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    gap: var(--gap);
+    padding: 0.5em 0;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  }
+
+  .vla-testimonial-marquee:hover .vla-testimonial-track {
+    animation-play-state: paused;
+  }
+
+  .vla-testimonial-track {
+    flex-shrink: 0;
+    display: flex;
+    min-width: 100%;
+    gap: var(--gap);
+    will-change: transform;
+    animation: vla-scroll-testimonials var(--marquee-duration, 40s) linear infinite;
+  }
+
+  @keyframes vla-scroll-testimonials {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-100% - var(--gap))); }
+  }
+
+  .vla-testimonial-card {
+    background: white;
+    border-radius: 0.875em;
+    padding: 1.25em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    min-width: 280px;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .vla-testimonial-stars-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.15em;
+    margin-bottom: 0.5em;
+  }
+
+  .vla-testimonial-review-title {
+    font-size: 1em;
+    font-weight: 600;
+    color: inherit;
+    margin: 0 0 0.4em 0;
+  }
+
+  .vla-testimonial-text {
+    color: inherit;
+    opacity: 0.8;
+    line-height: 1.5;
+    font-size: 0.9375em;
+    flex-grow: 1;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    pointer-events: none;
+  }
+
+  .vla-testimonial-text.expanded {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    pointer-events: auto;
+  }
+
+  .vla-testimonial-read-more {
+    display: block;
+    background: none;
+    border: none;
+    padding: 0.5em 0;
+    margin: 0;
+    color: inherit;
+    opacity: 0.5;
+    font-size: 0.8125em;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 999;
+    touch-action: manipulation;
+    pointer-events: auto !important;
+    -webkit-tap-highlight-color: transparent;
+    isolation: isolate;
+  }
+
+  .vla-testimonial-read-more:hover { opacity: 0.8; }
+  .vla-testimonial-read-more.hidden { display: none; }
+
+  .vla-testimonial-image-wrapper {
+    margin: 0.75em 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .vla-testimonial-image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.5em;
+  }
+
+  .vla-testimonial-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4em;
+    margin-top: 0.75em;
+  }
+
+  .vla-testimonial-name {
+    font-weight: 600;
+    color: inherit;
+    font-size: 0.9375em;
+  }
+
+  .vla-testimonial-avatar-badge {
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .vla-testimonial-avatar-initial {
+    font-weight: 600;
+    color: inherit;
+    opacity: 0.6;
+    font-size: 1.25em;
+  }
+
+  @media (max-width: 768px) {
+    .vla-testimonial-title { font-size: 1.25em; }
+
+    .vla-testimonial-card {
+      min-width: 240px;
+      max-width: 240px;
+      padding: 1em;
+    }
+
+    .vla-testimonial-text {
+      font-size: 0.875em;
+      padding: 0.5em 0;
+    }
+
+    .vla-testimonial-stars-row { margin-bottom: 0.375em; }
+    .vla-testimonial-review-title { margin: 0 0 0.25em 0; }
+
+    .vla-testimonial-track {
+      animation: vla-scroll-testimonials var(--marquee-duration, 30s) linear infinite;
+    }
+  }
+{% endstylesheet %}
+
+<script>
+  (function () {
+    'use strict';
+
+    function remplirPistes(marquee) {
+      var pistes = marquee.querySelectorAll('.vla-testimonial-track');
+      if (pistes.length < 2) return;
+      var premiere = pistes[0];
+      var cartes = premiere.querySelectorAll('.vla-testimonial-card');
+      if (!cartes.length) return;
+      var largeurConteneur = marquee.offsetWidth;
+      if (!largeurConteneur) return;
+
+      var ecart = parseFloat(getComputedStyle(premiere).gap) || 0;
+      var largeurTotale = 0;
+      cartes.forEach(function (c) { largeurTotale += c.offsetWidth; });
+      largeurTotale += Math.max(0, cartes.length - 1) * ecart;
+      if (largeurTotale >= largeurConteneur) return;
+
+      var jeux = Math.ceil(largeurConteneur / largeurTotale);
+      for (var s = 1; s < jeux; s++) {
+        cartes.forEach(function (c) { premiere.appendChild(c.cloneNode(true)); });
+      }
+      pistes[1].innerHTML = premiere.innerHTML;
+    }
+
+    function initLireLaSuite(racine) {
+      racine.querySelectorAll('.vla-testimonial-card').forEach(function (carte) {
+        var texte = carte.querySelector('.vla-testimonial-text');
+        var bouton = carte.querySelector('.vla-testimonial-read-more');
+        if (!texte || !bouton) return;
+        if (texte.scrollHeight > texte.clientHeight) bouton.classList.remove('hidden');
+      });
+    }
+
+    if (!window.__zsaLireLaSuite) {
+      window.__zsaLireLaSuite = true;
+      document.addEventListener('click', function (e) {
+        var bouton = e.target.closest('.vla-testimonial-read-more');
+        if (!bouton) return;
+        var carte = bouton.closest('.vla-testimonial-card');
+        if (!carte) return;
+        var texte = carte.querySelector('.vla-testimonial-text');
+        if (!texte) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        var ouvert = texte.classList.toggle('expanded');
+        bouton.textContent = ouvert ? bouton.getAttribute('data-less') : bouton.getAttribute('data-more');
+      }, true);
+    }
+
+    function init() {
+      document.querySelectorAll('.vla-testimonial-slider').forEach(function (slider) {
+        if (slider.dataset.zsaPret) return;
+        slider.dataset.zsaPret = '1';
+        var marquee = slider.querySelector('.vla-testimonial-marquee');
+        if (!marquee) return;
+        var pistes = marquee.querySelectorAll('.vla-testimonial-track');
+        if (!pistes.length) return;
+
+        remplirPistes(marquee);
+        initLireLaSuite(slider);
+
+        var largeur = pistes[0].scrollWidth;
+        var mobile = window.innerWidth <= 768;
+        var vitesse = mobile ? 35 : 50;
+        marquee.style.setProperty('--marquee-duration', Math.max(10, Math.round(largeur / vitesse)) + 's');
+
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (entrees) {
+            entrees.forEach(function (entree) {
+              pistes.forEach(function (p) {
+                p.style.animationPlayState = entree.isIntersecting ? 'running' : 'paused';
+              });
+            });
+          }, { threshold: 0.1, rootMargin: '50px' }).observe(marquee);
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+    document.addEventListener('shopify:section:load', init);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Carrousel avis (Velluce)",
+  "tag": "section",
+  "class": "vla-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Avis affichés",
+      "info": "« Tous les avis » et « Les mieux notés » reprennent à l'identique les deux sélections que l'application affichait.",
+      "options": [
+        {
+          "value": "produit",
+          "label": "Ce produit"
+        },
+        {
+          "value": "boutique",
+          "label": "Tous les avis"
+        },
+        {
+          "value": "top",
+          "label": "Les mieux notés"
+        }
+      ],
+      "default": "produit"
+    },
+    {
+      "type": "text",
+      "id": "header_title",
+      "label": "Titre",
+      "info": "Laissez vide pour masquer le titre."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_average_rating",
+      "label": "Afficher la note moyenne",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Couleur des étoiles",
+      "default": "#b08d57"
+    },
+    {
+      "type": "color_background",
+      "id": "background_color",
+      "label": "Fond",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_customer_photos",
+      "label": "Afficher les photos des clients",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_only_with_images",
+      "label": "Uniquement les avis avec photo",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "label": "Hauteur des photos",
+      "min": 100,
+      "max": 400,
+      "step": 10,
+      "default": 180,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "limite",
+      "label": "Nombre d'avis affichés",
+      "min": 4,
+      "max": 60,
+      "step": 1,
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Espacements"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espacement haut",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 8,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espacement bas",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "default": 8,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carrousel avis (Velluce)"
+    }
+  ]
+}
+{% endschema %}
