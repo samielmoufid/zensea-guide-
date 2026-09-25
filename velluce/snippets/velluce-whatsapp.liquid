@@ -52,14 +52,6 @@
     </div>
   </div>
 
-  <button class="vl-wa__teaser" type="button" data-vl-teaser>
-    <img src="{{ wa_ava }}" alt="" width="34" height="34" loading="lazy">
-    <span>{{ wa_question }}</span>
-    <i class="vl-wa__tx" data-vl-teaser-close role="button" aria-label="Fermer">
-      <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
-    </i>
-  </button>
-
   <div class="vl-wa__row">
     <button class="vl-wa__btn" type="button" data-vl-toggle aria-label="{{ wa_question | escape }} Contacter le service client sur WhatsApp">
       <img src="{{ wa_glyph }}" alt="" width="32" height="32">
@@ -103,21 +95,13 @@
   .vl-wa__go:hover{ transform:translateY(-1px); box-shadow:0 9px 20px rgba(11,110,55,.36); }
   .vl-wa__note{ display:block; margin-top:9px; font-size:11.5px; color:#8a8681; }
 
-  /* --- Teaser --- */
-  .vl-wa__teaser{ position:relative; display:flex; align-items:center; gap:10px; max-width:278px; padding:9px 30px 9px 10px; border:1px solid rgba(0,0,0,.06); border-radius:999px; background:#fff; color:#1c1b1a; font:inherit; font-size:13.5px; font-weight:500; text-align:left; line-height:1.3; cursor:pointer; box-shadow:0 10px 26px rgba(0,0,0,.14); opacity:0; transform:translateY(8px); pointer-events:none; transition:opacity .3s ease, transform .3s ease; }
-  .vl-wa.is-teaser .vl-wa__teaser{ opacity:1; transform:translateY(0); pointer-events:auto; }
-  .vl-wa__teaser img{ flex:0 0 34px; width:34px; height:34px; border-radius:50%; object-fit:cover; }
-  .vl-wa__tx{ position:absolute; top:6px; right:8px; display:flex; color:#b4b0ab; }
-  .vl-wa__tx:hover{ color:#5d5a56; }
-
   /* --- Libelle permanent a cote du bouton --- */
   .vl-wa__row{ display:flex; align-items:center; gap:10px; pointer-events:none; }
   .vl-wa__row > *{ pointer-events:auto; }
   .vl-wa__label{ display:flex; align-items:center; max-width:230px; padding:8px 14px; border:1px solid rgba(0,0,0,.06); border-radius:999px; background:#fff; color:#12331f; font:inherit; font-size:13px; font-weight:600; line-height:1.25; text-align:left; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,.13); transition:transform .18s ease, box-shadow .18s ease, opacity .25s ease; }
   .vl-wa__label:hover{ transform:translateY(-1px); box-shadow:0 12px 26px rgba(0,0,0,.18); }
   .vl-wa__label::before{ content:''; flex:0 0 7px; width:7px; height:7px; margin-right:8px; border-radius:50%; background:#25D366; box-shadow:0 0 0 3px rgba(37,211,102,.18); }
-  .vl-wa.is-panel .vl-wa__label,
-  .vl-wa.is-teaser .vl-wa__label{ opacity:0; pointer-events:none; }
+  .vl-wa.is-panel .vl-wa__label{ opacity:0; pointer-events:none; }
 
   /* --- Bouton rond 3D --- */
   .vl-wa__btn{ position:relative; display:flex; align-items:center; justify-content:center; width:60px; height:60px; padding:0; border:0; border-radius:50%; cursor:pointer; background:radial-gradient(circle at 34% 26%, #5CEB8E 0%, #2FD968 34%, #22C65B 62%, #12A550 100%); box-shadow:0 10px 24px rgba(11,110,55,.36), 0 3px 8px rgba(0,0,0,.16), inset 0 2px 3px rgba(255,255,255,.55), inset 0 -4px 9px rgba(0,80,38,.34); transition:transform .2s ease, box-shadow .2s ease; -webkit-tap-highlight-color:transparent; }
@@ -134,13 +118,12 @@
     .vl-wa{ left:14px; bottom:calc(14px + env(safe-area-inset-bottom,0px)); gap:10px; }
     .vl-wa__btn{ width:54px; height:54px; }
     .vl-wa__btn img{ width:29px; height:29px; }
-    .vl-wa__teaser{ max-width:min(268px,74vw); font-size:13px; }
     .vl-wa__label{ max-width:min(206px,60vw); font-size:12px; padding:7px 12px; }
     .vl-wa:not(.is-panel) .vl-wa__panel{ bottom:78px; }
   }
 
   @media (prefers-reduced-motion:reduce){
-    .vl-wa__panel,.vl-wa__teaser,.vl-wa__btn,.vl-wa__go,.vl-wa__label{ transition:none; }
+    .vl-wa__panel,.vl-wa__btn,.vl-wa__go,.vl-wa__label{ transition:none; }
     .vl-wa__btn::after{ animation:none; }
   }
 </style>
@@ -150,10 +133,6 @@
     var root = document.querySelector('[data-vl-wa]');
     if (!root) return;
     root.hidden = false;
-
-    var TKEY = 'vlWaTeaser';
-    function seen() { try { return sessionStorage.getItem(TKEY) === '1'; } catch (e) { return false; } }
-    function markSeen() { try { sessionStorage.setItem(TKEY, '1'); } catch (e) {} }
 
     /* Le badge Google Avis occupe le meme coin et verrouille sa position : on remonte au-dessus. */
     function avoidOverlap() {
@@ -168,7 +147,7 @@
     setTimeout(avoidOverlap, 3500);
     window.addEventListener('resize', avoidOverlap);
 
-    function openPanel() { root.classList.remove('is-teaser'); root.classList.add('is-panel'); markSeen(); }
+    function openPanel() { root.classList.add('is-panel'); }
     function closePanel() { root.classList.remove('is-panel'); }
 
     root.querySelectorAll('[data-vl-toggle]').forEach(function (el) {
@@ -178,24 +157,6 @@
     });
 
     root.querySelector('[data-vl-close]').addEventListener('click', closePanel);
-
-    var teaser = root.querySelector('[data-vl-teaser]');
-    teaser.addEventListener('click', function (e) {
-      if (e.target.closest('[data-vl-teaser-close]')) {
-        e.stopPropagation();
-        root.classList.remove('is-teaser');
-        markSeen();
-        return;
-      }
-      openPanel();
-    });
-
-    if (!seen()) {
-      setTimeout(function () {
-        if (!root.classList.contains('is-panel')) root.classList.add('is-teaser');
-      }, 2600);
-      setTimeout(function () { root.classList.remove('is-teaser'); }, 14000);
-    }
 
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
     document.addEventListener('click', function (e) {
