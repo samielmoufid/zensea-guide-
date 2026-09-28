@@ -11,7 +11,8 @@
   if template.name == 'product' and product != blank
     assign wa_name = product.title | split: '—' | first | strip
     assign wa_question = 'Une question sur ' | append: wa_name | append: ' ?'
-    assign wa_label = 'Une question sur ' | append: wa_name | append: ' ?'
+    assign wa_court = wa_name | truncate: 20, '…'
+    assign wa_label = 'Une question sur ' | append: wa_court | append: ' ?'
   else
     assign wa_question = 'Une question sur un produit ?'
     assign wa_label = 'Une question ? Cliquez ici'
@@ -101,10 +102,11 @@
   /* --- Libelle permanent a cote du bouton --- */
   .zn-wa__row{ display:flex; align-items:center; gap:10px; pointer-events:none; }
   .zn-wa__row > *{ pointer-events:auto; }
-  .zn-wa__label{ position:relative; display:flex; align-items:center; max-width:230px; padding:8px 22px 8px 14px; border:1px solid rgba(0,0,0,.06); border-radius:999px; background:#fff; color:#12331f; font:inherit; font-size:13px; font-weight:600; line-height:1.25; text-align:left; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,.13); transition:transform .18s ease, box-shadow .18s ease, opacity .25s ease; }
+  .zn-wa__label{ position:relative; display:flex; align-items:center; max-width:216px; padding:6px 20px 6px 11px; border:1px solid rgba(0,0,0,.06); border-radius:999px; background:#fff; color:#12331f; font:inherit; font-size:11.5px; font-weight:600; line-height:1.2; text-align:left; white-space:nowrap; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,.13); transition:transform .18s ease, box-shadow .18s ease, opacity .25s ease; }
+  .zn-wa__label > span{ display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .zn-wa__label:hover{ transform:translateY(-1px); box-shadow:0 12px 26px rgba(0,0,0,.18); }
-  .zn-wa__label::before{ content:''; flex:0 0 7px; width:7px; height:7px; margin-right:8px; border-radius:50%; background:#25D366; box-shadow:0 0 0 3px rgba(37,211,102,.18); }
-  .zn-wa__lx{ position:absolute; top:3px; right:5px; display:flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; color:#b4b0ab; cursor:pointer; transition:color .18s ease, background .18s ease; }
+  .zn-wa__label::before{ content:''; flex:0 0 6px; width:6px; height:6px; margin-right:7px; border-radius:50%; background:#25D366; box-shadow:0 0 0 3px rgba(37,211,102,.18); }
+  .zn-wa__lx{ position:absolute; top:2px; right:4px; display:flex; align-items:center; justify-content:center; width:14px; height:14px; border-radius:50%; color:#b4b0ab; cursor:pointer; transition:color .18s ease, background .18s ease; }
   .zn-wa__lx:hover{ color:#3d3a36; background:rgba(0,0,0,.06); }
   .zn-wa.is-panel .zn-wa__label{ opacity:0; pointer-events:none; }
   /* Le visiteur a ferme la phrase : il ne reste que l'icone. */
@@ -125,7 +127,7 @@
     .zn-wa{ left:14px; bottom:calc(14px + env(safe-area-inset-bottom,0px)); gap:10px; }
     .zn-wa__btn{ width:54px; height:54px; }
     .zn-wa__btn img{ width:29px; height:29px; }
-    .zn-wa__label{ max-width:min(206px,60vw); font-size:12px; padding:7px 12px; }
+    .zn-wa__label{ max-width:min(184px,56vw); font-size:11px; padding:6px 18px 6px 10px; }
     .zn-wa:not(.is-panel) .zn-wa__panel{ bottom:78px; }
   }
 
