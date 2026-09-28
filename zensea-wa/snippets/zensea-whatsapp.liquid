@@ -11,11 +11,8 @@
   if template.name == 'product' and product != blank
     assign wa_name = product.title | split: '—' | first | strip
     assign wa_question = 'Une question sur ' | append: wa_name | append: ' ?'
-    assign wa_court = wa_name | truncate: 20, '…'
-    assign wa_label = 'Une question sur ' | append: wa_court | append: ' ?'
   else
     assign wa_question = 'Une question sur un produit ?'
-    assign wa_label = 'Une question ? Cliquez ici'
   endif
 -%}
 
@@ -53,19 +50,9 @@
     </div>
   </div>
 
-  <div class="zn-wa__row">
-    <button class="zn-wa__btn" type="button" data-zn-toggle aria-label="{{ wa_question | escape }} Contacter le service client sur WhatsApp">
-      <img src="{{ wa_glyph }}" alt="" width="32" height="32">
-    </button>
-
-    {%- comment -%} Phrase visible en permanence : beaucoup de visiteurs ne cliquent pas sur une simple icone. {%- endcomment -%}
-    <button class="zn-wa__label" type="button" data-zn-toggle>
-      <span>{{ wa_label }}</span>
-      <i class="zn-wa__lx" data-zn-label-close role="button" tabindex="0" aria-label="Masquer ce message">
-        <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
-      </i>
-    </button>
-  </div>
+  <button class="zn-wa__btn" type="button" data-zn-toggle aria-label="{{ wa_question | escape }} Contacter le service client sur WhatsApp">
+    <img src="{{ wa_glyph }}" alt="" width="32" height="32">
+  </button>
 </div>
 
 <style>
@@ -99,19 +86,6 @@
   .zn-wa__go:hover{ transform:translateY(-1px); box-shadow:0 9px 20px rgba(11,110,55,.36); }
   .zn-wa__note{ display:block; margin-top:9px; font-size:11.5px; color:#8a8681; }
 
-  /* --- Libelle permanent a cote du bouton --- */
-  .zn-wa__row{ display:flex; align-items:center; gap:10px; pointer-events:none; }
-  .zn-wa__row > *{ pointer-events:auto; }
-  .zn-wa__label{ position:relative; display:flex; align-items:center; max-width:216px; padding:6px 20px 6px 11px; border:1px solid rgba(0,0,0,.06); border-radius:999px; background:#fff; color:#12331f; font:inherit; font-size:11.5px; font-weight:600; line-height:1.2; text-align:left; white-space:nowrap; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,.13); transition:transform .18s ease, box-shadow .18s ease, opacity .25s ease; }
-  .zn-wa__label > span{ display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .zn-wa__label:hover{ transform:translateY(-1px); box-shadow:0 12px 26px rgba(0,0,0,.18); }
-  .zn-wa__label::before{ content:''; flex:0 0 6px; width:6px; height:6px; margin-right:7px; border-radius:50%; background:#25D366; box-shadow:0 0 0 3px rgba(37,211,102,.18); }
-  .zn-wa__lx{ position:absolute; top:2px; right:4px; display:flex; align-items:center; justify-content:center; width:14px; height:14px; border-radius:50%; color:#b4b0ab; cursor:pointer; transition:color .18s ease, background .18s ease; }
-  .zn-wa__lx:hover{ color:#3d3a36; background:rgba(0,0,0,.06); }
-  .zn-wa.is-panel .zn-wa__label{ opacity:0; pointer-events:none; }
-  /* Le visiteur a ferme la phrase : il ne reste que l'icone. */
-  .zn-wa.is-nolabel .zn-wa__label{ display:none; }
-
   /* --- Bouton rond 3D --- */
   .zn-wa__btn{ position:relative; display:flex; align-items:center; justify-content:center; width:60px; height:60px; padding:0; border:0; border-radius:50%; cursor:pointer; background:radial-gradient(circle at 34% 26%, #5CEB8E 0%, #2FD968 34%, #22C65B 62%, #12A550 100%); box-shadow:0 10px 24px rgba(11,110,55,.36), 0 3px 8px rgba(0,0,0,.16), inset 0 2px 3px rgba(255,255,255,.55), inset 0 -4px 9px rgba(0,80,38,.34); transition:transform .2s ease, box-shadow .2s ease; -webkit-tap-highlight-color:transparent; }
   .zn-wa__btn img{ width:32px; height:32px; display:block; filter:drop-shadow(0 1px 1px rgba(0,60,28,.35)); }
@@ -127,12 +101,11 @@
     .zn-wa{ left:14px; bottom:calc(14px + env(safe-area-inset-bottom,0px)); gap:10px; }
     .zn-wa__btn{ width:54px; height:54px; }
     .zn-wa__btn img{ width:29px; height:29px; }
-    .zn-wa__label{ max-width:min(184px,56vw); font-size:11px; padding:6px 18px 6px 10px; }
     .zn-wa:not(.is-panel) .zn-wa__panel{ bottom:78px; }
   }
 
   @media (prefers-reduced-motion:reduce){
-    .zn-wa__panel,.zn-wa__btn,.zn-wa__go,.zn-wa__label{ transition:none; }
+    .zn-wa__panel,.zn-wa__btn,.zn-wa__go{ transition:none; }
     .zn-wa__btn::after{ animation:none; }
   }
 </style>
@@ -158,22 +131,6 @@
 
     function openPanel() { root.classList.add('is-panel'); }
     function closePanel() { root.classList.remove('is-panel'); }
-
-    /* Petite croix : on masque la phrase et on s'en souvient pour la visite. */
-    var LKEY = 'znWaLabel';
-    try { if (sessionStorage.getItem(LKEY) === '0') root.classList.add('is-nolabel'); } catch (e) {}
-    var croix = root.querySelector('[data-zn-label-close]');
-    if (croix) {
-      croix.addEventListener('click', function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-        root.classList.add('is-nolabel');
-        try { sessionStorage.setItem(LKEY, '0'); } catch (err) {}
-      });
-      croix.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); croix.click(); }
-      });
-    }
 
     root.querySelectorAll('[data-zn-toggle]').forEach(function (el) {
       el.addEventListener('click', function () {
