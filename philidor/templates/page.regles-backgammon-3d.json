@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "salon": {
+      "type": "mp-salon-3d",
+      "settings": {
+        "titre": "Paris, 1750 — Café de la Régence",
+        "sous": "Votre hôte vous attend pour une partie de backgammon.",
+        "retour": "/collections/backgammon",
+        "retour_libelle": "Retour à la boutique"
+      }
+    }
+  },
+  "order": [
+    "salon"
+  ]
+}

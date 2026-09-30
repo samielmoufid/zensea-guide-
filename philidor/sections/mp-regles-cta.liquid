@@ -1,0 +1,94 @@
+{%- comment -%}
+  Maison Philidor — invitation, sur la fiche produit backgammon, vers le salon 3D des règles.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign lien = s.lien
+  if lien == blank
+    assign lien = '/pages/regles-du-backgammon-3d'
+  endif
+-%}
+<div class="mprc" style="--mprc-pt: {{ s.padding_top }}px; --mprc-pb: {{ s.padding_bottom }}px;">
+  <div class="mprc__cadre">
+    <a class="mprc__carte" href="{{ lien }}">
+      <div class="mprc__visuel" aria-hidden="true">
+        <div class="mprc__plateau">
+          {%- for i in (1..6) -%}
+            <span class="mprc__fleche {% cycle 'mprc__fleche--a', 'mprc__fleche--b' %}"></span>
+          {%- endfor -%}
+          <span class="mprc__pion mprc__pion--1"></span>
+          <span class="mprc__pion mprc__pion--2"></span>
+          <span class="mprc__pion mprc__pion--3"></span>
+          <span class="mprc__de"><i></i><i></i><i></i><i></i></span>
+        </div>
+        <span class="mprc__badge">3D</span>
+      </div>
+      <div class="mprc__texte">
+        <p class="mprc__eyebrow">{{ s.eyebrow }}</p>
+        <h2 class="mprc__titre">{{ s.titre }}</h2>
+        <p class="mprc__p">{{ s.texte }}</p>
+        <ul class="mprc__points">
+          <li>Voyage dans le temps jusqu'à un salon du XVIIIe siècle</li>
+          <li>Un hôte vous attend, plateau prêt, en face de vous</li>
+          <li>Le grand livre des règles à feuilleter, page par page</li>
+        </ul>
+        <span class="mprc__btn">
+          {{ s.bouton }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+        <span class="mprc__note">Sur ordinateur, tablette et mobile · environ 5 minutes de lecture</span>
+      </div>
+    </a>
+  </div>
+</div>
+
+<style>
+  .mprc { padding: var(--mprc-pt, 20px) 0 var(--mprc-pb, 30px); }
+  .mprc__cadre { max-width: var(--page-width, 1280px); margin: 0 auto; padding: 0 clamp(16px, 4vw, 50px); }
+  .mprc__carte { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(20px, 3vw, 44px); align-items: center; padding: clamp(22px, 3vw, 40px); border-radius: 22px; background: linear-gradient(135deg, #2e2519 0%, #3a2e22 55%, #4a3a26 100%); color: #f7f1e6; text-decoration: none; box-shadow: 0 24px 60px -30px rgba(46,37,25,.7); border: 1px solid rgba(201,169,97,.35); position: relative; overflow: hidden; transition: transform .35s ease, box-shadow .35s ease; }
+  .mprc__carte::before { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 30%, rgba(201,169,97,.16), transparent 55%); pointer-events: none; }
+  .mprc__carte:hover { transform: translateY(-3px); box-shadow: 0 34px 70px -30px rgba(46,37,25,.85); }
+  .mprc__visuel { position: relative; aspect-ratio: 4 / 3; border-radius: 16px; background: #1d1610; box-shadow: inset 0 0 0 1px rgba(201,169,97,.35), 0 20px 40px -20px rgba(0,0,0,.8); display: grid; place-items: center; overflow: hidden; perspective: 700px; }
+  .mprc__plateau { position: relative; width: 78%; aspect-ratio: 2 / 1.25; background: #c9a961; border-radius: 6px; padding: 5%; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; box-shadow: inset 0 0 0 6px #6b532a, 0 30px 40px -20px rgba(0,0,0,.8); transform: rotateX(38deg) rotateZ(-8deg); transition: transform .6s ease; }
+  .mprc__carte:hover .mprc__plateau { transform: rotateX(30deg) rotateZ(-4deg) scale(1.03); }
+  .mprc__fleche { display: block; height: 100%; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+  .mprc__fleche--a { background: #f3e9d3; } .mprc__fleche--b { background: #5b3a22; }
+  .mprc__pion { position: absolute; width: 14%; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 3px 6px rgba(0,0,0,.45), inset 0 0 0 2px rgba(0,0,0,.15); }
+  .mprc__pion--1 { left: 9%; bottom: 8%; background: #f5eee0; } .mprc__pion--2 { left: 9%; bottom: 20%; background: #f5eee0; } .mprc__pion--3 { right: 10%; bottom: 8%; background: #2b1f16; }
+  .mprc__de { position: absolute; right: 30%; top: 46%; width: 12%; aspect-ratio: 1; background: #fffcf5; border-radius: 18%; display: grid; grid-template-columns: 1fr 1fr; padding: 16%; gap: 18%; box-shadow: 0 4px 8px rgba(0,0,0,.4); transform: rotate(14deg); }
+  .mprc__de i { display: block; background: #2b1f16; border-radius: 50%; }
+  .mprc__badge { position: absolute; top: 14px; right: 14px; padding: 6px 12px; border-radius: 999px; background: #8a6d33; color: #fffcf5; font-size: 12px; font-weight: 600; letter-spacing: .14em; }
+  .mprc__eyebrow { margin: 0 0 8px; font-size: 12px; letter-spacing: .28em; text-transform: uppercase; color: #c9a961; }
+  .mprc__titre { margin: 0; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.15; font-weight: 400; color: #fff7e6; }
+  .mprc__p { margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(247,241,230,.85); }
+  .mprc__points { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 14px; color: rgba(247,241,230,.9); }
+  .mprc__points li { padding-left: 22px; position: relative; }
+  .mprc__points li::before { content: "✦"; position: absolute; left: 0; top: 0; color: #c9a961; font-size: 12px; }
+  .mprc__btn { display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 14px 24px; border-radius: 20px; background: #8a6d33; color: #fffcf5; font-size: 14px; font-weight: 500; letter-spacing: .02em; transition: background .25s, gap .25s; }
+  .mprc__carte:hover .mprc__btn { background: #a08040; gap: 14px; }
+  .mprc__note { display: block; margin-top: 12px; font-size: 12px; color: rgba(247,241,230,.55); }
+  @media (max-width: 749px) {
+    .mprc__carte { grid-template-columns: 1fr; padding: 18px; border-radius: 18px; }
+    .mprc__visuel { aspect-ratio: 16 / 9; }
+    .mprc__btn { width: 100%; justify-content: center; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Règles du backgammon — 3D",
+  "tag": "section",
+  "class": "mp-regles-cta",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Surtitre", "default": "Apprendre à jouer" },
+    { "type": "text", "id": "titre", "label": "Titre", "default": "Découvrez les règles du backgammon… à la table, en 3D" },
+    { "type": "textarea", "id": "texte", "label": "Texte", "default": "Installez-vous dans un salon d'époque, face à votre hôte. Ouvrez le grand livre posé devant vous : mise en place, déplacements, prises, sortie, videau, gammon… tout y est, joliment illustré." },
+    { "type": "text", "id": "bouton", "label": "Bouton", "default": "Entrer dans le salon" },
+    { "type": "url", "id": "lien", "label": "Lien (par défaut : la page 3D des règles)" },
+    { "type": "range", "id": "padding_top", "label": "Espace au-dessus", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 10 },
+    { "type": "range", "id": "padding_bottom", "label": "Espace en dessous", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 30 }
+  ],
+  "enabled_on": { "templates": ["product", "page", "index", "collection"] },
+  "presets": [ { "name": "Règles du backgammon — 3D" } ]
+}
+{% endschema %}

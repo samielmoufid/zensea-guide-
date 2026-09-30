@@ -1,0 +1,205 @@
+{%- comment -%}
+  Maison Philidor — Le salon des règles (backgammon).
+  Expérience 3D en plein écran : voyage dans le temps, salon du XVIIIe, hôte assis en face,
+  échiquier et backgammon sur la table, gros livre de règles à feuilleter.
+  Le module JavaScript (assets/mp3d-salon.js) lit sa configuration dans #mp3d-config.
+{%- endcomment -%}
+{%- liquid
+  assign retour = section.settings.retour
+  if retour == blank
+    assign retour = '/collections/backgammon'
+  endif
+-%}
+<script type="application/json" id="mp3d-config">
+{
+  "titre": {{ section.settings.titre | default: 'Paris, 1750 — Café de la Régence' | json }},
+  "sous": {{ section.settings.sous | default: 'Votre hôte vous attend pour une partie de backgammon.' | json }},
+  "persona": {{ 'mp3d-persona.glb' | asset_url | json }},
+  "tex": {
+    "table-d": {{ 'mp3d-table-d.jpg' | asset_url | json }},
+    "table-r": {{ 'mp3d-table-r.jpg' | asset_url | json }},
+    "table-n": {{ 'mp3d-table-n.jpg' | asset_url | json }},
+    "parquet-d": {{ 'mp3d-parquet-d.jpg' | asset_url | json }},
+    "parquet-r": {{ 'mp3d-parquet-r.jpg' | asset_url | json }},
+    "parquet-n": {{ 'mp3d-parquet-n.jpg' | asset_url | json }},
+    "mur-d": {{ 'mp3d-mur-d.jpg' | asset_url | json }},
+    "mur-r": {{ 'mp3d-mur-r.jpg' | asset_url | json }},
+    "cuir-d": {{ 'mp3d-cuir-d.jpg' | asset_url | json }},
+    "cuir-r": {{ 'mp3d-cuir-r.jpg' | asset_url | json }},
+    "cuir-n": {{ 'mp3d-cuir-n.jpg' | asset_url | json }},
+    "noyer-d": {{ 'mp3d-noyer-d.jpg' | asset_url | json }},
+    "noyer-r": {{ 'mp3d-noyer-r.jpg' | asset_url | json }},
+    "chene-d": {{ 'mp3d-chene-d.jpg' | asset_url | json }},
+    "chene-r": {{ 'mp3d-chene-r.jpg' | asset_url | json }}
+  }
+}
+</script>
+
+<div id="mp3d" class="mp3d">
+  <canvas id="mp3d-canvas" aria-label="Salon en trois dimensions"></canvas>
+
+  {%- comment -%} Écran d'accueil et voyage {%- endcomment -%}
+  <div id="mp3d-intro" class="mp3d-intro">
+    <div class="mp3d-intro__coeur">
+      <p class="mp3d-intro__maison">Maison Philidor</p>
+      <h1 class="mp3d-intro__h1">Les règles du backgammon</h1>
+      <p class="mp3d-intro__accroche">Prenez place. Nous vous emmenons à la table.</p>
+      <div id="mp3d-progress" class="mp3d-progress" role="progressbar" aria-label="Chargement"><i></i></div>
+      <p class="mp3d-intro__charge">Préparation du salon…</p>
+    </div>
+    <div class="mp3d-intro__voyage">
+      <p class="mp3d-intro__eyebrow">Voyage dans le temps</p>
+      <h2 id="mp3d-intro-titre" class="mp3d-intro__h2"></h2>
+      <p id="mp3d-intro-sous" class="mp3d-intro__sous"></p>
+    </div>
+    <button type="button" id="mp3d-passer" class="mp3d-btn mp3d-btn--ghost mp3d-intro__passer">Passer l'introduction</button>
+  </div>
+
+  {%- comment -%} Interface dans le salon {%- endcomment -%}
+  <div id="mp3d-hud" class="mp3d-hud" hidden>
+    <div class="mp3d-hud__haut">
+      <a class="mp3d-btn mp3d-btn--ghost" href="{{ retour }}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+        {{ section.settings.retour_libelle | default: 'Retour à la boutique' }}
+      </a>
+      <span class="mp3d-hud__marque">Maison Philidor</span>
+      <button type="button" id="mp3d-lire" class="mp3d-btn mp3d-btn--ghost mp3d-hud__lire">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Lire en grand
+      </button>
+    </div>
+
+    <p id="mp3d-hint" class="mp3d-hint" hidden>
+      <span class="mp3d-hint__ico">✦</span>
+      Regardez autour de vous en glissant le doigt ou la souris, puis <strong>cliquez sur le livre</strong> posé devant vous pour l'ouvrir.
+    </p>
+
+    <div class="mp3d-hud__bas">
+      <button type="button" id="mp3d-prev" class="mp3d-btn mp3d-btn--rond" aria-label="Page précédente">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <span id="mp3d-page-no" class="mp3d-hud__no">1–2</span>
+      <button type="button" id="mp3d-next" class="mp3d-btn mp3d-btn--rond" aria-label="Page suivante">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+      <button type="button" id="mp3d-table" class="mp3d-btn mp3d-btn--or">Se pencher sur le livre</button>
+      <button type="button" id="mp3d-fermer" class="mp3d-btn mp3d-btn--ghost">Refermer le livre</button>
+    </div>
+  </div>
+
+  {%- comment -%} Lecture confortable en 2D (les mêmes pages, à plat) {%- endcomment -%}
+  <div id="mp3d-lecture" class="mp3d-lecture" hidden>
+    <div class="mp3d-lecture__barre">
+      <span id="mp3d-2d-no" class="mp3d-lecture__no">Pages 1–2</span>
+      <button type="button" id="mp3d-2d-fermer" class="mp3d-btn mp3d-btn--ghost">Revenir au salon</button>
+    </div>
+    <div class="mp3d-lecture__pages">
+      <button type="button" id="mp3d-2d-prev" class="mp3d-btn mp3d-btn--rond mp3d-lecture__fleche" aria-label="Page précédente">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <canvas id="mp3d-2d-g" class="mp3d-lecture__page"></canvas>
+      <canvas id="mp3d-2d-d" class="mp3d-lecture__page"></canvas>
+      <button type="button" id="mp3d-2d-next" class="mp3d-btn mp3d-btn--rond mp3d-lecture__fleche" aria-label="Page suivante">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <noscript><p class="mp3d-noscript">Cette page a besoin de JavaScript pour afficher le salon en 3D.</p></noscript>
+</div>
+
+<style>
+  html, body { overflow: hidden !important; height: 100%; }
+  .mp3d { position: fixed; inset: 0; z-index: 2147483000; background: #05040a; color: #f7f1e6; font-family: 'Poppins', system-ui, -apple-system, sans-serif; overflow: hidden; touch-action: none; -webkit-user-select: none; user-select: none; }
+  .mp3d *, .mp3d *::before, .mp3d *::after { box-sizing: border-box; }
+  .mp3d canvas#mp3d-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+  .mp3d canvas#mp3d-canvas:active { cursor: grabbing; }
+
+  /* Boutons */
+  .mp3d-btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(201,169,97,.55); background: rgba(20,14,8,.62); color: #f7f1e6; padding: 10px 16px; border-radius: 20px; font: inherit; font-size: 13px; letter-spacing: .02em; text-decoration: none; cursor: pointer; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); transition: background .2s, border-color .2s, transform .15s, opacity .3s; pointer-events: auto; }
+  .mp3d-btn:hover { background: rgba(60,44,22,.8); border-color: #c9a961; }
+  .mp3d-btn:active { transform: translateY(1px); }
+  .mp3d-btn:disabled { opacity: .35; cursor: default; }
+  .mp3d-btn--or { background: #8a6d33; border-color: #a98a45; color: #fffcf5; }
+  .mp3d-btn--or:hover { background: #a08040; }
+  .mp3d-btn--rond { width: 42px; height: 42px; padding: 0; justify-content: center; border-radius: 50%; }
+
+  /* Écran d'introduction */
+  .mp3d-intro { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 60%, #1a1208 0%, #05040a 70%); transition: opacity 1.4s ease; }
+  .mp3d-intro.is-fini { opacity: 0; pointer-events: none; }
+  .mp3d-intro__coeur, .mp3d-intro__voyage { grid-area: 1 / 1; text-align: center; padding: 24px; max-width: 640px; transition: opacity .8s ease, transform .8s ease; }
+  .mp3d-intro__voyage { opacity: 0; transform: translateY(14px); }
+  .mp3d-intro.is-voyage { background: transparent; }
+  .mp3d-intro.is-voyage .mp3d-intro__coeur { opacity: 0; transform: translateY(-14px); pointer-events: none; }
+  .mp3d-intro.is-voyage .mp3d-intro__voyage { opacity: 1; transform: none; transition-delay: .6s; }
+  .mp3d-intro__maison, .mp3d-intro__eyebrow { margin: 0 0 14px; font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: #c9a961; }
+  .mp3d-intro__h1, .mp3d-intro__h2 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-weight: 400; font-size: clamp(30px, 5vw, 54px); line-height: 1.1; color: #fff7e6; text-shadow: 0 2px 30px rgba(0,0,0,.6); }
+  .mp3d-intro__accroche, .mp3d-intro__sous { margin: 18px 0 0; font-size: 15px; color: rgba(247,241,230,.8); }
+  .mp3d-progress { width: min(320px, 70vw); height: 2px; margin: 34px auto 0; background: rgba(201,169,97,.2); border-radius: 2px; overflow: hidden; }
+  .mp3d-progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #8a6d33, #ffe1a8); transition: width .3s ease; }
+  .mp3d-intro__charge { margin: 12px 0 0; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: rgba(247,241,230,.5); }
+  .mp3d-intro__passer { position: absolute; right: 22px; bottom: 22px; opacity: 0; pointer-events: none; }
+  .mp3d-intro.is-voyage .mp3d-intro__passer { opacity: 1; pointer-events: auto; transition-delay: 1.2s; }
+
+  /* Interface */
+  .mp3d-hud { position: absolute; inset: 0; pointer-events: none; display: flex; flex-direction: column; justify-content: space-between; padding: 18px 22px; animation: mp3d-apparait 1.2s ease both; }
+  .mp3d-hud[hidden] { display: none; }
+  @keyframes mp3d-apparait { from { opacity: 0; } to { opacity: 1; } }
+  .mp3d-hud__haut, .mp3d-hud__bas { display: flex; align-items: center; gap: 12px; }
+  .mp3d-hud__haut { justify-content: space-between; }
+  .mp3d-hud__marque { font-family: Georgia, 'Times New Roman', serif; font-size: 15px; letter-spacing: .18em; text-transform: uppercase; color: #c9a961; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+  .mp3d-hud__bas { justify-content: center; opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity .5s, transform .5s, visibility 0s .5s; }
+  .mp3d-hud.is-livre .mp3d-hud__bas { opacity: 1; visibility: visible; transform: none; transition: opacity .5s, transform .5s, visibility 0s; }
+  .mp3d-hud__lire { opacity: 0; visibility: hidden; transition: opacity .5s, visibility 0s .5s; }
+  .mp3d-hud.is-livre .mp3d-hud__lire { opacity: 1; visibility: visible; transition: opacity .5s, visibility 0s; }
+  .mp3d-hud__no { min-width: 92px; text-align: center; font-size: 13px; letter-spacing: .06em; color: #f7f1e6; text-shadow: 0 1px 6px rgba(0,0,0,.7); font-variant-numeric: tabular-nums; }
+  .mp3d-hint { position: absolute; left: 50%; top: 78px; transform: translateX(-50%); max-width: min(560px, calc(100vw - 40px)); margin: 0; padding: 14px 20px; border-radius: 22px; background: rgba(20,14,8,.72); border: 1px solid rgba(201,169,97,.4); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 14px; line-height: 1.5; text-align: center; color: rgba(247,241,230,.92); transition: opacity .8s, transform .8s; pointer-events: none; }
+  .mp3d-hint[hidden] { display: none; }
+  .mp3d-hint.is-efface { opacity: 0; transform: translate(-50%, -10px); }
+  .mp3d-hint__ico { color: #c9a961; margin-right: 6px; }
+  .mp3d-hint strong { color: #ffe1a8; font-weight: 500; }
+
+  /* Lecture 2D */
+  .mp3d-lecture { position: absolute; inset: 0; z-index: 5; display: flex; flex-direction: column; background: rgba(8,6,3,.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); animation: mp3d-apparait .4s ease both; }
+  .mp3d-lecture[hidden] { display: none; }
+  .mp3d-lecture__barre { display: flex; align-items: center; justify-content: space-between; padding: 16px 22px; }
+  .mp3d-lecture__no { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #c9a961; }
+  .mp3d-lecture__pages { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 0 16px 24px; }
+  .mp3d-lecture__page { height: min(100%, calc(100vh - 110px)); max-height: 100%; max-width: calc((100vw - 160px) / 2); width: auto; aspect-ratio: 1024 / 1366; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(201,169,97,.25); border-radius: 3px; background: #f3e9d3; }
+  .mp3d-lecture__page + .mp3d-lecture__page { box-shadow: -8px 0 24px -12px rgba(0,0,0,.6) inset, 0 30px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(201,169,97,.25); }
+  .mp3d-noscript { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 24px; text-align: center; }
+
+  @media (max-width: 749px) {
+    .mp3d-hud { padding: 12px 14px; }
+    .mp3d-btn { padding: 9px 13px; font-size: 12px; }
+    .mp3d-hud__marque { display: none; }
+    .mp3d-hud__bas { flex-wrap: wrap; gap: 8px; }
+    .mp3d-hud__no { min-width: 72px; }
+    .mp3d-hint { top: 66px; font-size: 13px; padding: 12px 16px; }
+    .mp3d-intro__passer { right: 14px; bottom: 14px; }
+    .mp3d-lecture__pages { flex-direction: column; overflow-y: auto; gap: 18px; padding: 0 14px 24px; justify-content: flex-start; }
+    .mp3d-lecture__page { width: min(100%, 520px); height: auto; max-width: none; max-height: none; }
+    .mp3d-lecture__fleche { position: fixed; bottom: 18px; z-index: 6; }
+    #mp3d-2d-prev { left: 18px; } #mp3d-2d-next { right: 18px; }
+  }
+</style>
+
+<script type="module" src="{{ 'mp3d-salon.js' | asset_url }}"></script>
+
+{% schema %}
+{
+  "name": "Salon 3D — règles du backgammon",
+  "tag": "section",
+  "class": "mp-salon-3d",
+  "limit": 1,
+  "settings": [
+    { "type": "paragraph", "content": "Expérience plein écran : voyage dans le temps jusqu'à un salon du XVIIIe siècle, un hôte assis en face, et le grand livre des règles du backgammon à feuilleter. Les fichiers du salon sont dans les assets du thème (mp3d-*)." },
+    { "type": "text", "id": "titre", "label": "Titre affiché pendant le voyage", "default": "Paris, 1750 — Café de la Régence" },
+    { "type": "text", "id": "sous", "label": "Sous-titre du voyage", "default": "Votre hôte vous attend pour une partie de backgammon." },
+    { "type": "url", "id": "retour", "label": "Lien du bouton de retour" },
+    { "type": "text", "id": "retour_libelle", "label": "Libellé du bouton de retour", "default": "Retour à la boutique" }
+  ],
+  "enabled_on": { "templates": ["page"] },
+  "presets": [ { "name": "Salon 3D — règles du backgammon" } ]
+}
+{% endschema %}
