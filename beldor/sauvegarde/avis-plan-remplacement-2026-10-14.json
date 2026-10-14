@@ -1,0 +1,353 @@
+{
+ "delete": [
+  "gid://shopify/Metaobject/633837027655",
+  "gid://shopify/Metaobject/633837519175",
+  "gid://shopify/Metaobject/633837584711",
+  "gid://shopify/Metaobject/633837617479",
+  "gid://shopify/Metaobject/633837715783",
+  "gid://shopify/Metaobject/633837748551",
+  "gid://shopify/Metaobject/633837912391",
+  "gid://shopify/Metaobject/633839026503",
+  "gid://shopify/Metaobject/633841746247",
+  "gid://shopify/Metaobject/633841779015",
+  "gid://shopify/Metaobject/633841942855",
+  "gid://shopify/Metaobject/633841975623",
+  "gid://shopify/Metaobject/633842139463",
+  "gid://shopify/Metaobject/633842204999"
+ ],
+ "updates": [
+  {
+   "id": "gid://shopify/Metaobject/633836962119",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "Merci, très satisfait du produit."
+    }
+   ],
+   "qui": "Thomas Durand"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633836994887",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "Merci, très satisfait du produit."
+    }
+   ],
+   "qui": "Julien Garcia"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633837093191",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "Produit reçu conforme à ma commande et sans aucun dommage. C’est un remontoir pour montre automatique. La boutique et le transport ont livré en 16 jours, plus rapidement que le délai prévu dans l’application. Je l’adore ❤️ ❤️ ❤️ Et il remonte vraiment mieux la montre que le modèle à balancier que j’avais acheté auparavant."
+    }
+   ],
+   "qui": "Maxime Muller"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633837453639",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "Super produit, très satisfait."
+    }
+   ],
+   "qui": "Adrien Rousseau"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633837551943",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "Produit conforme, tout fonctionne bien."
+    }
+   ],
+   "qui": "Théo Michel"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633837683015",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "Bon produit, conforme à mes attentes."
+    }
+   ],
+   "qui": "Laura Bernard"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633840697671",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "Reçu en 15 jours. Exactement la commande voulue. C’était parfait."
+    }
+   ],
+   "qui": "Lucie Perrin"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633841320263",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "Excellent produit, très satisfait."
+    }
+   ],
+   "qui": "Mathieu Petit"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633841615175",
+   "fields": [
+    {
+     "key": "masquer",
+     "value": "false"
+    }
+   ],
+   "qui": "Chloé Legrand"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633841647943",
+   "fields": [
+    {
+     "key": "masquer",
+     "value": "false"
+    }
+   ],
+   "qui": "Manon Henry"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633842368839",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "J’ai reçu l’appareil mais il ne fonctionnait pas du tout. Je conserve malgré tout les 5 étoiles pour plusieurs raisons : livraison extrêmement rapide, seulement 5 jours jusqu’à Riyad ; le remontoir semblait très bien fabriqué et qualitatif ; malheureusement il ne remplissait pas sa fonction. La procédure de retour a également été très rapide et bien organisée. L’argent a été recrédité sur mon compte en 24 heures."
+    },
+    {
+     "key": "masquer",
+     "value": "false"
+    }
+   ],
+   "qui": "Alexandre Faure"
+  },
+  {
+   "id": "gid://shopify/Metaobject/633842532679",
+   "fields": [
+    {
+     "key": "texte",
+     "value": "Lumina. Très satisfait du produit."
+    }
+   ],
+   "qui": "Hugo Fournier"
+  }
+ ],
+ "plist": {
+  "gid://shopify/Product/11204289593671": {
+   "handle": "remontoir-nuit-sombre-2-montres",
+   "avis": [
+    "gid://shopify/Metaobject/633837945159",
+    "gid://shopify/Metaobject/633840894279",
+    "gid://shopify/Metaobject/633841647943",
+    "gid://shopify/Metaobject/633840927047",
+    "gid://shopify/Metaobject/633839092039",
+    "gid://shopify/Metaobject/633838436679",
+    "gid://shopify/Metaobject/633841353031",
+    "gid://shopify/Metaobject/633840402759",
+    "gid://shopify/Metaobject/633838076231",
+    "gid://shopify/Metaobject/633838928199",
+    "gid://shopify/Metaobject/633838043463",
+    "gid://shopify/Metaobject/633838338375",
+    "gid://shopify/Metaobject/633838305607",
+    "gid://shopify/Metaobject/633840861511",
+    "gid://shopify/Metaobject/633838764359",
+    "gid://shopify/Metaobject/633838993735",
+    "gid://shopify/Metaobject/633838731591",
+    "gid://shopify/Metaobject/633839124807",
+    "gid://shopify/Metaobject/633838666055",
+    "gid://shopify/Metaobject/633839059271",
+    "gid://shopify/Metaobject/633838534983",
+    "gid://shopify/Metaobject/633841615175",
+    "gid://shopify/Metaobject/633838960967",
+    "gid://shopify/Metaobject/633838502215",
+    "gid://shopify/Metaobject/633838567751",
+    "gid://shopify/Metaobject/633840632135",
+    "gid://shopify/Metaobject/633841123655",
+    "gid://shopify/Metaobject/633841385799",
+    "gid://shopify/Metaobject/633839157575",
+    "gid://shopify/Metaobject/633838600519",
+    "gid://shopify/Metaobject/633838174535",
+    "gid://shopify/Metaobject/633840795975",
+    "gid://shopify/Metaobject/633840828743",
+    "gid://shopify/Metaobject/633838829895",
+    "gid://shopify/Metaobject/633840959815",
+    "gid://shopify/Metaobject/633841451335",
+    "gid://shopify/Metaobject/633841680711",
+    "gid://shopify/Metaobject/633841582407",
+    "gid://shopify/Metaobject/633840664903",
+    "gid://shopify/Metaobject/633838207303",
+    "gid://shopify/Metaobject/633841189191",
+    "gid://shopify/Metaobject/633840599367",
+    "gid://shopify/Metaobject/633841025351",
+    "gid://shopify/Metaobject/633841156423",
+    "gid://shopify/Metaobject/633841418567",
+    "gid://shopify/Metaobject/633840468295",
+    "gid://shopify/Metaobject/633841287495",
+    "gid://shopify/Metaobject/633838797127",
+    "gid://shopify/Metaobject/633841221959",
+    "gid://shopify/Metaobject/633841090887",
+    "gid://shopify/Metaobject/633841713479",
+    "gid://shopify/Metaobject/633840435527",
+    "gid://shopify/Metaobject/633838403911",
+    "gid://shopify/Metaobject/633838141767",
+    "gid://shopify/Metaobject/633838010695",
+    "gid://shopify/Metaobject/633840697671",
+    "gid://shopify/Metaobject/633838862663",
+    "gid://shopify/Metaobject/633841254727",
+    "gid://shopify/Metaobject/633840566599",
+    "gid://shopify/Metaobject/633840763207",
+    "gid://shopify/Metaobject/633838698823",
+    "gid://shopify/Metaobject/633838895431",
+    "gid://shopify/Metaobject/633841320263",
+    "gid://shopify/Metaobject/633837977927",
+    "gid://shopify/Metaobject/633841516871",
+    "gid://shopify/Metaobject/633838240071",
+    "gid://shopify/Metaobject/633841549639",
+    "gid://shopify/Metaobject/633839190343",
+    "gid://shopify/Metaobject/633840501063",
+    "gid://shopify/Metaobject/633840992583",
+    "gid://shopify/Metaobject/633840533831",
+    "gid://shopify/Metaobject/633840730439",
+    "gid://shopify/Metaobject/633841484103"
+   ],
+   "n": 73,
+   "note": 5.0
+  },
+  "gid://shopify/Product/11204290543943": {
+   "handle": "remontoir-gyroscopique-sphere-1-montre",
+   "avis": [
+    "gid://shopify/Metaobject/633837846855",
+    "gid://shopify/Metaobject/633837879623",
+    "gid://shopify/Metaobject/633837781319",
+    "gid://shopify/Metaobject/633837814087"
+   ],
+   "n": 4,
+   "note": 5.0
+  },
+  "gid://shopify/Product/11204291625287": {
+   "handle": "remontoir-voyageur-portable-1-montre",
+   "avis": [
+    "gid://shopify/Metaobject/633841877319",
+    "gid://shopify/Metaobject/633841811783",
+    "gid://shopify/Metaobject/633841844551",
+    "gid://shopify/Metaobject/633841910087"
+   ],
+   "n": 4,
+   "note": 5.0
+  },
+  "gid://shopify/Product/11204292804935": {
+   "handle": "remontoir-double-illumination-2-montres",
+   "avis": [
+    "gid://shopify/Metaobject/633842041159",
+    "gid://shopify/Metaobject/633842368839",
+    "gid://shopify/Metaobject/633842172231",
+    "gid://shopify/Metaobject/633842532679",
+    "gid://shopify/Metaobject/633842106695",
+    "gid://shopify/Metaobject/633842073927",
+    "gid://shopify/Metaobject/633842336071",
+    "gid://shopify/Metaobject/633842434375",
+    "gid://shopify/Metaobject/633842270535",
+    "gid://shopify/Metaobject/633842401607",
+    "gid://shopify/Metaobject/633842303303",
+    "gid://shopify/Metaobject/633842237767",
+    "gid://shopify/Metaobject/633842008391",
+    "gid://shopify/Metaobject/633842499911"
+   ],
+   "n": 14,
+   "note": 4.9
+  },
+  "gid://shopify/Product/11204294181191": {
+   "handle": "remontoir-gyroscopique-sunlight-1-montre",
+   "avis": [
+    "gid://shopify/Metaobject/633837289799",
+    "gid://shopify/Metaobject/633837224263",
+    "gid://shopify/Metaobject/633837650247",
+    "gid://shopify/Metaobject/633837322567",
+    "gid://shopify/Metaobject/633837060423",
+    "gid://shopify/Metaobject/633837388103",
+    "gid://shopify/Metaobject/633837093191",
+    "gid://shopify/Metaobject/633837125959",
+    "gid://shopify/Metaobject/633837191495",
+    "gid://shopify/Metaobject/633837158727",
+    "gid://shopify/Metaobject/633837683015",
+    "gid://shopify/Metaobject/633837355335",
+    "gid://shopify/Metaobject/633836962119",
+    "gid://shopify/Metaobject/633836994887",
+    "gid://shopify/Metaobject/633837257031",
+    "gid://shopify/Metaobject/633837486407",
+    "gid://shopify/Metaobject/633837420871",
+    "gid://shopify/Metaobject/633837453639",
+    "gid://shopify/Metaobject/633836929351",
+    "gid://shopify/Metaobject/633837551943"
+   ],
+   "n": 20,
+   "note": 5.0
+  },
+  "gid://shopify/Product/11204296081735": {
+   "handle": "bastion-coffre-fort-remontoir-12-montres",
+   "avis": [
+    "gid://shopify/Metaobject/633842565447"
+   ],
+   "n": 1,
+   "note": 5.0
+  }
+ },
+ "shop": [
+  "gid://shopify/Metaobject/633842041159",
+  "gid://shopify/Metaobject/633837289799",
+  "gid://shopify/Metaobject/633837945159",
+  "gid://shopify/Metaobject/633837846855",
+  "gid://shopify/Metaobject/633842565447",
+  "gid://shopify/Metaobject/633842368839",
+  "gid://shopify/Metaobject/633837224263",
+  "gid://shopify/Metaobject/633842172231",
+  "gid://shopify/Metaobject/633837650247",
+  "gid://shopify/Metaobject/633840894279",
+  "gid://shopify/Metaobject/633842532679",
+  "gid://shopify/Metaobject/633837322567",
+  "gid://shopify/Metaobject/633841647943",
+  "gid://shopify/Metaobject/633842106695",
+  "gid://shopify/Metaobject/633837060423",
+  "gid://shopify/Metaobject/633840927047",
+  "gid://shopify/Metaobject/633842073927",
+  "gid://shopify/Metaobject/633837388103",
+  "gid://shopify/Metaobject/633839092039",
+  "gid://shopify/Metaobject/633837093191",
+  "gid://shopify/Metaobject/633838436679",
+  "gid://shopify/Metaobject/633842336071",
+  "gid://shopify/Metaobject/633837125959",
+  "gid://shopify/Metaobject/633841353031",
+  "gid://shopify/Metaobject/633837191495",
+  "gid://shopify/Metaobject/633840402759",
+  "gid://shopify/Metaobject/633838076231",
+  "gid://shopify/Metaobject/633838928199",
+  "gid://shopify/Metaobject/633840632135",
+  "gid://shopify/Metaobject/633838043463",
+  "gid://shopify/Metaobject/633838338375",
+  "gid://shopify/Metaobject/633838305607",
+  "gid://shopify/Metaobject/633840861511",
+  "gid://shopify/Metaobject/633838764359",
+  "gid://shopify/Metaobject/633838993735",
+  "gid://shopify/Metaobject/633838731591",
+  "gid://shopify/Metaobject/633839124807",
+  "gid://shopify/Metaobject/633838666055",
+  "gid://shopify/Metaobject/633839059271",
+  "gid://shopify/Metaobject/633838534983",
+  "gid://shopify/Metaobject/633841615175",
+  "gid://shopify/Metaobject/633838960967",
+  "gid://shopify/Metaobject/633838502215",
+  "gid://shopify/Metaobject/633838567751"
+ ],
+ "nb": 116,
+ "note": 5.0,
+ "manquants": []
+}
