@@ -1,0 +1,152 @@
+{%- comment -%}
+  Maison Murale — Widget WhatsApp SAV (bulle en bas a gauche).
+  Rendu depuis layout/theme.liquid : {% render 'mm-whatsapp' %}
+  Pour changer le numero, le nom ou la phrase : les trois assign ci-dessous.
+{%- endcomment -%}
+
+{%- liquid
+  assign wa_link = 'https://wa.me/message/V5U35J5ZWYZOA1'
+  assign wa_marque = 'Maison Murale'
+  assign wa_note = 'Spécialiste de nos carrelages · Réponse rapide 7j/7'
+
+  assign wa_glyph = 'mm-wa-glyph.png' | asset_url
+  assign wa_ava = 'mm-sav-ibtissam.jpg' | asset_url
+
+  if template.name == 'product' and product != blank
+    assign wa_name = product.title | split: '—' | first | strip
+    assign wa_question = 'Une question sur ' | append: wa_name | append: ' ?'
+  else
+    assign wa_question = 'Une question sur un produit ?'
+  endif
+-%}
+
+<div class="mm-wa" data-mm-wa hidden>
+
+  <div class="mm-wa__panel" data-mm-panel role="dialog" aria-label="Contacter le service client {{ wa_marque | escape }}">
+    <div class="mm-wa__head">
+      <button class="mm-wa__x" type="button" data-mm-close aria-label="Fermer">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+      <span class="mm-wa__ava">
+        <img src="{{ wa_ava }}" alt="Ibtissam, service client {{ wa_marque | escape }}" width="46" height="46" loading="lazy">
+        <i class="mm-wa__dot"></i>
+      </span>
+      <span class="mm-wa__id">
+        <strong>Ibtissam</strong>
+        <em>Service client {{ wa_marque }}</em>
+      </span>
+    </div>
+
+    <div class="mm-wa__body">
+      <div class="mm-wa__msg">
+        <p>Bonjour, c{{ "'" }}est Ibtissam.</p>
+        <p>{{ wa_question }} Écrivez-moi, je vous réponds directement.</p>
+        <span class="mm-wa__time">En ligne</span>
+      </div>
+    </div>
+
+    <div class="mm-wa__foot">
+      <a class="mm-wa__go" href="{{ wa_link }}" target="_blank" rel="noopener nofollow">
+        <img src="{{ wa_glyph }}" alt="" width="20" height="20" loading="lazy">
+        Discuter sur WhatsApp
+      </a>
+      <span class="mm-wa__note">{{ wa_note }}</span>
+    </div>
+  </div>
+
+  <button class="mm-wa__btn" type="button" data-mm-toggle aria-label="{{ wa_question | escape }} Contacter le service client sur WhatsApp">
+    <img src="{{ wa_glyph }}" alt="" width="32" height="32">
+  </button>
+</div>
+
+<style>
+  .mm-wa{ position:fixed; left:22px; bottom:22px; z-index:9998; display:flex; flex-direction:column; align-items:flex-start; gap:12px; font-family:inherit; pointer-events:none; }
+  .mm-wa[hidden]{ display:none; }
+  .mm-wa > *{ pointer-events:auto; }
+
+  /* --- Panneau deroulant --- */
+  .mm-wa__panel{ width:304px; max-width:calc(100vw - 44px); background:#fff; border-radius:20px; overflow:hidden; box-shadow:0 20px 48px rgba(28,21,18,.22), 0 4px 12px rgba(28,21,18,.1); transform-origin:0 100%; opacity:0; transform:translateY(14px) scale(.94); pointer-events:none; transition:opacity .28s ease, transform .3s cubic-bezier(.34,1.26,.64,1); }
+  .mm-wa.is-panel .mm-wa__panel{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  .mm-wa:not(.is-panel) .mm-wa__panel{ position:absolute; bottom:86px; left:0; }
+
+  .mm-wa__head{ position:relative; display:flex; align-items:center; gap:12px; padding:16px 44px 16px 16px; background:linear-gradient(135deg,#128C4A 0%,#1EA95C 55%,#25D366 100%); color:#fff; }
+  .mm-wa__ava{ position:relative; flex:0 0 46px; width:46px; height:46px; }
+  .mm-wa__ava img{ width:46px; height:46px; border-radius:50%; object-fit:cover; display:block; box-shadow:0 0 0 2px rgba(255,255,255,.85); }
+  .mm-wa__dot{ position:absolute; right:0; bottom:1px; width:12px; height:12px; border-radius:50%; background:#5CEB8E; box-shadow:0 0 0 2.5px #17974F; }
+  .mm-wa__id{ display:flex; flex-direction:column; line-height:1.28; min-width:0; }
+  .mm-wa__id strong{ font-size:15.5px; font-weight:600; letter-spacing:-.005em; }
+  .mm-wa__id em{ font-style:normal; font-size:12.5px; opacity:.88; }
+  .mm-wa__x{ position:absolute; top:12px; right:12px; width:26px; height:26px; display:flex; align-items:center; justify-content:center; padding:0; border:0; border-radius:50%; cursor:pointer; background:rgba(255,255,255,.16); color:#fff; transition:background .2s ease; }
+  .mm-wa__x:hover{ background:rgba(255,255,255,.3); }
+
+  .mm-wa__body{ padding:18px 16px 16px; background:#f4efe8; }
+  .mm-wa__msg{ position:relative; background:#fff; border-radius:4px 14px 14px 14px; padding:11px 13px 20px; box-shadow:0 1px 2px rgba(28,21,18,.14); }
+  .mm-wa__msg p{ margin:0 0 5px; font-size:14px; line-height:1.45; color:#1c1512; }
+  .mm-wa__msg p:last-of-type{ margin-bottom:0; }
+  .mm-wa__time{ position:absolute; right:11px; bottom:6px; font-size:10.5px; color:#9a8e86; }
+
+  .mm-wa__foot{ padding:14px 16px 16px; background:#fff; text-align:center; }
+  .mm-wa__go{ display:flex; align-items:center; justify-content:center; gap:9px; width:100%; padding:12px 14px; border-radius:30px; background:linear-gradient(180deg,#2ED26A 0%,#14A054 100%); color:#fff; font-size:14.5px; font-weight:600; text-decoration:none; box-shadow:0 6px 14px rgba(11,110,55,.3); transition:transform .18s ease, box-shadow .18s ease; }
+  .mm-wa__go:hover{ transform:translateY(-1px); box-shadow:0 9px 20px rgba(11,110,55,.36); }
+  .mm-wa__note{ display:block; margin-top:9px; font-size:11.5px; color:#8a7f78; }
+
+  /* --- Bouton rond 3D --- */
+  .mm-wa__btn{ position:relative; display:flex; align-items:center; justify-content:center; width:60px; height:60px; padding:0; border:0; border-radius:50%; cursor:pointer; background:radial-gradient(circle at 34% 26%, #5CEB8E 0%, #2FD968 34%, #22C65B 62%, #12A550 100%); box-shadow:0 10px 24px rgba(11,110,55,.36), 0 3px 8px rgba(28,21,18,.18), inset 0 2px 3px rgba(255,255,255,.55), inset 0 -4px 9px rgba(0,80,38,.34); transition:transform .2s ease, box-shadow .2s ease; -webkit-tap-highlight-color:transparent; }
+  .mm-wa__btn img{ width:32px; height:32px; display:block; filter:drop-shadow(0 1px 1px rgba(0,60,28,.35)); }
+  .mm-wa__btn::before{ content:''; position:absolute; left:10%; top:7%; width:54%; height:36%; border-radius:50%; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0)); filter:blur(1px); }
+  .mm-wa__btn:hover{ transform:translateY(-3px); box-shadow:0 16px 32px rgba(11,110,55,.44), 0 5px 12px rgba(28,21,18,.22), inset 0 2px 3px rgba(255,255,255,.6), inset 0 -4px 9px rgba(0,80,38,.34); }
+  .mm-wa__btn:active{ transform:translateY(-1px) scale(.97); }
+  .mm-wa__btn:focus-visible{ outline:3px solid #45111c; outline-offset:3px; }
+  .mm-wa__btn::after{ content:''; position:absolute; inset:0; border-radius:50%; box-shadow:0 0 0 0 rgba(37,211,102,.5); animation:mmWaPulse 3s ease-out 3; pointer-events:none; }
+  @keyframes mmWaPulse{ 0%{ box-shadow:0 0 0 0 rgba(37,211,102,.5);} 70%{ box-shadow:0 0 0 18px rgba(37,211,102,0);} 100%{ box-shadow:0 0 0 0 rgba(37,211,102,0);} }
+  .mm-wa.is-panel .mm-wa__btn::after{ animation:none; }
+
+  @media (max-width:749px){
+    .mm-wa{ left:14px; bottom:calc(14px + env(safe-area-inset-bottom,0px)); gap:10px; }
+    .mm-wa__btn{ width:54px; height:54px; }
+    .mm-wa__btn img{ width:29px; height:29px; }
+    .mm-wa:not(.is-panel) .mm-wa__panel{ bottom:78px; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .mm-wa__panel,.mm-wa__btn,.mm-wa__go{ transition:none; }
+    .mm-wa__btn::after{ animation:none; }
+  }
+</style>
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-mm-wa]');
+    if (!root) return;
+    root.hidden = false;
+
+    /* Un badge d'avis occupe parfois le meme coin et verrouille sa position : on remonte au-dessus. */
+    function avoidOverlap() {
+      var b = document.getElementById('google-merchantwidget-iframe-wrapper');
+      if (!b) return;
+      var r = b.getBoundingClientRect();
+      if (!r.width || r.left > 280) return;
+      root.style.bottom = Math.round((window.innerHeight - r.bottom) + r.height + 14) + 'px';
+    }
+    avoidOverlap();
+    setTimeout(avoidOverlap, 1200);
+    setTimeout(avoidOverlap, 3500);
+    window.addEventListener('resize', avoidOverlap);
+
+    function openPanel() { root.classList.add('is-panel'); }
+    function closePanel() { root.classList.remove('is-panel'); }
+
+    root.querySelectorAll('[data-mm-toggle]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        if (root.classList.contains('is-panel')) { closePanel(); } else { openPanel(); }
+      });
+    });
+
+    root.querySelector('[data-mm-close]').addEventListener('click', closePanel);
+
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePanel(); });
+    document.addEventListener('click', function (e) {
+      if (root.classList.contains('is-panel') && !root.contains(e.target)) closePanel();
+    });
+  })();
+</script>
