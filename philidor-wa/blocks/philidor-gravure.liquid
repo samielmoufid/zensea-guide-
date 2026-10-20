@@ -1,0 +1,302 @@
+{% comment %}
+  Maison Philidor — Option gravure dans le formulaire produit.
+  Interrupteur + champ texte + choix de la police en carrousel + aperçu de la plaque.
+  Les polices ne sont téléchargées qu'au moment où l'option est activée.
+{% endcomment %}
+
+{%- liquid
+  assign gp = block.settings.product
+  assign gv = gp.selected_or_first_available_variant
+  assign maxlen = block.settings.max_length | default: 15
+
+  # nom affiché | famille CSS | famille Google Fonts (vide = police système)
+  assign polices = 'Classique|Cormorant Garamond|Cormorant+Garamond:wght@500;;Romaine|Cinzel|Cinzel:wght@500;;Élégante|Playfair Display|Playfair+Display:wght@500;;Ancienne|EB Garamond|EB+Garamond:wght@500;;Anglaise|Great Vibes|Great+Vibes;;Déliée|Pinyon Script|Pinyon+Script;;Parisienne|Parisienne|Parisienne;;Manuscrite|Dancing Script|Dancing+Script:wght@600;;Allura|Allura|Allura;;Italianno|Italianno|Italianno;;Antique|Marcellus|Marcellus;;Livre|Libre Baskerville|Libre+Baskerville;;Gothique|UnifrakturMaguntia|UnifrakturMaguntia;;Bâton|Montserrat|Montserrat:wght@600;;Fine|Josefin Sans|Josefin+Sans:wght@600;;Condensée|Oswald|Oswald:wght@500' | split: ';;'
+-%}
+
+{%- if gp != blank and gv != blank and gv.available -%}
+{%- capture google_familles -%}
+  {%- for p in polices -%}
+    {%- assign bits = p | split: '|' -%}
+    {%- assign g = bits[2] | strip -%}
+    {%- if g != blank -%}family={{ g }}&{% endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+<philidor-gravure class="mph-grav" data-variant="{{ gv.id }}" data-fonts="https://fonts.googleapis.com/css2?{{ google_familles }}display=swap" {{ block.shopify_attributes }}>
+  <label class="mph-grav__head">
+    <span class="mph-grav__switch">
+      <input type="checkbox" class="mph-grav__toggle" aria-controls="mph-grav-body-{{ block.id }}">
+      <span class="mph-grav__track" aria-hidden="true"></span>
+    </span>
+    <span class="mph-grav__aa" aria-hidden="true">Aa</span>
+    <span class="mph-grav__titles">
+      <span class="mph-grav__title">{{ block.settings.title }}</span>
+      <span class="mph-grav__price">+ {{ gv.price | money }}</span>
+    </span>
+  </label>
+  {%- if block.settings.note != blank -%}
+    <p class="mph-grav__note">{{ block.settings.note }}</p>
+  {%- endif -%}
+
+  <div class="mph-grav__body" id="mph-grav-body-{{ block.id }}" hidden>
+    <div class="mph-grav__field">
+      <input type="text" class="mph-grav__input" maxlength="{{ maxlen }}" placeholder="{{ block.settings.placeholder }}" autocomplete="off" aria-label="{{ block.settings.title }}">
+      <span class="mph-grav__count"><span data-count>0</span>/{{ maxlen }}</span>
+    </div>
+    <p class="mph-grav__hint">{{ maxlen }} caractères max · Majuscules recommandées</p>
+
+    {%- comment -%} Carrousel des polices : une seule ligne qui défile, jamais empilée. {%- endcomment -%}
+    <div class="mph-grav__fonts">
+      <span class="mph-grav__fonts-label">Police de la gravure</span>
+      <div class="mph-grav__rail-wrap">
+        <button type="button" class="mph-grav__arrow mph-grav__arrow--prev" data-rail-prev aria-label="Polices précédentes">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <div class="mph-grav__rail" data-rail role="radiogroup" aria-label="Police de la gravure">
+          {%- for p in polices -%}
+            {%- assign bits = p | split: '|' -%}
+            {%- assign nom = bits[0] | strip -%}
+            {%- assign fam = bits[1] | strip -%}
+            <button type="button" class="mph-grav__font{% if forloop.first %} is-active{% endif %}" data-font="{{ fam | escape }}" role="radio" aria-checked="{% if forloop.first %}true{% else %}false{% endif %}" title="{{ nom }}">
+              <span class="mph-grav__font-aa" style="font-family:'{{ fam }}', Georgia, serif;">Aa</span>
+              <span class="mph-grav__font-nom">{{ nom }}</span>
+            </button>
+          {%- endfor -%}
+        </div>
+        <button type="button" class="mph-grav__arrow mph-grav__arrow--next" data-rail-next aria-label="Polices suivantes">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mph-grav__preview" aria-hidden="true">
+      <span class="mph-grav__plaque"><span data-plaque>{{ block.settings.placeholder }}</span></span>
+      <span class="mph-grav__preview-label">Aperçu de la plaque</span>
+    </div>
+    <p class="mph-grav__error" hidden>Écrivez le texte à graver, ou désactivez l'option.</p>
+    <div class="mph-grav__inputs"></div>
+  </div>
+</philidor-gravure>
+
+<script>
+  if (!customElements.get('philidor-gravure')) {
+    customElements.define('philidor-gravure', class extends HTMLElement {
+      connectedCallback() {
+        this.toggle = this.querySelector('.mph-grav__toggle');
+        this.body = this.querySelector('.mph-grav__body');
+        this.input = this.querySelector('.mph-grav__input');
+        this.count = this.querySelector('[data-count]');
+        this.plaque = this.querySelector('[data-plaque]');
+        this.error = this.querySelector('.mph-grav__error');
+        this.slot = this.querySelector('.mph-grav__inputs');
+        this.rail = this.querySelector('[data-rail]');
+        this.placeholder = this.input.getAttribute('placeholder') || '';
+
+        var premiere = this.querySelector('.mph-grav__font.is-active');
+        this.police = premiere ? premiere.dataset.font : '';
+        this.policeNom = premiere ? premiere.title : '';
+        this.plaque.style.fontFamily = "'" + this.police + "', Georgia, serif";
+
+        this.toggle.addEventListener('change', () => { this.chargerPolices(); this.update(true); });
+        this.input.addEventListener('input', () => this.update(false));
+
+        /* choix de la police */
+        this.rail.addEventListener('click', (e) => {
+          var b = e.target.closest('.mph-grav__font');
+          if (!b) return;
+          this.rail.querySelectorAll('.mph-grav__font').forEach(function (x) {
+            x.classList.toggle('is-active', x === b);
+            x.setAttribute('aria-checked', x === b ? 'true' : 'false');
+          });
+          this.police = b.dataset.font;
+          this.policeNom = b.title;
+          this.plaque.style.fontFamily = "'" + this.police + "', Georgia, serif";
+          b.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+          this.update(false);
+        });
+
+        /* fleches du carrousel */
+        var pas = () => Math.max(160, this.rail.clientWidth * 0.8);
+        var prev = this.querySelector('[data-rail-prev]');
+        var next = this.querySelector('[data-rail-next]');
+        prev.addEventListener('click', () => this.rail.scrollBy({ left: -pas(), behavior: 'smooth' }));
+        next.addEventListener('click', () => this.rail.scrollBy({ left: pas(), behavior: 'smooth' }));
+        var majFleches = () => {
+          var max = this.rail.scrollWidth - this.rail.clientWidth - 4;
+          prev.disabled = this.rail.scrollLeft <= 4;
+          next.disabled = this.rail.scrollLeft >= max;
+        };
+        this.rail.addEventListener('scroll', majFleches, { passive: true });
+        window.addEventListener('resize', majFleches);
+        this.majFleches = majFleches;
+
+        const host = this.closest('product-form') || this.closest('form');
+        if (host) {
+          host.addEventListener('submit', (e) => {
+            if (this.toggle.checked && !this.input.value.trim()) {
+              e.preventDefault();
+              e.stopImmediatePropagation();
+              this.error.hidden = false;
+              this.input.focus();
+            }
+          }, true);
+        }
+        this.update(false);
+      }
+
+      /* les polices ne sont telechargees qu'une fois l'option activee */
+      chargerPolices() {
+        if (this.policesChargees || !this.toggle.checked) return;
+        this.policesChargees = true;
+        var url = this.dataset.fonts;
+        if (!url || document.querySelector('link[data-mph-fonts]')) return;
+        var l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = url;
+        l.setAttribute('data-mph-fonts', '');
+        document.head.appendChild(l);
+      }
+
+      update(focus) {
+        const on = this.toggle.checked;
+        const text = this.input.value.trim();
+        this.body.hidden = !on;
+        this.classList.toggle('is-on', on);
+        this.count.textContent = this.input.value.length;
+        this.plaque.textContent = text || this.placeholder;
+        if (text) this.error.hidden = true;
+        this.slot.innerHTML = '';
+        if (on && text) {
+          const add = (name, value) => {
+            const i = document.createElement('input');
+            i.type = 'hidden'; i.name = name; i.value = value;
+            this.slot.appendChild(i);
+          };
+          add('items[9][id]', this.dataset.variant);
+          add('items[9][quantity]', '1');
+          add('items[9][properties][Texte gravé]', text);
+          add('items[9][properties][Police]', this.policeNom + ' (' + this.police + ')');
+          add('properties[Gravure]', text);
+          add('properties[Police de gravure]', this.policeNom + ' (' + this.police + ')');
+        }
+        if (on) requestAnimationFrame(() => this.majFleches && this.majFleches());
+        if (on && focus) this.input.focus();
+      }
+    });
+  }
+</script>
+{%- elsif request.design_mode -%}
+<div class="mph-grav mph-grav--empty" {{ block.shopify_attributes }}>
+  Option gravure : choisissez le produit « Gravure personnalisée » dans ce bloc, et vérifiez qu'il est actif et disponible sur la boutique en ligne.
+</div>
+{%- endif -%}
+
+{% stylesheet %}
+  .mph-grav {
+    display: block;
+    padding: 6px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--mph-ink, #2a1b12);
+  }
+  .mph-grav.is-on { background: transparent; }
+  .mph-grav--empty { font-size: 12.5px; color: #8a5a2b; padding: 10px 12px; border: 1px dashed #e6dccd; border-radius: 8px; }
+  .mph-grav__head { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+  .mph-grav__switch { position: relative; flex: 0 0 auto; width: 38px; height: 22px; }
+  .mph-grav__toggle { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+  .mph-grav__track { position: absolute; inset: 0; border-radius: 999px; background: #ddd3c4; transition: background .2s; }
+  .mph-grav__track::after {
+    content: ""; position: absolute; top: 3px; left: 3px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    transition: transform .2s;
+  }
+  .mph-grav__toggle:checked + .mph-grav__track { background: var(--mph-walnut, #8a5a2b); }
+  .mph-grav__toggle:checked + .mph-grav__track::after { transform: translateX(16px); }
+  .mph-grav__toggle:focus-visible + .mph-grav__track { outline: 2px solid #b9853f; outline-offset: 2px; }
+  .mph-grav__aa { font-family: Georgia, 'Times New Roman', serif; font-size: 20px; color: var(--mph-walnut, #8a5a2b); }
+  .mph-grav__titles { display: flex; flex-direction: column; gap: 1px; line-height: 1.25; }
+  .mph-grav__title { font-size: 14.5px; font-weight: 600; }
+  .mph-grav__price { font-size: 13px; color: #b9853f; font-weight: 500; }
+  .mph-grav__note { margin: 6px 0 0 50px; font-size: 12px; color: var(--mph-muted, #7b5e47); }
+  .mph-grav__body { margin-top: 12px; }
+  .mph-grav__field { position: relative; }
+  .mph-grav__input {
+    width: 100%; box-sizing: border-box;
+    padding: 11px 56px 11px 12px;
+    border: 1px solid #e3d8c6; border-radius: 8px;
+    font-size: 15px; letter-spacing: .04em; text-transform: uppercase;
+    background: #fff; color: var(--mph-ink, #2a1b12);
+  }
+  .mph-grav__input:focus { outline: none; border-color: #8a5a2b; box-shadow: 0 0 0 3px rgba(138,90,43,.12); }
+  .mph-grav__count { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 12px; color: #9a8572; }
+  .mph-grav__hint { margin: 6px 0 0; font-size: 11.5px; color: #9a8572; }
+
+  /* --- Carrousel des polices --- */
+  .mph-grav__fonts { margin-top: 12px; }
+  .mph-grav__fonts-label { display: block; margin-bottom: 7px; font-size: 11.5px; letter-spacing: .04em; color: #9a8572; }
+  .mph-grav__rail-wrap { position: relative; display: flex; align-items: center; gap: 6px; }
+  .mph-grav__rail {
+    display: flex; flex-wrap: nowrap; gap: 8px;
+    overflow-x: auto; scroll-snap-type: x proximity;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    padding: 2px 0 4px; min-width: 0;
+  }
+  .mph-grav__rail::-webkit-scrollbar { display: none; }
+  .mph-grav__font {
+    flex: 0 0 auto; scroll-snap-align: start;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    width: 72px; padding: 8px 6px;
+    border: 1px solid #e3d8c6; border-radius: 10px;
+    background: #fff; color: var(--mph-ink, #2a1b12);
+    cursor: pointer; font: inherit;
+    transition: border-color .15s, box-shadow .15s, background .15s;
+  }
+  .mph-grav__font:hover { border-color: #c9ab7e; }
+  .mph-grav__font.is-active { border-color: #8a5a2b; background: #fdf8f0; box-shadow: 0 0 0 2px rgba(138,90,43,.14); }
+  .mph-grav__font-aa { font-size: 21px; line-height: 1.15; }
+  .mph-grav__font-nom { font-size: 10px; letter-spacing: .02em; color: #9a8572; white-space: nowrap; }
+  .mph-grav__font.is-active .mph-grav__font-nom { color: #8a5a2b; }
+  .mph-grav__arrow {
+    flex: 0 0 26px; display: flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; padding: 0;
+    border: 1px solid #e3d8c6; border-radius: 50%;
+    background: #fff; color: var(--mph-ink, #2a1b12); cursor: pointer;
+    transition: opacity .15s;
+  }
+  .mph-grav__arrow:disabled { opacity: .25; cursor: default; }
+  @media (max-width: 749px) { .mph-grav__arrow { display: none; } }
+
+  .mph-grav__preview { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 12px; }
+  .mph-grav__plaque {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 180px; max-width: 100%; padding: 9px 22px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #b8892d 0%, #f1d58b 45%, #c99a3d 70%, #9c7424 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -1px 0 rgba(0,0,0,.18), 0 2px 6px rgba(80,50,10,.25);
+  }
+  .mph-grav__plaque span {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 17px; letter-spacing: .12em; text-transform: uppercase;
+    color: #4a3108; text-shadow: 0 1px 0 rgba(255,255,255,.45);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .mph-grav__preview-label { font-size: 11px; color: #9a8572; letter-spacing: .04em; }
+  .mph-grav__error { margin: 8px 0 0; font-size: 12.5px; color: #b42318; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Gravure — Philidor",
+  "tag": null,
+  "settings": [
+    { "type": "product", "id": "product", "label": "Produit gravure" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Gravez votre échiquier" },
+    { "type": "text", "id": "note", "label": "Précision sous le titre", "default": "Gravure réalisée dans notre atelier en France." },
+    { "type": "text", "id": "placeholder", "label": "Exemple dans le champ", "default": "POUR PAPA 2026" },
+    { "type": "range", "id": "max_length", "label": "Caractères maximum", "min": 8, "max": 30, "step": 1, "default": 15 }
+  ],
+  "presets": [{ "name": "Gravure — Philidor", "category": "Maison Philidor" }]
+}
+{% endschema %}
