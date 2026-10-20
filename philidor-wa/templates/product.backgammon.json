@@ -1,0 +1,1253 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "breadcrumbs_enabled": false,
+        "breadcrumbs_enabled_on_products": true,
+        "breadcrumbs_enabled_on_pages": true,
+        "breadcrumbs_enabled_on_collections": true,
+        "breadcrumbs_enabled_on_blogs": true,
+        "breadcrumbs_enabled_on_articles": true,
+        "breadcrumbs_menu_definition": "philidor-principal",
+        "prefer_shortest_path": true,
+        "separator_shape": "triangle",
+        "color_scheme": "scheme-1",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "additional_class": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "titre": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "<p>{{ product.title }}</p>",
+            "text_style": "h2",
+            "paragraph_font_size": "normal",
+            "font_weight": 400,
+            "alignment": "left",
+            "alignment_mobile": "left",
+            "show_read_more": false,
+            "read_more_length": 200,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": false,
+            "truncate_length": 2,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "avis": {
+          "type": "rating-stars",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "product": "{{ closest.product }}",
+            "hide_rating_when_no_reviews": true,
+            "rating": 4.5,
+            "show_note": true,
+            "show_review_count": true,
+            "review_count": 123,
+            "link": "#reviews",
+            "margin_top": 10,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "prix": {
+          "type": "product-price",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "product": "{{ closest.product }}",
+            "sales_badge": "percentage",
+            "show_sales_badge_text": false,
+            "show_unit_price": false,
+            "text_style": "paragraph",
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "badges": {
+          "type": "philidor-badges",
+          "settings": {
+            "badge_1": "Marque française",
+            "badge_2": "+30 clubs partenaires"
+          },
+          "blocks": {}
+        },
+        "livraison": {
+          "type": "philidor-delivery-line",
+          "settings": {
+            "style": "compact",
+            "delivery_text": "Livré en 4 à 8 jours ouvrés",
+            "prefix": "Commandé aujourd'hui,",
+            "suffix": "livraison suivie offerte en France"
+          },
+          "blocks": {}
+        },
+        "arguments": {
+          "type": "philidor-benefits",
+          "settings": {
+            "layout": "grid",
+            "show_sub": false,
+            "title_1": "Noyer massif, flèches marquetées",
+            "sub_1": "découpées et incrustées à la main en France, jamais imprimées",
+            "icon_1": "bois",
+            "title_2": "Prêt à jouer en 5 minutes",
+            "sub_2": "30 pions, 4 dés, 2 cornets, 1 videau et la règle en six pages",
+            "icon_2": "de",
+            "title_3": "Le dé roule, le pion glisse",
+            "sub_3": "fond de jeu en bois plein, cornets gainés, pions tournés dans le bois",
+            "icon_3": "pion",
+            "title_4": "30 jours pour changer d'avis",
+            "sub_4": "retour simple, remboursement intégral · garantie 5 ans",
+            "icon_4": "retour"
+          },
+          "blocks": {}
+        },
+        "description": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "{{ closest.product.description }}",
+            "text_style": "paragraph",
+            "paragraph_font_size": "normal",
+            "font_weight": 400,
+            "alignment": "left",
+            "alignment_mobile": "left",
+            "show_read_more": true,
+            "read_more_length": 320,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": false,
+            "truncate_length": 2,
+            "margin_top": 6,
+            "margin_bottom": 6,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "offre": {
+          "type": "philidor-offer",
+          "settings": {
+            "title": "Offre d'automne",
+            "subtitle": "-10 % sur votre commande",
+            "code": "AUTOMNE10",
+            "button": "Appliquer"
+          },
+          "blocks": {}
+        },
+        "formulaire": {
+          "type": "_product-form",
+          "settings": {},
+          "blocks": {
+            "product_variant_picker_xWC3wF": {
+              "type": "_product-variant-picker",
+              "settings": {
+                "show_option_name": true,
+                "variant_picker_type": "buttons",
+                "show_swatches": true,
+                "swatches_size": "normal",
+                "swatches_rounded": true,
+                "margin_top": 0,
+                "margin_bottom": 15,
+                "additional_class": ""
+              },
+              "blocks": {
+                "product-variant-popup": {
+                  "type": "_product-variant-popup",
+                  "static": true,
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "show_on_option_name": "Taille",
+                    "color_scheme": "scheme-1",
+                    "button_style": "button",
+                    "button_label": "Quelle taille choisir ?",
+                    "icon": "straighten",
+                    "icon_custom": "",
+                    "icon_position": "end",
+                    "additional_class": ""
+                  },
+                  "blocks": {
+                    "pop_title": {
+                      "type": "text",
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "text": "<p>Quel format de backgammon ?</p>",
+                        "text_style": "h3",
+                        "paragraph_font_size": "normal",
+                        "font_weight": 400,
+                        "alignment": "left",
+                        "alignment_mobile": "left",
+                        "show_read_more": false,
+                        "read_more_length": 200,
+                        "read_more_text": "Voir plus",
+                        "read_less_text": "Voir moins",
+                        "truncate": false,
+                        "truncate_length": 2,
+                        "margin_top": 0,
+                        "margin_bottom": 10,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    },
+                    "pop_text": {
+                      "type": "text",
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "text": "<p><strong>38 cm, le format de la maison.</strong> Ouvert, il fait environ 38 × 46 cm : la taille d'une table de salon. Pions de 28 mm, lisibles, faciles à saisir. C'est le format que nous recommandons pour jouer souvent.</p><p><strong>48 cm, le format du dimanche.</strong> Ouvert, près de 48 × 60 cm. Pions de 35 à 38 mm, cornets pleine main, le dé roule loin. Il demande une table, et il la tient.</p><p><strong>30 cm, le format de voyage.</strong> Il tient dans un sac, se pose sur une tablette de train. Pions de 22 mm : on joue, on ne s'installe pas.</p><p>Un doute sur la place dont vous disposez ? Envoyez-nous la largeur de votre table par e-mail.</p>",
+                        "text_style": "paragraph",
+                        "paragraph_font_size": "normal",
+                        "font_weight": 400,
+                        "alignment": "left",
+                        "alignment_mobile": "left",
+                        "show_read_more": false,
+                        "read_more_length": 200,
+                        "read_more_text": "Voir plus",
+                        "read_less_text": "Voir moins",
+                        "truncate": false,
+                        "truncate_length": 2,
+                        "margin_top": 0,
+                        "margin_bottom": 0,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "pop_title",
+                    "pop_text"
+                  ]
+                }
+              },
+              "block_order": []
+            },
+            "gravure": {
+              "type": "philidor-gravure",
+              "settings": {
+                "product": "gravure-personnalisee",
+                "title": "Gravez votre backgammon",
+                "note": "Gravure réalisée dans notre atelier en France.",
+                "placeholder": "POUR PAPA 2026",
+                "max_length": 15
+              },
+              "blocks": {}
+            },
+            "product-add-to-cart-button": {
+              "type": "_product-add-to-cart-button",
+              "static": true,
+              "settings": {
+                "enable_sticky_add_to_cart": true,
+                "button_style": "primary",
+                "show_price": true,
+                "icon": "none",
+                "icon_custom": "",
+                "icon_position": "end",
+                "enable_preorder": false,
+                "enable_preorder_on_empty_stock_only": true,
+                "preorder_cart_message": "Expédié à partir du JJ/MM",
+                "additional_class": ""
+              },
+              "blocks": {
+                "product-quantity-selector": {
+                  "type": "_product-quantity-selector",
+                  "static": true,
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "add-to-wishlist-button": {
+                  "type": "_add-to-wishlist-button",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "accelerated-checkout": {
+              "type": "_accelerated-checkout",
+              "static": true,
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "full_width": true,
+                "button_style": "primary",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_variant_picker_xWC3wF",
+            "gravure"
+          ]
+        },
+        "paiement": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>\nproduct-form .shopify-payment-button, product-form shopify-accelerated-checkout, .accelerated-checkout, accelerated-checkout, [class*='accelerated-checkout']{display:none!important}\n</style>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "icones_paiement": {
+          "type": "payment-methods",
+          "settings": {
+            "philidor_hide_on_product": true,
+            "show_on_display": "desktop_and_mobile",
+            "philidor_custom": true,
+            "ic_visa": true,
+            "ic_master": true,
+            "ic_amex": true,
+            "ic_apple_pay": true,
+            "ic_paypal": true,
+            "ic_maestro": false,
+            "ic_klarna": false,
+            "ic_gpay": false,
+            "ic_shop": false,
+            "alignment_desktop": "center",
+            "alignment_mobile": "center",
+            "icon_size": 30,
+            "margin_top": 4,
+            "margin_bottom": 4,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "ebook": {
+          "type": "philidor-ebook",
+          "settings": {
+            "eyebrow": "Offert avec votre jeu",
+            "title": "Ebook : apprenez les bases rapidement",
+            "text": "Le guide complet pour maîtriser les règles, les ouvertures et les stratégies du backgammon.",
+            "value": "Valeur 30 €, offert",
+            "image": "shopify://shop_images/Image_ChatGPT_19_oct._2026_01_53_51-1.png"
+          },
+          "blocks": {}
+        },
+        "reassurance": {
+          "type": "philidor-reassurance",
+          "settings": {
+            "compact": false,
+            "title_1": "Livraison",
+            "sub_1": "offerte, 4 à 8 jours ouvrés",
+            "icon_1": "colis",
+            "title_2": "Support client",
+            "sub_2": "7j/7 en français",
+            "icon_2": "support",
+            "title_3": "Garantie 5 ans",
+            "sub_3": "remplacement ou remboursement",
+            "icon_3": "garantie",
+            "title_4": "",
+            "sub_4": "",
+            "icon_4": "retour"
+          },
+          "blocks": {}
+        },
+        "caracteristiques": {
+          "type": "philidor-specs",
+          "settings": {
+            "title": "Caractéristiques",
+            "open_default": false,
+            "description": "<p>Une mallette en bois massif qui se referme sur ses pions, ses dés et ses cornets. Flèches en marqueterie de noyer et d'érable, fond plein qui rend un son mat sous le dé, fermoirs et charnières en laiton. Mesurée sur l'objet avant l'envoi.</p>",
+            "label_1": "Essence de la mallette",
+            "value_1": "Noyer massif, intérieur érable",
+            "key_1": "essence_plateau",
+            "label_2": "Flèches",
+            "value_2": "Marqueterie de noyer et d'érable, 24 flèches",
+            "key_2": "essence_pieces",
+            "label_3": "Dimensions ouvert",
+            "value_3": "38 × 46 × 3 cm",
+            "key_3": "dimensions_ouvert",
+            "label_4": "Dimensions fermé",
+            "value_4": "38 × 23 × 6 cm",
+            "key_4": "dimensions_ferme",
+            "label_5": "Pions",
+            "value_5": "30 pions de 28 mm, bois tourné, deux teintes",
+            "key_5": "taille_case",
+            "label_6": "Dés et cornets",
+            "value_6": "4 dés, 2 cornets gainés, 1 videau",
+            "key_6": "hauteur_roi",
+            "label_7": "Fermeture",
+            "value_7": "Charnières et fermoir en laiton",
+            "key_7": "lestage",
+            "label_8": "Fond de jeu",
+            "value_8": "Bois plein, sourd au dé, sans feutre synthétique",
+            "key_8": "feutrage",
+            "label_9": "Poids total",
+            "value_9": "",
+            "key_9": "poids",
+            "label_10": "Finition",
+            "value_10": "Huile-cire naturelle, mate, appliquée au chiffon",
+            "key_10": "finition",
+            "label_11": "Rangement",
+            "value_11": "Pions et dés rangés dans la mallette fermée",
+            "key_11": "rangement",
+            "label_12": "Fabrication",
+            "value_12": "À la main, en France, ateliers partenaires de la Maison · garantie 5 ans",
+            "key_12": "fabrication",
+            "note": "Le bois est une matière vivante : le veinage et la teinte varient d'une mallette à l'autre. Cotes données à ± 2 mm."
+          },
+          "blocks": {}
+        },
+        "accordeons": {
+          "type": "philidor-accordions",
+          "settings": {
+            "show_description": false,
+            "description_heading": "Description",
+            "open_first": false,
+            "heading_1": "Livraison, emballage & retours",
+            "text_1": "<p>Préparation sous 24 à 48 h ouvrées, livraison suivie offerte en France métropolitaine, 4 à 8 jours ouvrés. La mallette voyage fermée, calée dans de la mousse, dans un carton double cannelure. Pions, dés et cornets sont rangés à l'intérieur : rien ne bouge.</p><p>30 jours pour changer d'avis à compter de la réception, sans justification. Vous écrivez, on organise le retour.</p>",
+            "heading_2": "Entretien du bois et des cornets",
+            "text_2": "<p>Le bois : un chiffon doux et sec, une noisette de cire une fois l'an. Les cornets gainés : un chiffon à peine humide, séché aussitôt, jamais d'alcool ni de solvant. Rangez la mallette fermée, loin du soleil direct et des radiateurs.</p>",
+            "heading_3": "Garantie 5 ans",
+            "text_3": "<p>Cinq ans contre tout défaut de matière et de fabrication : charnière, fermoir, flèche qui se décolle, pion fendu. Un pion ou un dé perdu se remplace à l'unité, dans la même teinte.</p>",
+            "heading_4": "Pour offrir",
+            "text_4": "<p>La mallette part fermée, sans facture ni prix dans le colis. Ajoutez un mot au moment de la commande : nous l'écrivons à la main sur une carte glissée à l'intérieur. Pour une date fixe, écrivez-nous avant de commander.</p>",
+            "heading_5": "",
+            "text_5": ""
+          },
+          "blocks": {}
+        },
+        "renvoi": {
+          "type": "philidor-infocard",
+          "settings": {
+            "title": "La Maison Philidor",
+            "text": "Pourquoi un backgammon porte le nom d'un joueur d'échecs du XVIIIe siècle.",
+            "link_label": "Lire notre histoire",
+            "link": "shopify://pages/la-maison-philidor"
+          },
+          "blocks": {}
+        },
+        "product_media_gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "hide_variants": false,
+            "media_display": "carrousel",
+            "media_ratio": "1 / 1",
+            "media_rounded": true,
+            "grid_columns": "2",
+            "grid_gap": 10,
+            "main_image_full_width": true,
+            "show_a_bit_of_next_image_on_mobile": false,
+            "show_arrows": false,
+            "show_pagination": false,
+            "show_thumbnails": true,
+            "show_thumbnails_on_display": "desktop_and_mobile",
+            "thumbnails_show_arrows": false,
+            "video_loop": true,
+            "enable_video_controls": true,
+            "show_badges": true,
+            "additional_class": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "titre",
+        "avis",
+        "prix",
+        "badges",
+        "livraison",
+        "arguments",
+        "description",
+        "offre",
+        "formulaire",
+        "paiement",
+        "icones_paiement",
+        "ebook",
+        "reassurance",
+        "caracteristiques",
+        "accordeons",
+        "renvoi"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_product_info_card": false,
+        "color_scheme_product_info": "scheme-2",
+        "image_position": "row",
+        "product_info_width": 45,
+        "gap": 60,
+        "carrousel_sticky": true,
+        "product_info_sticky": false,
+        "carrousel_full_width": false,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "coffret": {
+      "type": "tout-est-dans-le-carton",
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "card_title": "La mallette",
+            "card_desc": "Noyer massif, intérieur érable, charnières et fermoir en laiton. Assemblée à la main en France. Fermée, elle tient debout sur une étagère.",
+            "highlight": true
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "card_title": "Les 24 flèches",
+            "card_desc": "Marquetées dans deux essences, découpées et incrustées une à une. Jamais imprimées : elles ne pâlissent pas.",
+            "highlight": true
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "card_title": "Les 30 pions",
+            "card_desc": "Tournés dans le bois, deux teintes, 28 ou 35 mm selon le format. Ils glissent sur le bois sans accrocher.",
+            "highlight": false
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "card_title": "4 dés, 2 cornets, 1 videau",
+            "card_desc": "Cornets gainés et doublés : le dé sort net, sans rebondir hors du plateau. Le videau pour doubler la mise.",
+            "highlight": false
+          }
+        },
+        "item_5": {
+          "type": "item",
+          "settings": {
+            "card_title": "La règle illustrée",
+            "card_desc": "La mise en place, le rôle du videau, les trois premiers lancers. Six pages : on joue en cinq minutes, même sans avoir jamais joué.",
+            "highlight": false
+          }
+        },
+        "item_6": {
+          "type": "item",
+          "settings": {
+            "card_title": "Un interlocuteur",
+            "card_desc": "Une personne en français, joignable 7j/7 par e-mail ou via le formulaire, qui a déjà perdu sur cette mallette.",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5",
+        "item_6"
+      ],
+      "settings": {
+        "title": "Tout est dans la mallette.",
+        "bg_color": "#FFFFFF",
+        "card_color": "#FFFFFF",
+        "border_color": "#d6c3a5",
+        "icon_color": "#8a5a2b",
+        "check_color": "#fbf6ee",
+        "text_color": "#2a1b12",
+        "desc_color": "#7b5e47",
+        "title_size_desktop": 36,
+        "title_size_mobile": 28,
+        "card_title_size_desktop": 17,
+        "card_desc_size_desktop": 16,
+        "card_title_size_mobile": 12,
+        "card_desc_size_mobile": 11,
+        "mobile_desc_lines": 3,
+        "icon_size_mobile": 24,
+        "card_radius": 8,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "max_width": 1000
+      }
+    },
+    "prix": {
+      "type": "image-texte-premium",
+      "settings": {
+        "video": "shopify://files/videos/atelier-fait-main-france.mp4",
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "top",
+        "top_image_height": 420,
+        "top_image_height_m": 240,
+        "eyebrow": "Ce que vous payez",
+        "title": "Pourquoi 250 € et pas 40 €",
+        "text": "<p>Contrairement aux modèles classiques, notre backgammon en noyer massif se distingue par ses finitions soignées, sa marqueterie et ses pions en bois. Un objet raffiné, conçu pour durer et traverser les années.</p>",
+        "point_1": "Noyer massif",
+        "point_1_sub": "pas de carton gainé de similicuir",
+        "point_2": "Flèches marquetées",
+        "point_2_sub": "découpées et incrustées, pas imprimées",
+        "point_3": "Un objet qu'on transmet",
+        "point_3_sub": "pas un jeu qu'on remplace",
+        "button_text": "NOS MATIÈRES, NOTRE ATELIER",
+        "button_link": "shopify://pages/matieres-savoir-faire",
+        "button_style": "link",
+        "section_bg": "#ffffff",
+        "title_color": "#2a1b12",
+        "text_color": "#2a1b12",
+        "accent_color": "#8a5a2b",
+        "button_bg": "#8a5a2b",
+        "button_text_color": "#fbf6ee",
+        "title_size_desktop": 44,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_height_desktop": 58,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 34,
+        "button_radius": 4,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "max_width": 1280,
+        "gap_desktop": 76,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "image_radius": 8,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 28,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "offrir": {
+      "type": "image-text-premium",
+      "settings": {
+        "image": "shopify://shop_images/hf_20260622_124539_720494f3-1098-4c2a-bbaf-b2eb683ebe1b.png",
+        "video_height_desktop": 420,
+        "video_height_mobile": 240,
+        "video_zoom": 100,
+        "media_position": "top",
+        "top_height": 420,
+        "top_height_m": 240,
+        "plaque": "Prêt à offrir",
+        "eyebrow": "Pour offrir",
+        "title": "Le jeu qu'on ouvre",
+        "title_accent": "à deux",
+        "feature_1_title": "Sans prix dans le colis :",
+        "feature_1_desc": "la mallette part fermée, la facture vous est envoyée par e-mail.",
+        "feature_2_title": "Un mot de votre main :",
+        "feature_2_desc": "dictez-le à la commande, nous l'écrivons à la plume sur une carte glissée à l'intérieur.",
+        "paragraph": "Un backgammon s'offre à quelqu'un avec qui l'on veut passer du temps : un père, un couple, un ami. Les pions sont rangés, tout est prêt. On l'ouvre, on joue, et la soirée commence.",
+        "paragraph_first": false,
+        "cta_label": "VOIR LES BACKGAMMONS",
+        "cta_link": "shopify://collections/backgammons",
+        "frame_color": "#faf6ef",
+        "frame_pad": 14,
+        "frame_radius": 22,
+        "glow": true,
+        "bg_color": "#faf6ef",
+        "ink_color": "#2a1b12",
+        "icon_color": "#8a5a2b",
+        "filet": true,
+        "reveal": true,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "pieces": {
+      "type": "image-text-premium",
+      "settings": {
+        "image": "shopify://shop_images/hf_20260622_124532_1d22abba-011d-48ff-b803-c6224b4fbeaa.png",
+        "video_height_desktop": 420,
+        "video_height_mobile": 300,
+        "video_zoom": 100,
+        "media_position": "top",
+        "top_height": 420,
+        "top_height_m": 240,
+        "plaque": "Marqueterie · Noyer & érable",
+        "eyebrow": "Ce qu'on entend",
+        "title": "Le bruit des dés sur",
+        "title_accent": "le bois",
+        "feature_1_title": "Un fond de jeu en bois plein :",
+        "feature_1_desc": "le dé roule net et s'arrête. Pas de feutre synthétique qui s'effiloche, retient la poussière et fait glisser le dé sans rouler.",
+        "feature_2_title": "Des cornets gainés et doublés :",
+        "feature_2_desc": "le dé sort du cornet sans rebondir hors du plateau. Une main suffit, et le lancer ne se discute pas.",
+        "paragraph": "Le dé qui roule, le pion qui glisse, le bois qui résonne. Un backgammon d’exception se reconnaît aussi à l’oreille. Une différence qui s’entend dès le premier lancer.",
+        "paragraph_first": false,
+        "cta_label": "",
+        "cta_link": "shopify://collections/backgammons",
+        "frame_color": "#faf6ef",
+        "frame_pad": 14,
+        "frame_radius": 22,
+        "glow": true,
+        "bg_color": "#ffffff",
+        "ink_color": "#2a1b12",
+        "icon_color": "#8a5a2b",
+        "filet": true,
+        "reveal": true,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "massif": {
+      "type": "image-texte-premium",
+      "disabled": true,
+      "settings": {
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "top",
+        "top_image_height": 420,
+        "top_image_height_m": 240,
+        "eyebrow": "Fermé, ouvert",
+        "title": "Une mallette qui voyage et qui tient",
+        "text": "<p>Fermée, elle tient debout : charnières en laiton, fermoir net, poignée sur le 48 cm. Les pions et les dés dorment dans leurs logements, rien ne bouge quand on la porte. Elle se pose dans une bibliothèque ou sur une console comme un bel objet, pas comme un jeu qu'on a oublié de ranger.</p><p>Ouverte, elle se pose à plat sur la table sans gondoler, parce que les deux moitiés sont en bois plein, pas en carton gainé. Le 38 cm se glisse dans un sac de voyage. Le 48 cm demande une table, et il la tient. Le 30 cm tient sur une tablette de train.</p>",
+        "point_1": "Charnières et fermoir en laiton",
+        "point_1_sub": "la mallette reste fermée, même à la verticale",
+        "point_2": "Pions rangés à l'intérieur",
+        "point_2_sub": "rien ne bouge, rien ne se perd",
+        "point_3": "Trois formats",
+        "point_3_sub": "30, 38 et 48 cm ouverts",
+        "button_text": "CHOISIR SON FORMAT",
+        "button_link": "shopify://pages/faq",
+        "button_style": "link",
+        "section_bg": "#ffffff",
+        "title_color": "#2a1b12",
+        "text_color": "#2a1b12",
+        "accent_color": "#8a5a2b",
+        "button_bg": "#8a5a2b",
+        "button_text_color": "#fbf6ee",
+        "title_size_desktop": 44,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_height_desktop": 58,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 34,
+        "button_radius": 4,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "max_width": 1280,
+        "gap_desktop": 76,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "image_radius": 8,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 28,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "avis_produit": {
+      "type": "philidor-avis-carrousel",
+      "settings": {
+        "source": "produit",
+        "header_title": "Ils y jouent le dimanche",
+        "show_average_rating": true,
+        "star_color": "#b9853f",
+        "background_color": "rgba(0,0,0,0)",
+        "show_customer_photos": true,
+        "show_only_with_images": false,
+        "image_height": 400,
+        "limite": 50,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
+    "comparatif": {
+      "type": "philidor-comparatif",
+      "blocks": {
+        "ligne_1": {
+          "type": "ligne",
+          "settings": {
+            "critere": "La matière de la mallette, nommée : bois massif, plaqué ou similicuir"
+          }
+        },
+        "ligne_2": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Les flèches : marquetées ou imprimées, écrit noir sur blanc"
+          }
+        },
+        "ligne_3": {
+          "type": "ligne",
+          "settings": {
+            "critere": "La taille du plateau ouvert et le diamètre des pions, en millimètres"
+          }
+        },
+        "ligne_4": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Le fond de jeu : bois plein, feutre ou similicuir, et ce que ça change pour le dé"
+          }
+        },
+        "ligne_5": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Un pion ou un dé perdu remplaçable à l'unité"
+          }
+        },
+        "ligne_6": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Une réponse humaine avant l'achat, par quelqu'un qui joue"
+          }
+        }
+      },
+      "block_order": [
+        "ligne_1",
+        "ligne_2",
+        "ligne_3",
+        "ligne_4",
+        "ligne_5",
+        "ligne_6"
+      ],
+      "settings": {
+        "fond": "#faf6ef",
+        "kicker": "Le vrai comparatif",
+        "titre": "Ce que vous devriez exiger d'un backgammon",
+        "sous_titre": "Six points vérifiables en deux minutes sur n'importe quelle fiche produit. Si l'un manque, c'est rarement un oubli.",
+        "marque": "MAISON PHILIDOR",
+        "marque_sous": "Massif, fait main en France",
+        "col_criteres": "Critères",
+        "col_nous": "Philidor",
+        "col_ailleurs": "Ce qu'on trouve ailleurs*",
+        "note_1": "*Points relevés en septembre 2026 sur les fiches produit de boutiques de backgammon en ligne.",
+        "note_2": "Sur la plupart, on ne savait pas si les flèches étaient marquetées ou imprimées."
+      }
+    },
+    "entretien": {
+      "type": "philidor-argumentaire",
+      "blocks": {
+        "arg_1": {
+          "type": "argument",
+          "settings": {
+            "icon": "bois",
+            "title": "Mallette en noyer massif",
+            "text": "Intérieur érable, charnières et fermoir en laiton. Elle tient debout."
+          }
+        },
+        "arg_2": {
+          "type": "argument",
+          "settings": {
+            "icon": "regle",
+            "title": "24 flèches marquetées",
+            "text": "Découpées et incrustées dans deux essences, jamais imprimées."
+          }
+        },
+        "arg_3": {
+          "type": "argument",
+          "settings": {
+            "icon": "pieces",
+            "title": "Prêt à jouer",
+            "text": "30 pions tournés, 4 dés, 2 cornets gainés, 1 videau, rangés dedans."
+          }
+        },
+        "arg_4": {
+          "type": "argument",
+          "settings": {
+            "icon": "main",
+            "title": "Fait main en France",
+            "text": "Assemblée et huilée dans les ateliers partenaires de la Maison."
+          }
+        },
+        "arg_5": {
+          "type": "argument",
+          "settings": {
+            "icon": "chiffon",
+            "title": "Entretien : un chiffon sec",
+            "text": "Un chiffon à peine humide sur les cornets. Rangée fermée, loin du soleil."
+          }
+        },
+        "arg_6": {
+          "type": "argument",
+          "settings": {
+            "icon": "garantie",
+            "title": "Garantie 5 ans",
+            "text": "Matière et fabrication : pièce fendue, case décollée, fermoir. Remplacée à l'unité."
+          }
+        },
+        "arg_7": {
+          "type": "argument",
+          "settings": {
+            "icon": "retour",
+            "title": "30 jours pour changer d'avis",
+            "text": "Retour simple, remboursement intégral, sans justification."
+          }
+        },
+        "arg_8": {
+          "type": "argument",
+          "settings": {
+            "icon": "colis",
+            "title": "Livraison suivie offerte",
+            "text": "Départ sous 24 à 48 h, 4 à 8 jours ouvrés en France."
+          }
+        },
+        "arg_9": {
+          "type": "argument",
+          "settings": {
+            "icon": "support",
+            "title": "Une personne, en français",
+            "text": "7j/7 par e-mail, quelqu'un qui joue vraiment."
+          }
+        }
+      },
+      "block_order": [
+        "arg_1",
+        "arg_2",
+        "arg_3",
+        "arg_4",
+        "arg_5",
+        "arg_6",
+        "arg_7",
+        "arg_8",
+        "arg_9"
+      ],
+      "settings": {
+        "eyebrow": "L'essentiel",
+        "title": "Ce backgammon, en neuf points",
+        "bg_color": "#ffffff",
+        "card_color": "#faf6ef",
+        "border_color": "#e6dccb",
+        "ink_color": "#2a1b12",
+        "muted_color": "#7b5e47",
+        "accent_color": "#8a5a2b",
+        "title_size": 26,
+        "title_size_m": 22,
+        "card_width": 250,
+        "card_width_m": 230,
+        "card_radius": 10,
+        "gap": 14,
+        "max_width": 1200,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_top_m": 28,
+        "padding_bottom_m": 28
+      }
+    },
+    "engagement": {
+      "type": "image-texte-premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_5_sept._2026_22_02_38_1_8c4acfe4-f8d6-46ec-8507-e20d0483147a.png",
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "top",
+        "top_image_height": 420,
+        "top_image_height_m": 240,
+        "eyebrow": "L'engagement Philidor",
+        "title": "Garantie 5 ans, sans astérisque",
+        "text": "<p>Un jeu de la Maison est garanti cinq ans : bois, charnières, fermoir, marqueterie, cornets. Une flèche qui se décolle, un pion fendu, un fermoir qui lâche : on répare ou on remplace, à l'unité, dans la même essence.</p><p>Et s'il arrive cassé ? La mallette voyage fermée, calée dans de la mousse, dans un carton double cannelure. Si ce n'est pas entier à l'arrivée, une photo suffit : on renvoie la pièce ou la mallette, sans discussion et sans attendre le retour de la première. Et s'il ne vous plaît pas : 30 jours pour le renvoyer, remboursé intégralement.</p>",
+        "point_1": "Garantie 5 ans",
+        "point_1_sub": "matière et fabrication, pièce remplacée à l'unité",
+        "point_2": "Casse à l'arrivée",
+        "point_2_sub": "remplacé sur photo, sans retour préalable",
+        "point_3": "30 jours pour changer d'avis",
+        "point_3_sub": "retour simple, remboursé",
+        "button_text": "LIRE LA GARANTIE 5 ANS",
+        "button_link": "shopify://pages/matieres-savoir-faire",
+        "button_style": "link",
+        "section_bg": "#ffffff",
+        "title_color": "#2a1b12",
+        "text_color": "#2a1b12",
+        "accent_color": "#8a5a2b",
+        "button_bg": "#8a5a2b",
+        "button_text_color": "#fbf6ee",
+        "title_size_desktop": 44,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_height_desktop": 58,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 34,
+        "button_radius": 4,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "max_width": 1280,
+        "gap_desktop": 76,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "image_radius": 8,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 28,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "complements": {
+      "type": "philidor-vous-aimerez",
+      "settings": {
+        "collection": "backgammons",
+        "max_products": 12,
+        "eyebrow": "Dans le même esprit",
+        "title": "Vous aimerez aussi",
+        "subtitle": "Les autres formats et les mallettes de voyage, dans le même bois.",
+        "link_text": "Voir toute la collection",
+        "link_url": "shopify://collections/backgammons",
+        "image_ratio": "4 / 5",
+        "image_fit": "cover",
+        "hover_second_image": true,
+        "show_badge": true,
+        "card_radius": 6,
+        "per_view": 4,
+        "per_view_tablet": 3,
+        "per_view_mobile": 1,
+        "peek": 70,
+        "peek_m": 120,
+        "gap": 20,
+        "gap_mobile": 14,
+        "section_bg": "#ffffff",
+        "card_bg": "#faf6ef",
+        "title_color": "#2a1b12",
+        "accent_color": "#8a5a2b",
+        "badge_color": "#b9853f",
+        "badge_ink": "#2a1b12",
+        "title_size": 38,
+        "title_size_mobile": 28,
+        "max_width": 1440,
+        "padding_top": 84,
+        "padding_bottom": 84
+      }
+    },
+    "faq_produit": {
+      "type": "faq-premium",
+      "blocks": {
+        "faq_bg_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Je n'ai jamais joué. Est-ce que c'est pour moi ?",
+            "answer": "<p>Oui. Le backgammon s'apprend en cinq minutes : on lance deux dés, on avance ses pions, on les sort du plateau avant l'autre. La règle illustrée est sous le couvercle, six pages, avec la mise en place et les trois premiers lancers. Une partie dure vingt minutes. C'est le jeu qu'on sort le soir sans réfléchir, pas celui qu'on range parce qu'il faut relire les règles.</p>"
+          }
+        },
+        "faq_bg_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Quel format choisir, 38 ou 48 cm ?",
+            "answer": "<p>Le 38 cm est le format de la maison : ouvert, 38 × 46 cm, pions de 28 mm, il tient sur une table basse et se glisse dans un sac. Le 48 cm est le format du dimanche : pions de 35 à 38 mm, cornets pleine main, il demande une table et il la tient. Si vous hésitez, prenez le 38.</p>"
+          }
+        },
+        "faq_bg_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Les flèches sont-elles imprimées ou marquetées ?",
+            "answer": "<p>Marquetées : chaque flèche est une pièce de bois découpée, dans une essence différente du fond, puis incrustée à la main dans nos ateliers partenaires, en France. On le voit à la lumière rasante, on le sent sous le doigt. Une flèche imprimée est lisse, uniforme, et pâlit avec le temps.</p>"
+          }
+        },
+        "faq_bg_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Est-ce que ça fait du bruit ?",
+            "answer": "<p>Le bois sonne, oui : le dé qui tombe du cornet, le pion posé sur la flèche. C'est le son d'une vraie partie, mat et court, pas le claquement du plastique. Les cornets sont doublés pour que le dé sorte net sans rebondir hors du plateau. Pour une table en verre, posez la mallette sur un set : le son redevient celui du bois.</p>"
+          }
+        },
+        "faq_bg_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Peut-on le laisser sur la table basse ?",
+            "answer": "<p>C'est fait pour. Fermée, la mallette est un bloc de noyer avec un fermoir en laiton : elle se pose sur une console, une table basse, dans une bibliothèque, debout ou à plat. Ouverte, la marqueterie tient lieu de décor. Ce n'est pas un jeu qu'on a oublié de ranger, c'est un objet qui a sa place.</p>"
+          }
+        },
+        "faq_bg_6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Le gainage des cornets est-il en cuir ?",
+            "answer": "<p>Les cornets sont gainés et doublés pour que le dé sorte net. La matière exacte du gainage est indiquée dans le tableau des caractéristiques de chaque modèle : nous l'écrivons noir sur blanc, cuir ou similicuir, parce que c'est une question qu'on nous pose et qu'elle mérite une réponse claire.</p>"
+          }
+        },
+        "faq_bg_7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Est-ce que ça se transporte ?",
+            "answer": "<p>Oui : charnières et fermoir en laiton, pions et dés rangés à l'intérieur, rien ne bouge. Le 38 cm entre dans un sac de voyage. Pour un jeu de poche, regardez le format 30 cm.</p>"
+          }
+        },
+        "faq_bg_8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Et si je perds un pion ou un dé ?",
+            "answer": "<p>On vous renvoie la pièce à l'unité, dans la même teinte et le même diamètre. Écrivez-nous avec le nom du modèle et la couleur.</p>"
+          }
+        },
+        "faq_bg_9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Le bois va-t-il bouger, la mallette se déformer ?",
+            "answer": "<p>Les deux moitiés sont en bois plein, assemblées et huilées : elles ne gondolent pas. Ce qui fatigue une mallette, c'est un radiateur collé ou un été en plein soleil derrière une vitre. Rangez-la fermée, à l'abri, et elle tiendra des décennies.</p>"
+          }
+        },
+        "faq_bg_10": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Combien de temps pour être livré, et pour un cadeau à date fixe ?",
+            "answer": "<p>Départ sous 24 à 48 h ouvrées, livraison suivie offerte en France en 4 à 8 jours ouvrés. Pour une date précise, écrivez-nous avant de commander : on vous confirme ce qui est tenable et, si besoin, on vous propose un envoi express.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_bg_1",
+        "faq_bg_2",
+        "faq_bg_3",
+        "faq_bg_4",
+        "faq_bg_5",
+        "faq_bg_6",
+        "faq_bg_7",
+        "faq_bg_8",
+        "faq_bg_9",
+        "faq_bg_10"
+      ],
+      "settings": {
+        "title": "Vos questions sur ce backgammon",
+        "subtitle": "Celles qu'on nous pose vraiment, avant de commander.",
+        "button_text": "Toutes les questions",
+        "button_link": "shopify://pages/faq",
+        "single_open": true,
+        "title_size": 40,
+        "title_size_m": 30,
+        "sub_size": 16,
+        "sub_size_m": 15,
+        "q_size": 18,
+        "q_size_m": 16,
+        "a_size": 16,
+        "a_size_m": 15,
+        "row_pad": 20,
+        "bg": "#f4ecdf",
+        "title_color": "#2a1b12",
+        "sub_color": "#7b5e47",
+        "q_color": "#2a1b12",
+        "a_color": "#7b5e47",
+        "ico_color": "#8a5a2b",
+        "divider": "#d6c3a5",
+        "btn_bg": "#8a5a2b",
+        "btn_text": "#fbf6ee",
+        "btn_size": 15,
+        "btn_radius": 4,
+        "max_width": 820,
+        "pad_top": 64,
+        "pad_bot": 64,
+        "pad_top_m": 40,
+        "pad_bot_m": 40
+      }
+    },
+    "support": {
+      "type": "support-steps",
+      "blocks": {
+        "step_1": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Avant d'acheter",
+            "card_text": "On vous dit quel format prendre."
+          }
+        },
+        "step_2": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "À la réception",
+            "card_text": "Un doute ? On répond le jour même."
+          }
+        },
+        "step_3": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Dans cinq ans",
+            "card_text": "Un pion perdu, remplacé à l'unité."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "label_text": "AVANT • À L'ARRIVÉE • DANS CINQ ANS",
+        "title": "Quelqu'un qui connaît les pièces",
+        "cta_title": "Une question avant de commander ?",
+        "cta_desc": "Réponse en français, 7j/7.",
+        "whatsapp_link": "/pages/contact",
+        "whatsapp_btn_text": "Nous écrire",
+        "bg_image_opacity": 10,
+        "primary_color": "#8a5a2b",
+        "bg_color": "#ffffff",
+        "title_size_desktop": 34,
+        "title_size_mobile": 24,
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32,
+        "max_width": 1080
+      }
+    },
+    "frise": {
+      "type": "philidor-frise",
+      "settings": {
+        "height_desktop": 120,
+        "height_mobile": 80,
+        "bg": "#ffffff",
+        "wood": "#e3d2b6",
+        "wood_dark": "#cdb28c",
+        "rule": "#b9853f",
+        "square": "#8a5a2b"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main",
+    "coffret",
+    "prix",
+    "offrir",
+    "pieces",
+    "massif",
+    "avis_produit",
+    "comparatif",
+    "entretien",
+    "engagement",
+    "complements",
+    "faq_produit",
+    "support",
+    "frise"
+  ]
+}

@@ -1,0 +1,1539 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banniere_hero": {
+      "type": "banniere-hero",
+      "settings": {
+        "desktop_video_url": "",
+        "desktop_image": "shopify://shop_images/ChatGPT_Image_5_sept._2026_22_02_38_2.png",
+        "desktop_position": "center center",
+        "mobile_video_url": "",
+        "mobile_image": "shopify://shop_images/ChatGPT_Image_5_sept._2026_22_02_38_3.png",
+        "mobile_position": "center center",
+        "overlay_opacity": 30,
+        "desktop_height": 760,
+        "mobile_height": 720,
+        "rating_text": "4,/5 +10 000 joueurs conquis",
+        "eyebrow": "Maison Philidor · Jeux d'échecs & backgammons faits main en France",
+        "title": "Le jeu qu'on ne range jamais.",
+        "mobile_title": "Le jeu qu'on ne range jamais.",
+        "description": "Jeux d'échecs et backgammons en bois massif, faits main en France dans les ateliers partenaires de la Maison. Plateaux massifs, pièces lestées. Des objets qu'on garde, puis qu'on transmet.",
+        "mobile_description": "Bois massif, fait main en France. Des objets qu'on garde, puis qu'on transmet.",
+        "primary_label": "Voir les jeux d'échecs",
+        "primary_link": "shopify://collections/jeux-d-echecs",
+        "secondary_label": "Voir les backgammons",
+        "secondary_link": "shopify://collections/backgammons",
+        "trust_1": "Fait main en France",
+        "trust_2": "Livraison suivie offerte",
+        "trust_3": "30 jours pour changer d'avis"
+      }
+    },
+    "grille_types": {
+      "type": "philidor-grille",
+      "blocks": {
+        "c_1": {
+          "type": "carte",
+          "settings": {
+            "collection": "jeux-d-echecs",
+            "title": "Jeux d'échecs",
+            "image": "shopify://shop_images/WhatsApp_Image_2026-09-29_at_01.16.05.jpg",
+            "link": ""
+          }
+        },
+        "c_2": {
+          "type": "carte",
+          "settings": {
+            "collection": "backgammons",
+            "title": "Backgammons",
+            "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_01_07_49.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "c_1",
+        "c_2"
+      ],
+      "settings": {
+        "eyebrow": "TOUT LE CATALOGUE",
+        "title": "Quel jeu",
+        "title_accent": "cherchez-vous ?",
+        "intro": "Deux familles, une même exigence : bois massif de bout en bout, fait main en France.",
+        "align": "left",
+        "show_count": true,
+        "mode": "carrousel",
+        "per_view": 2,
+        "per_view_m": 1.5,
+        "show_dots": true,
+        "show_arrows": true,
+        "dot_color": "#b9853f",
+        "cta_label": "",
+        "cta_link": "",
+        "cols": 2,
+        "cols_m": 2,
+        "gap": 20,
+        "gap_m": 14,
+        "visuel_mode": "auto",
+        "card_height": 360,
+        "card_height_m": 230,
+        "frame_color": "#faf6ef",
+        "gold": "#b9853f",
+        "frame_pad": 10,
+        "frame_pad_m": 8,
+        "radius_out": 22,
+        "radius_out_m": 18,
+        "radius_in": 14,
+        "radius_in_m": 12,
+        "edge_soft": 0.4,
+        "tilt": true,
+        "tilt_strength": 8,
+        "glow": true,
+        "accent": "#8a5a2b",
+        "ink": "#2a1b12",
+        "muted": "#7b5e47",
+        "rule_color": "#d6c3a5",
+        "bg": "#ffffff",
+        "title_size": 40,
+        "title_size_m": 26,
+        "plate_size": 17,
+        "plate_size_m": 14,
+        "max_width": 1280,
+        "head_gap": 36,
+        "head_gap_m": 26,
+        "pad_top": 64,
+        "pad_bottom": 40,
+        "pad_top_m": 40,
+        "pad_bottom_m": 36,
+        "reveal": true
+      }
+    },
+    "grille_usages": {
+      "type": "philidor-grille",
+      "blocks": {
+        "c_1": {
+          "type": "carte",
+          "settings": {
+            "collection": "jeux-d-echecs-a-offrir",
+            "title": "À offrir",
+            "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_14_33_57.png",
+            "link": ""
+          }
+        },
+        "c_2": {
+          "type": "carte",
+          "settings": {
+            "collection": "jeux-d-echecs-de-jeu",
+            "title": "Pour jouer",
+            "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_01_36_48.png",
+            "link": ""
+          }
+        },
+        "c_3": {
+          "type": "carte",
+          "settings": {
+            "collection": "jeux-d-echecs-de-collection",
+            "title": "De collection",
+            "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_14_39_50.png",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "c_1",
+        "c_2",
+        "c_3"
+      ],
+      "settings": {
+        "eyebrow": "JEUX D'ÉCHECS",
+        "title": "Pour quel usage,",
+        "title_accent": "le jeu d'échecs ?",
+        "intro": "Un cadeau qui marque, un jeu qui sert tous les soirs, ou une pièce rare qu'on garde et qu'on transmet.",
+        "align": "left",
+        "show_count": true,
+        "mode": "carrousel",
+        "per_view": 3,
+        "per_view_m": 1.5,
+        "show_dots": true,
+        "show_arrows": true,
+        "dot_color": "#b9853f",
+        "cta_label": "",
+        "cta_link": "",
+        "cols": 3,
+        "cols_m": 2,
+        "gap": 20,
+        "gap_m": 14,
+        "visuel_mode": "auto",
+        "card_height": 300,
+        "card_height_m": 230,
+        "frame_color": "#faf6ef",
+        "gold": "#b9853f",
+        "frame_pad": 10,
+        "frame_pad_m": 8,
+        "radius_out": 22,
+        "radius_out_m": 18,
+        "radius_in": 14,
+        "radius_in_m": 12,
+        "edge_soft": 0.4,
+        "tilt": true,
+        "tilt_strength": 8,
+        "glow": true,
+        "accent": "#8a5a2b",
+        "ink": "#2a1b12",
+        "muted": "#7b5e47",
+        "rule_color": "#d6c3a5",
+        "bg": "#ffffff",
+        "title_size": 40,
+        "title_size_m": 26,
+        "plate_size": 17,
+        "plate_size_m": 14,
+        "max_width": 1280,
+        "head_gap": 36,
+        "head_gap_m": 26,
+        "pad_top": 24,
+        "pad_bottom": 64,
+        "pad_top_m": 40,
+        "pad_bottom_m": 36,
+        "reveal": true
+      }
+    },
+    "meilleures_ventes": {
+      "type": "collection-featured",
+      "blocks": {
+        "group_TnrcY3": {
+          "type": "group",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "wrap_in_card": false,
+            "card_link": "",
+            "color_scheme": "scheme-1",
+            "show_card_border": false,
+            "layout_type": "flex",
+            "width_desktop": 100,
+            "layout_direction_desktop": "row",
+            "layout_grid_columns_desktop": 3,
+            "layout_gap_desktop": 10,
+            "layout_wrap_desktop": "nowrap",
+            "layout_justify_desktop": "space-between",
+            "layout_align_items_desktop": "center",
+            "same_as_desktop": true,
+            "width_mobile": 100,
+            "layout_direction_mobile": "column",
+            "layout_grid_columns_mobile": 1,
+            "layout_gap_mobile": 10,
+            "layout_wrap_mobile": "nowrap",
+            "layout_justify_mobile": "flex-start",
+            "layout_align_items_mobile": "flex-start",
+            "use_global_container_padding": true,
+            "padding_horizontal": 30,
+            "padding_vertical": 30,
+            "margin_top": 10,
+            "margin_bottom": 30,
+            "additional_class": ""
+          },
+          "blocks": {
+            "group_rQPBJn": {
+              "type": "group",
+              "name": "Groupe titre",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "card_link": "",
+                "color_scheme": "",
+                "show_card_border": false,
+                "layout_type": "flex",
+                "width_desktop": 70,
+                "layout_direction_desktop": "column",
+                "layout_grid_columns_desktop": 3,
+                "layout_gap_desktop": 10,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": false,
+                "width_mobile": 100,
+                "layout_direction_mobile": "column",
+                "layout_grid_columns_mobile": 1,
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "use_global_container_padding": true,
+                "padding_horizontal": 30,
+                "padding_vertical": 30,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "text_WeyhME": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Les plus demandés</p>",
+                    "text_style": "h2",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_qzWhd3": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Les modèles qu'on recommande le plus souvent, et dont on ne nous demande jamais le retour.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_WeyhME",
+                "text_qzWhd3"
+              ]
+            },
+            "button_LtrWA3": {
+              "type": "button",
+              "settings": {
+                "show_on_display": "desktop_only",
+                "link": "{{ closest.collection.url }}",
+                "open_in_new_tab": false,
+                "label": "Voir toute la sélection",
+                "button_style": "secondary",
+                "button_shape": "small",
+                "icon": "arrow_forward",
+                "icon_custom": "arrow_forward",
+                "icon_position": "end",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_rQPBJn",
+            "button_LtrWA3"
+          ]
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "wrap_in_card": false,
+            "color_scheme": "",
+            "layout_gap": 15
+          },
+          "blocks": {
+            "product_card_media_gallery_J4tKmY": {
+              "type": "_product-card-media-gallery",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "show_slider": true,
+                "media_rounded": true,
+                "show_badges": true,
+                "media_ratio": "1 / 1",
+                "additional_class": ""
+              },
+              "blocks": {}
+            },
+            "product_card_group_9Ctb38": {
+              "type": "_product-card-group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "color_scheme": "scheme-1",
+                "layout_direction_desktop": "column",
+                "layout_gap_desktop": 5,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": true,
+                "layout_direction_mobile": "column",
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "margin_top": 5,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "text_UqjdpF": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>{{ closest.product.title }}</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 500,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "product_price_qEEaqN": {
+                  "type": "product-price",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "{{ closest.product }}",
+                    "sales_badge": "amount",
+                    "show_sales_badge_text": false,
+                    "show_unit_price": false,
+                    "text_style": "paragraph",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "product_card_swatches_LJX6gJ": {
+                  "type": "_product-card-swatches",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "swatches_size": "small",
+                    "swatches_rounded": true,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "rating_stars_w3MWUh": {
+                  "type": "rating-stars",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "{{ closest.product }}",
+                    "hide_rating_when_no_reviews": true,
+                    "rating": 4.5,
+                    "show_note": true,
+                    "show_review_count": true,
+                    "review_count": 123,
+                    "link": "",
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_UqjdpF",
+                "product_price_qEEaqN",
+                "product_card_swatches_LJX6gJ",
+                "rating_stars_w3MWUh"
+              ]
+            }
+          },
+          "block_order": [
+            "product_card_media_gallery_J4tKmY",
+            "product_card_group_9Ctb38"
+          ]
+        }
+      },
+      "block_order": [
+        "group_TnrcY3"
+      ],
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "color_scheme": "scheme-1",
+        "collection": "meilleures-ventes",
+        "max_products": 6,
+        "layout_type": "slider",
+        "grid_columns": 4,
+        "grid_columns_mobile": "2",
+        "slider_items": 4,
+        "slider_items_mobile": "1.8",
+        "show_arrows": true,
+        "show_pagination": false,
+        "rewind": true,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "anchor_id": "",
+        "additional_class": ""
+      }
+    },
+    "avis_photos": {
+      "type": "philidor-avis-photos",
+      "settings": {
+        "title": "Ils nous ont fait confiance",
+        "count_label": "avis clients",
+        "only_photos": true,
+        "show_author": false,
+        "max": 12,
+        "ratio": "square",
+        "star_color": "#b9853f",
+        "card_bg": "#f4ecdf",
+        "bg": "#ffffff",
+        "pt": 24,
+        "pb": 24
+      }
+    },
+    "avis_boutique": {
+      "type": "philidor-avis-carrousel",
+      "settings": {
+        "source": "boutique",
+        "header_title": "Ce qu'ils disent après la première partie",
+        "show_average_rating": true,
+        "star_color": "#b9853f",
+        "background_color": "rgba(0,0,0,0)",
+        "show_customer_photos": true,
+        "show_only_with_images": false,
+        "image_height": 400,
+        "limite": 50,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
+    "methode_philidor": {
+      "type": "choisir-philidor",
+      "blocks": {
+        "m_1": {
+          "type": "bloc",
+          "settings": {
+            "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_01_48_23.png",
+            "title": "Fait main en France, joué avant vous",
+            "text": "Chaque modèle passe une soirée sur notre table avant d'entrer au catalogue. Ce qui grince, bascule ou marque ne part pas en ligne."
+          }
+        },
+        "m_2": {
+          "type": "bloc",
+          "settings": {
+            "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_01_50_56.png",
+            "title": "Le massif, ou rien",
+            "text": "Plateaux massifs de bout en bout, pièces tournées et lestées. Rien de plaqué, rien d'imprimé. Ça se sent au poids, ça s'entend au son."
+          }
+        },
+        "m_3": {
+          "type": "bloc",
+          "settings": {
+            "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_01_55_11.png",
+            "title": "Et si ça ne va pas, on règle",
+            "text": "Pièce fêlée, fermoir qui lâche, pion perdu : remplacé à l'unité, dans la même essence. Garantie 5 ans."
+          }
+        }
+      },
+      "block_order": [
+        "m_1",
+        "m_2",
+        "m_3"
+      ],
+      "settings": {
+        "eyebrow": "La méthode Philidor",
+        "intro": "Nous refusons plus de plateaux que nous n'en vendons.",
+        "title": "Peu de références. Chacune défendue.",
+        "title_desktop": 44,
+        "title_mobile": 28,
+        "image_desktop": 250,
+        "image_mobile": 200,
+        "padding_desktop": 56,
+        "padding_mobile": 40,
+        "gap": 80,
+        "bg_color": "#3b2a1f",
+        "bg_image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_00_58_34.png",
+        "bg_position": "center center",
+        "bg_overlay": 15,
+        "text_color": "#f4ecdf",
+        "accent_color": "#b9853f",
+        "show_nav": true,
+        "nav_color": "#6b5040",
+        "nav_active_color": "#b9853f"
+      }
+    },
+    "comparatif": {
+      "type": "philidor-comparatif",
+      "blocks": {
+        "ligne_1": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Taille des cases et hauteur du roi, en mm"
+          }
+        },
+        "ligne_2": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Essences du plateau et des pièces, nommées"
+          }
+        },
+        "ligne_3": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Pièces lestées, et de combien"
+          }
+        },
+        "ligne_4": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Massif ou plaqué, pays de fabrication"
+          }
+        },
+        "ligne_5": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Pièce perdue remplaçable à l'unité"
+          }
+        },
+        "ligne_6": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Une réponse humaine avant l'achat"
+          }
+        }
+      },
+      "block_order": [
+        "ligne_1",
+        "ligne_2",
+        "ligne_3",
+        "ligne_4",
+        "ligne_5",
+        "ligne_6"
+      ],
+      "settings": {
+        "fond": "#faf6ef",
+        "kicker": "Le vrai comparatif",
+        "titre": "Ce que vous devriez exiger d'un jeu d'échecs",
+        "sous_titre": "Six points vérifiables en deux minutes sur n'importe quelle fiche produit.",
+        "marque": "MAISON PHILIDOR",
+        "marque_sous": "Massif, fait main en France",
+        "col_criteres": "Critères",
+        "col_nous": "Philidor",
+        "col_ailleurs": "Ce qu'on trouve ailleurs*",
+        "note_1": "*Points relevés en septembre 2026 sur les fiches produit de boutiques de jeux d'échecs en ligne.",
+        "note_2": "Sur la plupart, la taille des cases n'était pas indiquée."
+      }
+    },
+    "pourquoi_philidor": {
+      "type": "philidor-manifeste",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "label": "NAISSANCE",
+            "value": "Dreux, 1726"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "label": "OUVRAGE",
+            "value": "L'Analyse, Londres, 1749"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "label": "SCÈNE",
+            "value": "Tom Jones, 1765"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "settings": {
+        "eyebrow": "POURQUOI PHILIDOR",
+        "title": "Le nom d'un joueur qui",
+        "title_accent": "écoutait",
+        "intro": "<p>François-André Danican Philidor, né à Dreux en 1726 : compositeur d'opéras, et le plus fort joueur d'échecs de son siècle.</p>",
+        "text": "<p>En 1749, il écrit à Londres que les pions sont l'âme des échecs : la partie se joue avec les petites pièces, celles qu'on ne regarde pas. Nous avons pris son nom pour cette idée-là. Un bon jeu, c'est d'abord le soin porté à ce qui ne se voit pas.</p>",
+        "dropcap": false,
+        "quote": "Les pions sont l'âme des échecs.",
+        "signature": "MAISON PHILIDOR — ÉCHIQUIERS & BACKGAMMONS",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-29_at_01.16.03.jpg",
+        "image_alt": "Pion en buis posé sur une case de noyer, en gros plan",
+        "image_caption": "",
+        "image_position": "top",
+        "img_height_top": 420,
+        "img_height_top_m": 240,
+        "img_height": 560,
+        "img_height_m": 380,
+        "img_radius": 3,
+        "img_radius_m": 3,
+        "ghost_text": "",
+        "ghost_size": 192,
+        "ghost_opacity": 0.3,
+        "ghost_opacity_m": 0.4,
+        "cta_label": "LIRE L'HISTOIRE DE LA MAISON",
+        "cta_link": "shopify://pages/la-maison-philidor",
+        "cta_style": "link",
+        "accent": "#8a5a2b",
+        "ink": "#2a1b12",
+        "muted": "#7b5e47",
+        "rule_color": "#d6c3a5",
+        "bg": "#ffffff",
+        "title_size": 48,
+        "title_size_m": 33,
+        "intro_size": 18,
+        "intro_size_m": 17,
+        "text_size": 16,
+        "text_size_m": 15,
+        "quote_size": 22,
+        "quote_size_m": 18,
+        "max_width": 1240,
+        "gap": 72,
+        "title_gap": 28,
+        "body_offset": 0,
+        "pad_top": 64,
+        "pad_bottom": 64,
+        "pad_top_m": 40,
+        "pad_bottom_m": 40,
+        "reveal": true
+      }
+    },
+    "chapitre_jeux": {
+      "type": "philidor-chapitre",
+      "blocks": {
+        "st_1": {
+          "type": "style",
+          "settings": {
+            "label": "À offrir",
+            "url": "/collections/jeux-d-echecs-a-offrir"
+          }
+        },
+        "st_2": {
+          "type": "style",
+          "settings": {
+            "label": "Pour jouer",
+            "url": "/collections/jeux-d-echecs-de-jeu"
+          }
+        },
+        "st_3": {
+          "type": "style",
+          "settings": {
+            "label": "De collection",
+            "url": "/collections/jeux-d-echecs-de-collection"
+          }
+        }
+      },
+      "block_order": [
+        "st_1",
+        "st_2",
+        "st_3"
+      ],
+      "settings": {
+        "index": "01",
+        "eyebrow": "JEUX D'ÉCHECS",
+        "title": "Trente-deux pièces qui",
+        "title_accent": "tiennent debout",
+        "text": "<p>Le modèle Staunton, celui des clubs et des tournois. Plateau massif, noyer contre érable ; pièces tournées, lestées dans la base, chaussées de feutre. Le roi mesure 90 à 95 mm : on le sent dans la main avant de le voir.</p>",
+        "spec_1": "Cases de 50 à 55 mm",
+        "spec_2": "Roi de 90 à 95 mm, pièces lestées",
+        "spec_3": "Plateau massif, fait main en France",
+        "image": "shopify://shop_images/WhatsApp_Image_2026-09-29_at_01.16.05.jpg",
+        "image_alt": "Jeu d'échecs complet en bois massif, pièces Staunton en place",
+        "card_label": "Jeux d'échecs",
+        "card_cta": "Découvrir",
+        "card_link": "shopify://collections/jeux-d-echecs",
+        "media_position": "right",
+        "card_height": 520,
+        "card_height_m": 300,
+        "card_radius": 30,
+        "card_radius_m": 26,
+        "frame_color": "#faf6ef",
+        "gold": "#b9853f",
+        "frame_pad": 16,
+        "frame_pad_m": 12,
+        "radius_in": 20,
+        "radius_in_m": 17,
+        "edge_soft": 0.5,
+        "plate_place": "out",
+        "tilt": true,
+        "tilt_strength": 7,
+        "glow": true,
+        "styles_label": "PAR USAGE",
+        "accent": "#8a5a2b",
+        "ink": "#2a1b12",
+        "muted": "#7b5e47",
+        "rule_color": "#d6c3a5",
+        "bg": "#ffffff",
+        "title_size": 50,
+        "title_size_m": 31,
+        "text_size": 16,
+        "text_size_m": 15,
+        "plate_size": 30,
+        "plate_size_m": 22,
+        "max_width": 1240,
+        "text_ratio": 46,
+        "gap": 76,
+        "pad_top": 72,
+        "pad_bottom": 72,
+        "pad_top_m": 48,
+        "pad_bottom_m": 48,
+        "reveal": true
+      }
+    },
+    "chapitre_backgammons": {
+      "type": "philidor-chapitre",
+      "blocks": {
+        "st_1": {
+          "type": "style",
+          "settings": {
+            "label": "38 cm",
+            "url": "/collections/backgammons"
+          }
+        },
+        "st_2": {
+          "type": "style",
+          "settings": {
+            "label": "48 cm",
+            "url": "/collections/backgammons"
+          }
+        },
+        "st_3": {
+          "type": "style",
+          "settings": {
+            "label": "Format voyage",
+            "url": "/collections/backgammons"
+          }
+        }
+      },
+      "block_order": [
+        "st_1",
+        "st_2",
+        "st_3"
+      ],
+      "settings": {
+        "index": "02",
+        "eyebrow": "BACKGAMMONS",
+        "title": "Le bruit des dés sur",
+        "title_accent": "le bois",
+        "text": "<p>Un backgammon se juge fermé, puis ouvert. Fermé : une mallette qui tient debout, des charnières nettes. Ouvert : vingt-quatre flèches marquetées dans deux essences, un fond qui rend le son du dé, trente pions qui glissent sans accrocher.</p>",
+        "spec_1": "38 cm ou 48 cm ouvert",
+        "spec_2": "Flèches marquetées, deux essences",
+        "spec_3": "30 pions, 4 dés, 2 cornets, 1 videau",
+        "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_01_07_49.png",
+        "image_alt": "Backgammon en bois massif ouvert, pions et cornets",
+        "card_label": "Backgammons",
+        "card_cta": "Découvrir",
+        "card_link": "shopify://collections/backgammons",
+        "media_position": "left",
+        "card_height": 520,
+        "card_height_m": 300,
+        "card_radius": 30,
+        "card_radius_m": 26,
+        "frame_color": "#faf6ef",
+        "gold": "#b9853f",
+        "frame_pad": 16,
+        "frame_pad_m": 12,
+        "radius_in": 20,
+        "radius_in_m": 17,
+        "edge_soft": 0.5,
+        "plate_place": "out",
+        "tilt": true,
+        "tilt_strength": 7,
+        "glow": true,
+        "styles_label": "PAR FORMAT",
+        "accent": "#8a5a2b",
+        "ink": "#2a1b12",
+        "muted": "#7b5e47",
+        "rule_color": "#d6c3a5",
+        "bg": "#ffffff",
+        "title_size": 50,
+        "title_size_m": 31,
+        "text_size": 16,
+        "text_size_m": 15,
+        "plate_size": 30,
+        "plate_size_m": 22,
+        "max_width": 1240,
+        "text_ratio": 46,
+        "gap": 76,
+        "pad_top": 72,
+        "pad_bottom": 72,
+        "pad_top_m": 48,
+        "pad_bottom_m": 48,
+        "reveal": true
+      }
+    },
+    "video_refus": {
+      "type": "video-promo",
+      "settings": {
+        "video_url": "",
+        "poster": "shopify://shop_images/Image_ChatGPT_29_sept._2026_00_58_34.png",
+        "video_url_desktop": "",
+        "overlay_color": "#3b2a1f",
+        "overlay_opacity": 70,
+        "eyebrow": "CE QU'ON REFUSE DE VENDRE",
+        "title": "Beaucoup de choses.",
+        "subtitle": "Les plateaux plaqués qui gondolent. Les pièces creuses qui basculent. Les rois de 60 mm sur des cases de 50. Tout ce qui se voit sur la photo et se regrette à la troisième partie.",
+        "text_color": "#f4ecdf",
+        "accent_color": "#b9853f",
+        "title_size": 44,
+        "title_size_mobile": 32,
+        "subtitle_size": 18,
+        "subtitle_size_mobile": 18,
+        "button_label": "Nos matières et notre atelier",
+        "button_link": "shopify://pages/matieres-savoir-faire",
+        "button_bg": "#b9853f",
+        "button_text_color": "#2a1b12",
+        "button_radius": 4,
+        "height": 60,
+        "height_mobile": 75,
+        "content_max_width": 760
+      }
+    },
+    "reassurance": {
+      "type": "custom-section",
+      "blocks": {
+        "slider_XywcYe": {
+          "type": "slider",
+          "name": "t:slider",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "per_page_desktop": 4,
+            "per_page_mobile": "1",
+            "gap": 5,
+            "show_arrows": false,
+            "show_pagination": true,
+            "rewind": false,
+            "autoplay": true,
+            "autoplay_speed": 4,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {
+            "slide_3jn6VD": {
+              "type": "_slide",
+              "name": "t:slide",
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "layout_direction": "column",
+                "layout_wrap": "nowrap",
+                "layout_gap": 10,
+                "layout_justify": "center",
+                "layout_align_items": "center",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "icon_QFn4W7": {
+                  "type": "icon",
+                  "name": "t:icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "featured_seasonal_and_gifts",
+                    "icon_custom": "",
+                    "icon_size": 42,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": "vllc-icon-beige"
+                  },
+                  "blocks": {}
+                },
+                "text_6Ym7L4": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Livraison offerte</p>",
+                    "text_style": "h6",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_iBFrW4": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Suivie, en France métropolitaine, sans minimum d'achat. Emballage double cannelure et calage mousse.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_QFn4W7",
+                "text_6Ym7L4",
+                "text_iBFrW4"
+              ]
+            },
+            "slide_RW8GLP": {
+              "type": "_slide",
+              "name": "t:slide",
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "layout_direction": "column",
+                "layout_wrap": "nowrap",
+                "layout_gap": 10,
+                "layout_justify": "center",
+                "layout_align_items": "center",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "icon_gijhrF": {
+                  "type": "icon",
+                  "name": "t:icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "delivery_truck_speed",
+                    "icon_custom": "",
+                    "icon_size": 42,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": "vllc-icon-beige"
+                  },
+                  "blocks": {}
+                },
+                "text_HFNaPW": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Expédié en 24 à 48 h</p>",
+                    "text_style": "h6",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_U8mQc9": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Chaque commande part sous deux jours ouvrés avec un numéro de suivi. Comptez 3 à 5 jours pour la recevoir.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_gijhrF",
+                "text_HFNaPW",
+                "text_U8mQc9"
+              ]
+            },
+            "slide_e7r7wK": {
+              "type": "_slide",
+              "name": "t:slide",
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "layout_direction": "column",
+                "layout_wrap": "nowrap",
+                "layout_gap": 10,
+                "layout_justify": "center",
+                "layout_align_items": "center",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "icon_6mtVWT": {
+                  "type": "icon",
+                  "name": "t:icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "verified",
+                    "icon_custom": "",
+                    "icon_size": 42,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": "vllc-icon-beige"
+                  },
+                  "blocks": {}
+                },
+                "text_i9Cyej": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Garantie 5 ans</p>",
+                    "text_style": "h6",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_XVrxp8": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Défauts de matière et de fabrication couverts cinq ans. Une pièce perdue se remplace à l'unité, dans le même atelier.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_6mtVWT",
+                "text_i9Cyej",
+                "text_XVrxp8"
+              ]
+            },
+            "slide_FVXyh8": {
+              "type": "_slide",
+              "name": "t:slide",
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "layout_direction": "column",
+                "layout_wrap": "nowrap",
+                "layout_gap": 10,
+                "layout_justify": "center",
+                "layout_align_items": "center",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "icon_xdzmxK": {
+                  "type": "icon",
+                  "name": "t:icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "encrypted",
+                    "icon_custom": "",
+                    "icon_size": 42,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": "vllc-icon-beige"
+                  },
+                  "blocks": {}
+                },
+                "text_daEqnk": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Paiement sécurisé</p>",
+                    "text_style": "h6",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "text_RN7htP": {
+                  "type": "text",
+                  "name": "t:text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Carte, Apple Pay, PayPal ou paiement en trois fois. Vos données sont chiffrées de bout en bout.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "center",
+                    "alignment_mobile": "center",
+                    "show_read_more": false,
+                    "read_more_length": 200,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "icon_xdzmxK",
+                "text_daEqnk",
+                "text_RN7htP"
+              ]
+            }
+          },
+          "block_order": [
+            "slide_3jn6VD",
+            "slide_RW8GLP",
+            "slide_e7r7wK",
+            "slide_FVXyh8"
+          ]
+        }
+      },
+      "block_order": [
+        "slider_XywcYe"
+      ],
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "color_scheme": "scheme-2",
+        "wrap_in_card": false,
+        "color_scheme_card": "",
+        "section_width": "normal",
+        "layout_type": "flex",
+        "layout_flex_direction_desktop": "column",
+        "layout_grid_columns_desktop": 3,
+        "layout_gap_desktop": 20,
+        "layout_wrap_desktop": "nowrap",
+        "layout_flex_justify_desktop": "flex-start",
+        "layout_flex_align_items_desktop": "flex-start",
+        "same_as_desktop": true,
+        "layout_flex_direction_mobile": "column",
+        "layout_gap_mobile": 20,
+        "layout_wrap_mobile": "nowrap",
+        "layout_flex_justify_mobile": "flex-start",
+        "layout_flex_align_items_mobile": "flex-start",
+        "layout_grid_columns_mobile": 1,
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "anchor_id": "",
+        "additional_class": ""
+      }
+    },
+    "engagement": {
+      "type": "image-texte-premium",
+      "settings": {
+        "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_03_25_33.png",
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "top",
+        "top_image_height": 420,
+        "top_image_height_m": 240,
+        "eyebrow": "L'engagement Philidor",
+        "title": "L’échiquier que vous gardez pour toujours",
+        "text": "<p>Un échiquier, on ne l'achète pas deux fois. Alors on garantit le bois, les charnières, les fermoirs et le feutre pendant cinq ans. Un pion disparaît sous le canapé ? On vous en tourne un autre.</p>",
+        "point_1": "Garantie 5 ans",
+        "point_1_sub": "matière et fabrication",
+        "point_2": "Pièce perdue remplacée",
+        "point_2_sub": "à l'unité, même essence",
+        "point_3": "30 jours pour changer d'avis",
+        "point_3_sub": "retour simple, remboursé",
+        "button_text": "LIRE NOS ENGAGEMENTS",
+        "button_link": "shopify://pages/matieres-savoir-faire",
+        "button_style": "link",
+        "section_bg": "#ffffff",
+        "title_color": "#2a1b12",
+        "text_color": "#2a1b12",
+        "accent_color": "#8a5a2b",
+        "button_bg": "#8a5a2b",
+        "button_text_color": "#fbf6ee",
+        "title_size_desktop": 40,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_height_desktop": 58,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 34,
+        "button_radius": 4,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "max_width": 1280,
+        "gap_desktop": 76,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 0,
+        "image_radius": 8,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 24,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "faq_accueil": {
+      "type": "faq-premium",
+      "blocks": {
+        "faq_home_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Pourquoi 250 € quand j'en trouve un à 35 € ?",
+            "answer": "<p>À 35 €, le plateau est un contreplaqué imprimé et les pièces sont creuses. Ici, les cases sont découpées dans du noyer et de l'érable massifs, les pièces tournées, lestées et feutrées. Le premier se remplace. Le second se transmet.</p>"
+          }
+        },
+        "faq_home_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "C'est vraiment fait main, ou de l'industriel repeint ?",
+            "answer": "<p>Fait main, en France, dans les ateliers partenaires de la Maison : pièces tournées et lestées à la main, cases assemblées une à une, finition à l'huile au chiffon. Deux plateaux ne sont jamais identiques.</p>"
+          }
+        },
+        "faq_home_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Massif ou plaqué ? Est-ce que ça va se fendre ?",
+            "answer": "<p>Massif de bout en bout : cases, bordure et fond en bois plein, sans placage. Bois séché longuement, cases assemblées fil contre fil, finition à l'huile. Il ne gondole pas, il ne se fend pas, loin d'un radiateur et du plein soleil.</p>"
+          }
+        },
+        "faq_home_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Combien de temps pour être livré ?",
+            "answer": "<p>Départ sous 24 à 48 h ouvrées avec suivi, puis 3 à 5 jours ouvrés en France métropolitaine. Livraison offerte. Pour un cadeau à date fixe, écrivez-nous avant de commander.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_home_1",
+        "faq_home_2",
+        "faq_home_3",
+        "faq_home_5"
+      ],
+      "settings": {
+        "title": "Vos questions, nos réponses.",
+        "subtitle": "Y compris celles que les fiches produit évitent.",
+        "button_text": "Voir toutes les questions",
+        "button_link": "shopify://pages/faq",
+        "single_open": true,
+        "title_size": 36,
+        "title_size_m": 30,
+        "sub_size": 16,
+        "sub_size_m": 15,
+        "q_size": 18,
+        "q_size_m": 16,
+        "a_size": 16,
+        "a_size_m": 15,
+        "row_pad": 20,
+        "bg": "#f4ecdf",
+        "title_color": "#2a1b12",
+        "sub_color": "#7b5e47",
+        "q_color": "#2a1b12",
+        "a_color": "#7b5e47",
+        "ico_color": "#8a5a2b",
+        "divider": "#d6c3a5",
+        "btn_bg": "#8a5a2b",
+        "btn_text": "#fbf6ee",
+        "btn_size": 15,
+        "btn_radius": 4,
+        "max_width": 820,
+        "pad_top": 56,
+        "pad_bot": 56,
+        "pad_top_m": 36,
+        "pad_bot_m": 36
+      }
+    },
+    "support": {
+      "type": "support-steps",
+      "blocks": {
+        "step_1": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Avant d'acheter",
+            "card_text": "On vous dit quelle taille de cases prendre."
+          }
+        },
+        "step_2": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "À la réception",
+            "card_text": "Un doute ? On répond le jour même."
+          }
+        },
+        "step_3": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Dans cinq ans",
+            "card_text": "Un pion perdu, remplacé à l'unité."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "label_text": "AVANT • À L'ARRIVÉE • DANS CINQ ANS",
+        "title": "Quelqu'un qui connaît les pièces",
+        "cta_title": "Une question avant de commander ?",
+        "cta_desc": "Réponse en français, 7j/7.",
+        "whatsapp_link": "/pages/contact",
+        "whatsapp_btn_text": "Nous écrire",
+        "bg_image_opacity": 10,
+        "primary_color": "#8a5a2b",
+        "bg_color": "#ffffff",
+        "title_size_desktop": 34,
+        "title_size_mobile": 24,
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32,
+        "max_width": 1080
+      }
+    },
+    "lettre": {
+      "type": "philidor-lettre",
+      "settings": {
+        "eyebrow": "La lettre Philidor",
+        "title": "Une lettre par mois. Une partie, une essence, une pièce.",
+        "placeholder": "Votre adresse e-mail",
+        "button": "Je m'inscris",
+        "legal": "Désinscription en un clic, à tout moment. Jamais plus d'une lettre par mois.",
+        "success": "C'est noté. La prochaine lettre arrive le mois prochain.",
+        "bg": "#faf6ef",
+        "ink": "#2a1b12",
+        "accent": "#8a5a2b",
+        "btn_bg": "#8a5a2b",
+        "btn_ink": "#fbf6ee",
+        "pad": 48,
+        "pad_m": 36
+      }
+    },
+    "frise": {
+      "type": "philidor-frise",
+      "settings": {
+        "height_desktop": 90,
+        "height_mobile": 60,
+        "bg": "#ffffff",
+        "wood": "#e3d2b6",
+        "wood_dark": "#cdb28c",
+        "rule": "#b9853f",
+        "square": "#8a5a2b"
+      }
+    }
+  },
+  "order": [
+    "banniere_hero",
+    "grille_types",
+    "grille_usages",
+    "meilleures_ventes",
+    "avis_photos",
+    "avis_boutique",
+    "methode_philidor",
+    "comparatif",
+    "pourquoi_philidor",
+    "chapitre_jeux",
+    "chapitre_backgammons",
+    "video_refus",
+    "reassurance",
+    "engagement",
+    "faq_accueil",
+    "support",
+    "lettre",
+    "frise"
+  ]
+}

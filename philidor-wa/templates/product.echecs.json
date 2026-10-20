@@ -1,0 +1,1258 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumbs": {
+      "type": "breadcrumbs",
+      "disabled": true,
+      "settings": {
+        "breadcrumbs_enabled": false,
+        "breadcrumbs_enabled_on_products": true,
+        "breadcrumbs_enabled_on_pages": true,
+        "breadcrumbs_enabled_on_collections": true,
+        "breadcrumbs_enabled_on_blogs": true,
+        "breadcrumbs_enabled_on_articles": true,
+        "breadcrumbs_menu_definition": "philidor-principal",
+        "prefer_shortest_path": true,
+        "separator_shape": "triangle",
+        "color_scheme": "scheme-1",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "additional_class": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "titre": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "<p>{{ product.title }}</p>",
+            "text_style": "h2",
+            "paragraph_font_size": "normal",
+            "font_weight": 400,
+            "alignment": "left",
+            "alignment_mobile": "left",
+            "show_read_more": false,
+            "read_more_length": 200,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": false,
+            "truncate_length": 2,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "avis": {
+          "type": "rating-stars",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "product": "{{ closest.product }}",
+            "hide_rating_when_no_reviews": true,
+            "rating": 4.5,
+            "show_note": true,
+            "show_review_count": true,
+            "review_count": 123,
+            "link": "#reviews",
+            "margin_top": 10,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "prix": {
+          "type": "product-price",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "product": "{{ closest.product }}",
+            "sales_badge": "percentage",
+            "show_sales_badge_text": false,
+            "show_unit_price": false,
+            "text_style": "paragraph",
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "badges": {
+          "type": "philidor-badges",
+          "settings": {
+            "badge_1": "Marque française",
+            "badge_2": "+30 clubs partenaires"
+          },
+          "blocks": {}
+        },
+        "livraison": {
+          "type": "philidor-delivery-line",
+          "settings": {
+            "style": "compact",
+            "delivery_text": "Livré en 4 à 8 jours ouvrés",
+            "prefix": "Commandé aujourd'hui,",
+            "suffix": "livraison suivie offerte en France"
+          },
+          "blocks": {}
+        },
+        "arguments": {
+          "type": "philidor-benefits",
+          "settings": {
+            "layout": "grid",
+            "show_sub": false,
+            "title_1": "Massif, fait main en France",
+            "sub_1": "noyer et érable pleins, de bout en bout, jamais plaqués",
+            "icon_1": "bois",
+            "title_2": "Pièces lestées et feutrées",
+            "sub_2": "stables sur la case, silencieuses sur le bois",
+            "icon_2": "piece",
+            "title_3": "Cotes mesurées, pas estimées",
+            "sub_3": "taille des cases et hauteur du roi ci-dessous",
+            "icon_3": "regle",
+            "title_4": "30 jours pour changer d'avis",
+            "sub_4": "retour simple, remboursement intégral",
+            "icon_4": "retour"
+          },
+          "blocks": {}
+        },
+        "description": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "{{ closest.product.description }}",
+            "text_style": "paragraph",
+            "paragraph_font_size": "normal",
+            "font_weight": 400,
+            "alignment": "left",
+            "alignment_mobile": "left",
+            "show_read_more": true,
+            "read_more_length": 320,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": false,
+            "truncate_length": 2,
+            "margin_top": 6,
+            "margin_bottom": 6,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "offre": {
+          "type": "philidor-offer",
+          "settings": {
+            "title": "Offre d'automne",
+            "subtitle": "-10 % sur votre commande",
+            "code": "AUTOMNE10",
+            "button": "Appliquer"
+          },
+          "blocks": {}
+        },
+        "formulaire": {
+          "type": "_product-form",
+          "settings": {},
+          "blocks": {
+            "product_variant_picker_xWC3wF": {
+              "type": "_product-variant-picker",
+              "settings": {
+                "show_option_name": true,
+                "variant_picker_type": "buttons",
+                "show_swatches": true,
+                "swatches_size": "normal",
+                "swatches_rounded": true,
+                "margin_top": 0,
+                "margin_bottom": 15,
+                "additional_class": ""
+              },
+              "blocks": {
+                "product-variant-popup": {
+                  "type": "_product-variant-popup",
+                  "static": true,
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "show_on_option_name": "Taille",
+                    "color_scheme": "scheme-1",
+                    "button_style": "button",
+                    "button_label": "Quelle taille choisir ?",
+                    "icon": "straighten",
+                    "icon_custom": "",
+                    "icon_position": "end",
+                    "additional_class": ""
+                  },
+                  "blocks": {
+                    "pop_title": {
+                      "type": "text",
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "text": "<p>Quelle taille d'échiquier ?</p>",
+                        "text_style": "h3",
+                        "paragraph_font_size": "normal",
+                        "font_weight": 400,
+                        "alignment": "left",
+                        "alignment_mobile": "left",
+                        "show_read_more": false,
+                        "read_more_length": 200,
+                        "read_more_text": "Voir plus",
+                        "read_less_text": "Voir moins",
+                        "truncate": false,
+                        "truncate_length": 2,
+                        "margin_top": 0,
+                        "margin_bottom": 10,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    },
+                    "pop_text": {
+                      "type": "text",
+                      "settings": {
+                        "show_on_display": "desktop_and_mobile",
+                        "text": "<p><strong>La règle qui ne trompe pas.</strong> La base du roi doit couvrir 75 à 80 % de la case. Un roi de 95 mm a une base d'environ 40 mm : il lui faut des cases de 50 à 55 mm. Un roi de 75 mm se contente de cases de 40 à 45 mm.</p><p><strong>Pour la table du salon.</strong> Cases de 50 mm, plateau de 45 à 50 cm de côté. Lisible à deux mètres, confortable à quatre mains.</p><p><strong>Pour le club et le tournoi.</strong> Cases de 55 mm, roi de 95 mm : les cotes recommandées par la FIDE. C'est le format sur lequel on apprend à jouer vite sans renverser.</p><p><strong>Pour voyager.</strong> Cases de 35 à 40 mm, plateau pliant de 30 à 40 cm, pièces aimantées. On perd en présence, on gagne un jeu qui tient dans un sac.</p><p>Un doute ? Envoyez-nous la largeur de votre table par e-mail, on vous répond avec une taille précise.</p>",
+                        "text_style": "paragraph",
+                        "paragraph_font_size": "normal",
+                        "font_weight": 400,
+                        "alignment": "left",
+                        "alignment_mobile": "left",
+                        "show_read_more": false,
+                        "read_more_length": 200,
+                        "read_more_text": "Voir plus",
+                        "read_less_text": "Voir moins",
+                        "truncate": false,
+                        "truncate_length": 2,
+                        "margin_top": 0,
+                        "margin_bottom": 0,
+                        "additional_class": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "pop_title",
+                    "pop_text"
+                  ]
+                }
+              },
+              "block_order": []
+            },
+            "gravure": {
+              "type": "philidor-gravure",
+              "settings": {
+                "product": "gravure-personnalisee",
+                "title": "Gravez votre échiquier",
+                "note": "Gravure réalisée dans notre atelier en France.",
+                "placeholder": "POUR PAPA 2026",
+                "max_length": 15
+              },
+              "blocks": {}
+            },
+            "product-add-to-cart-button": {
+              "type": "_product-add-to-cart-button",
+              "static": true,
+              "settings": {
+                "enable_sticky_add_to_cart": true,
+                "button_style": "primary",
+                "show_price": true,
+                "icon": "none",
+                "icon_custom": "",
+                "icon_position": "end",
+                "enable_preorder": false,
+                "enable_preorder_on_empty_stock_only": true,
+                "preorder_cart_message": "Expédié à partir du JJ/MM",
+                "additional_class": ""
+              },
+              "blocks": {
+                "product-quantity-selector": {
+                  "type": "_product-quantity-selector",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "add-to-wishlist-button": {
+                  "type": "_add-to-wishlist-button",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "accelerated-checkout": {
+              "type": "_accelerated-checkout",
+              "static": true,
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "full_width": true,
+                "button_style": "primary",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_variant_picker_xWC3wF",
+            "gravure"
+          ]
+        },
+        "paiement": {
+          "type": "custom-code",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "custom_liquid": "<style>\nproduct-form .shopify-payment-button, product-form shopify-accelerated-checkout, .accelerated-checkout, accelerated-checkout, [class*='accelerated-checkout']{display:none!important}\n</style>",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "icones_paiement": {
+          "type": "payment-methods",
+          "settings": {
+            "philidor_hide_on_product": true,
+            "show_on_display": "desktop_and_mobile",
+            "philidor_custom": true,
+            "ic_visa": true,
+            "ic_master": true,
+            "ic_amex": true,
+            "ic_apple_pay": true,
+            "ic_paypal": true,
+            "ic_maestro": false,
+            "ic_klarna": false,
+            "ic_gpay": false,
+            "ic_shop": false,
+            "alignment_desktop": "center",
+            "alignment_mobile": "center",
+            "icon_size": 30,
+            "margin_top": 4,
+            "margin_bottom": 4,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "ebook": {
+          "type": "philidor-ebook",
+          "settings": {
+            "eyebrow": "Offert avec votre jeu",
+            "title": "Ebook : apprenez les bases rapidement",
+            "text": "Le guide complet pour maîtriser les principes fondamentaux des échecs.",
+            "value": "Valeur 30 €, offert",
+            "image": "shopify://shop_images/Image_ChatGPT_19_oct._2026_01_53_52-2.png"
+          },
+          "blocks": {}
+        },
+        "reassurance": {
+          "type": "philidor-reassurance",
+          "settings": {
+            "compact": false,
+            "title_1": "Livraison",
+            "sub_1": "offerte, 3 à 5 jours ouvrés",
+            "icon_1": "colis",
+            "title_2": "Support client",
+            "sub_2": "7j/7 en français",
+            "icon_2": "support",
+            "title_3": "Garantie 5 ans",
+            "sub_3": "remplacement ou remboursement",
+            "icon_3": "garantie",
+            "title_4": "",
+            "sub_4": "",
+            "icon_4": "retour"
+          },
+          "blocks": {}
+        },
+        "caracteristiques": {
+          "type": "philidor-specs",
+          "settings": {
+            "title": "Caractéristiques",
+            "open_default": false,
+            "description": "<p>Un jeu complet : plateau en noyer et érable massifs, trente-deux pièces Staunton tournées dans le buis et le noyer, lestées et chaussées de feutre. Chaque jeu est mesuré sur l'objet avant l'envoi : les cotes ci-dessous sont celles de votre exemplaire.</p>",
+            "label_1": "Essence du plateau",
+            "value_1": "Noyer et érable massifs, de bout en bout",
+            "key_1": "essence_plateau",
+            "label_2": "Essence des pièces",
+            "value_2": "Buis et noyer teinté, tournés main, modèle Staunton",
+            "key_2": "essence_pieces",
+            "label_3": "Dimensions ouvert",
+            "value_3": "50 × 50 × 2,5 cm",
+            "key_3": "dimensions_ouvert",
+            "label_4": "Dimensions fermé",
+            "value_4": "",
+            "key_4": "dimensions_ferme",
+            "label_5": "Taille des cases",
+            "value_5": "55 mm",
+            "key_5": "taille_case",
+            "label_6": "Hauteur du roi",
+            "value_6": "95 mm, base 40 mm",
+            "key_6": "hauteur_roi",
+            "label_7": "Lestage",
+            "value_7": "Pièces lestées, double lest sur le roi et la dame",
+            "key_7": "lestage",
+            "label_8": "Semelles",
+            "value_8": "Feutre de laine collé sous chaque pièce",
+            "key_8": "feutrage",
+            "label_9": "Poids total",
+            "value_9": "",
+            "key_9": "poids",
+            "label_10": "Finition",
+            "value_10": "Huile-cire naturelle, mate, appliquée au chiffon",
+            "key_10": "finition",
+            "label_11": "Rangement",
+            "value_11": "Deux sacs de feutre pour les pièces",
+            "key_11": "rangement",
+            "label_12": "Fabrication",
+            "value_12": "À la main, en France, ateliers partenaires de la Maison · garantie 5 ans",
+            "key_12": "fabrication",
+            "note": "Le bois est une matière vivante : le veinage et la teinte varient d'un plateau à l'autre. Cotes données à ± 2 mm."
+          },
+          "blocks": {}
+        },
+        "accordeons": {
+          "type": "philidor-accordions",
+          "settings": {
+            "show_description": false,
+            "description_heading": "Description",
+            "open_first": false,
+            "heading_1": "Livraison, emballage & retours",
+            "text_1": "<p>Préparation sous 24 à 48 h ouvrées, livraison suivie offerte en France métropolitaine, 3 à 5 jours ouvrés. Le plateau voyage dans un carton double cannelure, calé mousse, les pièces dans leurs sacs de feutre.</p><p>30 jours pour changer d'avis à compter de la réception, sans justification. Vous écrivez, on organise le retour.</p>",
+            "heading_2": "Entretien du bois",
+            "text_2": "<p>Un chiffon doux et sec après la partie. Une à deux fois par an, une noisette de cire d'abeille ou d'huile pour bois, lustrée à la main. Pas de produit ménager, pas d'eau stagnante. Rangez-le loin du soleil direct et des radiateurs : c'est l'écart brutal d'humidité qui fatigue le bois, pas le temps.</p>",
+            "heading_3": "Garantie 5 ans",
+            "text_3": "<p>Cinq ans contre tout défaut de matière et de fabrication : pièce fendue, case qui se décolle, charnière ou fermoir. Une pièce perdue se remplace à l'unité, dans la même essence et la même hauteur.</p>",
+            "heading_4": "Pour offrir",
+            "text_4": "<p>Le jeu part dans son coffret, sans facture ni prix dans le colis. Ajoutez un mot au moment de la commande : nous l'écrivons à la main sur une carte glissée sous le couvercle. Pour une date fixe, écrivez-nous avant de commander, on vous confirme ce qui est possible.</p>",
+            "heading_5": "",
+            "text_5": ""
+          },
+          "blocks": {}
+        },
+        "renvoi": {
+          "type": "philidor-infocard",
+          "settings": {
+            "title": "La Maison Philidor",
+            "text": "Pourquoi un jeu d'échecs porte le nom d'un musicien du XVIIIe siècle.",
+            "link_label": "Lire notre histoire",
+            "link": "shopify://pages/la-maison-philidor"
+          },
+          "blocks": {}
+        },
+        "product_media_gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "hide_variants": false,
+            "media_display": "carrousel",
+            "media_ratio": "1 / 1",
+            "media_rounded": true,
+            "grid_columns": "2",
+            "grid_gap": 10,
+            "main_image_full_width": true,
+            "show_a_bit_of_next_image_on_mobile": false,
+            "show_arrows": false,
+            "show_pagination": false,
+            "show_thumbnails": true,
+            "show_thumbnails_on_display": "desktop_and_mobile",
+            "thumbnails_show_arrows": false,
+            "video_loop": true,
+            "enable_video_controls": true,
+            "show_badges": true,
+            "additional_class": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "titre",
+        "avis",
+        "prix",
+        "badges",
+        "livraison",
+        "arguments",
+        "description",
+        "offre",
+        "formulaire",
+        "paiement",
+        "icones_paiement",
+        "ebook",
+        "reassurance",
+        "caracteristiques",
+        "accordeons",
+        "renvoi"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "show_product_info_card": false,
+        "color_scheme_product_info": "scheme-2",
+        "image_position": "row",
+        "product_info_width": 45,
+        "gap": 60,
+        "carrousel_sticky": true,
+        "product_info_sticky": false,
+        "carrousel_full_width": false,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "coffret": {
+      "type": "tout-est-dans-le-carton",
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "card_title": "Le plateau",
+            "card_desc": "Massif de bout en bout : cases de noyer et d'érable, bordure et fond en bois plein. Assemblé et huilé à la main, en France.",
+            "highlight": true
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "card_title": "Les 32 pièces",
+            "card_desc": "Modèle Staunton, tournées dans le buis et le noyer, lestées, semelles en feutre.",
+            "highlight": true
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "card_title": "Deux sacs de feutre",
+            "card_desc": "Un par couleur. Les pièces ne se cognent pas, ne se rayent pas, ne se perdent pas.",
+            "highlight": false
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "card_title": "La fiche des cotes",
+            "card_desc": "Taille des cases, hauteur et base de chaque pièce, poids : mesurés sur votre jeu, écrits noir sur blanc.",
+            "highlight": false
+          }
+        },
+        "item_5": {
+          "type": "item",
+          "settings": {
+            "card_title": "Le livret Premiers pas",
+            "card_desc": "Placer le plateau, poser les pièces, jouer ses trois premiers coups. Signé Philidor.",
+            "highlight": false
+          }
+        },
+        "item_6": {
+          "type": "item",
+          "settings": {
+            "card_title": "Un interlocuteur",
+            "card_desc": "Une personne en français, joignable 7j/7 par e-mail ou via le formulaire, qui connaît les pièces.",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5",
+        "item_6"
+      ],
+      "settings": {
+        "show_photo_reviews": true,
+        "photo_title": "Ils nous ont fait confiance",
+        "photo_count_label": "avis clients",
+        "photo_only": true,
+        "photo_author": false,
+        "photo_max": 12,
+        "photo_ratio": "square",
+        "photo_star_color": "#b9853f",
+        "photo_card_bg": "#f4ecdf",
+        "photo_bg": "#ffffff",
+        "title": "Tout est dans le coffret.",
+        "bg_color": "#ffffff",
+        "card_color": "#ffffff",
+        "border_color": "#d6c3a5",
+        "icon_color": "#8a5a2b",
+        "check_color": "#fbf6ee",
+        "text_color": "#2a1b12",
+        "desc_color": "#7b5e47",
+        "title_size_desktop": 36,
+        "title_size_mobile": 28,
+        "card_title_size_desktop": 17,
+        "card_desc_size_desktop": 16,
+        "card_title_size_mobile": 12,
+        "card_desc_size_mobile": 11,
+        "mobile_desc_lines": 3,
+        "icon_size_mobile": 24,
+        "card_radius": 8,
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 28,
+        "padding_bottom_mobile": 28,
+        "max_width": 1000
+      }
+    },
+    "massif": {
+      "type": "image-texte-premium",
+      "settings": {
+        "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_21_31_24.png",
+        "video": "shopify://files/videos/atelier-fait-main-france.mp4",
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "top",
+        "top_image_height": 420,
+        "top_image_height_m": 240,
+        "eyebrow": "Massif ou plaqué",
+        "title": "Massif de bout en bout, et fait main en France",
+        "text": "<p>Retournez le plateau : c'est le même bois dessous que dessus. Les cases, la bordure et le fond sont en noyer et en érable pleins, sans placage ni panneau caché. Le veinage traverse l'épaisseur, on le voit sur le chant à la lumière rasante.</p><p>Un plateau massif vit un peu, comme une table en bois. Pour qu'il reste plan avec les saisons, le bois est séché longuement avant d'être travaillé, les cases sont assemblées fil contre fil dans nos ateliers partenaires, en France, et la finition à l'huile le laisse respirer. Il ne gondole pas, il ne se fend pas, à condition de le tenir loin d'un radiateur et d'une vitre en plein soleil.</p>",
+        "point_1": "Massif de bout en bout",
+        "point_1_sub": "cases, bordure et fond en bois plein",
+        "point_2": "Bois séché longuement",
+        "point_2_sub": "assemblé fil contre fil, à la main",
+        "point_3": "Fait en France",
+        "point_3_sub": "ateliers partenaires de la Maison",
+        "button_text": "COMPRENDRE LA FABRICATION",
+        "button_link": "shopify://pages/matieres-savoir-faire",
+        "button_style": "link",
+        "section_bg": "#ffffff",
+        "title_color": "#2a1b12",
+        "text_color": "#2a1b12",
+        "accent_color": "#8a5a2b",
+        "button_bg": "#8a5a2b",
+        "button_text_color": "#fbf6ee",
+        "title_size_desktop": 44,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_height_desktop": 58,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 34,
+        "button_radius": 4,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "max_width": 1280,
+        "gap_desktop": 76,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "image_radius": 8,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 28,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "offrir": {
+      "type": "image-text-premium",
+      "settings": {
+        "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_14_33_57.png",
+        "video_height_desktop": 420,
+        "video_height_mobile": 240,
+        "video_zoom": 100,
+        "media_position": "top",
+        "top_height": 530,
+        "top_height_m": 240,
+        "plaque": "Prêt à offrir",
+        "eyebrow": "Pour offrir",
+        "title": "Le cadeau qu'on",
+        "title_accent": "n'oublie pas",
+        "feature_1_title": "Sans prix dans le colis :",
+        "feature_1_desc": "le jeu part dans son coffret, la facture vous est envoyée par e-mail.",
+        "feature_2_title": "Un mot de votre main :",
+        "feature_2_desc": "dictez-le à la commande, nous l'écrivons à la plume sur une carte glissée sous le couvercle.",
+        "paragraph": "Un échiquier ne s’offre jamais par hasard. Pour un père, un nouveau foyer ou un passionné qui retrouve le plaisir de jouer. Un coffret raffiné, prêt à accueillir les premières parties et à créer de nouveaux souvenirs.",
+        "paragraph_first": false,
+        "cta_label": "",
+        "cta_link": "shopify://collections/jeux-d-echecs",
+        "frame_color": "#faf6ef",
+        "frame_pad": 14,
+        "frame_radius": 22,
+        "glow": true,
+        "bg_color": "#faf6ef",
+        "ink_color": "#2a1b12",
+        "icon_color": "#8a5a2b",
+        "filet": true,
+        "reveal": true,
+        "padding_top": 32,
+        "padding_bottom": 24
+      }
+    },
+    "prix": {
+      "type": "image-texte-premium",
+      "settings": {
+        "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_00_58_34.png",
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "top",
+        "top_image_height": 420,
+        "top_image_height_m": 240,
+        "eyebrow": "Ce que vous payez",
+        "title": "Pourquoi 250 € et pas 35 €",
+        "text": "<p>À 35 €, un échiquier ordinaire se remplace. Ici, le noyer et l’érable massifs rencontrent des pièces tournées, lestées et feutrées à la main. Un savoir-faire français, pensé pour traverser les générations.</p>",
+        "point_1": "Massif, pas imprimé",
+        "point_1_sub": "noyer et érable découpés dans la masse",
+        "point_2": "30 à 40 g par pièce",
+        "point_2_sub": "contre 8 g pour une pièce creuse",
+        "point_3": "Un objet qu'on transmet",
+        "point_3_sub": "pas un jouet qu'on remplace",
+        "button_text": "NOS MATIÈRES, NOTRE ATELIER",
+        "button_link": "shopify://pages/matieres-savoir-faire",
+        "button_style": "link",
+        "section_bg": "#ffffff",
+        "title_color": "#2a1b12",
+        "text_color": "#2a1b12",
+        "accent_color": "#8a5a2b",
+        "button_bg": "#8a5a2b",
+        "button_text_color": "#fbf6ee",
+        "title_size_desktop": 44,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_height_desktop": 58,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 34,
+        "button_radius": 4,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "max_width": 1280,
+        "gap_desktop": 76,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "image_radius": 8,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 28,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "pieces": {
+      "type": "image-text-premium",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPT_Image_5_sept._2026_21_25_02.png",
+        "video_height_desktop": 420,
+        "video_height_mobile": 300,
+        "video_zoom": 100,
+        "media_position": "top",
+        "top_height": 420,
+        "top_height_m": 240,
+        "plaque": "Staunton · Buis & noyer",
+        "eyebrow": "Les pièces",
+        "title": "Lestées, feutrées,",
+        "title_accent": "stables",
+        "feature_1_title": "Lestées dans la base :",
+        "feature_1_desc": "30 à 40 g par pièce, double lest sur le roi et la dame. Elles restent debout quand la table bouge.",
+        "feature_2_title": "Chaussées de feutre :",
+        "feature_2_desc": "la pièce glisse sur la case sans un bruit et sans une rayure, même après mille parties.",
+        "paragraph": "Prenez le roi dans la main. Il pèse ce qu'il doit peser, il tombe dans la paume, il se pose sur la case avec le petit son mat du bois sur le bois. C'est ce son-là que font les pièces d'un vrai jeu. Une pièce creuse fait un claquement sec, et bascule au premier coude.",
+        "paragraph_first": false,
+        "cta_label": "VOIR LES PIÈCES SEULES",
+        "cta_link": "shopify://collections/pieces-d-echecs",
+        "frame_color": "#faf6ef",
+        "frame_pad": 14,
+        "frame_radius": 22,
+        "glow": true,
+        "bg_color": "#ffffff",
+        "ink_color": "#2a1b12",
+        "icon_color": "#8a5a2b",
+        "filet": true,
+        "reveal": true,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "avis_produit": {
+      "type": "philidor-avis-carrousel",
+      "settings": {
+        "source": "produit",
+        "header_title": "Ils l'ont posé sur leur table",
+        "show_average_rating": true,
+        "star_color": "#b9853f",
+        "background_color": "rgba(0,0,0,0)",
+        "show_customer_photos": true,
+        "show_only_with_images": false,
+        "image_height": 400,
+        "limite": 50,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
+    "comparatif": {
+      "type": "philidor-comparatif",
+      "blocks": {
+        "ligne_1": {
+          "type": "ligne",
+          "settings": {
+            "critere": "La taille des cases et la hauteur du roi, en millimètres"
+          }
+        },
+        "ligne_2": {
+          "type": "ligne",
+          "settings": {
+            "critere": "L'essence du plateau et celle des pièces, nommées"
+          }
+        },
+        "ligne_3": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Le poids des pièces : lestées, et de combien"
+          }
+        },
+        "ligne_4": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Massif ou plaqué, et le pays de fabrication, écrits noir sur blanc"
+          }
+        },
+        "ligne_5": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Une pièce perdue remplaçable à l'unité"
+          }
+        },
+        "ligne_6": {
+          "type": "ligne",
+          "settings": {
+            "critere": "Une réponse humaine avant l'achat, par quelqu'un qui joue"
+          }
+        }
+      },
+      "block_order": [
+        "ligne_1",
+        "ligne_2",
+        "ligne_3",
+        "ligne_4",
+        "ligne_5",
+        "ligne_6"
+      ],
+      "settings": {
+        "fond": "#faf6ef",
+        "kicker": "Le vrai comparatif",
+        "titre": "Ce que vous devriez exiger d'un jeu d'échecs",
+        "sous_titre": "Six points vérifiables en deux minutes sur n'importe quelle fiche produit. Si l'un manque, c'est rarement un oubli.",
+        "marque": "MAISON PHILIDOR",
+        "marque_sous": "Massif, fait main en France",
+        "col_criteres": "Critères",
+        "col_nous": "Philidor",
+        "col_ailleurs": "Ce qu'on trouve ailleurs*",
+        "note_1": "*Points relevés en septembre 2026 sur les fiches produit de boutiques de jeux d'échecs en ligne.",
+        "note_2": "Sur la plupart, la taille des cases n'était pas indiquée."
+      }
+    },
+    "engagement": {
+      "type": "image-texte-premium",
+      "settings": {
+        "image": "shopify://shop_images/Image_ChatGPT_29_sept._2026_03_25_33.png",
+        "caption": "",
+        "image_inner_border": true,
+        "image_position": "top",
+        "top_image_height": 420,
+        "top_image_height_m": 240,
+        "eyebrow": "L'engagement Philidor",
+        "title": "Garantie 5 ans, sans astérisque",
+        "text": "<p>Un jeu de la Maison est garanti cinq ans : bois, charnières, fermoirs, feutre. Une pièce fendue, une case qui se décolle, un fermoir qui lâche : on répare ou on remplace, à l'unité, dans la même essence.</p><p>Et s'il arrive cassé ? Le plateau voyage dans un carton double cannelure, calé dans de la mousse. Si ce n'est pas entier à l'arrivée, une photo suffit : on renvoie la pièce ou le plateau, sans discussion et sans attendre le retour du premier. Et s'il ne vous plaît pas : 30 jours pour le renvoyer, remboursé intégralement.</p>",
+        "point_1": "Garantie 5 ans",
+        "point_1_sub": "matière et fabrication, pièce remplacée à l'unité",
+        "point_2": "Casse à l'arrivée",
+        "point_2_sub": "remplacé sur photo, sans retour préalable",
+        "point_3": "30 jours pour changer d'avis",
+        "point_3_sub": "retour simple, remboursé",
+        "button_text": "LIRE LA GARANTIE 5 ANS",
+        "button_link": "shopify://pages/matieres-savoir-faire",
+        "button_style": "link",
+        "section_bg": "#faf6ef",
+        "title_color": "#2a1b12",
+        "text_color": "#2a1b12",
+        "accent_color": "#8a5a2b",
+        "button_bg": "#8a5a2b",
+        "button_text_color": "#fbf6ee",
+        "title_size_desktop": 44,
+        "title_size_mobile": 28,
+        "mobile_title_one_line": false,
+        "text_size_desktop": 16,
+        "text_size_mobile": 16,
+        "text_line_height": 1.7,
+        "paragraph_spacing": 14,
+        "button_text_size": 15,
+        "button_text_size_mobile": 15,
+        "button_height_desktop": 58,
+        "button_height_mobile": 54,
+        "button_padding_x_desktop": 34,
+        "button_radius": 4,
+        "button_margin_top": 38,
+        "button_margin_top_mobile": 34,
+        "max_width": 1280,
+        "gap_desktop": 76,
+        "desktop_image_height": 460,
+        "desktop_padding_y": 50,
+        "image_radius": 8,
+        "mobile_image_height": 280,
+        "mobile_content_padding_y": 32,
+        "mobile_content_padding_left": 16,
+        "text_line_height_mobile": 1.6,
+        "mobile_paragraphs": "1",
+        "mobile_padding_top": 60,
+        "mobile_padding_bottom": 28,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "complements": {
+      "type": "philidor-vous-aimerez",
+      "settings": {
+        "collection": "pieces-d-echecs",
+        "max_products": 12,
+        "eyebrow": "Pour aller avec",
+        "title": "Vous aimerez aussi",
+        "subtitle": "Pièces seules et backgammons, dans le même bois.",
+        "link_text": "Voir toute la collection",
+        "link_url": "shopify://collections/pieces-d-echecs",
+        "image_ratio": "4 / 5",
+        "image_fit": "cover",
+        "hover_second_image": true,
+        "show_badge": true,
+        "card_radius": 6,
+        "per_view": 4,
+        "per_view_tablet": 3,
+        "per_view_mobile": 1,
+        "peek": 70,
+        "peek_m": 120,
+        "gap": 20,
+        "gap_mobile": 14,
+        "section_bg": "#ffffff",
+        "card_bg": "#faf6ef",
+        "title_color": "#2a1b12",
+        "accent_color": "#8a5a2b",
+        "badge_color": "#b9853f",
+        "badge_ink": "#2a1b12",
+        "title_size": 38,
+        "title_size_mobile": 28,
+        "max_width": 1440,
+        "padding_top": 84,
+        "padding_bottom": 84
+      }
+    },
+    "faq_produit": {
+      "type": "faq-premium",
+      "blocks": {
+        "faq_ech_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Les pièces tiennent-elles bien sur les cases ?",
+            "answer": "<p>Oui, et c'est mesuré : la base du roi couvre 75 à 80 % de la case. Deux pièces voisines se côtoient sans se toucher, une tour couchée tient dans une case. Si une fiche ne donne pas ces deux chiffres, taille des cases et base du roi, on ne peut pas savoir. Ici, ils sont dans le tableau ci-dessus.</p>"
+          }
+        },
+        "faq_ech_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Est-ce vraiment du massif ?",
+            "answer": "<p>Oui, de bout en bout : cases, bordure et fond en bois plein, sans placage ni panneau caché. Retournez-le, regardez le chant : le veinage traverse l'épaisseur. Le bois est séché longuement puis assemblé fil contre fil pour rester plan avec les saisons. C'est plus long à faire qu'un plateau plaqué ; c'est aussi pour cela qu'il dure.</p>"
+          }
+        },
+        "faq_ech_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Où est-il fabriqué ?",
+            "answer": "<p>En France, à la main, dans les ateliers partenaires de la Maison Philidor. Le plateau est assemblé et huilé par un ébéniste, les pièces sont tournées, lestées et feutrées une à une, puis chaque jeu est mesuré avant de partir. C'est écrit dans le tableau des caractéristiques, et sur la carte glissée dans le coffret.</p>"
+          }
+        },
+        "faq_ech_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Le veinage sera-t-il celui de la photo ?",
+            "answer": "<p>Non, pas exactement, et c'est la preuve qu'il s'agit de bois. Chaque plateau a son veinage et sa teinte, d'un ton plus clair ou plus chaud. L'essence, les cotes et la finition sont identiques. Si vous voulez voir le vôtre avant l'envoi, demandez-nous une photo.</p>"
+          }
+        },
+        "faq_ech_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Est-ce que ça se range, est-ce que ça se transporte ?",
+            "answer": "<p>Le plateau de salon est fait pour rester sur la table ; les pièces se rangent dans leurs deux sacs de feutre. Si vous voulez un jeu qui se ferme et se glisse dans un sac, regardez la collection Échiquiers de voyage : pliants, magnétiques, pièces rangées à l'intérieur.</p>"
+          }
+        },
+        "faq_ech_6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Je débute. N'est-ce pas trop grand pour moi ?",
+            "answer": "<p>Un vrai plateau ne rend pas la partie plus difficile, il la rend plus lisible. Pour apprendre, prenez des cases de 50 mm : le format d'un club, celui sur lequel on ne renverse rien. Le livret Premiers pas est dans le coffret, et l'encart Philidor ci-dessus vous donne vos trois premiers coups.</p>"
+          }
+        },
+        "faq_ech_7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Et si je perds un pion ?",
+            "answer": "<p>On vous en tourne un autre, dans la même essence et à la même hauteur. Écrivez-nous avec le nom du jeu et la couleur : la pièce part à l'unité.</p>"
+          }
+        },
+        "faq_ech_8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Combien de temps pour être livré, et pour un cadeau à date fixe ?",
+            "answer": "<p>Départ sous 24 à 48 h ouvrées, livraison suivie offerte en France en 3 à 5 jours ouvrés. Pour une date précise, écrivez-nous avant de commander : on vous confirme ce qui est tenable et, si besoin, on vous propose un envoi express.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_ech_1",
+        "faq_ech_2",
+        "faq_ech_3",
+        "faq_ech_4",
+        "faq_ech_5",
+        "faq_ech_6",
+        "faq_ech_7",
+        "faq_ech_8"
+      ],
+      "settings": {
+        "title": "Vos questions sur cet échiquier",
+        "subtitle": "Celles qu'on nous pose vraiment, avant de commander.",
+        "button_text": "Toutes les questions",
+        "button_link": "shopify://pages/faq",
+        "single_open": true,
+        "title_size": 40,
+        "title_size_m": 30,
+        "sub_size": 16,
+        "sub_size_m": 15,
+        "q_size": 18,
+        "q_size_m": 16,
+        "a_size": 16,
+        "a_size_m": 15,
+        "row_pad": 20,
+        "bg": "#f4ecdf",
+        "title_color": "#2a1b12",
+        "sub_color": "#7b5e47",
+        "q_color": "#2a1b12",
+        "a_color": "#7b5e47",
+        "ico_color": "#8a5a2b",
+        "divider": "#d6c3a5",
+        "btn_bg": "#8a5a2b",
+        "btn_text": "#fbf6ee",
+        "btn_size": 15,
+        "btn_radius": 4,
+        "max_width": 820,
+        "pad_top": 64,
+        "pad_bot": 64,
+        "pad_top_m": 40,
+        "pad_bot_m": 40
+      }
+    },
+    "entretien": {
+      "type": "philidor-argumentaire",
+      "blocks": {
+        "arg_1": {
+          "type": "argument",
+          "settings": {
+            "icon": "bois",
+            "title": "Massif de bout en bout",
+            "text": "Cases, bordure et fond en bois plein. Jamais plaqué, jamais imprimé."
+          }
+        },
+        "arg_2": {
+          "type": "argument",
+          "settings": {
+            "icon": "balance",
+            "title": "Pièces lestées, 30 à 40 g",
+            "text": "Double lest sur le roi et la dame. Elles restent debout quand la table bouge."
+          }
+        },
+        "arg_3": {
+          "type": "argument",
+          "settings": {
+            "icon": "pieces",
+            "title": "Semelles en feutre",
+            "text": "La pièce glisse sur la case sans un bruit et sans une rayure."
+          }
+        },
+        "arg_4": {
+          "type": "argument",
+          "settings": {
+            "icon": "main",
+            "title": "Fait main en France",
+            "text": "Assemblé et huilé dans les ateliers partenaires de la Maison."
+          }
+        },
+        "arg_5": {
+          "type": "argument",
+          "settings": {
+            "icon": "regle",
+            "title": "Cotes mesurées, pas estimées",
+            "text": "Taille des cases et hauteur du roi, relevées sur votre jeu."
+          }
+        },
+        "arg_6": {
+          "type": "argument",
+          "settings": {
+            "icon": "chiffon",
+            "title": "Entretien : un chiffon sec",
+            "text": "Une noisette de cire une fois l'an. Loin du radiateur, c'est tout."
+          }
+        },
+        "arg_7": {
+          "type": "argument",
+          "settings": {
+            "icon": "garantie",
+            "title": "Garantie 5 ans",
+            "text": "Matière et fabrication : pièce fendue, case décollée, fermoir. Remplacée à l'unité."
+          }
+        },
+        "arg_8": {
+          "type": "argument",
+          "settings": {
+            "icon": "retour",
+            "title": "30 jours pour changer d'avis",
+            "text": "Retour simple, remboursement intégral, sans justification."
+          }
+        },
+        "arg_9": {
+          "type": "argument",
+          "settings": {
+            "icon": "colis",
+            "title": "Livraison suivie offerte",
+            "text": "Départ sous 24 à 48 h, 3 à 5 jours ouvrés en France."
+          }
+        },
+        "arg_10": {
+          "type": "argument",
+          "settings": {
+            "icon": "support",
+            "title": "Une personne, en français",
+            "text": "7j/7 par e-mail, quelqu'un qui joue vraiment."
+          }
+        }
+      },
+      "block_order": [
+        "arg_1",
+        "arg_2",
+        "arg_3",
+        "arg_4",
+        "arg_5",
+        "arg_6",
+        "arg_7",
+        "arg_8",
+        "arg_9",
+        "arg_10"
+      ],
+      "settings": {
+        "eyebrow": "L'essentiel",
+        "title": "Ce jeu d'échecs, en dix points",
+        "bg_color": "#ffffff",
+        "card_color": "#faf6ef",
+        "border_color": "#e6dccb",
+        "ink_color": "#2a1b12",
+        "muted_color": "#7b5e47",
+        "accent_color": "#8a5a2b",
+        "title_size": 26,
+        "title_size_m": 22,
+        "card_width": 250,
+        "card_width_m": 230,
+        "card_radius": 10,
+        "gap": 14,
+        "max_width": 1200,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_top_m": 28,
+        "padding_bottom_m": 28
+      }
+    },
+    "support": {
+      "type": "support-steps",
+      "blocks": {
+        "step_1": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Avant d'acheter",
+            "card_text": "On vous dit quelle taille de cases prendre."
+          }
+        },
+        "step_2": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "À la réception",
+            "card_text": "Un doute ? On répond le jour même."
+          }
+        },
+        "step_3": {
+          "type": "step_card",
+          "settings": {
+            "card_title": "Dans cinq ans",
+            "card_text": "Un pion perdu, remplacé à l'unité."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "settings": {
+        "label_text": "AVANT • À L'ARRIVÉE • DANS CINQ ANS",
+        "title": "Quelqu'un qui connaît les pièces",
+        "cta_title": "Une question avant de commander ?",
+        "cta_desc": "Réponse en français, 7j/7.",
+        "whatsapp_link": "/pages/contact",
+        "whatsapp_btn_text": "Nous écrire",
+        "bg_image_opacity": 10,
+        "primary_color": "#8a5a2b",
+        "bg_color": "#ffffff",
+        "title_size_desktop": 34,
+        "title_size_mobile": 24,
+        "padding_top": 56,
+        "padding_bottom": 56,
+        "padding_top_mobile": 32,
+        "padding_bottom_mobile": 32,
+        "max_width": 1080
+      }
+    },
+    "frise": {
+      "type": "philidor-frise",
+      "settings": {
+        "height_desktop": 120,
+        "height_mobile": 80,
+        "bg": "#ffffff",
+        "wood": "#e3d2b6",
+        "wood_dark": "#cdb28c",
+        "rule": "#b9853f",
+        "square": "#8a5a2b"
+      }
+    }
+  },
+  "order": [
+    "breadcrumbs",
+    "main",
+    "coffret",
+    "massif",
+    "offrir",
+    "prix",
+    "pieces",
+    "avis_produit",
+    "comparatif",
+    "engagement",
+    "complements",
+    "faq_produit",
+    "entretien",
+    "support",
+    "frise"
+  ]
+}
