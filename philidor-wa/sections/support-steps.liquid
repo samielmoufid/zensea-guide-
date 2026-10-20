@@ -1,0 +1,158 @@
+{% comment %}
+  Philidor — Support client, version compacte.
+  Trois repères courts + un bandeau de contact sur une seule ligne.
+  Rien n'est tronqué : plus de hauteur fixe ni de coupure de texte.
+{% endcomment %}
+
+{%- liquid
+  assign c1 = section.settings.primary_color
+  assign bg = section.settings.bg_color
+  assign tds = section.settings.title_size_desktop
+  assign tms = section.settings.title_size_mobile
+  assign op = section.settings.bg_image_opacity | divided_by: 100.0
+-%}
+
+<style>
+  #phs-{{ section.id }}{ position:relative; background:{{ bg }}; padding:{{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px; overflow:hidden; }
+  #phs-{{ section.id }} *{ box-sizing:border-box; }
+  #phs-{{ section.id }} .phs__bg{ position:absolute; inset:0; background-size:cover; background-position:center; opacity:{{ op }}; filter:blur(4px); transform:scale(1.05); z-index:0; pointer-events:none; }
+  #phs-{{ section.id }} .phs__in{ position:relative; z-index:1; max-width:{{ section.settings.max_width }}px; margin:0 auto; }
+
+  #phs-{{ section.id }} .phs__label{ margin:0 0 10px; text-align:center; font-size:11px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:{{ c1 }}; }
+  #phs-{{ section.id }} .phs__title{ margin:0 0 14px; text-align:center; font-family:var(--font-heading-family, Georgia, serif); font-weight:500; font-size:{{ tds }}px; line-height:1.15; color:#171717; }
+  #phs-{{ section.id }} .phs__rule{ width:52px; height:2px; margin:0 auto 32px; border-radius:999px; background:{{ c1 }}; }
+
+  /* --- Trois reperes --- */
+  #phs-{{ section.id }} .phs__steps{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:0 0 26px; padding:0; list-style:none; }
+  #phs-{{ section.id }} .phs__step{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; padding:24px 18px; background:#fbf6ee; border-radius:18px; }
+  #phs-{{ section.id }} .phs__ico{ display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%; background:{{ c1 }}1f; }
+  #phs-{{ section.id }} .phs__ico svg{ width:22px; height:22px; stroke:{{ c1 }}; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+  #phs-{{ section.id }} .phs__st{ margin:0; font-family:var(--font-heading-family, Georgia, serif); font-size:17px; font-weight:600; line-height:1.2; color:#171717; }
+  #phs-{{ section.id }} .phs__sx{ margin:0; font-size:14px; line-height:1.45; color:#7b5e47; }
+
+  /* --- Bandeau contact, une seule ligne --- */
+  #phs-{{ section.id }} .phs__cta{ display:flex; align-items:center; justify-content:center; gap:18px; flex-wrap:wrap; padding:18px 24px; border:1.5px solid {{ c1 }}; border-radius:18px; background:rgba(255,255,255,.92); }
+  #phs-{{ section.id }} .phs__ct{ margin:0; font-family:var(--font-heading-family, Georgia, serif); font-size:19px; font-weight:500; line-height:1.3; color:#171717; }
+  #phs-{{ section.id }} .phs__cd{ margin:0; font-size:14px; line-height:1.4; color:#7b5e47; }
+  #phs-{{ section.id }} .phs__cb{ flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; padding:13px 26px; border-radius:999px; background:{{ c1 }}; color:#fff; font-size:15px; font-weight:700; text-decoration:none; white-space:nowrap; }
+  #phs-{{ section.id }} .phs__cb:hover{ opacity:.92; }
+
+  @media (max-width:768px){
+    #phs-{{ section.id }}{ padding:{{ section.settings.padding_top_mobile }}px 16px {{ section.settings.padding_bottom_mobile }}px; }
+    #phs-{{ section.id }} .phs__label{ font-size:10px; letter-spacing:.16em; margin-bottom:8px; }
+    #phs-{{ section.id }} .phs__title{ font-size:{{ tms }}px; margin-bottom:10px; }
+    #phs-{{ section.id }} .phs__rule{ width:40px; margin-bottom:20px; }
+
+    /* une ligne par repere : rien ne se coupe */
+    #phs-{{ section.id }} .phs__steps{ grid-template-columns:1fr; gap:10px; margin-bottom:18px; }
+    #phs-{{ section.id }} .phs__step{ flex-direction:row; align-items:center; text-align:left; gap:14px; padding:14px 16px; border-radius:14px; }
+    #phs-{{ section.id }} .phs__ico{ flex:0 0 38px; width:38px; height:38px; }
+    #phs-{{ section.id }} .phs__ico svg{ width:19px; height:19px; }
+    #phs-{{ section.id }} .phs__txt{ min-width:0; }
+    #phs-{{ section.id }} .phs__st{ font-size:15px; }
+    #phs-{{ section.id }} .phs__sx{ font-size:13px; line-height:1.35; }
+
+    #phs-{{ section.id }} .phs__cta{ flex-direction:column; gap:12px; padding:18px 16px; text-align:center; }
+    #phs-{{ section.id }} .phs__ct{ font-size:17px; }
+    #phs-{{ section.id }} .phs__cd{ font-size:13px; }
+    #phs-{{ section.id }} .phs__cb{ width:100%; padding:14px 18px; }
+  }
+</style>
+
+<section id="phs-{{ section.id }}">
+  {%- if section.settings.bg_image != blank -%}
+    <div class="phs__bg" style="background-image:url('{{ section.settings.bg_image | image_url: width: 1600 }}');"></div>
+  {%- endif -%}
+
+  <div class="phs__in">
+    {%- if section.settings.label_text != blank -%}<p class="phs__label">{{ section.settings.label_text }}</p>{%- endif -%}
+    {%- if section.settings.title != blank -%}<h2 class="phs__title">{{ section.settings.title }}</h2>{%- endif -%}
+    <div class="phs__rule"></div>
+
+    <ul class="phs__steps">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step_card' -%}
+          <li class="phs__step" {{ block.shopify_attributes }}>
+            <span class="phs__ico" aria-hidden="true">
+              {%- case forloop.index -%}
+                {%- when 1 -%}
+                  <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                {%- when 2 -%}
+                  <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                {%- else -%}
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              {%- endcase -%}
+            </span>
+            <span class="phs__txt">
+              <h3 class="phs__st">{{ block.settings.card_title }}</h3>
+              {%- if block.settings.card_text != blank -%}<p class="phs__sx">{{ block.settings.card_text }}</p>{%- endif -%}
+            </span>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+    <div class="phs__cta">
+      <div>
+        <p class="phs__ct">{{ section.settings.cta_title }}</p>
+        {%- if section.settings.cta_desc != blank -%}<p class="phs__cd">{{ section.settings.cta_desc }}</p>{%- endif -%}
+      </div>
+      <a class="phs__cb" href="{{ section.settings.whatsapp_link | default: '/pages/contact' }}"{% if section.settings.whatsapp_link contains 'http' %} target="_blank" rel="noopener"{% endif %}>
+        {{ section.settings.whatsapp_btn_text | default: 'Nous écrire' }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Étapes support",
+  "tag": "section",
+  "class": "philidor-whatsapp-support",
+  "settings": [
+    { "type": "header", "content": "Textes principaux" },
+    { "type": "text", "id": "label_text", "label": "Label supérieur", "default": "AVANT • À L'ARRIVÉE • DANS CINQ ANS" },
+    { "type": "text", "id": "title", "label": "Titre principal", "default": "Quelqu'un qui connaît les pièces" },
+    { "type": "header", "content": "Bandeau contact" },
+    { "type": "text", "id": "cta_title", "label": "Titre du bandeau", "default": "Une question avant de commander ?" },
+    { "type": "text", "id": "cta_desc", "label": "Description du bandeau", "default": "Réponse en français, 7j/7." },
+    { "type": "url", "id": "whatsapp_link", "label": "Lien du bouton (page contact ou WhatsApp)" },
+    { "type": "text", "id": "whatsapp_btn_text", "label": "Texte du bouton", "default": "Nous écrire" },
+    { "type": "header", "content": "Arrière-plan" },
+    { "type": "image_picker", "id": "bg_image", "label": "Image de fond optionnelle" },
+    { "type": "range", "id": "bg_image_opacity", "label": "Opacité de l'image de fond", "min": 0, "max": 30, "step": 1, "default": 10, "unit": "%" },
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "primary_color", "label": "Couleur principale", "default": "#8a5a2b" },
+    { "type": "color", "id": "bg_color", "label": "Couleur de fond", "default": "#ffffff" },
+    { "type": "header", "content": "Typographie" },
+    { "type": "range", "id": "title_size_desktop", "label": "Taille du titre desktop", "min": 24, "max": 60, "step": 2, "default": 34, "unit": "px" },
+    { "type": "range", "id": "title_size_mobile", "label": "Taille du titre mobile", "min": 18, "max": 36, "step": 2, "default": 24, "unit": "px" },
+    { "type": "header", "content": "Espacement" },
+    { "type": "range", "id": "padding_top", "label": "Padding haut desktop", "min": 20, "max": 120, "step": 4, "default": 56, "unit": "px" },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bas desktop", "min": 20, "max": 120, "step": 4, "default": 56, "unit": "px" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Padding haut mobile", "min": 16, "max": 80, "step": 4, "default": 32, "unit": "px" },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Padding bas mobile", "min": 16, "max": 80, "step": 4, "default": 32, "unit": "px" },
+    { "type": "range", "id": "max_width", "label": "Largeur maximale", "min": 800, "max": 1400, "step": 40, "default": 1080, "unit": "px" }
+  ],
+  "blocks": [
+    {
+      "type": "step_card",
+      "name": "Étape",
+      "settings": [
+        { "type": "text", "id": "card_title", "label": "Titre de la carte", "default": "Avant d'acheter" },
+        { "type": "textarea", "id": "card_text", "label": "Texte de la carte", "default": "On vous dit quelle taille de cases prendre." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Support client Philidor",
+      "blocks": [
+        { "type": "step_card", "settings": { "card_title": "Avant d'acheter", "card_text": "On vous dit quelle taille de cases prendre." } },
+        { "type": "step_card", "settings": { "card_title": "À la réception", "card_text": "Un doute ? On répond le jour même." } },
+        { "type": "step_card", "settings": { "card_title": "Dans cinq ans", "card_text": "Un pion perdu, remplacé à l'unité." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
