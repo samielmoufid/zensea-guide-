@@ -1,0 +1,179 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:header",
+  "sections": {
+    "announcement_bar_r8QCCw": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement_automne": {
+          "type": "_announcement",
+          "settings": {
+            "layout_gap": 10,
+            "additional_class": ""
+          },
+          "blocks": {
+            "text_automne": {
+              "type": "text",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "text": "<p>Offre d’Automne : -10 % de remise avec le code <strong>AUTOMNE10</strong></p>",
+                "text_style": "paragraph",
+                "paragraph_font_size": "normal",
+                "font_weight": 400,
+                "alignment": "center",
+                "alignment_mobile": "center",
+                "show_read_more": false,
+                "read_more_length": 50,
+                "read_more_text": "Voir plus",
+                "read_less_text": "Voir moins",
+                "truncate": false,
+                "truncate_length": 2,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_automne"
+          ]
+        }
+      },
+      "block_order": [
+        "announcement_automne"
+      ],
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "ab_font": "theme",
+        "ab_size": 14,
+        "ab_size_m": 10,
+        "ab_track": "0.06em",
+        "ab_ink": "#f4ecdf",
+        "ab_rule": "#b9853f",
+        "color_scheme": "scheme-3",
+        "show_arrows": false,
+        "rewind": false,
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "bar_height": 40,
+        "bar_height_m": 36,
+        "padding_top": 14,
+        "padding_bottom": 14,
+        "additional_class": ""
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "button-header": {
+          "type": "button",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "link": "/collections/jeux-d-echecs",
+            "open_in_new_tab": false,
+            "label": "Offrir",
+            "button_style": "secondary",
+            "button_shape": "small",
+            "icon": "none",
+            "icon_custom": "",
+            "icon_position": "start",
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "header-advanced-megamenus": {
+          "type": "_header-advanced-megamenus",
+          "static": true,
+          "settings": {},
+          "blocks": {}
+        },
+        "header-notifications": {
+          "type": "_header-notifications",
+          "disabled": true,
+          "static": true,
+          "settings": {
+            "enable_notifications_bubble": true
+          },
+          "blocks": {}
+        },
+        "header-drawer-menu": {
+          "type": "_header-drawer-menu",
+          "static": true,
+          "settings": {
+            "color_scheme": "scheme-1",
+            "show_guide": false,
+            "tab1_label": "Collections",
+            "tab2_label": "Bien choisir"
+          },
+          "blocks": {
+            "header-drawer-menu-header": {
+              "type": "_header-drawer-menu-header",
+              "static": true,
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "margin_top": 0,
+                "margin_bottom": 0
+              },
+              "blocks": {}
+            },
+            "header-drawer-menu-under-menu": {
+              "type": "_header-drawer-menu-under-menu",
+              "static": true,
+              "settings": {
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "margin_top": 0,
+                "margin_bottom": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "settings": {
+        "color_scheme": "scheme-1",
+        "header_layout": "logo_left",
+        "header_height": 75,
+        "enable_sticky_header": true,
+        "enable_transparent_header": true,
+        "transparent_header_color_scheme": "scheme-4",
+        "use_inverse_logo": false,
+        "logo_height": 61,
+        "logo_height_mobile": 48,
+        "header_menu_style": "megamenu",
+        "menu_font_weight": 400,
+        "uppercase_menu_items": false,
+        "menu": "philidor-principal",
+        "menu_2": "",
+        "menu_mobile": "philidor-mobile",
+        "show_search": true,
+        "enable_predictive_search": true,
+        "show_country": false,
+        "show_country_icon": false,
+        "show_language": false,
+        "cart_icon": "local_mall",
+        "account_icon": "account_circle"
+      }
+    }
+  },
+  "order": [
+    "announcement_bar_r8QCCw",
+    "header"
+  ]
+}
