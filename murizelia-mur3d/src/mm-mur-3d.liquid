@@ -1,0 +1,110 @@
+{%- comment -%}
+  Murizelia — « Voir sur mon mur » (photo du mur, pièce 3D, réalité augmentée).
+  Rendu dans le modèle produit : {% render 'mm-mur-3d', product: closest.product %}
+  Le visualiseur (assets/mm-mur-3d.js) n'est chargé qu'au clic.
+  Liste des carreaux : collection « carrelage-mural-adhesif » (seuls ceux dont la texture existe).
+{%- endcomment -%}
+
+{%- liquid
+  assign mm_ok = '@@HANDLES@@' | split: ','
+  assign mm_p = product | default: closest.product
+-%}
+
+{%- if mm_p and mm_ok contains mm_p.handle -%}
+  {%- assign mm_vign = 'mm-mur-' | append: mm_p.handle | append: '-t.jpg' | asset_url -%}
+  <div class="mm-m3" data-mm-m3>
+    <div class="mm-m3__in">
+      <div class="mm-m3__mur" aria-hidden="true">
+        <span style="background-image:url('{{ mm_vign }}');"></span>
+      </div>
+      <div class="mm-m3__txt">
+        <p class="mm-m3__k">Essai virtuel</p>
+        <p class="mm-m3__t">Voyez-le sur <em>votre</em> mur</p>
+        <p class="mm-m3__d">Photo de votre mur · pièce 3D · réalité augmentée</p>
+      </div>
+    </div>
+    <button type="button" class="mm-m3__b" data-mm-m3-open>
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+      <span>Voir en 3D sur mon mur</span>
+      <svg class="mm-m3__fl" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+
+    <script type="application/json" data-mm-m3-data>
+      {
+        "courant": {{ mm_p.handle | json }},
+        "js": {{ 'mm-mur-3d.js' | asset_url | json }},
+        "scene": {{ 'mm-mur-3d-scene.js' | asset_url | json }},
+        "demo": {{ 'mm-mur-demo.jpg' | asset_url | json }},
+        "devise": {{ cart.currency.iso_code | json }},
+        "produits": [
+          {%- assign mm_sep = '' -%}
+          {%- for p in collections['carrelage-mural-adhesif'].products -%}
+            {%- if mm_ok contains p.handle -%}
+              {{ mm_sep }}{"h": {{ p.handle | json }}, "t": {{ p.title | json }}, "u": {{ p.url | json }}, "prix": {{ p.price | json }}, "v": [
+                {%- for v in p.variants -%}
+                  {"id": {{ v.id | json }}, "t": {{ v.title | json }}, "p": {{ v.price | json }}, "ok": {{ v.available | json }}}{%- unless forloop.last -%},{%- endunless -%}
+                {%- endfor -%}
+              ]}
+              {%- assign mm_sep = ',' -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+
+  <style>
+    .mm-m3{ margin:4px 0; padding:14px; border-radius:16px; background:var(--mm-cream, #f4efe8); border:1px solid rgba(122,38,50,.16); font-family:var(--mm-body, 'Inter'), system-ui, sans-serif; color:var(--mm-ink, #1a1715); }
+    .mm-m3__in{ display:flex; align-items:center; gap:14px; margin-bottom:12px; }
+    .mm-m3__mur{ flex:0 0 66px; height:66px; perspective:260px; }
+    .mm-m3__mur span{ position:relative; display:block; width:100%; height:100%; border-radius:6px; overflow:hidden; background-size:50% 50%; background-repeat:repeat; transform:rotateY(-26deg) rotateX(7deg); transform-origin:60% 50%; box-shadow:10px 10px 22px rgba(69,17,28,.22), 0 0 0 1px rgba(0,0,0,.05); }
+    .mm-m3__mur span::after{ content:''; position:absolute; inset:-40%; background:linear-gradient(105deg, transparent 38%, rgba(255,255,255,.55) 50%, transparent 62%); transform:translateX(-70%); animation:mmM3Reflet 4.5s ease-in-out infinite 1s; }
+    @keyframes mmM3Reflet{ 0%,55%{ transform:translateX(-70%); } 85%,100%{ transform:translateX(70%); } }
+    .mm-m3__txt{ min-width:0; }
+    .mm-m3__k{ margin:0 0 3px; font-size:10.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--mm-bdx, #7a2632); }
+    .mm-m3__t{ margin:0 0 3px; font-family:var(--mm-head, 'Instrument Sans'), sans-serif; font-size:18px; font-weight:500; line-height:1.15; letter-spacing:-.01em; }
+    .mm-m3__t em{ font-family:var(--mm-accent-font, 'Playfair Display'), serif; font-style:italic; font-weight:400; color:var(--mm-bdx, #7a2632); }
+    .mm-m3__d{ margin:0; font-size:12.5px; line-height:1.35; color:#6b625b; }
+    .mm-m3__b{ display:flex; align-items:center; justify-content:center; gap:9px; width:100%; min-height:48px; padding:0 18px; border:0; border-radius:12px; background:var(--mm-bdx, #7a2632); color:#fff; font:inherit; font-size:15px; font-weight:600; cursor:pointer; box-shadow:0 8px 18px rgba(122,38,50,.22); transition:background .2s ease, transform .2s ease; -webkit-tap-highlight-color:transparent; }
+    .mm-m3__b:hover{ background:var(--mm-bdx-dark, #45111c); }
+    .mm-m3__b:active{ transform:scale(.985); }
+    .mm-m3__b:focus-visible{ outline:3px solid var(--mm-bdx-dark, #45111c); outline-offset:3px; }
+    .mm-m3__fl{ transition:transform .2s ease; }
+    .mm-m3__b:hover .mm-m3__fl{ transform:translateX(3px); }
+    .mm-m3.is-load .mm-m3__b{ opacity:.75; pointer-events:none; }
+    .mm-m3.is-load .mm-m3__fl{ animation:mmM3Tour .8s linear infinite; }
+    @keyframes mmM3Tour{ to{ transform:rotate(360deg); } }
+    @media (prefers-reduced-motion:reduce){ .mm-m3__mur span::after{ animation:none; } }
+  </style>
+
+  <script>
+    (function () {
+      var root = document.currentScript && document.currentScript.closest('[data-mm-m3]');
+      if (!root || root.dataset.pret) return;
+      root.dataset.pret = '1';
+      var data = JSON.parse(root.querySelector('[data-mm-m3-data]').textContent);
+      var module = null;
+      function charger() {
+        if (!module) module = import(data.js).catch(function (e) { module = null; throw e; });
+        return module;
+      }
+      function ouvrir(mode, carreau) {
+        root.classList.add('is-load');
+        charger().then(function (m) {
+          root.classList.remove('is-load');
+          m.ouvrir(Object.assign({}, data, { mode: mode, carreau: carreau }));
+        }).catch(function (e) {
+          root.classList.remove('is-load');
+          console.error('[mm-mur-3d]', e);
+        });
+      }
+      var b = root.querySelector('[data-mm-m3-open]');
+      b.addEventListener('click', function () { ouvrir('photo'); });
+      ['pointerenter', 'touchstart', 'focus'].forEach(function (ev) {
+        b.addEventListener(ev, function () { charger().catch(function () {}); }, { once: true, passive: true });
+      });
+      var q = new URLSearchParams(location.search);
+      if (q.get('mur3d')) ouvrir(q.get('mur3d'), q.get('carreau'));
+    })();
+  </script>
+  </div>
+{%- endif -%}

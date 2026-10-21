@@ -1,0 +1,878 @@
+[
+ {
+  "handle": "minera-carrelage-adhesif-effet-marbre-blanc-anthracite-30x30-cm",
+  "titre": "Marbréa – Carrelage mural adhésif effet marbre blanc anthracite",
+  "famille": "marbre",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.0,
+   30.0
+  ],
+  "joint_px": 0,
+  "boite": [
+   146,
+   129,
+   963,
+   989
+  ],
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105880654162",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "39.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105880686930",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "79.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/minera-carrelage-adhesif-effet-marbre-blanc-anthracite-30x30-cm"
+ },
+ {
+  "handle": "minera-carrelage-adhesif-effet-marbre-blanc-dore-30x30-cm",
+  "titre": "Marbréa – Carrelage mural adhésif effet marbre blanc doré",
+  "famille": "marbre",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.0,
+   30.0
+  ],
+  "joint_px": 0,
+  "boite": [
+   161,
+   131,
+   934,
+   971
+  ],
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105880719698",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "39.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105880752466",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "79.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/minera-carrelage-adhesif-effet-marbre-blanc-dore-30x30-cm"
+ },
+ {
+  "handle": "minera-carrelage-adhesif-effet-marbre-bleu-dore-30x30-cm",
+  "titre": "Marbréa – Carrelage mural adhésif effet marbre bleu doré",
+  "famille": "marbre",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.0,
+   30.0
+  ],
+  "joint_px": 0,
+  "boite": [
+   139,
+   134,
+   974,
+   982
+  ],
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105880785234",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "39.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105880818002",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "79.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/minera-carrelage-adhesif-effet-marbre-bleu-dore-30x30-cm"
+ },
+ {
+  "handle": "minera-carrelage-adhesif-effet-marbre-graphite-dore-30x30-cm",
+  "titre": "Marbréa – Carrelage mural adhésif effet marbre graphite doré",
+  "famille": "marbre",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.0,
+   30.0
+  ],
+  "joint_px": 0,
+  "boite": [
+   144,
+   135,
+   965,
+   981
+  ],
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105880850770",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "39.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105880883538",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "79.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/minera-carrelage-adhesif-effet-marbre-graphite-dore-30x30-cm"
+ },
+ {
+  "handle": "minera-carrelage-adhesif-effet-marbre-gris-dore-30x30-cm",
+  "titre": "Marbréa – Carrelage mural adhésif effet marbre gris doré",
+  "famille": "marbre",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.0,
+   30.0
+  ],
+  "joint_px": 0,
+  "boite": [
+   142,
+   128,
+   966,
+   955
+  ],
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105880916306",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "39.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105880949074",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "79.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/minera-carrelage-adhesif-effet-marbre-gris-dore-30x30-cm"
+ },
+ {
+  "handle": "minera-carrelage-adhesif-effet-marbre-noir-dore-30x30-cm",
+  "titre": "Marbréa – Carrelage mural adhésif effet marbre noir doré",
+  "famille": "marbre",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.0,
+   30.0
+  ],
+  "joint_px": 0,
+  "boite": [
+   143,
+   122,
+   977,
+   977
+  ],
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105880981842",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "39.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881014610",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "79.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/minera-carrelage-adhesif-effet-marbre-noir-dore-30x30-cm"
+ },
+ {
+  "handle": "minera-carrelage-adhesif-effet-marbre-rose-dore-30x30-cm",
+  "titre": "Marbréa – Carrelage mural adhésif effet marbre rose doré",
+  "famille": "marbre",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.0,
+   30.0
+  ],
+  "joint_px": 0,
+  "boite": [
+   133,
+   134,
+   984,
+   987
+  ],
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881047378",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "39.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881080146",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "79.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/minera-carrelage-adhesif-effet-marbre-rose-dore-30x30-cm"
+ },
+ {
+  "handle": "minera-carrelage-adhesif-effet-marbre-vert-dore-30x30-cm",
+  "titre": "Marbréa – Carrelage mural adhésif effet marbre vert doré",
+  "famille": "marbre",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.0,
+   30.0
+  ],
+  "joint_px": 0,
+  "boite": [
+   127,
+   104,
+   991,
+   999
+  ],
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881112914",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "39.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881145682",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "79.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/minera-carrelage-adhesif-effet-marbre-vert-dore-30x30-cm"
+ },
+ {
+  "handle": "mosaela-carrelage-adhesif-3d-beige-sable-25-4x25-4-cm",
+  "titre": "Mosaëla – Carrelage mural adhésif 3D beige sable",
+  "famille": "mosaique",
+  "plaque_cm": [
+   25.4,
+   25.4
+  ],
+  "motif_cm": [
+   25.58,
+   25.58
+  ],
+  "joint_px": 7,
+  "boite": [
+   130,
+   123,
+   989,
+   988
+  ],
+  "periode_px": 83,
+  "carreaux_par_ligne": 12,
+  "carreaux_remplaces": 35,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881178450",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "64.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881211218",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "169.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/mosaela-carrelage-adhesif-3d-beige-sable-25-4x25-4-cm"
+ },
+ {
+  "handle": "mosaela-carrelage-adhesif-3d-bleu-azur-25-4x25-4-cm",
+  "titre": "Mosaëla – Carrelage mural adhésif 3D bleu azur",
+  "famille": "mosaique",
+  "plaque_cm": [
+   25.4,
+   25.4
+  ],
+  "motif_cm": [
+   25.75,
+   25.75
+  ],
+  "joint_px": 14,
+  "boite": [
+   118,
+   115,
+   1018,
+   1006
+  ],
+  "periode_px": 86,
+  "carreaux_par_ligne": 12,
+  "carreaux_remplaces": 17,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881243986",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "64.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881276754",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "169.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/mosaela-carrelage-adhesif-3d-bleu-azur-25-4x25-4-cm"
+ },
+ {
+  "handle": "mosaela-carrelage-adhesif-3d-damier-bleu-saphir-25-4x25-4-cm",
+  "titre": "Mosaëla – Carrelage mural adhésif 3D damier bleu saphir",
+  "famille": "damier",
+  "plaque_cm": [
+   25.4,
+   25.4
+  ],
+  "motif_cm": [
+   25.51,
+   25.51
+  ],
+  "joint_px": 5,
+  "boite": [
+   67,
+   73,
+   1119,
+   1120
+  ],
+  "periode_px": 279,
+  "carreaux_par_ligne": 4,
+  "carreaux_remplaces": 2,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881309522",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "69.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881342290",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "175.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/mosaela-carrelage-adhesif-3d-damier-bleu-saphir-25-4x25-4-cm"
+ },
+ {
+  "handle": "mosaela-carrelage-adhesif-3d-damier-bordeaux-25-4x25-4-cm",
+  "titre": "Mosaëla – Carrelage mural adhésif 3D damier bordeaux",
+  "famille": "damier",
+  "plaque_cm": [
+   25.4,
+   25.4
+  ],
+  "motif_cm": [
+   25.52,
+   25.52
+  ],
+  "joint_px": 5,
+  "boite": [
+   78,
+   67,
+   1096,
+   1091
+  ],
+  "periode_px": 274,
+  "carreaux_par_ligne": 4,
+  "carreaux_remplaces": 0,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881375058",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "69.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881407826",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "175.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/mosaela-carrelage-adhesif-3d-damier-bordeaux-25-4x25-4-cm"
+ },
+ {
+  "handle": "mosaela-carrelage-adhesif-3d-damier-vert-sapin-25-4x25-4-cm",
+  "titre": "Mosaëla – Carrelage mural adhésif 3D damier vert sapin",
+  "famille": "damier",
+  "plaque_cm": [
+   25.4,
+   25.4
+  ],
+  "motif_cm": [
+   25.47,
+   25.47
+  ],
+  "joint_px": 3,
+  "boite": [
+   67,
+   57,
+   1108,
+   1120
+  ],
+  "periode_px": 184,
+  "carreaux_par_ligne": 4,
+  "carreaux_remplaces": 1,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881440594",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "69.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881473362",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "175.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/mosaela-carrelage-adhesif-3d-damier-vert-sapin-25-4x25-4-cm"
+ },
+ {
+  "handle": "mosaela-carrelage-adhesif-3d-orange-terracotta-25-4x25-4-cm",
+  "titre": "Mosaëla – Carrelage mural adhésif 3D orange terracotta",
+  "famille": "mosaique",
+  "plaque_cm": [
+   25.4,
+   25.4
+  ],
+  "motif_cm": [
+   25.57,
+   25.57
+  ],
+  "joint_px": 7,
+  "boite": [
+   117,
+   109,
+   1021,
+   1011
+  ],
+  "periode_px": 85,
+  "carreaux_par_ligne": 12,
+  "carreaux_remplaces": 12,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881506130",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "64.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881538898",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "169.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/mosaela-carrelage-adhesif-3d-orange-terracotta-25-4x25-4-cm"
+ },
+ {
+  "handle": "mosaela-carrelage-adhesif-3d-rouge-bordeaux-25-4x25-4-cm",
+  "titre": "Mosaëla – Carrelage mural adhésif 3D rouge bordeaux",
+  "famille": "mosaique",
+  "plaque_cm": [
+   25.4,
+   25.4
+  ],
+  "motif_cm": [
+   25.5,
+   25.5
+  ],
+  "joint_px": 4,
+  "boite": [
+   112,
+   120,
+   1028,
+   1003
+  ],
+  "periode_px": 86,
+  "carreaux_par_ligne": 12,
+  "carreaux_remplaces": 33,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881604434",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "64.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881637202",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "169.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/mosaela-carrelage-adhesif-3d-rouge-bordeaux-25-4x25-4-cm"
+ },
+ {
+  "handle": "mosaela-carrelage-adhesif-3d-vert-bouteille-25-4x25-4-cm",
+  "titre": "Mosaëla – Carrelage mural adhésif 3D vert bouteille",
+  "famille": "mosaique",
+  "plaque_cm": [
+   25.4,
+   25.4
+  ],
+  "motif_cm": [
+   25.58,
+   25.58
+  ],
+  "joint_px": 7,
+  "boite": [
+   126,
+   121,
+   1001,
+   1011
+  ],
+  "periode_px": 84,
+  "carreaux_par_ligne": 12,
+  "carreaux_remplaces": 20,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881669970",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "64.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881702738",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "169.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/mosaela-carrelage-adhesif-3d-vert-bouteille-25-4x25-4-cm"
+ },
+ {
+  "handle": "mosaela-carrelage-adhesif-3d-vert-olive-25-4x25-4-cm",
+  "titre": "Mosaëla – Carrelage mural adhésif 3D vert olive",
+  "famille": "mosaique",
+  "plaque_cm": [
+   25.4,
+   25.4
+  ],
+  "motif_cm": [
+   25.63,
+   25.63
+  ],
+  "joint_px": 9,
+  "boite": [
+   128,
+   120,
+   999,
+   1002
+  ],
+  "periode_px": 84,
+  "carreaux_par_ligne": 12,
+  "carreaux_remplaces": 32,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881735506",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "64.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105881768274",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "169.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/mosaela-carrelage-adhesif-3d-vert-olive-25-4x25-4-cm"
+ },
+ {
+  "handle": "stria-carrelage-adhesif-3d-blanc-brillant-25x25-cm",
+  "titre": "Cannelia – Carrelage mural adhésif 3D blanc brillant",
+  "famille": "baguettes",
+  "plaque_cm": [
+   25.0,
+   25.0
+  ],
+  "motif_cm": [
+   25.12,
+   25.12
+  ],
+  "joint_px": 5,
+  "boite": [
+   99,
+   70,
+   1056,
+   1107
+  ],
+  "periode_px": 132,
+  "carreaux_par_ligne": 8,
+  "carreaux_remplaces": 0,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105881997650",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "65.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105882030418",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "178.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/stria-carrelage-adhesif-3d-blanc-brillant-25x25-cm"
+ },
+ {
+  "handle": "stria-carrelage-adhesif-3d-bleu-indigo-30x30-cm",
+  "titre": "Cannelia – Carrelage mural adhésif 3D bleu indigo",
+  "famille": "baguettes",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.44,
+   30.44
+  ],
+  "joint_px": 16,
+  "boite": [
+   84,
+   83,
+   1080,
+   1069
+  ],
+  "periode_px": 137,
+  "carreaux_par_ligne": 8,
+  "carreaux_remplaces": 0,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105882063186",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "65.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105882095954",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "178.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/stria-carrelage-adhesif-3d-bleu-indigo-30x30-cm"
+ },
+ {
+  "handle": "stria-carrelage-adhesif-3d-rose-poudre-30x30-cm",
+  "titre": "Cannelia – Carrelage mural adhésif 3D rose poudré",
+  "famille": "baguettes",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.38,
+   30.38
+  ],
+  "joint_px": 14,
+  "boite": [
+   79,
+   68,
+   1098,
+   1076
+  ],
+  "periode_px": 139,
+  "carreaux_par_ligne": 8,
+  "carreaux_remplaces": 0,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105882128722",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "65.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105882161490",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "178.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/stria-carrelage-adhesif-3d-rose-poudre-30x30-cm"
+ },
+ {
+  "handle": "stria-carrelage-adhesif-3d-rouge-bordeaux-30x30-cm",
+  "titre": "Cannelia – Carrelage mural adhésif 3D rouge bordeaux",
+  "famille": "baguettes",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.28,
+   30.28
+  ],
+  "joint_px": 10,
+  "boite": [
+   88,
+   75,
+   1078,
+   1063
+  ],
+  "periode_px": 136,
+  "carreaux_par_ligne": 8,
+  "carreaux_remplaces": 0,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105882194258",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "65.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105882227026",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "178.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/stria-carrelage-adhesif-3d-rouge-bordeaux-30x30-cm"
+ },
+ {
+  "handle": "stria-carrelage-adhesif-3d-vert-d-eau-25x25-cm",
+  "titre": "Cannelia – Carrelage mural adhésif 3D vert d’eau",
+  "famille": "baguettes",
+  "plaque_cm": [
+   25.0,
+   25.0
+  ],
+  "motif_cm": [
+   25.24,
+   25.24
+  ],
+  "joint_px": 10,
+  "boite": [
+   97,
+   83,
+   1058,
+   1047
+  ],
+  "periode_px": 132,
+  "carreaux_par_ligne": 8,
+  "carreaux_remplaces": 0,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105882259794",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "65.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105882292562",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "178.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/stria-carrelage-adhesif-3d-vert-d-eau-25x25-cm"
+ },
+ {
+  "handle": "stria-carrelage-adhesif-3d-vert-emeraude-30x30-cm",
+  "titre": "Cannelia – Carrelage mural adhésif 3D vert émeraude",
+  "famille": "baguettes",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.32,
+   30.32
+  ],
+  "joint_px": 12,
+  "boite": [
+   73,
+   63,
+   1108,
+   1106
+  ],
+  "periode_px": 140,
+  "carreaux_par_ligne": 8,
+  "carreaux_remplaces": 0,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105882358098",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "65.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105882390866",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "178.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/stria-carrelage-adhesif-3d-vert-emeraude-30x30-cm"
+ },
+ {
+  "handle": "stria-carrelage-adhesif-3d-vert-grise-30x30-cm",
+  "titre": "Cannelia – Carrelage mural adhésif 3D vert grisé",
+  "famille": "baguettes",
+  "plaque_cm": [
+   30.0,
+   30.0
+  ],
+  "motif_cm": [
+   30.32,
+   30.32
+  ],
+  "joint_px": 12,
+  "boite": [
+   72,
+   64,
+   1108,
+   1099
+  ],
+  "periode_px": 140,
+  "carreaux_par_ligne": 8,
+  "carreaux_remplaces": 0,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105882423634",
+    "title": "Lot de 10 (0,9 m²)",
+    "price": "65.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105882456402",
+    "title": "Lot de 30 (2,7 m²)",
+    "price": "178.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/stria-carrelage-adhesif-3d-vert-grise-30x30-cm"
+ },
+ {
+  "handle": "stria-carrelage-adhesif-3d-vieux-rose-25x25-cm",
+  "titre": "Cannelia – Carrelage mural adhésif 3D vieux rose",
+  "famille": "baguettes",
+  "plaque_cm": [
+   25.0,
+   25.0
+  ],
+  "motif_cm": [
+   25.09,
+   25.09
+  ],
+  "joint_px": 4,
+  "boite": [
+   95,
+   80,
+   1068,
+   1064
+  ],
+  "periode_px": 134,
+  "carreaux_par_ligne": 8,
+  "carreaux_remplaces": 0,
+  "variantes": [
+   {
+    "id": "gid://shopify/ProductVariant/55105882489170",
+    "title": "Lot de 10 (0,65 m²)",
+    "price": "65.00"
+   },
+   {
+    "id": "gid://shopify/ProductVariant/55105882521938",
+    "title": "Lot de 30 (1,94 m²)",
+    "price": "178.00"
+   }
+  ],
+  "url": "https://murizelia.fr/products/stria-carrelage-adhesif-3d-vieux-rose-25x25-cm"
+ }
+]
