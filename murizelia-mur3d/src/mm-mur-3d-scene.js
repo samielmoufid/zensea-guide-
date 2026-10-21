@@ -497,6 +497,10 @@ export async function preparerAR(tx, s, { usdz } = {}) {
   const glb = await new GLTFExporter().parseAsync(g, { binary: true });
   const res = { glb: new Blob([glb], { type: 'model/gltf-binary' }) };
   if (usdz) {
+    // Coup d'œil (iPhone) : avec l'ancrage vertical, l'axe Y du modèle est la normale du mur.
+    // Le panneau est donc posé « à plat » (face vers +Y), dos contre le mur en y = 0.
+    g.rotation.x = -Math.PI / 2;
+    g.updateMatrixWorld(true);
     const { USDZExporter } = await import(USDZ_URL);
     const u = await new USDZExporter().parseAsync(g, {
       ar: { anchoring: { type: 'plane' }, planeAnchoring: { alignment: 'vertical' } },

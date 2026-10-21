@@ -83,13 +83,6 @@ function tourner(img, taille, k, normale) {
   return c;
 }
 
-const POSES = {
-  marbre: [['droite', 'Pose droite'], ['alternee', 'Pose alternée']],
-  mosaique: [['droite', 'Pose droite'], ['alternee', 'Plaques tournées']],
-  damier: [],
-  baguettes: [['droite', 'Baguettes verticales'], ['horizontale', 'Baguettes horizontales']],
-};
-
 const compos = new Map();
 async function composer(h, pose) {
   const cle = h + '|' + pose;
@@ -1046,7 +1039,6 @@ class Visualiseur {
     this.parH = new Map(this.produits.map((p) => [p.h, p]));
     this.courant = o.courant;
     this.h = this.parH.has(o.courant) ? o.courant : (this.produits[0] || {}).h;
-    this.poses = {};
     this.fmt = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: o.devise || 'EUR' });
     this.modes = {};
     this.jeton = 0;
@@ -1178,9 +1170,9 @@ class Visualiseur {
     this.tt = setTimeout(() => el.classList.remove('on'), ms);
   }
 
+  // pose normale uniquement, comme le produit est vendu
   pose() {
-    const f = TUILES[this.h].f;
-    return this.poses[f] || 'droite';
+    return 'droite';
   }
 
   async tuile() {
@@ -1208,11 +1200,6 @@ class Visualiseur {
     if (m && m.outils) m.outils();
   }
 
-  setPose(p) {
-    this.poses[TUILES[this.h].f] = p;
-    this.choisir(this.h, true);
-  }
-
   async mode(nom, force) {
     if (this.mmode === nom && !force) return;
     if (this.mmode && this.modes[this.mmode]) this.modes[this.mmode].sortir();
@@ -1237,18 +1224,6 @@ class Visualiseur {
       this.pScene = import(this.o.scene || asset('mm-mur-3d-scene.js')).catch((e) => { this.pScene = null; throw e; });
     }
     return this.pScene;
-  }
-
-  // outils communs : choix de pose selon la famille
-  chipsPose() {
-    const opts = POSES[TUILES[this.h].f];
-    if (!opts || !opts.length) return '';
-    const cur = this.pose();
-    return opts.map(([v, l]) => `<button type="button" class="chip${cur === v ? ' on' : ''}" data-pose="${v}">${l}</button>`).join('');
-  }
-
-  brancherPose(el) {
-    el.querySelectorAll('[data-pose]').forEach((b) => b.addEventListener('click', () => this.setPose(b.dataset.pose)));
   }
 
   /* --- pied : nom, prix, estimation et action --- */
@@ -1429,14 +1404,12 @@ class ModePhoto {
     const pret = !!this.quad;
     t.innerHTML = `
       <button type="button" class="chip${this.sub === 'dim' ? ' on' : ''}" data-sub="dim"${pret ? '' : ' disabled'}>Dimensions</button>
-      ${this.v.chipsPose()}
       <button type="button" class="chip${this.coins ? ' on' : ''}" data-act="coins"${pret ? '' : ' disabled'}>Ajuster les coins</button>
       <button type="button" class="chip${this.split > 0 ? ' on' : ''}" data-act="split"${pret ? '' : ' disabled'}>Avant / après</button>
       <button type="button" class="chip${this.sub === 'lum' ? ' on' : ''}" data-sub="lum"${pret ? '' : ' disabled'}>Lumière</button>
       <button type="button" class="chip${this.sub === 'det' ? ' on' : ''}" data-sub="det">Détourage</button>
       <button type="button" class="chip" data-act="nouv">Nouvelle photo</button>
       <button type="button" class="chip pri" data-act="save"${pret && this.etat === 'photo' ? '' : ' disabled'}>${ICO.dl} Enregistrer</button>`;
-    this.v.brancherPose(t);
     t.querySelectorAll('[data-sub]').forEach((b) => b.addEventListener('click', () => { this.sub = this.sub === b.dataset.sub ? null : b.dataset.sub; this.outils(); }));
     t.querySelectorAll('[data-act]').forEach((b) => b.addEventListener('click', () => this.act(b.dataset.act)));
     this.majSub();
@@ -1980,9 +1953,7 @@ class ModePiece {
     t.innerHTML = `
       <button type="button" class="chip${this.nom === 'cuisine' ? ' on' : ''}" data-s="cuisine">Cuisine</button>
       <button type="button" class="chip${this.nom === 'sdb' ? ' on' : ''}" data-s="sdb">Salle de bain</button>
-      ${this.v.chipsPose()}
       <button type="button" class="chip${this.vue === 'pres' ? ' on' : ''}" data-v>Vue de près</button>`;
-    this.v.brancherPose(t);
     t.querySelectorAll('[data-s]').forEach((b) => b.addEventListener('click', () => {
       this.nom = b.dataset.s; this.vue = 'large';
       if (this.piece) { this.piece.setScene(this.nom); this.badge(); }
@@ -2062,8 +2033,7 @@ class ModeAR {
 
   outils() {
     const t = this.v.$('.tools');
-    t.innerHTML = this.tailles().map((s, i) => `<button type="button" class="chip${i === this.taille ? ' on' : ''}" data-t="${i}">${fr(s.l, 2).replace(/0$/, '')} × ${fr(s.h, 2).replace(/0$/, '')} m</button>`).join('') + this.v.chipsPose();
-    this.v.brancherPose(t);
+    t.innerHTML = this.tailles().map((s, i) => `<button type="button" class="chip${i === this.taille ? ' on' : ''}" data-t="${i}">${fr(s.l, 2).replace(/0$/, '')} × ${fr(s.h, 2).replace(/0$/, '')} m</button>`).join('');
     t.querySelectorAll('[data-t]').forEach((b) => b.addEventListener('click', () => {
       this.taille = +b.dataset.t;
       this.outils();
