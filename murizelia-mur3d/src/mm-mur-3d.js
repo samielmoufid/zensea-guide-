@@ -1284,9 +1284,23 @@ class Visualiseur {
     if (est) {
       const detail = est.lignes.map((l) => `${l.q} × ${l.v.t.replace(/\s*\(.*\)\s*/, '').toLowerCase()}`).join(' + ');
       this.$('.fi span').textContent = `Mur ${fr(surf)} m² (+10 % coupes) · ${detail} · ${this.fmt.format(est.cout / 100)}`;
-      cta.textContent = 'Ajouter au panier';
+      if (this.o.boutique) {
+        // page d'essai hors boutique : lien panier Shopify (variante:quantité)
+        cta.textContent = 'Commander sur Murizelia';
+        cta.href = this.o.boutique.replace(/\/$/, '') + '/cart/' + est.lignes.map((l) => l.v.id + ':' + l.q).join(',');
+        cta.target = '_blank';
+        cta.dataset.act = 'lien';
+      } else {
+        cta.textContent = 'Ajouter au panier';
+        cta.href = p.u;
+        cta.dataset.act = 'panier';
+      }
+    } else if (this.o.boutique) {
+      this.$('.fi span').textContent = `à partir de ${this.fmt.format(p.prix / 100)} · plaque ${fr(TUILES[p.h].p[0], 1).replace(',0', '')} × ${fr(TUILES[p.h].p[1], 1).replace(',0', '')} cm`;
+      cta.textContent = 'Voir sur la boutique';
       cta.href = p.u;
-      cta.dataset.act = 'panier';
+      cta.target = '_blank';
+      cta.dataset.act = 'lien';
     } else {
       this.$('.fi span').textContent = `à partir de ${this.fmt.format(p.prix / 100)} · plaque ${fr(TUILES[p.h].p[0], 1).replace(',0', '')} × ${fr(TUILES[p.h].p[1], 1).replace(',0', '')} cm`;
       if (p.h === this.courant) { cta.textContent = 'Choisir ma quantité'; cta.href = '#'; cta.dataset.act = 'fermer'; }
@@ -1338,7 +1352,7 @@ class ModePhoto {
     this.coins = true;
     this.split = 0;
     this.reveal = 9;
-    const live = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+    const live = v.o.video !== false && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
     const tactile = matchMedia('(pointer:coarse)').matches;
     el.innerHTML = `
 <div class="pe">
@@ -1893,6 +1907,11 @@ class ModePhoto {
     const blob = await new Promise((ok) => c.toBlob(ok, 'image/jpeg', 0.92));
     if (!blob) return;
     const nom = 'murizelia-mon-mur-' + p.h.split('-').slice(-4).join('-') + '.jpg';
+    if (this.v.o.enregistrer) {
+      try { await this.v.o.enregistrer(blob, nom); this.v.toast('Photo enregistrée.'); }
+      catch (e) { if (!e || e.code !== 'declined') this.v.toast('L’enregistrement n’est pas disponible ici.'); }
+      return;
+    }
     const file = new File([blob], nom, { type: 'image/jpeg' });
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       try { await navigator.share({ files: [file], title: 'Mon mur avec ' + n.marque }); return; } catch (e) { if (e.name === 'AbortError') return; }
@@ -2010,7 +2029,7 @@ class ModeAR {
     else if (this.android) info.textContent = 'Touchez « Voir sur mon mur », visez le mur en bougeant doucement, puis touchez-le pour y poser le panneau en taille réelle.';
     else info.textContent = 'La réalité augmentée s’ouvre sur téléphone. Scannez le code ou faites pivoter le panneau ci-dessous.';
     this.el.querySelector('.ar-go').hidden = !(this.ios || this.android);
-    if (!this.mobile) this.qr();
+    if (!this.mobile && this.v.o.qr !== false) this.qr();
     this.v.chargement(true);
     try {
       await script(MV_URL);

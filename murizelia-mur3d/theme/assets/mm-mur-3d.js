@@ -6,7 +6,7 @@
 */
 
 const TUILES = {"minera-carrelage-adhesif-effet-marbre-blanc-anthracite-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#eae9e9"},"minera-carrelage-adhesif-effet-marbre-blanc-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#bcb7ad"},"minera-carrelage-adhesif-effet-marbre-bleu-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#a1b0b8"},"minera-carrelage-adhesif-effet-marbre-graphite-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#7d6f5c"},"minera-carrelage-adhesif-effet-marbre-gris-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#b1b1b6"},"minera-carrelage-adhesif-effet-marbre-noir-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#18140c"},"minera-carrelage-adhesif-effet-marbre-rose-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#f1d0ce"},"minera-carrelage-adhesif-effet-marbre-vert-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#b3c1ab"},"mosaela-carrelage-adhesif-3d-beige-sable-25-4x25-4-cm":{"f":"mosaique","m":[25.58,25.58],"p":[25.4,25.4],"r":1,"c":"#d9b77b"},"mosaela-carrelage-adhesif-3d-bleu-azur-25-4x25-4-cm":{"f":"mosaique","m":[25.75,25.75],"p":[25.4,25.4],"r":1,"c":"#3e748f"},"mosaela-carrelage-adhesif-3d-damier-bleu-saphir-25-4x25-4-cm":{"f":"damier","m":[25.51,25.51],"p":[25.4,25.4],"r":1,"c":"#8b98aa"},"mosaela-carrelage-adhesif-3d-damier-bordeaux-25-4x25-4-cm":{"f":"damier","m":[25.52,25.52],"p":[25.4,25.4],"r":1,"c":"#b1908e"},"mosaela-carrelage-adhesif-3d-damier-vert-sapin-25-4x25-4-cm":{"f":"damier","m":[25.47,25.47],"p":[25.4,25.4],"r":1,"c":"#97a197"},"mosaela-carrelage-adhesif-3d-orange-terracotta-25-4x25-4-cm":{"f":"mosaique","m":[25.57,25.57],"p":[25.4,25.4],"r":1,"c":"#c08975"},"mosaela-carrelage-adhesif-3d-rouge-bordeaux-25-4x25-4-cm":{"f":"mosaique","m":[25.5,25.5],"p":[25.4,25.4],"r":1,"c":"#63494a"},"mosaela-carrelage-adhesif-3d-vert-bouteille-25-4x25-4-cm":{"f":"mosaique","m":[25.58,25.58],"p":[25.4,25.4],"r":1,"c":"#3c523e"},"mosaela-carrelage-adhesif-3d-vert-olive-25-4x25-4-cm":{"f":"mosaique","m":[25.63,25.63],"p":[25.4,25.4],"r":1,"c":"#636c3a"},"stria-carrelage-adhesif-3d-blanc-brillant-25x25-cm":{"f":"baguettes","m":[25.12,25.12],"p":[25.0,25.0],"r":1,"c":"#e5e5e5"},"stria-carrelage-adhesif-3d-bleu-indigo-30x30-cm":{"f":"baguettes","m":[30.44,30.44],"p":[30.0,30.0],"r":1,"c":"#5c6e7d"},"stria-carrelage-adhesif-3d-rose-poudre-30x30-cm":{"f":"baguettes","m":[30.38,30.38],"p":[30.0,30.0],"r":1,"c":"#e4d1cc"},"stria-carrelage-adhesif-3d-rouge-bordeaux-30x30-cm":{"f":"baguettes","m":[30.28,30.28],"p":[30.0,30.0],"r":1,"c":"#723932"},"stria-carrelage-adhesif-3d-vert-d-eau-25x25-cm":{"f":"baguettes","m":[25.24,25.24],"p":[25.0,25.0],"r":1,"c":"#afd7d1"},"stria-carrelage-adhesif-3d-vert-emeraude-30x30-cm":{"f":"baguettes","m":[30.32,30.32],"p":[30.0,30.0],"r":1,"c":"#3b7063"},"stria-carrelage-adhesif-3d-vert-grise-30x30-cm":{"f":"baguettes","m":[30.32,30.32],"p":[30.0,30.0],"r":1,"c":"#cccbc0"},"stria-carrelage-adhesif-3d-vieux-rose-25x25-cm":{"f":"baguettes","m":[25.09,25.09],"p":[25.0,25.0],"r":1,"c":"#daa7af"}};
-const VERSION = '202610210209';
+const VERSION = '202610210416';
 const MV_URL = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js';
 const QR_URL = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/+esm';
 
@@ -1284,9 +1284,23 @@ class Visualiseur {
     if (est) {
       const detail = est.lignes.map((l) => `${l.q} × ${l.v.t.replace(/\s*\(.*\)\s*/, '').toLowerCase()}`).join(' + ');
       this.$('.fi span').textContent = `Mur ${fr(surf)} m² (+10 % coupes) · ${detail} · ${this.fmt.format(est.cout / 100)}`;
-      cta.textContent = 'Ajouter au panier';
+      if (this.o.boutique) {
+        // page d'essai hors boutique : lien panier Shopify (variante:quantité)
+        cta.textContent = 'Commander sur Murizelia';
+        cta.href = this.o.boutique.replace(/\/$/, '') + '/cart/' + est.lignes.map((l) => l.v.id + ':' + l.q).join(',');
+        cta.target = '_blank';
+        cta.dataset.act = 'lien';
+      } else {
+        cta.textContent = 'Ajouter au panier';
+        cta.href = p.u;
+        cta.dataset.act = 'panier';
+      }
+    } else if (this.o.boutique) {
+      this.$('.fi span').textContent = `à partir de ${this.fmt.format(p.prix / 100)} · plaque ${fr(TUILES[p.h].p[0], 1).replace(',0', '')} × ${fr(TUILES[p.h].p[1], 1).replace(',0', '')} cm`;
+      cta.textContent = 'Voir sur la boutique';
       cta.href = p.u;
-      cta.dataset.act = 'panier';
+      cta.target = '_blank';
+      cta.dataset.act = 'lien';
     } else {
       this.$('.fi span').textContent = `à partir de ${this.fmt.format(p.prix / 100)} · plaque ${fr(TUILES[p.h].p[0], 1).replace(',0', '')} × ${fr(TUILES[p.h].p[1], 1).replace(',0', '')} cm`;
       if (p.h === this.courant) { cta.textContent = 'Choisir ma quantité'; cta.href = '#'; cta.dataset.act = 'fermer'; }
@@ -1338,7 +1352,7 @@ class ModePhoto {
     this.coins = true;
     this.split = 0;
     this.reveal = 9;
-    const live = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+    const live = v.o.video !== false && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
     const tactile = matchMedia('(pointer:coarse)').matches;
     el.innerHTML = `
 <div class="pe">
@@ -1893,6 +1907,11 @@ class ModePhoto {
     const blob = await new Promise((ok) => c.toBlob(ok, 'image/jpeg', 0.92));
     if (!blob) return;
     const nom = 'murizelia-mon-mur-' + p.h.split('-').slice(-4).join('-') + '.jpg';
+    if (this.v.o.enregistrer) {
+      try { await this.v.o.enregistrer(blob, nom); this.v.toast('Photo enregistrée.'); }
+      catch (e) { if (!e || e.code !== 'declined') this.v.toast('L’enregistrement n’est pas disponible ici.'); }
+      return;
+    }
     const file = new File([blob], nom, { type: 'image/jpeg' });
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       try { await navigator.share({ files: [file], title: 'Mon mur avec ' + n.marque }); return; } catch (e) { if (e.name === 'AbortError') return; }
@@ -2010,7 +2029,7 @@ class ModeAR {
     else if (this.android) info.textContent = 'Touchez « Voir sur mon mur », visez le mur en bougeant doucement, puis touchez-le pour y poser le panneau en taille réelle.';
     else info.textContent = 'La réalité augmentée s’ouvre sur téléphone. Scannez le code ou faites pivoter le panneau ci-dessous.';
     this.el.querySelector('.ar-go').hidden = !(this.ios || this.android);
-    if (!this.mobile) this.qr();
+    if (!this.mobile && this.v.o.qr !== false) this.qr();
     this.v.chargement(true);
     try {
       await script(MV_URL);
