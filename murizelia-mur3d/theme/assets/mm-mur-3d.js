@@ -6,10 +6,10 @@
 */
 
 const TUILES = {"minera-carrelage-adhesif-effet-marbre-blanc-anthracite-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#eae9e9"},"minera-carrelage-adhesif-effet-marbre-blanc-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#bcb7ad"},"minera-carrelage-adhesif-effet-marbre-bleu-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#a1b0b8"},"minera-carrelage-adhesif-effet-marbre-graphite-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#7d6f5c"},"minera-carrelage-adhesif-effet-marbre-gris-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#b1b1b6"},"minera-carrelage-adhesif-effet-marbre-noir-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#18140c"},"minera-carrelage-adhesif-effet-marbre-rose-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#f1d0ce"},"minera-carrelage-adhesif-effet-marbre-vert-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#b3c1ab"},"mosaela-carrelage-adhesif-3d-beige-sable-25-4x25-4-cm":{"f":"mosaique","m":[25.58,25.58],"p":[25.4,25.4],"r":1,"c":"#d9b77b"},"mosaela-carrelage-adhesif-3d-bleu-azur-25-4x25-4-cm":{"f":"mosaique","m":[25.75,25.75],"p":[25.4,25.4],"r":1,"c":"#3e748f"},"mosaela-carrelage-adhesif-3d-damier-bleu-saphir-25-4x25-4-cm":{"f":"damier","m":[25.51,25.51],"p":[25.4,25.4],"r":1,"c":"#8b98aa"},"mosaela-carrelage-adhesif-3d-damier-bordeaux-25-4x25-4-cm":{"f":"damier","m":[25.52,25.52],"p":[25.4,25.4],"r":1,"c":"#b1908e"},"mosaela-carrelage-adhesif-3d-damier-vert-sapin-25-4x25-4-cm":{"f":"damier","m":[25.47,25.47],"p":[25.4,25.4],"r":1,"c":"#97a197"},"mosaela-carrelage-adhesif-3d-orange-terracotta-25-4x25-4-cm":{"f":"mosaique","m":[25.57,25.57],"p":[25.4,25.4],"r":1,"c":"#c08975"},"mosaela-carrelage-adhesif-3d-rouge-bordeaux-25-4x25-4-cm":{"f":"mosaique","m":[25.5,25.5],"p":[25.4,25.4],"r":1,"c":"#63494a"},"mosaela-carrelage-adhesif-3d-vert-bouteille-25-4x25-4-cm":{"f":"mosaique","m":[25.58,25.58],"p":[25.4,25.4],"r":1,"c":"#3c523e"},"mosaela-carrelage-adhesif-3d-vert-olive-25-4x25-4-cm":{"f":"mosaique","m":[25.63,25.63],"p":[25.4,25.4],"r":1,"c":"#636c3a"},"stria-carrelage-adhesif-3d-blanc-brillant-25x25-cm":{"f":"baguettes","m":[25.12,25.12],"p":[25.0,25.0],"r":1,"c":"#e5e5e5"},"stria-carrelage-adhesif-3d-bleu-indigo-30x30-cm":{"f":"baguettes","m":[30.44,30.44],"p":[30.0,30.0],"r":1,"c":"#5c6e7d"},"stria-carrelage-adhesif-3d-rose-poudre-30x30-cm":{"f":"baguettes","m":[30.38,30.38],"p":[30.0,30.0],"r":1,"c":"#e4d1cc"},"stria-carrelage-adhesif-3d-rouge-bordeaux-30x30-cm":{"f":"baguettes","m":[30.28,30.28],"p":[30.0,30.0],"r":1,"c":"#723932"},"stria-carrelage-adhesif-3d-vert-d-eau-25x25-cm":{"f":"baguettes","m":[25.24,25.24],"p":[25.0,25.0],"r":1,"c":"#afd7d1"},"stria-carrelage-adhesif-3d-vert-emeraude-30x30-cm":{"f":"baguettes","m":[30.32,30.32],"p":[30.0,30.0],"r":1,"c":"#3b7063"},"stria-carrelage-adhesif-3d-vert-grise-30x30-cm":{"f":"baguettes","m":[30.32,30.32],"p":[30.0,30.0],"r":1,"c":"#cccbc0"},"stria-carrelage-adhesif-3d-vieux-rose-25x25-cm":{"f":"baguettes","m":[25.09,25.09],"p":[25.0,25.0],"r":1,"c":"#daa7af"}};
-const VERSION = '202610211525';
+const VERSION = '202610211547';
 
 // photo d'exemple : vraie cuisine (panorama Poly Haven CC0 recadré), mur du fond repéré à la main
-const DEMO = { quad: [[397, 352], [1566, 268], [1566, 1000], [397, 988]], largeur: 330, graine: [0.37, 0.37] };
+const DEMO = { quad: [[397, 352], [1566, 268], [1566, 1000], [397, 988]], largeur: 330 };
 
 const asset = (nom) => new URL(nom, import.meta.url).href + '?v=' + VERSION;
 const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
@@ -165,192 +165,8 @@ function cadre(quad, W, H) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Détection du mur : croissance de région depuis le point touché      */
+/* Objets devant le mur, dans la zone encadrée                          */
 /* ------------------------------------------------------------------ */
-
-/*
-  Détection du mur touché, en trois temps :
-  1. croissance de région sur une image réduite de moitié (les fils et petits objets s'y fondent) ;
-  2. coupe le long des arêtes de la pièce (angle de murs, plafond), repérées par une transformée
-     de Hough : longues droites verticales ou peu inclinées avec une marche de luminosité ;
-  3. masque fin : dans la zone retenue, on ne garde que les pixels de la couleur du mur
-     (meubles, étagères, cadres, fils restent devant le carrelage).
-*/
-function segmenter(px, w, h, sx, sy, sens, o = {}) {
-  const n = w * h;
-  const L = new Float32Array(n), cr = new Float32Array(n), cg = new Float32Array(n);
-  for (let i = 0, j = 0; i < n; i++, j += 4) {
-    const r = px[j], g = px[j + 1], b = px[j + 2], s = r + g + b + 6;
-    L[i] = 0.299 * r + 0.587 * g + 0.114 * b;
-    cr[i] = r / s; cg[i] = g / s;
-  }
-  // 1. demi-résolution
-  const w2 = w >> 1, h2 = h >> 1, n2 = w2 * h2;
-  const L2 = new Float32Array(n2), r2 = new Float32Array(n2), g2 = new Float32Array(n2);
-  for (let y = 0; y < h2; y++) {
-    for (let x = 0; x < w2; x++) {
-      const a = 2 * y * w + 2 * x, b = a + w, k = y * w2 + x;
-      L2[k] = (L[a] + L[a + 1] + L[b] + L[b + 1]) / 4;
-      r2[k] = (cr[a] + cr[a + 1] + cr[b] + cr[b + 1]) / 4;
-      g2[k] = (cg[a] + cg[a + 1] + cg[b] + cg[b + 1]) / 4;
-    }
-  }
-  const Ls = flou(L2, w2, h2, 1);
-  const E = new Float32Array(n2), Gx = new Float32Array(n2), Gy = new Float32Array(n2);
-  for (let y = 1; y < h2 - 1; y++) {
-    for (let x = 1; x < w2 - 1; x++) {
-      const i = y * w2 + x;
-      const gx = Ls[i - w2 + 1] + 2 * Ls[i + 1] + Ls[i + w2 + 1] - Ls[i - w2 - 1] - 2 * Ls[i - 1] - Ls[i + w2 - 1];
-      const gy = Ls[i + w2 - 1] + 2 * Ls[i + w2] + Ls[i + w2 + 1] - Ls[i - w2 - 1] - 2 * Ls[i - w2] - Ls[i - w2 + 1];
-      Gx[i] = gx; Gy[i] = gy;
-      E[i] = Math.hypot(gx, gy) / (Ls[i] + 14);
-    }
-  }
-  const qx = clamp(Math.round(sx / 2), 2, w2 - 3), qy = clamp(Math.round(sy / 2), 2, h2 - 3);
-  let r0 = 0, g0 = 0, l0 = 0, k0 = 0;
-  for (let y = qy - 2; y <= qy + 2; y++) for (let x = qx - 2; x <= qx + 2; x++) { const i = y * w2 + x; r0 += r2[i]; g0 += g2[i]; l0 += L2[i]; k0++; }
-  r0 /= k0; g0 /= k0; l0 /= k0;
-  const tolC = o.c || 0.03 + 0.04 * sens, tolE = o.e || 0.2 + 0.3 * sens, tolL = o.l || 0.06 + 0.08 * sens, tolN = o.n || 0.006 + 0.01 * sens;
-  let R = new Uint8Array(n2);
-  const file = new Int32Array(n2);
-  let a = 0, z = 0;
-  R[qy * w2 + qx] = 1; file[z++] = qy * w2 + qx;
-  while (a < z) {
-    const p = file[a++], x = p % w2, y = (p - x) / w2, lp = L2[p];
-    for (let v = 0; v < 4; v++) {
-      let q;
-      if (v === 0) { if (x === 0) continue; q = p - 1; }
-      else if (v === 1) { if (x === w2 - 1) continue; q = p + 1; }
-      else if (v === 2) { if (y === 0) continue; q = p - w2; }
-      else { if (y === h2 - 1) continue; q = p + w2; }
-      if (R[q]) continue;
-      const lq = L2[q];
-      if (E[q] > tolE) continue;
-      if (Math.abs(lq - lp) > tolL * lp + 3) continue;
-      if (lq < 0.3 * l0 || lq > 2.4 * l0 + 12) continue;
-      const tc = tolC * (1 + 18 / (lq + 6)), tn = tolN * (1 + 25 / (lq + 6));
-      if (Math.abs(r2[q] - r0) > tc || Math.abs(g2[q] - g0) > tc) continue;
-      if (Math.abs(r2[q] - r2[p]) > tn || Math.abs(g2[q] - g2[p]) > tn) continue;
-      R[q] = 1; file[z++] = q;
-    }
-  }
-  const R0 = R.slice();
-  R = morpho(morpho(R, w2, h2, true), w2, h2, false);
-  // 2. arêtes de la pièce
-  aretes(R, L2, E, w2, h2, qx, qy);
-  R = composante(R, w2, h2, qx, qy);
-  boucherTrous(R, w2, h2, Math.round(n2 * 0.01));
-  couperAngles(R, w2, h2, qx, qy);
-  // 3. masque fin à pleine résolution : couleur locale du mur
-  // zone candidate (un peu élargie pour atteindre les bords) ; couleur du mur prise sur la croissance stricte
-  let Z = new Uint8Array(n);
-  const W0 = new Float32Array(n);
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const k = Math.min(h2 - 1, y >> 1) * w2 + Math.min(w2 - 1, x >> 1);
-      Z[y * w + x] = R[k];
-      W0[y * w + x] = R[k] && R0[k] ? 1 : 0;
-    }
-  }
-  Z = morpho(morpho(Z, w, h, true), w, h, true);
-  const rad = Math.max(4, Math.round(w / 60));
-  const fz = flou(W0, w, h, rad), fr_ = flou(cr.map((v, i) => v * W0[i]), w, h, rad), fg = flou(cg.map((v, i) => v * W0[i]), w, h, rad);
-  const fl = flou(L.map((v, i) => v * W0[i]), w, h, rad);
-  const tf = o.f || 0.014 + 0.026 * sens;
-  const m = new Uint8Array(n);
-  for (let i = 0; i < n; i++) {
-    if (!Z[i] || fz[i] < 0.02) continue;
-    const q = 1 / fz[i], lr = fl[i] * q;
-    const t = tf * (1 + 18 / (L[i] + 6));
-    if (Math.abs(cr[i] - fr_[i] * q) > t || Math.abs(cg[i] - fg[i] * q) > t) continue;
-    if (L[i] < 0.42 * lr || L[i] > 2.2 * lr + 10) continue;
-    m[i] = 1;
-  }
-  // on retire le bruit isolé sans refermer les objets fins (fils, chants d'étagère)
-  const mm = morpho(morpho(m, w, h, false), w, h, true);
-  boucherTrous(mm, w, h, Math.round(n * 0.00035));
-  let surf = 0;
-  for (let i = 0; i < n; i++) surf += mm[i];
-  return { m: mm, w, h, part: surf / n };
-}
-
-function composante(m, w, h, sx, sy) {
-  const o = new Uint8Array(m.length);
-  const s0 = sy * w + sx;
-  if (!m[s0]) return o;
-  const file = new Int32Array(m.length);
-  let a = 0, z = 0;
-  o[s0] = 1; file[z++] = s0;
-  while (a < z) {
-    const p = file[a++], x = p % w, y = (p - x) / w;
-    if (x > 0 && m[p - 1] && !o[p - 1]) { o[p - 1] = 1; file[z++] = p - 1; }
-    if (x < w - 1 && m[p + 1] && !o[p + 1]) { o[p + 1] = 1; file[z++] = p + 1; }
-    if (y > 0 && m[p - w] && !o[p - w]) { o[p - w] = 1; file[z++] = p - w; }
-    if (y < h - 1 && m[p + w] && !o[p + w]) { o[p + w] = 1; file[z++] = p + w; }
-  }
-  return o;
-}
-
-// droites de Hough : verticales (±12°) ou peu inclinées (±35°), longues, avec une marche de luminosité
-function aretes(R, L, E, w, h, sx, sy) {
-  const inter = morpho(R, w, h, false);
-  const angles = [];
-  for (let d = -12; d <= 12; d++) angles.push(d);
-  for (let d = 55; d <= 125; d++) angles.push(d);
-  const diag = Math.ceil(Math.hypot(w, h));
-  const cs = angles.map((d) => Math.cos(d * Math.PI / 180)), sn = angles.map((d) => Math.sin(d * Math.PI / 180));
-  const acc = new Float32Array(angles.length * (2 * diag + 1));
-  for (let y = 1; y < h - 1; y++) {
-    for (let x = 1; x < w - 1; x++) {
-      const i = y * w + x;
-      if (!inter[i] || E[i] < 0.05) continue;
-      const v = Math.min(E[i], 0.4);
-      for (let t = 0; t < angles.length; t++) acc[t * (2 * diag + 1) + Math.round(x * cs[t] + y * sn[t]) + diag] += v;
-    }
-  }
-  const pics = [];
-  const nv = 25 * (2 * diag + 1);   // les 25 premiers angles sont les quasi-verticales
-  for (let k = 0; k < 12; k++) {
-    let bi = -1, bv = 0;
-    const i0 = k % 2 ? nv : 0, i1 = k % 2 ? acc.length : nv;
-    for (let i = i0; i < i1; i++) if (acc[i] > bv) { bv = acc[i]; bi = i; }
-    if (bi < 0 || bv < Math.min(w, h) * 0.04) continue;
-    const t = Math.floor(bi / (2 * diag + 1)), rho = (bi % (2 * diag + 1)) - diag;
-    pics.push({ t, rho });
-    for (let dt = -4; dt <= 4; dt++) {
-      const tt = t + dt;
-      if (tt < 0 || tt >= angles.length) continue;
-      for (let dr = -5; dr <= 5; dr++) { const rr = rho + dr + diag; if (rr >= 0 && rr <= 2 * diag) acc[tt * (2 * diag + 1) + rr] = 0; }
-    }
-  }
-  for (const { t, rho } of pics) {
-    const c = cs[t], s = sn[t];
-    // on parcourt la droite : marche de luminosité de part et d'autre, dans la région
-    let nb = 0, pos = 0, neg = 0;
-    const ecarts = [];
-    for (let u = -diag; u <= diag; u += 1) {
-      const x = rho * c - u * s, y = rho * s + u * c;
-      const xa = Math.round(x + 3 * c), ya = Math.round(y + 3 * s), xb = Math.round(x - 3 * c), yb = Math.round(y - 3 * s);
-      if (xa < 0 || ya < 0 || xb < 0 || yb < 0 || xa >= w || xb >= w || ya >= h || yb >= h) continue;
-      const ia = ya * w + xa, ib = yb * w + xb;
-      if (!R[ia] || !R[ib]) continue;
-      const d = (L[ia] - L[ib]) / ((L[ia] + L[ib]) / 2 + 4);
-      ecarts.push(Math.abs(d)); nb++;
-      if (d > 0.03) pos++; else if (d < -0.03) neg++;
-    }
-    if (nb < Math.min(w, h) * 0.22) continue;
-    ecarts.sort((p, q) => p - q);
-    const med = ecarts[ecarts.length >> 1];
-    if (med < 0.045 || Math.max(pos, neg) < nb * 0.7) continue;
-    const cote = sx * c + sy * s - rho;
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) {
-        const v = x * c + y * s - rho;
-        if (cote > 0 ? v < 1.5 : v > -1.5) R[y * w + x] = 0;
-      }
-    }
-  }
-}
 
 function morpho(m, w, h, dilate) {
   const o = new Uint8Array(m.length), t = new Uint8Array(m.length);
@@ -387,131 +203,151 @@ function boucherTrous(m, w, h, maxi) {
   }
 }
 
-function ajuste(pts, i0, i1) {
-  let n = 0, sa = 0, sb = 0, saa = 0, sab = 0;
-  for (let i = i0; i < i1; i++) { const [x, y] = pts[i]; n++; sa += x; sb += y; saa += x * x; sab += x * y; }
-  const den = n * saa - sa * sa;
-  const k = Math.abs(den) > 1e-9 ? (n * sab - sa * sb) / den : 0, c = (sb - k * sa) / n;
-  let e = 0;
-  for (let i = i0; i < i1; i++) e += Math.abs(pts[i][1] - k * pts[i][0] - c);
-  return { k, c, e: e / n };
+// retire les morceaux isolés (valeur 1) plus petits que maxi pixels
+function retirerPetits(m, w, h, maxi) {
+  const vu = new Uint8Array(m.length), file = new Int32Array(m.length);
+  for (let s0 = 0; s0 < m.length; s0++) {
+    if (!m[s0] || vu[s0]) continue;
+    let a = 0, z = 0;
+    vu[s0] = 1; file[z++] = s0;
+    while (a < z) {
+      const p = file[a++], x = p % w, y = (p - x) / w;
+      const v = [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1];
+      for (const q of v) if (q >= 0 && m[q] && !vu[q]) { vu[q] = 1; file[z++] = q; }
+    }
+    if (z < maxi) for (let i = 0; i < z; i++) m[file[i]] = 0;
+  }
 }
 
 /*
-  Deux murs du même enduit forment une seule région : on repère l'angle de la pièce à la cassure
-  de la ligne du plafond (ou du bas du mur) et on ne garde que le mur touché.
+  Objet de la même teinte que le mur (écran gris, cadre clair) : il est cerné par un contour net.
+  On découpe le mur restant le long des contours nets ; une région secondaire dont la luminosité
+  ou la texture diffère de la grande région du mur est un objet.
 */
-function couperAngles(m, w, h, sx, sy) {
-  for (let it = 0; it < 2; it++) {
-    let coupe = null;
-    for (const sens of [1]) {
-      const pts = [];
-      for (let x = 0; x < w; x++) {
-        let t = -1;
-        if (sens > 0) { for (let y = 0; y < h; y++) if (m[y * w + x]) { t = y; break; } }
-        else { for (let y = h - 1; y >= 0; y--) if (m[y * w + x]) { t = y; break; } }
-        if (t < 0 || t <= 1 || t >= h - 2) continue;
-        pts.push([x, t]);
-      }
-      if (pts.length < w * 0.3) continue;
-      const une = ajuste(pts, 0, pts.length);
-      let best = null;
-      const marge = Math.max(8, Math.round(pts.length * 0.08));
-      for (let b = marge; b < pts.length - marge; b += 2) {
-        const A = ajuste(pts, 0, b), B = ajuste(pts, b, pts.length);
-        const e = (A.e * b + B.e * (pts.length - b)) / pts.length;
-        if (!best || e < best.e) best = { e, A, B, x: pts[b][0] };
-      }
-      if (!best) continue;
-      const dk = Math.abs(Math.atan(best.A.k) - Math.atan(best.B.k));
-      if (best.e < une.e * 0.5 && dk > 0.14 && une.e > 1.5 && (!coupe || dk > coupe.dk)) coupe = { x: best.x, dk };
-    }
-    if (!coupe) return;
-    const xc = coupe.x, gauche = sx < xc;
-    for (let y = 0; y < h; y++) {
-      for (let x = 0; x < w; x++) if (gauche ? x >= xc - 1 : x <= xc + 1) m[y * w + x] = 0;
+function objetsCernes(O, dans, L, w, h, c, aire) {
+  const n = w * h;
+  const Ls = flou(L, w, h, 1);
+  const C = new Uint8Array(n);
+  for (let y = 1; y < h - 1; y++) {
+    for (let x = 1; x < w - 1; x++) {
+      const i = y * w + x;
+      if (!dans[i] || O[i]) continue;
+      const gx = Ls[i - w + 1] + 2 * Ls[i + 1] + Ls[i + w + 1] - Ls[i - w - 1] - 2 * Ls[i - 1] - Ls[i + w - 1];
+      const gy = Ls[i + w - 1] + 2 * Ls[i + w] + Ls[i + w + 1] - Ls[i - w - 1] - 2 * Ls[i - w] - Ls[i - w + 1];
+      C[i] = Math.hypot(gx, gy) / (Ls[i] + 14) < 0.3 ? 1 : 0;
     }
   }
+  const lab = new Int32Array(n).fill(-1), file = new Int32Array(n), regions = [];
+  for (let s0 = 0; s0 < n; s0++) {
+    if (!C[s0] || lab[s0] >= 0) continue;
+    const id = regions.length;
+    let a = 0, z = 0, sd = 0, sl = 0, sl2 = 0;
+    lab[s0] = id; file[z++] = s0;
+    while (a < z) {
+      const p = file[a++], x = p % w, y = (p - x) / w;
+      const d = Math.log(L[p] + 3) - surface(c, x / w - 0.5, y / h - 0.5);
+      sd += d; sl += L[p]; sl2 += L[p] * L[p];
+      const v = [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1];
+      for (const q of v) if (q >= 0 && C[q] && lab[q] < 0) { lab[q] = id; file[z++] = q; }
+    }
+    const ml = sl / z;
+    regions.push({ z, d: sd / z, t: Math.sqrt(Math.max(0, sl2 / z - ml * ml)) / (ml + 4) });
+  }
+  if (regions.length < 2) return;
+  const total = regions.reduce((t, r) => t + r.z, 0);
+  const mur = regions.reduce((b, r) => (r.z > b.z ? r : b), regions[0]);
+  const objet = regions.map((r) => r !== mur && r.z > aire * 0.004 && r.z < total * 0.35 &&
+    (Math.abs(r.d - mur.d) > 0.12 || r.t > mur.t * 1.8 + 0.02));
+  if (!objet.some(Boolean)) return;
+  let M = new Uint8Array(n);
+  for (let i = 0; i < n; i++) if (lab[i] >= 0 && objet[lab[i]]) M[i] = 1;
+  // le contour de l'objet en fait partie
+  M = morpho(morpho(M, w, h, true), w, h, true);
+  for (let i = 0; i < n; i++) if (M[i] && dans[i]) O[i] = 1;
 }
 
-function hasard(graine) {
-  let s = graine >>> 0 || 1;
-  return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296);
-}
-
-// plusieurs droites candidates ; on garde la plus extrême (haut, bas, gauche, droite) bien appuyée
-function droiteExtreme(pts, seuil, plusGrand) {
-  let reste = pts, best = null;
-  for (let k = 0; k < 4 && reste.length >= 10; k++) {
-    const d = droite(reste, seuil, 0.2 * pts.length / reste.length);
-    if (!d) break;
-    const ins = reste.filter((r) => Math.abs(r[1] - d[0] * r[0] - d[1]) < seuil);
-    if (ins.length < pts.length * 0.2) break;
-    const moy = ins.reduce((s, r) => s + r[1], 0) / ins.length;
-    if (!best || (plusGrand ? moy > best.moy : moy < best.moy)) best = { d, moy };
-    reste = reste.filter((r) => Math.abs(r[1] - d[0] * r[0] - d[1]) >= seuil);
-  }
-  return best && best.d;
-}
-
-// droite b = k a + c, robuste (RANSAC puis moindres carrés)
-function droite(pts, seuil, partMin = 0.35) {
-  if (pts.length < 10) return null;
-  const rnd = hasard(pts.length * 7919);
-  let best = null, nb = 0;
-  for (let it = 0; it < 160; it++) {
-    const p = pts[(rnd() * pts.length) | 0], q = pts[(rnd() * pts.length) | 0];
-    if (Math.abs(q[0] - p[0]) < 4) continue;
-    const k = (q[1] - p[1]) / (q[0] - p[0]);
-    if (Math.abs(k) > 1.2) continue;
-    const c = p[1] - k * p[0];
-    let n = 0;
-    for (const r of pts) if (Math.abs(r[1] - k * r[0] - c) < seuil) n++;
-    if (n > nb) { nb = n; best = [k, c]; }
-  }
-  if (!best || nb < pts.length * partMin) return null;
-  let sa = 0, sb = 0, saa = 0, sab = 0, n = 0;
-  for (const r of pts) {
-    if (Math.abs(r[1] - best[0] * r[0] - best[1]) < seuil) { sa += r[0]; sb += r[1]; saa += r[0] * r[0]; sab += r[0] * r[1]; n++; }
-  }
-  const den = n * saa - sa * sa;
-  if (Math.abs(den) < 1e-9) return best;
-  const k = (n * sab - sa * sb) / den;
-  return [k, (sb - k * sa) / n];
-}
-
-// 4 coins du mur à partir de la région détectée : on ajuste une droite sur chaque bord
-function quadDepuisMasque(seg) {
-  const { m, w, h } = seg;
-  const haut = [], bas = [], gauche = [], droite_ = [];
-  let bh = 0, bb = 0, bg = 0, bd = 0, nx = 0, ny = 0;
-  let x0 = w, x1 = 0, y0 = h, y1 = 0;
-  for (let x = 0; x < w; x++) {
-    let t = -1, b = -1;
-    for (let y = 0; y < h; y++) if (m[y * w + x]) { if (t < 0) t = y; b = y; }
-    if (t < 0) continue;
-    nx++; x0 = Math.min(x0, x); x1 = Math.max(x1, x);
-    if (t <= 1) bh++; else haut.push([x, t]);
-    if (b >= h - 2) bb++; else bas.push([x, b]);
-  }
+/*
+  Dans la zone encadrée par le client : on modélise la couleur et la lumière du mur (dégradé lissé,
+  en écartant ce qui s'en éloigne), puis on laisse devant le carrelage ce qui s'en distingue
+  nettement (écran, meuble, lampe, flacon). Les traits fins (joints d'un ancien carrelage, fils,
+  petites taches) sont effacés : ils ne coupent pas le carrelage.
+*/
+function masqueZone(px, w, h, q, sens) {
+  const n = w * h;
+  const inv = inverse3(homographie(q));
+  if (!inv) return null;
+  const dans = new Uint8Array(n);
+  let aire = 0;
   for (let y = 0; y < h; y++) {
-    let l = -1, r = -1;
-    for (let x = 0; x < w; x++) if (m[y * w + x]) { if (l < 0) l = x; r = x; }
-    if (l < 0) continue;
-    ny++; y0 = Math.min(y0, y); y1 = Math.max(y1, y);
-    if (l <= 1) bg++; else gauche.push([y, l]);
-    if (r >= w - 2) bd++; else droite_.push([y, r]);
+    for (let x = 0; x < w; x++) {
+      const X = x + 0.5, Y = y + 0.5, z = inv[6] * X + inv[7] * Y + inv[8];
+      if (z <= 0) continue;
+      const a = (inv[0] * X + inv[1] * Y + inv[2]) / z, b = (inv[3] * X + inv[4] * Y + inv[5]) / z;
+      if (a >= 0 && a <= 1 && b >= 0 && b <= 1) { dans[y * w + x] = 1; aire++; }
+    }
   }
-  if (!nx || !ny) return null;
-  const s = Math.max(w, h) * 0.012;
-  const lh = bh > nx * 0.55 ? [0, 0] : droiteExtreme(haut, s, false) || [0, y0];
-  const lb = bb > nx * 0.55 ? [0, h] : droiteExtreme(bas, s, true) || [0, y1];
-  const lg = bg > ny * 0.55 ? [0, 0] : droiteExtreme(gauche, s, false) || [0, x0];
-  const ld = bd > ny * 0.55 ? [0, w] : droiteExtreme(droite_, s, true) || [0, x1];
-  const inter = (t, l) => { const y = (t[0] * l[1] + t[1]) / (1 - t[0] * l[0]); return [l[0] * y + l[1], y]; };
-  let q = [inter(lh, lg), inter(lh, ld), inter(lb, ld), inter(lb, lg)];
-  if (!quadValide(q, w, h)) q = [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
-  return q.map(([x, y]) => [clamp(x, 0, w), clamp(y, 0, h)]);
+  if (aire < 64) return null;
+  const L = new Float32Array(n), cr = new Float32Array(n), cg = new Float32Array(n);
+  for (let i = 0, j = 0; i < n; i++, j += 4) {
+    const r = px[j], g = px[j + 1], b = px[j + 2], t = r + g + b + 6;
+    L[i] = 0.299 * r + 0.587 * g + 0.114 * b;
+    cr[i] = r / t; cg[i] = g / t;
+  }
+  const pts = [];
+  for (let i = 0; i < n; i += 2) {
+    if (!dans[i]) continue;
+    const x = i % w, y = (i - x) / w;
+    pts.push([x / w - 0.5, y / h - 0.5, Math.log(L[i] + 3), i]);
+  }
+  let c = ajusteSurface(pts, null), garder = null;
+  for (let it = 0; it < 3; it++) {
+    const res = pts.map((p) => Math.abs(p[2] - surface(c, p[0], p[1])));
+    const seuil = Float32Array.from(res).sort()[Math.floor(res.length * 0.6)];
+    garder = res.map((r) => r <= seuil);
+    c = ajusteSurface(pts, garder);
+  }
+  const rs = [], gs = [];
+  pts.forEach((p, k) => { if (garder[k]) { rs.push(cr[p[3]]); gs.push(cg[p[3]]); } });
+  const med = (a) => Float32Array.from(a).sort()[a.length >> 1];
+  const r0 = med(rs), g0 = med(gs);
+  const f = 1.6 - 1.2 * sens;
+  const tSombre = 0.3 * f, tClair = 0.45 * f, tC = 0.03 * f;
+  let O = new Uint8Array(n);
+  for (let i = 0; i < n; i++) {
+    if (!dans[i]) continue;
+    const x = i % w, y = (i - x) / w;
+    const dl = Math.log(L[i] + 3) - surface(c, x / w - 0.5, y / h - 0.5);
+    const tc = tC * (1 + 18 / (L[i] + 6));
+    if (dl < -tSombre || dl > tClair || Math.abs(cr[i] - r0) > tc || Math.abs(cg[i] - g0) > tc) O[i] = 1;
+  }
+  const r = Math.max(2, Math.round(Math.max(w, h) / 220));
+  for (let k = 0; k < r; k++) O = morpho(O, w, h, false);
+  for (let k = 0; k < r; k++) O = morpho(O, w, h, true);
+  // texture : une surface bien plus chargée que le mur (écran allumé, motif, objet) est un objet
+  const mL = flou(L, w, h, 2), mL2 = flou(L.map((v) => v * v), w, h, 2);
+  const T = new Float32Array(n);
+  const ech = [];
+  for (let i = 0; i < n; i++) {
+    if (!dans[i]) continue;
+    T[i] = Math.sqrt(Math.max(0, mL2[i] - mL[i] * mL[i])) / (mL[i] + 4);
+    if (!(i % 3)) ech.push(T[i]);
+  }
+  const tMed = Float32Array.from(ech).sort()[ech.length >> 1] || 0;
+  let X = new Uint8Array(n);
+  const seuilT = Math.max(0.05, 2.6 * tMed) * f;
+  for (let i = 0; i < n; i++) if (dans[i] && T[i] > seuilT) X[i] = 1;
+  const rt = r + 2;
+  for (let k = 0; k < rt; k++) X = morpho(X, w, h, false);
+  for (let k = 0; k < rt + 1; k++) X = morpho(X, w, h, true);
+  for (let i = 0; i < n; i++) if (X[i]) O[i] = 1;
+  retirerPetits(O, w, h, Math.round(aire * 0.0015));
+  boucherTrous(O, w, h, Math.round(aire * 0.01));
+  objetsCernes(O, dans, L, w, h, c, aire);
+  O = morpho(O, w, h, true);
+  const m = new Uint8Array(n);
+  let surf = 0;
+  for (let i = 0; i < n; i++) if (dans[i] && !O[i]) { m[i] = 1; surf++; }
+  return { m, w, h, part: surf / n };
 }
 
 function quadValide(q, w, h) {
@@ -1357,7 +1193,7 @@ class ModePhoto {
     this.dim = [300, 250];
     this.expo = 1;
     this.sens = 0.5;
-    this.auto = false;      // contourner les objets : option (activée seulement sur la photo exemple)
+    this.auto = true;       // objets devant le mur (écran, meubles…) laissés visibles ; désactivable
     this.coins = true;
     this.split = 0;
     this.reveal = 9;
@@ -1493,22 +1329,18 @@ class ModePhoto {
         s.innerHTML = `<div class="sub"><div class="row">
           <button type="button" class="chip${this.auto ? ' on' : ''}" data-auto>Contourner les objets : ${this.auto ? 'oui' : 'non'}</button>
           <input type="range" min="0" max="100" value="${Math.round(this.sens * 100)}" data-sens aria-label="Sensibilité" ${this.auto ? '' : 'disabled'}></div>
-          <p>Non : le carrelage couvre toute la zone encadrée. Oui : il passe derrière les meubles, étagères et fenêtres détectés dans la zone.</p></div>`;
+          <p>Oui : télé, meubles, lampes et objets devant le mur restent visibles, le carrelage passe derrière. Non : il couvre toute la zone encadrée. Le curseur règle la sensibilité.</p></div>`;
         s.querySelector('[data-auto]').addEventListener('click', () => {
           this.auto = !this.auto;
           s.innerHTML = '';
           this.majSub();
-          if (this.auto && !this.seg && this.quad) {
-            // pas encore de détection : on analyse depuis le centre de la zone, sans bouger les coins
-            const cx = this.quad.reduce((t, p) => t + p[0], 0) / 4, cy = this.quad.reduce((t, p) => t + p[1], 0) / 4;
-            this.detecter([cx / this.sw * this.segW, cy / this.sh * this.segH], false, this.quad);
-          } else this.masque();
+          this.majTout();
         });
         let tm;
         s.querySelector('[data-sens]').addEventListener('input', (e) => {
           this.sens = e.target.value / 100;
           clearTimeout(tm);
-          tm = setTimeout(() => this.detecter(this.graine, false), 120);
+          tm = setTimeout(() => this.majTout(), 120);
         });
       }
     }
@@ -1555,10 +1387,10 @@ class ModePhoto {
     try {
       const img = await image(this.v.o.demo || asset('mm-mur-demo.jpg'));
       this.poser(img, img.naturalWidth, img.naturalHeight);
-      this.auto = true;
       const k = this.sw / 1600;
       this.dim = [DEMO.largeur, DEMO.largeur];
-      this.detecter([DEMO.graine[0] * this.segW, DEMO.graine[1] * this.segH], true, DEMO.quad.map(([x, y]) => [x * k, y * k]), DEMO.largeur);
+      this.placement = DEMO.quad.map(([x, y]) => [x * k, y * k]);
+      this.finaliserZone(true);
     } catch (e) {
       this.v.toast('La photo exemple n’a pas pu être chargée.');
     } finally {
@@ -1579,7 +1411,7 @@ class ModePhoto {
     this.r.setPhoto(c, w, h);
     this.analyse(c, 480);
     this.etat = 'photo';
-    if (!garder) { this.quad = null; this.seg = null; this.hauteurManuelle = false; this.manuel = false; this.auto = false; }
+    if (!garder) { this.quad = null; this.seg = null; this.hauteurManuelle = false; this.manuel = false; }
     this.pe.hidden = true; this.pv.hidden = false;
     this.el.querySelector('.live').hidden = true;
     this.placement = [];
@@ -1610,59 +1442,20 @@ class ModePhoto {
     this.pxLow = gl.getImageData(0, 0, lw, lh).data;
   }
 
-  /* --- détection et géométrie --- */
-  detecter(graine, anim, quadImpose, largeur) {
-    if (!graine) return;
-    this.graine = graine;
-    const seg = segmenter(this.pxSeg, this.segW, this.segH, graine[0], graine[1], this.sens);
-    const k = this.sw / this.segW;
-    let q = null, ok = seg.part > 0.02 && seg.part < 0.9;
-    if (quadImpose) q = quadImpose;
-    else if (ok && seg.part > 0.05) {
-      const qs = quadDepuisMasque(seg);
-      if (qs) q = qs.map(([x, y]) => [x * k, y * k]);
+  /* --- objets devant le mur et géométrie --- */
+  calculerMasque() {
+    this.seg = null;
+    if (this.auto && this.quad && this.pxSeg) {
+      const k = this.segW / this.sw;
+      this.seg = masqueZone(this.pxSeg, this.segW, this.segH, this.quad.map(([x, y]) => [x * k, y * k]), this.sens);
     }
-    if (!q) {
-      // mur texturé ou trop chargé : zone par défaut autour du point, à ajuster à la main
-      const cx = graine[0] * k, cy = graine[1] * k, dx = this.sw * 0.3, dy = this.sh * 0.3;
-      q = [[cx - dx, cy - dy], [cx + dx, cy - dy], [cx + dx, cy + dy], [cx - dx, cy + dy]].map(([x, y]) => [clamp(x, 0, this.sw), clamp(y, 0, this.sh)]);
-      ok = false;
-      this.v.toast('Placez les 4 coins sur votre mur pour délimiter la zone.', 4200);
-      this.coins = true;
-    }
-    this.seg = ok ? seg : null;
-    if (!this.manuel || quadImpose || !this.quad) {
-      this.quad = q;
-      this.manuel = !!quadImpose;
-    }
-    const c = cadre(this.quad, this.sw, this.sh);
-    const larg = largeur || this.dim[0];
-    if (!this.hauteurManuelle) this.dim = [larg, Math.round(larg / clamp(c.rapport, 0.15, 8))];
-    this.r.setMasque(this.auto ? this.seg : null);
-    this.majTout();
-    if (anim) {
-      this.revealGraine = [graine[0] / this.segW, graine[1] / this.segH];
-      this.animReveal();
-    }
-    this.hint.style.opacity = 0;
-    if (!quadImpose && !this.aideCoins) {
-      this.aideCoins = true;
-      this.v.toast('Faites glisser les 4 coins : le carrelage remplit toute la zone encadrée.', 4500);
-    }
-    this.outils();
-    this.v.majPied();
-  }
-
-  masque() {
-    if (!this.r) return;
-    this.r.setMasque(this.auto ? this.seg : null);
-    this.majTout();
+    this.r.setMasque(this.seg);
   }
 
   zone() {
     const inv = inverse3(homographie(this.quad));
     const m = this.auto && this.seg ? this.seg : null;
-    const marge = this.auto && !this.manuel ? 0.02 : 0;
+    const marge = 0;
     return (u, v) => {
       const x = u * this.sw, y = v * this.sh;
       const z = inv[6] * x + inv[7] * y + inv[8];
@@ -1675,13 +1468,14 @@ class ModePhoto {
 
   majTout() {
     if (!this.quad) return;
+    this.calculerMasque();
     this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), !(this.auto && this.seg)));
     this.geometrie();
   }
 
   geometrie() {
     if (!this.quad || !this.r) return;
-    this.r.setGeometrie(this.quad, this.dim, this.auto && !this.manuel ? 0.02 : 0);
+    this.r.setGeometrie(this.quad, this.dim, 0);
     if (this.tx) this.r.setOrigine(this.dim, this.tx.m);
     this.placer();
     this.demander();
@@ -1798,7 +1592,7 @@ class ModePhoto {
   }
 
   // les 4 points touchés, dans n'importe quel ordre -> haut gauche, haut droit, bas droit, bas gauche
-  finaliserZone() {
+  finaliserZone(demo) {
     const pts = this.placement.slice();
     const cx = pts.reduce((t, p) => t + p[0], 0) / 4, cy = pts.reduce((t, p) => t + p[1], 0) / 4;
     pts.sort((a, b) => Math.atan2(a[1] - cy, a[0] - cx) - Math.atan2(b[1] - cy, b[0] - cx));
@@ -1814,19 +1608,15 @@ class ModePhoto {
     }
     this.quad = q;
     this.manuel = true;
-    this.seg = null;
-    this.auto = false;
-    this.graine = [cx / this.sw * this.segW, cy / this.sh * this.segH];
     if (!this.hauteurManuelle) {
       const c = cadre(q, this.sw, this.sh);
       this.dim = [this.dim[0], Math.round(this.dim[0] / clamp(c.rapport, 0.15, 8))];
     }
-    this.r.setMasque(null);
     this.majTout();
     this.revealGraine = [cx / this.sw, cy / this.sh];
     this.animReveal();
     this.hint.style.opacity = 0;
-    this.v.toast('Carrelage posé. Faites glisser les coins pour ajuster, puis indiquez la largeur dans « Dimensions ».', 5000);
+    if (!demo) this.v.toast('Carrelage posé derrière vos meubles et objets. Faites glisser les coins pour ajuster, puis indiquez la largeur dans « Dimensions ».', 5500);
     this.outils();
     this.v.majPied();
   }
@@ -1905,8 +1695,7 @@ class ModePhoto {
     this.hint.textContent = 'Cadrez votre mur, puis touchez « Figer l’image »';
     this.hint.style.opacity = 1;
     this.placer(); this.outils();
-    let n = 0, tSeg = 0;
-    this.pasSuivi = 380;
+    let n = 0;
     const boucle = (t) => {
       if (this.etat !== 'live') return;
       this.r.image('uPhoto', vd, {});
@@ -1914,36 +1703,10 @@ class ModePhoto {
         this.analyse(vd, 256);
         if (this.quad) this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), !(this.auto && this.seg)));
       }
-      if (this.graine && !this.manuel && t - tSeg > this.pasSuivi) {
-        tSeg = t;
-        const d0 = performance.now();
-        this.suivre();
-        this.pasSuivi = Math.max(380, 4 * (performance.now() - d0));
-      }
       this.dessiner();
       this.boucle = requestAnimationFrame(boucle);
     };
     this.boucle = requestAnimationFrame(boucle);
-  }
-
-  // en direct : on relance la détection au même point et on lisse les coins
-  suivre() {
-    const seg = segmenter(this.pxSeg, this.segW, this.segH, this.graine[0], this.graine[1], this.sens);
-    if (seg.part < 0.02 || seg.part > 0.9) return;
-    const qs = quadDepuisMasque(seg);
-    if (!qs) return;
-    const k = this.sw / this.segW;
-    const q = qs.map(([x, y]) => [x * k, y * k]);
-    this.quad = this.quad ? this.quad.map((p, i) => [p[0] + (q[i][0] - p[0]) * 0.4, p[1] + (q[i][1] - p[1]) * 0.4]) : q;
-    this.seg = seg;
-    this.r.setMasque(this.auto ? seg : null);
-    if (!this.hauteurManuelle) {
-      const c = cadre(this.quad, this.sw, this.sh);
-      this.dim = [this.dim[0], Math.round(this.dim[0] / clamp(c.rapport, 0.15, 8))];
-    }
-    this.r.setGeometrie(this.quad, this.dim, this.auto ? 0.02 : 0);
-    if (this.tx) this.r.setOrigine(this.dim, this.tx.m);
-    this.placer();
   }
 
   figer() {
@@ -1952,16 +1715,9 @@ class ModePhoto {
     const w0 = vd.videoWidth, h0 = vd.videoHeight;
     const c = canvas(w0, h0);
     c.getContext('2d').drawImage(vd, 0, 0, w0, h0);
-    const quad = this.quad, seg = this.seg, graine = this.graine, kx = Math.min(1, 2048 / Math.max(w0, h0));
     this.arreterVideo(false);
-    this.poser(c, w0, h0, true);
-    if (quad) {
-      this.quad = quad.map(([x, y]) => [x * kx, y * kx]);
-      this.seg = seg;
-      if (graine) this.graine = [graine[0] / 256 * 480, graine[1] / 256 * 480];
-      if (graine && this.auto) this.detecter(this.graine, false, this.manuel ? this.quad : null);
-      else this.majTout();
-    }
+    // l'image figée devient la photo : on y pose les 4 coins
+    this.poser(c, w0, h0);
   }
 
   arreterVideo(retour) {
@@ -2099,4 +1855,4 @@ export function ouvrir(o) {
 }
 
 // exposés pour les tests
-export const _interne = { segmenter, quadDepuisMasque, cadre, homographie, eclairage, composer, TUILES };
+export const _interne = { masqueZone, cadre, homographie, eclairage, composer, TUILES };
