@@ -68,7 +68,7 @@ h1 em{ font-family:var(--mm-accent-font); font-style:italic; font-weight:400; co
         <div class="mm-m3__txt">
           <p class="mm-m3__k">Essai virtuel</p>
           <p class="mm-m3__t">Voyez-le sur <em>votre</em> mur</p>
-          <p class="mm-m3__d">Photo de votre mur · pièce 3D · réalité augmentée</p>
+          <p class="mm-m3__d">Photo de votre mur ou pièce 3D</p>
         </div>
       </div>
       <button type="button" class="mm-m3__b" id="ouvrir">
@@ -84,7 +84,7 @@ h1 em{ font-family:var(--mm-accent-font); font-style:italic; font-weight:400; co
     <div class="grille" id="grille"></div>
   </section>
 
-  <p class="note"><b>Dans cette version d’essai</b>, la vidéo en direct est désactivée : passez par « Prendre une photo ». La réalité augmentée peut aussi être bloquée par le cadre de test. Les deux fonctionneront sur la boutique. Les boutons de commande ouvrent la vraie boutique Murizelia.</p>
+  <p class="note"><b>Dans cette version d’essai</b>, la vidéo en direct est désactivée : passez par « Prendre une photo ». Elle fonctionne sur la boutique. Les boutons de commande ouvrent la vraie boutique Murizelia.</p>
 </main>
 
 <script type="module">
@@ -124,7 +124,7 @@ document.getElementById('ouvrir').addEventListener('click', async () => {
   carte.classList.add('is-load');
   try {
     module = module || await import('./assets/mm-mur-3d.js');
-    module.ouvrir({ courant, devise: 'EUR', produits: PRODUITS, boutique: 'https://murizelia.fr', video: false, qr: false, enregistrer, mode: 'photo' });
+    module.ouvrir({ courant, devise: 'EUR', produits: PRODUITS, boutique: 'https://murizelia.fr', video: false, enregistrer, mode: 'photo' });
   } catch (e) {
     console.error(e);
   } finally {

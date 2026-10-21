@@ -1,14 +1,12 @@
 /*
   Murizelia — « Voir sur mon mur »
-  Visualiseur de carrelage mural : photo ou vidéo du mur du client, pièce 3D, réalité augmentée.
+  Visualiseur de carrelage mural : photo ou vidéo du mur du client, et pièce 3D.
   Chargé à la demande par snippets/mm-mur-3d.liquid (import dynamique) : rien n'est chargé tant
   que le client n'ouvre pas le visualiseur.
 */
 
 const TUILES = /*@@TUILES@@*/{};
 const VERSION = '@@VERSION@@';
-const MV_URL = 'https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js';
-const QR_URL = 'https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/+esm';
 
 // photo d'exemple : vraie cuisine (panorama Poly Haven CC0 recadré), mur du fond repéré à la main
 const DEMO = { quad: [[397, 352], [1566, 268], [1566, 1000], [397, 988]], largeur: 330, graine: [0.37, 0.37] };
@@ -38,18 +36,6 @@ function image(src, cache = true) {
   return p;
 }
 
-const scripts = new Map();
-function script(src) {
-  if (!scripts.has(src)) {
-    scripts.set(src, new Promise((ok, ko) => {
-      const s = document.createElement('script');
-      s.type = 'module'; s.src = src;
-      s.onload = ok; s.onerror = () => { scripts.delete(src); ko(new Error(src)); };
-      document.head.appendChild(s);
-    }));
-  }
-  return scripts.get(src);
-}
 
 export function nomCourt(titre) {
   const [marque, reste = ''] = titre.split(/\s+[–—-]\s+/);
@@ -575,7 +561,31 @@ function flou(a, w, h, r) {
   px : image réduite (RGBA, ~128 px). zone(x, y) -> poids 0..1 du mur (masque et quadrilatère).
   Renvoie l'éclairage lissé du mur seul (flou normalisé : les meubles voisins ne déteignent pas).
 */
-function eclairage(px, w, h, zone) {
+// surface du 2e degré z = c0 + c1 u + c2 v + c3 u² + c4 v² + c5 uv (moindres carrés pondérés)
+const base6 = (u, v) => [1, u, v, u * u, v * v, u * v];
+const surface = (c, u, v) => c[0] + c[1] * u + c[2] * v + c[3] * u * u + c[4] * v * v + c[5] * u * v;
+function ajusteSurface(pts, garder) {
+  const A = Array.from({ length: 6 }, () => new Float64Array(7));
+  pts.forEach((p, k) => {
+    if (garder && !garder[k]) return;
+    const f = base6(p[0], p[1]);
+    for (let i = 0; i < 6; i++) { for (let j = 0; j < 6; j++) A[i][j] += f[i] * f[j]; A[i][6] += f[i] * p[2]; }
+  });
+  for (let i = 0; i < 6; i++) A[i][i] += 1e-6;
+  for (let i = 0; i < 6; i++) {
+    let m = i;
+    for (let r = i + 1; r < 6; r++) if (Math.abs(A[r][i]) > Math.abs(A[m][i])) m = r;
+    [A[i], A[m]] = [A[m], A[i]];
+    for (let r = 0; r < 6; r++) {
+      if (r === i || !A[i][i]) continue;
+      const f = A[r][i] / A[i][i];
+      for (let c = i; c < 7; c++) A[r][c] -= f * A[i][c];
+    }
+  }
+  return A.map((l, i) => (l[i] ? l[6] / l[i] : 0));
+}
+
+function eclairage(px, w, h, zone, lisse) {
   const n = w * h, R = new Float32Array(n), G = new Float32Array(n), B = new Float32Array(n), M = new Float32Array(n);
   const lums = new Float32Array(n);
   let ar = 0, ag = 0, ab = 0;
@@ -615,6 +625,40 @@ function eclairage(px, w, h, zone) {
   const clx = slx / sm - mx * sl / sm, cly = sly / sm - my * sl / sm;
   const det = cxx * cyy - cxy * cxy;
   const grad = Math.abs(det) > 1e-8 ? [(clx * cyy - cly * cxy) / det, (cly * cxx - clx * cxy) / det] : [0, 0];
+  if (lisse) {
+    /*
+      Zone entière carrelée (objets non contournés) : la lumière est un dégradé lissé ajusté sur le mur,
+      en écartant ce qui s'en éloigne (meubles, objets), pour ne pas reporter leurs taches sur le carrelage.
+    */
+    const pts = [];
+    for (let i = 0; i < n; i++) {
+      if (M[i] <= 0.5) continue;
+      const x = i % w, y = (i - x) / w;
+      pts.push([x / w - 0.5, y / h - 0.5, Math.log(lums[i] + 0.003), i]);
+    }
+    if (pts.length > 24) {
+      let c = ajusteSurface(pts, null), garder = null;
+      for (let it = 0; it < 3; it++) {
+        const res = pts.map((p) => Math.abs(p[2] - surface(c, p[0], p[1])));
+        const seuil = Float32Array.from(res).sort()[Math.floor(res.length * 0.65)];
+        garder = res.map((r) => r <= seuil);
+        c = ajusteSurface(pts, garder);
+      }
+      let cr = 0, cg = 0, cb = 0, mf = 0, k = 0;
+      pts.forEach((p, j) => {
+        if (!garder[j]) return;
+        cr += R[p[3]]; cg += G[p[3]]; cb += B[p[3]]; mf += Math.exp(surface(c, p[0], p[1])); k++;
+      });
+      ref[0] = Math.max(cr / k, 0.004); ref[1] = Math.max(cg / k, 0.004); ref[2] = Math.max(cb / k, 0.004);
+      mf /= k;
+      for (let i = 0; i < n; i++) {
+        const x = i % w, y = (i - x) / w;
+        const e = clamp(Math.exp(surface(c, x / w - 0.5, y / h - 0.5)) / mf, 0.2, 3);
+        out[i * 3] = srgb(Math.min(1, ref[0] * e)); out[i * 3 + 1] = srgb(Math.min(1, ref[1] * e)); out[i * 3 + 2] = srgb(Math.min(1, ref[2] * e));
+      }
+      grad[0] = c[1]; grad[1] = c[2];
+    }
+  }
   const tri = Float32Array.from(lums).sort();
   const p95 = tri[Math.floor(n * 0.95)];
   const lref = 0.2126 * ref[0] + 0.7152 * ref[1] + 0.0722 * ref[2];
@@ -703,7 +747,7 @@ void main(){
       col += sp * gl * 0.05 * lum(il) * uExpo * uCast;
       // grain et micro-ombres de la photo d'origine
       float lp = lum(toLin(photo)), ll = lum(low);
-      col *= 1.0 + clamp((lp - ll) / max(ll, 0.02), -0.06, 0.06) * 0.8;
+      col *= 1.0 + clamp((lp - ll) / max(ll, 0.02), -0.03, 0.03) * 0.6;
       res = mix(photo, pow(clamp(col, 0.0, 1.0), vec3(1.0 / 2.2)), cov);
     }
   }
@@ -900,7 +944,6 @@ const ICO = {
   cam: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 8h3l1.6-2.2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13.2" r="3.6"/></svg>',
   img: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 16l5-5 4 4 3-3 5 5"/><circle cx="15.5" cy="9" r="1.6"/></svg>',
   vid: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3" y="6.5" width="12.5" height="11" rx="2"/><path d="M15.5 10.5l5.5-3v9l-5.5-3z"/></svg>',
-  ar: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>',
   dl: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>',
 };
 
@@ -1001,15 +1044,6 @@ button:focus-visible, .btn:focus-within{ outline:2px solid #c9a46a; outline-offs
 .p3 canvas{ display:block; width:100%; height:100%; touch-action:none; }
 .badge{ position:absolute; left:12px; bottom:28px; padding:7px 11px; border-radius:10px; background:rgba(255,255,255,.88); color:#1a1715; font-size:12px; font-weight:600; z-index:2; pointer-events:none; }
 
-/* --- Réalité augmentée --- */
-.ar{ position:absolute; inset:0; background:radial-gradient(120% 90% at 50% 30%, #f7f3ee 0%, #e4dcd2 100%); }
-.ar model-viewer{ width:100%; height:100%; display:block; --poster-color:transparent; background:transparent; }
-.ar-go{ position:absolute; left:50%; bottom:28px; transform:translateX(-50%); display:inline-flex; align-items:center; gap:10px; height:52px; padding:0 24px; border-radius:999px; border:0; background:#7a2632; color:#fff; font-weight:700; font-size:15px; cursor:pointer; box-shadow:0 10px 26px rgba(122,38,50,.4); white-space:nowrap; z-index:2; }
-.ar-qr{ position:absolute; right:16px; top:16px; width:230px; padding:16px; border-radius:18px; background:#fff; box-shadow:0 14px 40px rgba(0,0,0,.18); text-align:center; z-index:2; }
-.ar-qr svg{ width:150px; height:150px; display:block; margin:0 auto 10px; }
-.ar-qr b{ display:block; font:600 15px/1.25 var(--mm-head,'Instrument Sans'), sans-serif; margin-bottom:4px; }
-.ar-qr span{ font-size:12.5px; color:#6b625b; }
-.ar-info{ position:absolute; left:16px; top:16px; max-width:260px; padding:10px 13px; border-radius:12px; background:rgba(255,255,255,.9); font-size:12.5px; color:#3b342f; z-index:2; }
 
 @media (min-width:600px){
   .tab .lg{ display:inline; } .tab .sm{ display:none; }
@@ -1064,7 +1098,6 @@ class Visualiseur {
     <nav class="tabs"><div class="tabs-in" role="tablist">
       <button class="tab" role="tab" data-tab="photo" aria-selected="true">Mon mur</button>
       <button class="tab" role="tab" data-tab="piece" aria-selected="false">Pièce 3D</button>
-      <button class="tab" role="tab" data-tab="ar" aria-selected="false"><span class="sm">En AR</span><span class="lg">Réalité augmentée</span></button>
     </div></nav>
     <span class="sp"></span>
   </header>
@@ -1072,7 +1105,6 @@ class Visualiseur {
     <section class="stage">
       <div class="m m-photo"></div>
       <div class="m m-piece" hidden></div>
-      <div class="m m-ar" hidden></div>
       <div class="load" hidden><i></i></div>
       <div class="toast" role="status"></div>
     </section>
@@ -1142,7 +1174,7 @@ class Visualiseur {
     }
     this.ouvert = true;
     this.choisir(this.h, true);
-    const m = o.mode === 'ar' || o.mode === 'piece' ? o.mode : 'photo';
+    const m = o.mode === 'piece' ? 'piece' : 'photo';
     this.mode(m, true);
     if (o.mode === 'demo') this.modes.photo.demo();
     this.$('.x').focus({ preventScroll: true });
@@ -1205,8 +1237,8 @@ class Visualiseur {
     if (this.mmode && this.modes[this.mmode]) this.modes[this.mmode].sortir();
     this.mmode = nom;
     this.$$('.tab').forEach((b) => b.setAttribute('aria-selected', b.dataset.tab === nom ? 'true' : 'false'));
-    ['photo', 'piece', 'ar'].forEach((n) => { this.$('.m-' + n).hidden = n !== nom; });
-    if (!this.modes[nom]) this.modes[nom] = new ({ photo: ModePhoto, piece: ModePiece, ar: ModeAR })[nom](this, this.$('.m-' + nom));
+    ['photo', 'piece'].forEach((n) => { this.$('.m-' + n).hidden = n !== nom; });
+    if (!this.modes[nom]) this.modes[nom] = new ({ photo: ModePhoto, piece: ModePiece })[nom](this, this.$('.m-' + nom));
     const m = this.modes[nom];
     this.$('.subs').innerHTML = '';
     m.outils();
@@ -1325,7 +1357,7 @@ class ModePhoto {
     this.dim = [300, 250];
     this.expo = 1;
     this.sens = 0.5;
-    this.auto = true;
+    this.auto = false;      // contourner les objets : option (activée seulement sur la photo exemple)
     this.coins = true;
     this.split = 0;
     this.reveal = 9;
@@ -1407,7 +1439,7 @@ class ModePhoto {
       <button type="button" class="chip${this.coins ? ' on' : ''}" data-act="coins"${pret ? '' : ' disabled'}>Ajuster les coins</button>
       <button type="button" class="chip${this.split > 0 ? ' on' : ''}" data-act="split"${pret ? '' : ' disabled'}>Avant / après</button>
       <button type="button" class="chip${this.sub === 'lum' ? ' on' : ''}" data-sub="lum"${pret ? '' : ' disabled'}>Lumière</button>
-      <button type="button" class="chip${this.sub === 'det' ? ' on' : ''}" data-sub="det">Détourage</button>
+      <button type="button" class="chip${this.sub === 'det' ? ' on' : ''}" data-sub="det">Objets devant le mur</button>
       <button type="button" class="chip" data-act="nouv">Nouvelle photo</button>
       <button type="button" class="chip pri" data-act="save"${pret && this.etat === 'photo' ? '' : ' disabled'}>${ICO.dl} Enregistrer</button>`;
     t.querySelectorAll('[data-sub]').forEach((b) => b.addEventListener('click', () => { this.sub = this.sub === b.dataset.sub ? null : b.dataset.sub; this.outils(); }));
@@ -1458,10 +1490,19 @@ class ModePhoto {
     } else if (this.sub === 'det') {
       if (!s.querySelector('[data-auto]')) {
         s.innerHTML = `<div class="sub"><div class="row">
-          <button type="button" class="chip${this.auto ? ' on' : ''}" data-auto>${this.auto ? 'Détourage automatique' : 'Zone rectangulaire'}</button>
+          <button type="button" class="chip${this.auto ? ' on' : ''}" data-auto>Contourner les objets : ${this.auto ? 'oui' : 'non'}</button>
           <input type="range" min="0" max="100" value="${Math.round(this.sens * 100)}" data-sens aria-label="Sensibilité" ${this.auto ? '' : 'disabled'}></div>
-          <p>Automatique : le carrelage épouse votre mur et contourne meubles, fenêtres et étagères. Touchez le mur pour relancer la détection.</p></div>`;
-        s.querySelector('[data-auto]').addEventListener('click', () => { this.auto = !this.auto; s.innerHTML = ''; this.majSub(); this.masque(); });
+          <p>Non : le carrelage couvre toute la zone encadrée. Oui : il passe derrière les meubles, étagères et fenêtres détectés dans la zone.</p></div>`;
+        s.querySelector('[data-auto]').addEventListener('click', () => {
+          this.auto = !this.auto;
+          s.innerHTML = '';
+          this.majSub();
+          if (this.auto && !this.seg && this.quad) {
+            // pas encore de détection : on analyse depuis le centre de la zone, sans bouger les coins
+            const cx = this.quad.reduce((t, p) => t + p[0], 0) / 4, cy = this.quad.reduce((t, p) => t + p[1], 0) / 4;
+            this.detecter([cx / this.sw * this.segW, cy / this.sh * this.segH], false, this.quad);
+          } else this.masque();
+        });
         let tm;
         s.querySelector('[data-sens]').addEventListener('input', (e) => {
           this.sens = e.target.value / 100;
@@ -1512,6 +1553,7 @@ class ModePhoto {
     try {
       const img = await image(this.v.o.demo || asset('mm-mur-demo.jpg'));
       this.poser(img, img.naturalWidth, img.naturalHeight);
+      this.auto = true;
       const k = this.sw / 1600;
       this.dim = [DEMO.largeur, DEMO.largeur];
       this.detecter([DEMO.graine[0] * this.segW, DEMO.graine[1] * this.segH], true, DEMO.quad.map(([x, y]) => [x * k, y * k]), DEMO.largeur);
@@ -1535,7 +1577,7 @@ class ModePhoto {
     this.r.setPhoto(c, w, h);
     this.analyse(c, 480);
     this.etat = 'photo';
-    if (!garder) { this.quad = null; this.seg = null; this.hauteurManuelle = false; this.manuel = false; }
+    if (!garder) { this.quad = null; this.seg = null; this.hauteurManuelle = false; this.manuel = false; this.auto = false; }
     this.pe.hidden = true; this.pv.hidden = false;
     this.el.querySelector('.live').hidden = true;
     this.hint.textContent = 'Touchez votre mur pour y poser le carrelage';
@@ -1572,7 +1614,7 @@ class ModePhoto {
     const k = this.sw / this.segW;
     let q = null, ok = seg.part > 0.02 && seg.part < 0.9;
     if (quadImpose) q = quadImpose;
-    else if (ok) {
+    else if (ok && seg.part > 0.05) {
       const qs = quadDepuisMasque(seg);
       if (qs) q = qs.map(([x, y]) => [x * k, y * k]);
     }
@@ -1599,6 +1641,10 @@ class ModePhoto {
       this.animReveal();
     }
     this.hint.style.opacity = 0;
+    if (!quadImpose && !this.aideCoins) {
+      this.aideCoins = true;
+      this.v.toast('Faites glisser les 4 coins : le carrelage remplit toute la zone encadrée.', 4500);
+    }
     this.outils();
     this.v.majPied();
   }
@@ -1612,7 +1658,7 @@ class ModePhoto {
   zone() {
     const inv = inverse3(homographie(this.quad));
     const m = this.auto && this.seg ? this.seg : null;
-    const marge = this.manuel ? 0 : 0.02;
+    const marge = this.auto && !this.manuel ? 0.02 : 0;
     return (u, v) => {
       const x = u * this.sw, y = v * this.sh;
       const z = inv[6] * x + inv[7] * y + inv[8];
@@ -1625,13 +1671,13 @@ class ModePhoto {
 
   majTout() {
     if (!this.quad) return;
-    this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone()));
+    this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), !(this.auto && this.seg)));
     this.geometrie();
   }
 
   geometrie() {
     if (!this.quad || !this.r) return;
-    this.r.setGeometrie(this.quad, this.dim, this.manuel ? 0 : 0.02);
+    this.r.setGeometrie(this.quad, this.dim, this.auto && !this.manuel ? 0.02 : 0);
     if (this.tx) this.r.setOrigine(this.dim, this.tx.m);
     this.placer();
     this.demander();
@@ -1717,7 +1763,7 @@ class ModePhoto {
       if (!drag) return;
       if (drag.t === 'tap' && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 12 && this.etat !== 'vide') {
         const [x, y] = this.versImage(e);
-        if (x >= 0 && y >= 0 && x <= this.sw && y <= this.sh) {
+        if (x >= 0 && y >= 0 && x <= this.sw && y <= this.sh && !this.dansZone(x, y)) {
           this.manuel = false;
           this.hauteurManuelle = false;
           this.hint.textContent = 'Détection du mur…';
@@ -1731,6 +1777,16 @@ class ModePhoto {
     };
     this.pv.addEventListener('pointerup', fin);
     this.pv.addEventListener('pointercancel', fin);
+  }
+
+  // point (pixels de la photo) à l'intérieur de la zone encadrée
+  dansZone(x, y) {
+    if (!this.quad) return false;
+    const inv = inverse3(homographie(this.quad));
+    if (!inv) return false;
+    const z = inv[6] * x + inv[7] * y + inv[8];
+    const a = (inv[0] * x + inv[1] * y + inv[2]) / z, b = (inv[3] * x + inv[4] * y + inv[5]) / z;
+    return z > 0 && a >= 0 && a <= 1 && b >= 0 && b <= 1;
   }
 
   majCoin() {
@@ -1791,7 +1847,7 @@ class ModePhoto {
       this.r.image('uPhoto', vd, {});
       if (n++ % 3 === 0) {
         this.analyse(vd, 256);
-        if (this.quad) this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone()));
+        if (this.quad) this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), !(this.auto && this.seg)));
       }
       if (this.graine && !this.manuel && t - tSeg > this.pasSuivi) {
         tSeg = t;
@@ -1820,7 +1876,7 @@ class ModePhoto {
       const c = cadre(this.quad, this.sw, this.sh);
       this.dim = [this.dim[0], Math.round(this.dim[0] / clamp(c.rapport, 0.15, 8))];
     }
-    this.r.setGeometrie(this.quad, this.dim, 0.02);
+    this.r.setGeometrie(this.quad, this.dim, this.auto ? 0.02 : 0);
     if (this.tx) this.r.setOrigine(this.dim, this.tx.m);
     this.placer();
   }
@@ -1965,148 +2021,6 @@ class ModePiece {
       this.outils();
     });
     this.v.$('.subs').innerHTML = '';
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/* Mode « Réalité augmentée »                                           */
-/* ------------------------------------------------------------------ */
-
-class ModeAR {
-  constructor(v, el) {
-    this.v = v; this.el = el;
-    this.taille = 1;
-    const a = document.createElement('a');
-    this.ios = !!(a.relList && a.relList.supports && a.relList.supports('ar'));
-    this.android = /android/i.test(navigator.userAgent);
-    this.mobile = this.ios || this.android || (matchMedia('(pointer:coarse)').matches && Math.min(screen.width, screen.height) < 820);
-    el.innerHTML = `<div class="ar">
-      <div class="ar-info"></div>
-      <div class="ar-qr" hidden></div>
-      <button type="button" class="ar-go" hidden>${ICO.ar}<span>Voir sur mon mur</span></button>
-    </div>`;
-    this.box = el.querySelector('.ar');
-    el.querySelector('.ar-go').addEventListener('click', () => this.lancer());
-  }
-
-  tailles() {
-    const m = TUILES[this.v.h].m;
-    const mk = (nx, ny) => ({ nx, ny, l: nx * m[0] / 100, h: ny * m[1] / 100 });
-    const base = m[0] >= 29 ? [mk(2, 2), mk(4, 3), mk(6, 4)] : [mk(2, 2), mk(5, 4), mk(7, 5)];
-    return base;
-  }
-
-  async entrer() {
-    const info = this.el.querySelector('.ar-info');
-    if (this.ios) info.textContent = 'Touchez « Voir sur mon mur », puis visez un mur : le panneau s’y fixe en taille réelle.';
-    else if (this.android) info.textContent = 'Touchez « Voir sur mon mur », visez le mur en bougeant doucement, puis touchez-le pour y poser le panneau en taille réelle.';
-    else info.textContent = 'La réalité augmentée s’ouvre sur téléphone. Scannez le code ou faites pivoter le panneau ci-dessous.';
-    this.el.querySelector('.ar-go').hidden = !(this.ios || this.android);
-    if (!this.mobile && this.v.o.qr !== false) this.qr();
-    this.v.chargement(true);
-    try {
-      await script(MV_URL);
-      await customElements.whenDefined('model-viewer');
-    } catch (e) {
-      this.v.toast('Le module 3D n’a pas pu être chargé.');
-    }
-    this.v.chargement(false);
-  }
-
-  sortir() {}
-
-  async qr() {
-    const box = this.el.querySelector('.ar-qr');
-    const p = this.v.parH.get(this.v.h);
-    const url = new URL(p.u, location.href);
-    url.searchParams.set('mur3d', 'ar');
-    try {
-      const mod = await import(QR_URL);
-      const qrcode = mod.default || mod;
-      const q = qrcode(0, 'M');
-      q.addData(url.href);
-      q.make();
-      box.innerHTML = q.createSvgTag({ cellSize: 4, margin: 2, scalable: true }) + '<b>Sur votre téléphone</b><span>Scannez pour voir ce carrelage sur votre mur, en taille réelle.</span>';
-      box.hidden = false;
-    } catch (e) { box.hidden = true; }
-  }
-
-  outils() {
-    const t = this.v.$('.tools');
-    t.innerHTML = this.tailles().map((s, i) => `<button type="button" class="chip${i === this.taille ? ' on' : ''}" data-t="${i}">${fr(s.l, 2).replace(/0$/, '')} × ${fr(s.h, 2).replace(/0$/, '')} m</button>`).join('');
-    t.querySelectorAll('[data-t]').forEach((b) => b.addEventListener('click', () => {
-      this.taille = +b.dataset.t;
-      this.outils();
-      if (this.tx) this.setTuile(this.tx);
-    }));
-    this.v.$('.subs').innerHTML = '';
-    if (this.box && !this.mobile && !this.el.querySelector('.ar-qr').hidden) this.qr();
-  }
-
-  async setTuile(tx) {
-    this.tx = tx;
-    const id = (this.id = (this.id || 0) + 1);
-    this.v.chargement(true);
-    try {
-      const m = await this.v.scene();
-      const s = this.tailles()[this.taille];
-      const r = await m.preparerAR(tx, s, { usdz: this.ios });
-      if (id !== this.id) return;
-      if (this.glb) URL.revokeObjectURL(this.glb);
-      if (this.usdz) URL.revokeObjectURL(this.usdz);
-      this.glb = URL.createObjectURL(r.glb);
-      this.usdz = r.usdz ? URL.createObjectURL(r.usdz) : null;
-      this.vue();
-    } catch (e) {
-      console.error(e);
-      this.v.toast('Le panneau 3D n’a pas pu être préparé.');
-    }
-    this.v.chargement(false);
-  }
-
-  vue() {
-    let mv = this.box.querySelector('model-viewer');
-    if (!mv) {
-      mv = document.createElement('model-viewer');
-      mv.setAttribute('camera-controls', '');
-      mv.setAttribute('camera-orbit', '-18deg 82deg auto');
-      mv.setAttribute('min-camera-orbit', 'auto 20deg auto');
-      mv.setAttribute('max-camera-orbit', 'auto 160deg auto');
-      mv.setAttribute('environment-image', 'neutral');
-      mv.setAttribute('tone-mapping', 'neutral');
-      mv.setAttribute('shadow-intensity', '0.6');
-      mv.setAttribute('exposure', '1.05');
-      mv.setAttribute('interaction-prompt', 'none');
-      mv.setAttribute('alt', 'Panneau du carrelage choisi, en taille réelle');
-      if (this.android) {
-        mv.setAttribute('ar', '');
-        mv.setAttribute('ar-modes', 'webxr');
-        mv.setAttribute('ar-placement', 'wall');
-        mv.setAttribute('ar-scale', 'fixed');
-        const b = document.createElement('button');
-        b.slot = 'ar-button';
-        b.style.display = 'none';
-        mv.appendChild(b);
-      }
-      this.box.prepend(mv);
-    }
-    mv.setAttribute('src', this.glb);
-  }
-
-  lancer() {
-    if (this.ios && this.usdz) {
-      const a = document.createElement('a');
-      a.rel = 'ar';
-      a.href = this.usdz + '#allowsContentScaling=0';
-      a.appendChild(document.createElement('img'));
-      this.box.appendChild(a);
-      a.click();
-      setTimeout(() => a.remove(), 1000);
-      return;
-    }
-    const mv = this.box.querySelector('model-viewer');
-    if (mv && mv.canActivateAR) { mv.activateAR(); return; }
-    this.v.toast('La réalité augmentée n’est pas disponible sur cet appareil. Essayez « Mon mur » avec une photo.', 5000);
   }
 }
 

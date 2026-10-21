@@ -1,15 +1,12 @@
 /*
-  Murizelia — pièce 3D et export AR du visualiseur mural.
-  Chargé uniquement quand le client ouvre « Pièce 3D » ou « Réalité augmentée ».
+  Murizelia — pièce 3D du visualiseur mural.
+  Chargé uniquement quand le client ouvre « Pièce 3D ».
   Unités : mètres. Le mur carrelé est le plan z = 0, face vers +z.
 */
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.170.0/+esm';
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/controls/OrbitControls.js/+esm';
 import { RoomEnvironment } from 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/environments/RoomEnvironment.js/+esm';
 import { RoundedBoxGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/geometries/RoundedBoxGeometry.js/+esm';
-
-const GLTF_URL = 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/exporters/GLTFExporter.js/+esm';
-const USDZ_URL = 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/exporters/USDZExporter.js/+esm';
 
 // rendu des carreaux par famille : rugosité, intensité du relief
 const FINI = {
@@ -446,70 +443,4 @@ export async function creerPiece(el, { asset }) {
     camera, controls, renderer, THREE,
   };
   return api;
-}
-
-/* ------------------------------------------------------------------ */
-/* Réalité augmentée : panneau en taille réelle, GLB (Android) + USDZ (iPhone) */
-/* ------------------------------------------------------------------ */
-
-function plaques(src, N, cases, k) {
-  const pa = src.width / N, c = document.createElement('canvas');
-  c.width = cases.nx * k; c.height = cases.ny * k;
-  const g = c.getContext('2d');
-  g.imageSmoothingQuality = 'high';
-  for (let r = 0; r < cases.ny; r++) {
-    for (let q = 0; q < cases.nx; q++) {
-      // la rangée du bas du panneau correspond à la rangée du bas du motif
-      const ri = (N - 1 - ((cases.ny - 1 - r) % N) + N) % N;
-      g.drawImage(src, (q % N) * pa, ri * pa, pa, pa, q * k, r * k, k, k);
-    }
-  }
-  return c;
-}
-
-export async function preparerAR(tx, s, { usdz } = {}) {
-  const k = Math.max(96, Math.min(512, Math.floor(2048 / Math.max(s.nx, s.ny))));
-  const A = plaques(tx.A, tx.N, s, k);
-  const B = plaques(tx.B, tx.N, s, Math.round(k / 2));
-  const R = tx.R ? plaques(tx.R, tx.N, s, Math.round(k / 4)) : null;
-  const t = (c, couleur) => {
-    const x = new THREE.CanvasTexture(c);
-    x.colorSpace = couleur ? THREE.SRGBColorSpace : THREE.NoColorSpace;
-    x.userData.mimeType = 'image/jpeg';
-    return x;
-  };
-  const fini = FINI[tx.f] || FINI.marbre;
-  const mat = new THREE.MeshStandardMaterial({ map: t(A, true), normalMap: t(B, false), roughnessMap: R ? t(R, false) : null, roughness: R ? 1 : fini.rough, metalness: 0 });
-  mat.normalScale.set(fini.normal, fini.normal);
-  mat.name = 'Carrelage';
-  const ep = 0.004;
-  const face = new THREE.Mesh(new THREE.PlaneGeometry(s.l, s.h), mat);
-  face.name = 'Carrelage';
-  face.position.z = ep + 0.0005;
-  const dos = new THREE.Mesh(new THREE.BoxGeometry(s.l, s.h, ep), new THREE.MeshStandardMaterial({ color: '#f1ede6', roughness: 0.8, name: 'Chant' }));
-  dos.position.z = ep / 2;
-  const g = new THREE.Group();
-  g.name = 'Panneau Murizelia';
-  g.add(dos, face);
-  g.updateMatrixWorld(true);
-
-  const { GLTFExporter } = await import(GLTF_URL);
-  const glb = await new GLTFExporter().parseAsync(g, { binary: true });
-  const res = { glb: new Blob([glb], { type: 'model/gltf-binary' }) };
-  if (usdz) {
-    // Coup d'œil (iPhone) : avec l'ancrage vertical, l'axe Y du modèle est la normale du mur.
-    // Le panneau est donc posé « à plat » (face vers +Y), dos contre le mur en y = 0.
-    g.rotation.x = -Math.PI / 2;
-    g.updateMatrixWorld(true);
-    const { USDZExporter } = await import(USDZ_URL);
-    const u = await new USDZExporter().parseAsync(g, {
-      ar: { anchoring: { type: 'plane' }, planeAnchoring: { alignment: 'vertical' } },
-      includeAnchoringProperties: true,
-      quickLookCompatible: true,
-      maxTextureSize: 2048,
-    });
-    res.usdz = new Blob([u], { type: 'model/vnd.usdz+zip' });
-  }
-  [mat.map, mat.normalMap, mat.roughnessMap].forEach((x) => x && x.dispose());
-  return res;
 }
