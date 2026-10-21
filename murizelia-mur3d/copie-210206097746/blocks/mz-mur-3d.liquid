@@ -1,0 +1,32 @@
+{%- comment -%}
+  Murizelia — carte « Voir en 3D sur mon mur » : photo du mur du client, pièce 3D, réalité augmentée.
+  Le contenu est dans snippets/mm-mur-3d.liquid ; le visualiseur (assets/mm-mur-3d.js) ne se charge qu'au clic.
+  Ne s'affiche que sur les carreaux qui ont leur texture (les 25 carrelages muraux).
+{%- endcomment -%}
+<div class="custom-code-block{% if block.settings.show_on_display == 'desktop_only' %} mobile-hide{% endif %}{% if block.settings.show_on_display == 'mobile_only' %} desktop-hide{% endif %}" style="--margin-top: {{ block.settings.margin_top }}px; --margin-bottom: {{ block.settings.margin_bottom }}px;" {{ block.shopify_attributes }}>
+  {% render 'mm-mur-3d', product: closest.product %}
+</div>
+{% schema %}
+{
+  "name": "Murizelia · Voir en 3D",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "show_on_display",
+      "label": "Affichage",
+      "default": "desktop_and_mobile",
+      "options": [
+        { "value": "desktop_and_mobile", "label": "Ordinateur et mobile" },
+        { "value": "desktop_only", "label": "Ordinateur uniquement" },
+        { "value": "mobile_only", "label": "Mobile uniquement" }
+      ]
+    },
+    { "type": "range", "id": "margin_top", "label": "Marge haute", "min": 0, "max": 100, "step": 1, "default": 8, "unit": "px" },
+    { "type": "range", "id": "margin_bottom", "label": "Marge basse", "min": 0, "max": 100, "step": 1, "default": 4, "unit": "px" }
+  ],
+  "presets": [
+    { "name": "Murizelia · Voir en 3D", "category": "Murizelia" }
+  ]
+}
+{% endschema %}

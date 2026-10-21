@@ -1,0 +1,1811 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "<h1>{{ closest.product.title }}</h1>",
+            "text_style": "h3",
+            "paragraph_font_size": "normal",
+            "font_weight": 600,
+            "alignment": "left",
+            "alignment_mobile": "left",
+            "show_read_more": false,
+            "read_more_length": 50,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": false,
+            "truncate_length": 2,
+            "margin_top": 0,
+            "margin_bottom": 4,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "promo_automne": {
+          "type": "group",
+          "name": "Offre d'automne",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "wrap_in_card": true,
+            "card_link": "",
+            "color_scheme": "scheme-774a540d-d5c1-4b1a-b2bc-7d70549b46d3",
+            "show_card_border": false,
+            "layout_type": "flex",
+            "width_desktop": 100,
+            "layout_direction_desktop": "column",
+            "layout_grid_columns_desktop": 1,
+            "layout_gap_desktop": 4,
+            "layout_wrap_desktop": "nowrap",
+            "layout_justify_desktop": "flex-start",
+            "layout_align_items_desktop": "flex-start",
+            "same_as_desktop": true,
+            "width_mobile": 100,
+            "layout_direction_mobile": "column",
+            "layout_grid_columns_mobile": 1,
+            "layout_gap_mobile": 4,
+            "layout_wrap_mobile": "nowrap",
+            "layout_justify_mobile": "flex-start",
+            "layout_align_items_mobile": "flex-start",
+            "use_global_container_padding": false,
+            "padding_horizontal": 16,
+            "padding_vertical": 14,
+            "margin_top": 10,
+            "margin_bottom": 10,
+            "additional_class": ""
+          },
+          "blocks": {
+            "pa_titre": {
+              "type": "text",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "text": "<p><strong>🍂 Offre d'automne : -10 % sur votre commande</strong></p>",
+                "text_style": "paragraph",
+                "paragraph_font_size": "normal",
+                "font_weight": 600,
+                "alignment": "left",
+                "alignment_mobile": "left",
+                "show_read_more": false,
+                "read_more_length": 50,
+                "read_more_text": "Voir plus",
+                "read_less_text": "Voir moins",
+                "truncate": false,
+                "truncate_length": 2,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            },
+            "pa_code": {
+              "type": "text",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "text": "<p>Votre mur refait pour moins cher : entrez le code <strong>AUTOMNE10</strong> au paiement.</p>",
+                "text_style": "paragraph",
+                "paragraph_font_size": "small",
+                "font_weight": 400,
+                "alignment": "left",
+                "alignment_mobile": "left",
+                "show_read_more": false,
+                "read_more_length": 50,
+                "read_more_text": "Voir plus",
+                "read_less_text": "Voir moins",
+                "truncate": false,
+                "truncate_length": 2,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "pa_titre",
+            "pa_code"
+          ]
+        },
+        "benefits": {
+          "type": "group",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "wrap_in_card": false,
+            "card_link": "",
+            "color_scheme": "",
+            "show_card_border": false,
+            "layout_type": "flex",
+            "width_desktop": 100,
+            "layout_direction_desktop": "row",
+            "layout_grid_columns_desktop": 3,
+            "layout_gap_desktop": 12,
+            "layout_wrap_desktop": "wrap",
+            "layout_justify_desktop": "flex-start",
+            "layout_align_items_desktop": "center",
+            "same_as_desktop": true,
+            "width_mobile": 100,
+            "layout_direction_mobile": "column",
+            "layout_grid_columns_mobile": 1,
+            "layout_gap_mobile": 10,
+            "layout_wrap_mobile": "nowrap",
+            "layout_justify_mobile": "flex-start",
+            "layout_align_items_mobile": "flex-start",
+            "use_global_container_padding": false,
+            "padding_horizontal": 10,
+            "padding_vertical": 10,
+            "margin_top": 8,
+            "margin_bottom": 8,
+            "additional_class": ""
+          },
+          "blocks": {
+            "b1": {
+              "type": "group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "card_link": "",
+                "color_scheme": "",
+                "show_card_border": false,
+                "layout_type": "flex",
+                "width_desktop": 47,
+                "layout_direction_desktop": "row",
+                "layout_grid_columns_desktop": 3,
+                "layout_gap_desktop": 8,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "center",
+                "same_as_desktop": true,
+                "width_mobile": 100,
+                "layout_direction_mobile": "column",
+                "layout_grid_columns_mobile": 1,
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "use_global_container_padding": false,
+                "padding_horizontal": 10,
+                "padding_vertical": 10,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "b1i": {
+                  "type": "icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "handyman",
+                    "icon_custom": "",
+                    "icon_size": 22,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "b1t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Facile à poser</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "small",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "b1i",
+                "b1t"
+              ]
+            },
+            "b2": {
+              "type": "group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "card_link": "",
+                "color_scheme": "",
+                "show_card_border": false,
+                "layout_type": "flex",
+                "width_desktop": 47,
+                "layout_direction_desktop": "row",
+                "layout_grid_columns_desktop": 3,
+                "layout_gap_desktop": 8,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "center",
+                "same_as_desktop": true,
+                "width_mobile": 100,
+                "layout_direction_mobile": "column",
+                "layout_grid_columns_mobile": 1,
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "use_global_container_padding": false,
+                "padding_horizontal": 10,
+                "padding_vertical": 10,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "b2i": {
+                  "type": "icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "do_not_disturb_on",
+                    "icon_custom": "",
+                    "icon_size": 22,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "b2t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Aucun outil nécessaire</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "small",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "b2i",
+                "b2t"
+              ]
+            },
+            "b3": {
+              "type": "group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "card_link": "",
+                "color_scheme": "",
+                "show_card_border": false,
+                "layout_type": "flex",
+                "width_desktop": 47,
+                "layout_direction_desktop": "row",
+                "layout_grid_columns_desktop": 3,
+                "layout_gap_desktop": 8,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "center",
+                "same_as_desktop": true,
+                "width_mobile": 100,
+                "layout_direction_mobile": "column",
+                "layout_grid_columns_mobile": 1,
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "use_global_container_padding": false,
+                "padding_horizontal": 10,
+                "padding_vertical": 10,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "b3i": {
+                  "type": "icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "home",
+                    "icon_custom": "",
+                    "icon_size": 22,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "b3t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Convient aux locataires</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "small",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "b3i",
+                "b3t"
+              ]
+            },
+            "b4": {
+              "type": "group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "card_link": "",
+                "color_scheme": "",
+                "show_card_border": false,
+                "layout_type": "flex",
+                "width_desktop": 47,
+                "layout_direction_desktop": "row",
+                "layout_grid_columns_desktop": 3,
+                "layout_gap_desktop": 8,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "center",
+                "same_as_desktop": true,
+                "width_mobile": 100,
+                "layout_direction_mobile": "column",
+                "layout_grid_columns_mobile": 1,
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "use_global_container_padding": false,
+                "padding_horizontal": 10,
+                "padding_vertical": 10,
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "b4i": {
+                  "type": "icon",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "icon_type": "icon",
+                    "icon": "shower",
+                    "icon_custom": "",
+                    "icon_size": 22,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "b4t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Cuisine et salle de bain</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "small",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "b4i",
+                "b4t"
+              ]
+            }
+          },
+          "block_order": [
+            "b1",
+            "b2",
+            "b3",
+            "b4"
+          ]
+        },
+        "calculator": {
+          "type": "mz-calculateur",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "margin_top": 6,
+            "margin_bottom": 6,
+            "title": "Combien de carreaux ?",
+            "subtitle": "Entrez les dimensions de votre mur",
+            "label_w": "Largeur",
+            "label_h": "Hauteur",
+            "margin_pct": 10,
+            "margin_checked": true,
+            "margin_label": "Ajouter [pct] % de marge",
+            "margin_hint": "Recommandé pour les découpes",
+            "out_empty": "Il vous faut – lot(s).",
+            "out_result": "Il vous faut [lots] lot(s) — soit [m2] m² à couvrir.",
+            "open": false,
+            "accent": "#45111c",
+            "accent_text": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "stock": {
+          "type": "mz-dispo",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "margin_top": 10,
+            "margin_bottom": 0,
+            "text_1": "Expédié demain",
+            "text_2": "Livré sous 4 à 8 jours ouvrés",
+            "align": "center",
+            "color": "#7a2632"
+          },
+          "blocks": {}
+        },
+        "lotpicker": {
+          "type": "mz-lots",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "margin_top": 6,
+            "margin_bottom": 0,
+            "badge": "Le plus populaire",
+            "unit_plural": "panneaux",
+            "show_unit_price": true,
+            "unit_prefix": "Seulement",
+            "unit_suffix": "/panneau",
+            "accent": "#45111c",
+            "accent_text": "#ffffff"
+          },
+          "blocks": {}
+        },
+        "form": {
+          "type": "_product-form",
+          "settings": {},
+          "blocks": {
+            "variant_picker": {
+              "type": "_product-variant-picker",
+              "settings": {
+                "show_option_name": true,
+                "variant_picker_type": "selects",
+                "show_swatches": false,
+                "swatches_size": "normal",
+                "swatches_rounded": true,
+                "margin_top": 0,
+                "margin_bottom": 10,
+                "additional_class": "lotpick-native"
+              },
+              "blocks": {
+                "product-variant-popup": {
+                  "type": "_product-variant-popup",
+                  "static": true,
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "show_on_option_name": "Taille",
+                    "color_scheme": "",
+                    "button_style": "button",
+                    "button_label": "Guide de taille",
+                    "icon": "straighten",
+                    "icon_custom": "",
+                    "icon_position": "end",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "product-add-to-cart-button": {
+              "type": "_product-add-to-cart-button",
+              "static": true,
+              "settings": {
+                "enable_sticky_add_to_cart": true,
+                "button_style": "primary",
+                "show_price": false,
+                "icon": "none",
+                "icon_custom": "",
+                "icon_position": "end",
+                "enable_preorder": false,
+                "enable_preorder_on_empty_stock_only": true,
+                "preorder_cart_message": "Livraison à partir du JJ/MM",
+                "additional_class": ""
+              },
+              "blocks": {
+                "product-quantity-selector": {
+                  "type": "_product-quantity-selector",
+                  "static": true,
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "add-to-wishlist-button": {
+                  "type": "_add-to-wishlist-button",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "accelerated-checkout": {
+              "type": "_accelerated-checkout",
+              "static": true,
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "full_width": true,
+                "button_style": "primary",
+                "margin_top": 0,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "variant_picker"
+          ]
+        },
+        "guarantee": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "<p>Pas satisfait ? On vous rembourse à 100 %</p>",
+            "text_style": "paragraph",
+            "paragraph_font_size": "small",
+            "font_weight": 400,
+            "alignment": "center",
+            "alignment_mobile": "left",
+            "show_read_more": false,
+            "read_more_length": 50,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": false,
+            "truncate_length": 2,
+            "margin_top": 12,
+            "margin_bottom": 10,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "details": {
+          "type": "accordions",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "icon": "caret",
+            "dividers": true,
+            "additional_class": ""
+          },
+          "blocks": {
+            "d1": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Description",
+                "heading_tag": "p",
+                "heading_style": "h6",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "d1t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "{{ closest.product.description }}",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "d1t"
+              ]
+            },
+            "d2": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Caractéristiques",
+                "heading_tag": "p",
+                "heading_style": "h6",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "d2t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<ul><li>Format de la plaque : à compléter</li><li>Surface couverte par lot : à compléter</li><li>Matière et épaisseur : à compléter</li><li>Finition : relief 3D</li><li>Pose : adhésif intégré, sans colle ni joints</li></ul>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "d2t"
+              ]
+            },
+            "d3": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Cuisine et salle de bain ?",
+                "heading_tag": "p",
+                "heading_style": "h6",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "d3t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Oui, les carrelages Maison Murale sont résistants à l'humidité et à la chaleur, et peuvent donc être posé dans votre cuisine ou votre salle de bain.<br/><br/></p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "d3t"
+              ]
+            },
+            "d4": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Sur tous types de surfaces ?",
+                "heading_tag": "p",
+                "heading_style": "h6",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "d4t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Non, il est important que la surface soit plate et non rugueuse.<br/><br/>Par exemple le carrelage, le verre, le stratifié ou encore les murs peints.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "d4t"
+              ]
+            },
+            "d5": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Les carreaux sont-ils faciles à retirer ?",
+                "heading_tag": "p",
+                "heading_style": "h6",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "d5t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Oui, tous nos carreaux sont conçus pour être retirés facilement, sans endommager le mur ni laisser de résidus de colle.<br/><br/>Pour les murs peints ou enduits, nous vous conseillons d'utiliser un sèche-cheveux ou un décapeur thermique afin de faciliter le décollage.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "d5t"
+              ]
+            },
+            "d6": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Livraison et retour",
+                "heading_tag": "p",
+                "heading_style": "h6",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "d6t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Nous préparons et éxpédions votre les commandes en 24 à 48h ouvrés.&nbsp;</p><p>Livraison offerte en France métropolitaine, en 4 à 8 jours ouvrés, avec numéro de suivi. Retour possible sous 14 jours après réception sans justification.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "d6t"
+              ]
+            }
+          },
+          "block_order": [
+            "d1",
+            "d2",
+            "d3",
+            "d4",
+            "d5",
+            "d6"
+          ]
+        },
+        "product_media_gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "hide_variants": false,
+            "media_display": "carrousel",
+            "media_ratio": "1 / 1",
+            "media_rounded": true,
+            "grid_columns": "2",
+            "grid_gap": 5,
+            "main_image_full_width": true,
+            "show_a_bit_of_next_image_on_mobile": false,
+            "show_arrows": false,
+            "show_pagination": true,
+            "show_thumbnails": true,
+            "show_thumbnails_on_display": "desktop_and_mobile",
+            "thumbnails_show_arrows": false,
+            "video_loop": true,
+            "enable_video_controls": false,
+            "show_badges": true,
+            "additional_class": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title",
+        "promo_automne",
+        "benefits",
+        "calculator",
+        "stock",
+        "lotpicker",
+        "form",
+        "guarantee",
+        "details"
+      ],
+      "settings": {
+        "color_scheme": "",
+        "show_product_info_card": false,
+        "color_scheme_product_info": "",
+        "image_position": "row",
+        "product_info_width": 50,
+        "gap": 50,
+        "carrousel_sticky": true,
+        "product_info_sticky": true,
+        "carrousel_full_width": true,
+        "padding_top": 30,
+        "padding_bottom": 50,
+        "margin_top": 0,
+        "margin_bottom": 0
+      }
+    },
+    "marquee": {
+      "type": "mz-marquee",
+      "blocks": {
+        "m1": {
+          "type": "item",
+          "settings": {
+            "icon": "check",
+            "text": "Livraison gratuite en France"
+          }
+        },
+        "m2": {
+          "type": "item",
+          "settings": {
+            "icon": "lock",
+            "text": "Paiement sécurisé"
+          }
+        },
+        "m3": {
+          "type": "item",
+          "settings": {
+            "icon": "clock",
+            "text": "Livraison en 5 à 12 jours"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3"
+      ],
+      "settings": {
+        "bg": "#45111c",
+        "text_color": "#ffffff",
+        "speed": 50,
+        "repeat": 4
+      }
+    },
+    "videos": {
+      "type": "mm-videos",
+      "blocks": {
+        "item_XJA46p": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/snaptik_7568876573818883358_hd.mov",
+            "video_url": "",
+            "poster_url": "",
+            "who": "Sabrina Moreau",
+            "caption": "Salle de bain",
+            "duration": "0:33"
+          }
+        },
+        "item_E3emGW": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/snaptik_7667882664195525889_v3.mov",
+            "video_url": "",
+            "poster_url": "",
+            "who": "Julien Lefèvre",
+            "caption": "Crédence de cuisine",
+            "duration": "0:09"
+          }
+        },
+        "item_fAdhWw": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/snaptik_7480204515010989343_hd.mp4",
+            "video_url": "",
+            "poster_url": "",
+            "who": "Amandine Costa",
+            "caption": "Dosseret de lavabo",
+            "duration": "0:07"
+          }
+        },
+        "item_ghXnWY": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/snaptik_7655580168097942802_hd.mp4",
+            "video_url": "",
+            "poster_url": "",
+            "who": "Karim Benali",
+            "caption": "Cuisine",
+            "duration": "0:41"
+          }
+        },
+        "item_FFXCnm": {
+          "type": "item",
+          "settings": {
+            "video": "shopify://files/videos/snaptik_7660473768829062416_hd.mp4",
+            "video_url": "",
+            "poster_url": "",
+            "who": "Élodie Rambert",
+            "caption": "Cuisine",
+            "duration": "0:10"
+          }
+        },
+        "v1": {
+          "type": "item",
+          "settings": {
+            "video_url": "https://maisonmurale.fr/cdn/shop/videos/c/vp/abffe05a847544bca01b4c6f0c83803b/abffe05a847544bca01b4c6f0c83803b.HD-1080p-7.2Mbps-91303530.mp4",
+            "poster_url": "https://maisonmurale.fr/cdn/shop/files/preview_images/abffe05a847544bca01b4c6f0c83803b.thumbnail.0000000000_720x.jpg",
+            "who": "Alain Bouvier",
+            "caption": "Crédence de cuisine",
+            "duration": "0:05"
+          }
+        },
+        "v2": {
+          "type": "item",
+          "settings": {
+            "video_url": "https://maisonmurale.fr/cdn/shop/videos/c/vp/e5e6078189c2456fa613d008e60924c3/e5e6078189c2456fa613d008e60924c3.HD-1080p-7.2Mbps-91303529.mp4",
+            "poster_url": "https://maisonmurale.fr/cdn/shop/files/preview_images/e5e6078189c2456fa613d008e60924c3.thumbnail.0000000000_720x.jpg",
+            "who": "Marie Delaunay",
+            "caption": "Salle de bain",
+            "duration": "0:05"
+          }
+        },
+        "v3": {
+          "type": "item",
+          "settings": {
+            "video_url": "https://maisonmurale.fr/cdn/shop/videos/c/vp/50f35259d2154c1186a403c9509b81fc/50f35259d2154c1186a403c9509b81fc.HD-1080p-7.2Mbps-91305612.mp4",
+            "poster_url": "https://maisonmurale.fr/cdn/shop/files/preview_images/50f35259d2154c1186a403c9509b81fc.thumbnail.0000000000_720x.jpg",
+            "who": "Jacques Perret",
+            "caption": "Salle de bain",
+            "duration": "0:05"
+          }
+        },
+        "v4": {
+          "type": "item",
+          "settings": {
+            "video_url": "https://maisonmurale.fr/cdn/shop/videos/c/vp/b0e96cf8c41b486197e4295b3e8e3d7e/b0e96cf8c41b486197e4295b3e8e3d7e.HD-1080p-7.2Mbps-91303528.mp4",
+            "poster_url": "https://maisonmurale.fr/cdn/shop/files/preview_images/b0e96cf8c41b486197e4295b3e8e3d7e.thumbnail.0000000000_720x.jpg",
+            "who": "Lola Vasseur",
+            "caption": "Cuisine",
+            "duration": "0:05"
+          }
+        }
+      },
+      "block_order": [
+        "item_XJA46p",
+        "item_E3emGW",
+        "item_fAdhWw",
+        "item_ghXnWY",
+        "item_FFXCnm",
+        "v1",
+        "v2",
+        "v3",
+        "v4"
+      ],
+      "settings": {
+        "eyebrow": "Vidéos clients",
+        "heading": "Posé chez nos clients",
+        "ratio": "9/16",
+        "bg": "#ffffff",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "avis": {
+      "type": "mm-avis",
+      "blocks": {
+        "a1": {
+          "type": "review",
+          "settings": {}
+        },
+        "a2": {
+          "type": "review",
+          "settings": {}
+        },
+        "a3": {
+          "type": "review",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3"
+      ],
+      "settings": {
+        "eyebrow": "Avis clients",
+        "heading": "Ils ont sauté le pas",
+        "show_summary": true,
+        "max": 30,
+        "bg": "#ffffff",
+        "padding_top": 40,
+        "padding_bottom": 60
+      }
+    },
+    "guide": {
+      "type": "mz-guide",
+      "settings": {
+        "icon": "book",
+        "title": "Réussir sa pose en 4 étapes",
+        "text": "Préparation du mur, pose, finitions : notre guide illustré en PDF.",
+        "btn_label": "Télécharger le guide",
+        "btn_link": "",
+        "btn_download": false,
+        "btn_icon": "download",
+        "meta": "PDF, 3 pages",
+        "bg": "#7a2632",
+        "text_color": "#ffffff",
+        "btn_bg": "#ffffff",
+        "btn_text": "#7a2632",
+        "padding_y": 36
+      }
+    },
+    "args": {
+      "type": "mz-args",
+      "blocks": {
+        "a1": {
+          "type": "item",
+          "settings": {
+            "icon": "pencil",
+            "title": "Pose sans artisan",
+            "text": "Un après-midi suffit, sans chantier ni poussière."
+          }
+        },
+        "a2": {
+          "type": "item",
+          "settings": {
+            "icon": "home",
+            "title": "Adapté aux locataires",
+            "text": "Facile à enlever sans laisser de traces."
+          }
+        },
+        "a3": {
+          "type": "item",
+          "settings": {
+            "icon": "bowl",
+            "title": "Cuisine et salle de bain",
+            "text": "Pour habiller une crédence, un dosseret ou un mur."
+          }
+        },
+        "a4": {
+          "type": "item",
+          "settings": {
+            "icon": "shield",
+            "title": "Qualité Premium",
+            "text": "Nos carreaux résistent à l'humidité et à la chaleur."
+          }
+        }
+      },
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4"
+      ],
+      "settings": {
+        "eyebrow": "Pourquoi nous",
+        "heading": "Le rendu du carrelage, sans le chantier.",
+        "image_mode": "auto",
+        "image_alt": "",
+        "media_position": "left",
+        "bg": "#ffffff",
+        "text_color": "#1a1715",
+        "accent": "#7a2632",
+        "padding_y": 64
+      }
+    },
+    "head_cmp": {
+      "type": "mz-head",
+      "settings": {
+        "eyebrow": "Adhésif ou classique ?",
+        "title": "Le même rendu, en un après-midi",
+        "align": "center",
+        "text_color": "#1a1715",
+        "padding_top": 40,
+        "padding_top_mobile": 30,
+        "padding_bottom": 20
+      }
+    },
+    "comparison": {
+      "type": "mz-compare",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "label": "Pose facile soi-même",
+            "us": true,
+            "other": false
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "label": "Sans colle ni mortier à préparer",
+            "us": true,
+            "other": false
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "label": "Sans joints à réaliser",
+            "us": true,
+            "other": false
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "label": "Chantier propre et rapide",
+            "us": true,
+            "other": false
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "label": "Facile à retirer / remplacer",
+            "us": true,
+            "other": false
+          }
+        },
+        "row_6": {
+          "type": "row",
+          "settings": {
+            "label": "Résistant à l’humidité",
+            "us": true,
+            "other": true
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5",
+        "row_6"
+      ],
+      "settings": {
+        "us_name": "Notre carrelage",
+        "us_badge": "Notre alternative",
+        "other_name": "Carrelage traditionnel",
+        "other_sub": "Posé par un artisan",
+        "bg": "#f4efe8",
+        "text_color": "#1d1d1f",
+        "us_bg": "#45111c",
+        "us_text": "#ffffff",
+        "ot_yes_bg": "#a38770",
+        "ot_no_bg": "#1d1d1f",
+        "max_width": 860,
+        "padding_top": 40,
+        "padding_bottom": 60
+      }
+    },
+    "photos": {
+      "type": "mm-photos",
+      "blocks": {
+        "p1": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/avis-carreaux-cuisine-1.jpg",
+            "who": "",
+            "room": "Cuisine"
+          }
+        },
+        "p2": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/avis-carreaux-salle-de-bain-5.jpg",
+            "who": "",
+            "room": "Salle de bain"
+          }
+        },
+        "p3": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/avis-carreaux-cuisine-4.jpg",
+            "who": "",
+            "room": "Crédence de cuisine"
+          }
+        },
+        "p4": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/avis-carreaux-salle-de-bain-3.jpg",
+            "who": "",
+            "room": "Salle de bain"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "settings": {
+        "eyebrow": "Photos clients",
+        "heading": "Vu chez vous",
+        "show_cta": true,
+        "cta_title": "Envoyez-nous la vôtre",
+        "cta_text": "Votre pose est réussie ? Partagez-la avec nous.",
+        "cta_link": "",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "faq": {
+      "type": "custom-section",
+      "blocks": {
+        "faq_eyebrow": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "<p>QUESTIONS FRÉQUENTES</p>",
+            "text_style": "paragraph",
+            "paragraph_font_size": "small",
+            "font_weight": 500,
+            "alignment": "center",
+            "alignment_mobile": "left",
+            "show_read_more": false,
+            "read_more_length": 50,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": false,
+            "truncate_length": 2,
+            "margin_top": 0,
+            "margin_bottom": 0,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "faq_title": {
+          "type": "text",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "text": "<h2>Avant de vous lancer</h2>",
+            "text_style": "h3",
+            "paragraph_font_size": "normal",
+            "font_weight": 600,
+            "alignment": "center",
+            "alignment_mobile": "left",
+            "show_read_more": false,
+            "read_more_length": 50,
+            "read_more_text": "Voir plus",
+            "read_less_text": "Voir moins",
+            "truncate": false,
+            "truncate_length": 2,
+            "margin_top": 0,
+            "margin_bottom": 30,
+            "additional_class": ""
+          },
+          "blocks": {}
+        },
+        "faq_acc": {
+          "type": "accordions",
+          "settings": {
+            "show_on_display": "desktop_and_mobile",
+            "icon": "caret",
+            "dividers": true,
+            "additional_class": ""
+          },
+          "blocks": {
+            "q1": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Quand vais-je recevoir ma commande ?",
+                "heading_tag": "p",
+                "heading_style": "paragraph",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "a1": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Comptez 5 à 12 jours ouvrés après validation de la commande. Un numéro de suivi vous est envoyé dès l’expédition.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "a1"
+              ]
+            },
+            "q2": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Et si je ne suis pas satisfait ?",
+                "heading_tag": "p",
+                "heading_style": "paragraph",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "a2": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Vous disposez de 14 jours après réception pour exercer votre droit de rétractation. Les frais de retour sont à notre charge.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "a2"
+              ]
+            },
+            "q3": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Comment nettoyer vos carrelages ?",
+                "heading_tag": "p",
+                "heading_style": "paragraph",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "a3": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>À compléter : produits recommandés et produits à éviter.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "a3"
+              ]
+            },
+            "q4": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Combien de carreaux me faut-il ?",
+                "heading_tag": "p",
+                "heading_style": "paragraph",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "a4": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Mesurez la largeur et la hauteur de la zone à couvrir, multipliez-les pour obtenir la surface en m², puis divisez par la surface couverte par lot. Ajoutez environ 10 % pour les découpes.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "a4"
+              ]
+            },
+            "q5": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Peut-on les adapter à des dimensions spécifiques ?",
+                "heading_tag": "p",
+                "heading_style": "paragraph",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "a5": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>À compléter : préciser avec quel outil découper les plaques et comment gérer les angles et les prises.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "a5"
+              ]
+            },
+            "q6": {
+              "type": "_accordion",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "heading": "Y a-t-il une préparation particulière à prévoir ?",
+                "heading_tag": "p",
+                "heading_style": "paragraph",
+                "open_by_default": false,
+                "icon": "none",
+                "icon_custom": "",
+                "additional_class": ""
+              },
+              "blocks": {
+                "a6": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<p>Le mur doit être propre, sec, lisse et dégraissé. À compléter : détailler la préparation selon le type de support.</p>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 400,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": false,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "a6"
+              ]
+            }
+          },
+          "block_order": [
+            "q1",
+            "q2",
+            "q3",
+            "q4",
+            "q5",
+            "q6"
+          ]
+        }
+      },
+      "block_order": [
+        "faq_eyebrow",
+        "faq_title",
+        "faq_acc"
+      ],
+      "name": "FAQ produit",
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "color_scheme": "",
+        "wrap_in_card": false,
+        "color_scheme_card": "",
+        "section_width": "narrow",
+        "layout_type": "flex",
+        "layout_flex_direction_desktop": "column",
+        "layout_grid_columns_desktop": 1,
+        "layout_gap_desktop": 15,
+        "layout_wrap_desktop": "nowrap",
+        "layout_flex_justify_desktop": "flex-start",
+        "layout_flex_align_items_desktop": "stretch",
+        "same_as_desktop": true,
+        "layout_flex_direction_mobile": "column",
+        "layout_gap_mobile": 20,
+        "layout_wrap_mobile": "nowrap",
+        "layout_flex_justify_mobile": "flex-start",
+        "layout_flex_align_items_mobile": "flex-start",
+        "layout_grid_columns_mobile": 1,
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "anchor_id": "",
+        "additional_class": ""
+      }
+    },
+    "head_rel": {
+      "type": "mz-head",
+      "settings": {
+        "eyebrow": "Vous aimerez aussi",
+        "title": "Pas tout à fait votre couleur ?",
+        "align": "center",
+        "text_color": "#1a1715",
+        "padding_top": 40,
+        "padding_top_mobile": 30,
+        "padding_bottom": 0
+      }
+    },
+    "related": {
+      "type": "collection-featured",
+      "blocks": {
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "wrap_in_card": false,
+            "color_scheme": "",
+            "layout_gap": 12
+          },
+          "blocks": {
+            "rl_media": {
+              "type": "_product-card-media-gallery",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "show_slider": false,
+                "media_rounded": true,
+                "show_badges": true,
+                "media_ratio": "1 / 1",
+                "additional_class": ""
+              },
+              "blocks": {}
+            },
+            "rl_group": {
+              "type": "_product-card-group",
+              "settings": {
+                "show_on_display": "desktop_and_mobile",
+                "wrap_in_card": false,
+                "color_scheme": "",
+                "layout_direction_desktop": "column",
+                "layout_gap_desktop": 4,
+                "layout_wrap_desktop": "nowrap",
+                "layout_justify_desktop": "flex-start",
+                "layout_align_items_desktop": "flex-start",
+                "same_as_desktop": true,
+                "layout_direction_mobile": "column",
+                "layout_gap_mobile": 10,
+                "layout_wrap_mobile": "nowrap",
+                "layout_justify_mobile": "flex-start",
+                "layout_align_items_mobile": "flex-start",
+                "margin_top": 5,
+                "margin_bottom": 0,
+                "additional_class": ""
+              },
+              "blocks": {
+                "rl_t": {
+                  "type": "text",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "text": "<h3>{{ closest.product.title }}</h3>",
+                    "text_style": "paragraph",
+                    "paragraph_font_size": "normal",
+                    "font_weight": 500,
+                    "alignment": "left",
+                    "alignment_mobile": "left",
+                    "show_read_more": false,
+                    "read_more_length": 50,
+                    "read_more_text": "Voir plus",
+                    "read_less_text": "Voir moins",
+                    "truncate": true,
+                    "truncate_length": 2,
+                    "margin_top": 0,
+                    "margin_bottom": 0,
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                },
+                "rl_p": {
+                  "type": "product-price",
+                  "settings": {
+                    "show_on_display": "desktop_and_mobile",
+                    "product": "{{ closest.product }}",
+                    "sales_badge": "percentage",
+                    "show_sales_badge_text": false,
+                    "show_unit_price": false,
+                    "text_style": "paragraph",
+                    "additional_class": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "rl_t",
+                "rl_p"
+              ]
+            }
+          },
+          "block_order": [
+            "rl_media",
+            "rl_group"
+          ]
+        }
+      },
+      "settings": {
+        "show_on_display": "desktop_and_mobile",
+        "color_scheme": "",
+        "collection": "mosaica",
+        "max_products": 10,
+        "layout_type": "slider",
+        "grid_columns": 5,
+        "grid_columns_mobile": "2",
+        "slider_items": 5,
+        "slider_items_mobile": "1.8",
+        "show_arrows": true,
+        "show_pagination": false,
+        "rewind": true,
+        "padding_top": 24,
+        "padding_bottom": 60,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "anchor_id": "",
+        "additional_class": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "marquee",
+    "videos",
+    "avis",
+    "guide",
+    "args",
+    "head_cmp",
+    "comparison",
+    "photos",
+    "faq",
+    "head_rel",
+    "related"
+  ]
+}
