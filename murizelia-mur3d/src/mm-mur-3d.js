@@ -164,219 +164,6 @@ function cadre(quad, W, H) {
   return { m, f, rapport, R1: X, R2: up, N: Nw };
 }
 
-/* ------------------------------------------------------------------ */
-/* Objets devant le mur, dans la zone encadrée                          */
-/* ------------------------------------------------------------------ */
-
-function morpho(m, w, h, dilate) {
-  const o = new Uint8Array(m.length), t = new Uint8Array(m.length);
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const i = y * w + x;
-      const a = m[i], b = x > 0 ? m[i - 1] : a, c = x < w - 1 ? m[i + 1] : a;
-      t[i] = dilate ? (a | b | c) : (a & b & c);
-    }
-  }
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const i = y * w + x;
-      const a = t[i], b = y > 0 ? t[i - w] : a, c = y < h - 1 ? t[i + w] : a;
-      o[i] = dilate ? (a | b | c) : (a & b & c);
-    }
-  }
-  return o;
-}
-
-function boucherTrous(m, w, h, maxi) {
-  const vu = new Uint8Array(m.length), file = new Int32Array(m.length);
-  for (let s = 0; s < m.length; s++) {
-    if (m[s] || vu[s]) continue;
-    let a = 0, z = 0, bord = false;
-    vu[s] = 1; file[z++] = s;
-    while (a < z) {
-      const p = file[a++], x = p % w, y = (p - x) / w;
-      if (x === 0 || y === 0 || x === w - 1 || y === h - 1) bord = true;
-      const v = [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1];
-      for (const q of v) if (q >= 0 && !m[q] && !vu[q]) { vu[q] = 1; file[z++] = q; }
-    }
-    if (!bord && z <= maxi) for (let i = 0; i < z; i++) m[file[i]] = 1;
-  }
-}
-
-/*
-  Une grande zone marquée « objet » qui garde la teinte du mur et n'est pas très sombre est une
-  différence de lumière (soleil, haut du mur plus éclairé, ombre douce) : elle redevient du mur.
-  Les vrais grands objets restent : sombres (télé, meuble foncé) ou d'une autre couleur.
-*/
-function zonesDeLumiere(O, L, cr, cg, r0, g0, w, h, c, aire, tC, T, tMed) {
-  const n = w * h, vu = new Uint8Array(n), file = new Int32Array(n);
-  for (let s0 = 0; s0 < n; s0++) {
-    if (!O[s0] || vu[s0]) continue;
-    let a = 0, z = 0, sd = 0, sc = 0, tol = 0, st = 0;
-    vu[s0] = 1; file[z++] = s0;
-    while (a < z) {
-      const p = file[a++], x = p % w, y = (p - x) / w;
-      sd += Math.log(L[p] + 3) - surface(c, x / w - 0.5, y / h - 0.5);
-      sc += Math.max(Math.abs(cr[p] - r0), Math.abs(cg[p] - g0));
-      tol += tC * (1 + 18 / (L[p] + 6));
-      st += T[p];
-      const v = [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1];
-      for (const q of v) if (q >= 0 && O[q] && !vu[q]) { vu[q] = 1; file[z++] = q; }
-    }
-    // même teinte, pas plus sombre, même texture que le mur -> lumière ; plus texturé (écran, motif) -> objet
-    if (z > aire * 0.08 && sc / z < 0.6 * tol / z && sd / z > -0.2 && st / z < 1.25 * tMed + 0.005) for (let i = 0; i < z; i++) O[file[i]] = 0;
-  }
-}
-
-// retire les morceaux isolés (valeur 1) plus petits que maxi pixels
-function retirerPetits(m, w, h, maxi) {
-  const vu = new Uint8Array(m.length), file = new Int32Array(m.length);
-  for (let s0 = 0; s0 < m.length; s0++) {
-    if (!m[s0] || vu[s0]) continue;
-    let a = 0, z = 0;
-    vu[s0] = 1; file[z++] = s0;
-    while (a < z) {
-      const p = file[a++], x = p % w, y = (p - x) / w;
-      const v = [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1];
-      for (const q of v) if (q >= 0 && m[q] && !vu[q]) { vu[q] = 1; file[z++] = q; }
-    }
-    if (z < maxi) for (let i = 0; i < z; i++) m[file[i]] = 0;
-  }
-}
-
-/*
-  Objet de la même teinte que le mur (écran gris, cadre clair) : il est cerné par un contour net.
-  On découpe le mur restant le long des contours nets ; une région secondaire dont la luminosité
-  ou la texture diffère de la grande région du mur est un objet.
-*/
-function objetsCernes(O, dans, L, w, h, c, aire) {
-  const n = w * h;
-  const Ls = flou(L, w, h, 1);
-  const C = new Uint8Array(n);
-  for (let y = 1; y < h - 1; y++) {
-    for (let x = 1; x < w - 1; x++) {
-      const i = y * w + x;
-      if (!dans[i] || O[i]) continue;
-      const gx = Ls[i - w + 1] + 2 * Ls[i + 1] + Ls[i + w + 1] - Ls[i - w - 1] - 2 * Ls[i - 1] - Ls[i + w - 1];
-      const gy = Ls[i + w - 1] + 2 * Ls[i + w] + Ls[i + w + 1] - Ls[i - w - 1] - 2 * Ls[i - w] - Ls[i - w + 1];
-      C[i] = Math.hypot(gx, gy) / (Ls[i] + 14) < 0.3 ? 1 : 0;
-    }
-  }
-  const lab = new Int32Array(n).fill(-1), file = new Int32Array(n), regions = [];
-  for (let s0 = 0; s0 < n; s0++) {
-    if (!C[s0] || lab[s0] >= 0) continue;
-    const id = regions.length;
-    let a = 0, z = 0, sd = 0, sl = 0, sl2 = 0;
-    lab[s0] = id; file[z++] = s0;
-    while (a < z) {
-      const p = file[a++], x = p % w, y = (p - x) / w;
-      const d = Math.log(L[p] + 3) - surface(c, x / w - 0.5, y / h - 0.5);
-      sd += d; sl += L[p]; sl2 += L[p] * L[p];
-      const v = [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1];
-      for (const q of v) if (q >= 0 && C[q] && lab[q] < 0) { lab[q] = id; file[z++] = q; }
-    }
-    const ml = sl / z;
-    regions.push({ z, d: sd / z, t: Math.sqrt(Math.max(0, sl2 / z - ml * ml)) / (ml + 4) });
-  }
-  if (regions.length < 2) return;
-  const total = regions.reduce((t, r) => t + r.z, 0);
-  const mur = regions.reduce((b, r) => (r.z > b.z ? r : b), regions[0]);
-  // plus sombre ou plus texturé : objet (écran, capot) ; plus clair seulement : objet s'il est petit (cadre),
-  // sinon c'est une zone plus éclairée du mur
-  const objet = regions.map((r) => r !== mur && r.z > aire * 0.004 && r.z < total * 0.3 &&
-    (r.d < mur.d - 0.12 || r.t > mur.t * 1.8 + 0.02 || (r.d > mur.d + 0.12 && r.z < total * 0.12)));
-  if (!objet.some(Boolean)) return;
-  let M = new Uint8Array(n);
-  for (let i = 0; i < n; i++) if (lab[i] >= 0 && objet[lab[i]]) M[i] = 1;
-  // le contour net de l'objet en fait partie (1 pixel)
-  M = morpho(M, w, h, true);
-  for (let i = 0; i < n; i++) if (M[i] && dans[i]) O[i] = 1;
-}
-
-/*
-  Dans la zone encadrée par le client : on modélise la couleur et la lumière du mur (dégradé lissé,
-  en écartant ce qui s'en éloigne), puis on laisse devant le carrelage ce qui s'en distingue
-  nettement (écran, meuble, lampe, flacon). Les traits fins (joints d'un ancien carrelage, fils,
-  petites taches) sont effacés : ils ne coupent pas le carrelage.
-*/
-function masqueZone(px, w, h, q, sens) {
-  const n = w * h;
-  const inv = inverse3(homographie(q));
-  if (!inv) return null;
-  const dans = new Uint8Array(n);
-  let aire = 0;
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const X = x + 0.5, Y = y + 0.5, z = inv[6] * X + inv[7] * Y + inv[8];
-      if (z <= 0) continue;
-      const a = (inv[0] * X + inv[1] * Y + inv[2]) / z, b = (inv[3] * X + inv[4] * Y + inv[5]) / z;
-      if (a >= 0 && a <= 1 && b >= 0 && b <= 1) { dans[y * w + x] = 1; aire++; }
-    }
-  }
-  if (aire < 64) return null;
-  const L = new Float32Array(n), cr = new Float32Array(n), cg = new Float32Array(n);
-  for (let i = 0, j = 0; i < n; i++, j += 4) {
-    const r = px[j], g = px[j + 1], b = px[j + 2], t = r + g + b + 6;
-    L[i] = 0.299 * r + 0.587 * g + 0.114 * b;
-    cr[i] = r / t; cg[i] = g / t;
-  }
-  const pts = [];
-  for (let i = 0; i < n; i += 2) {
-    if (!dans[i]) continue;
-    const x = i % w, y = (i - x) / w;
-    pts.push([x / w - 0.5, y / h - 0.5, Math.log(L[i] + 3), i]);
-  }
-  let c = ajusteSurface(pts, null), garder = null;
-  for (let it = 0; it < 3; it++) {
-    const res = pts.map((p) => Math.abs(p[2] - surface(c, p[0], p[1])));
-    const seuil = Float32Array.from(res).sort()[Math.floor(res.length * 0.6)];
-    garder = res.map((r) => r <= seuil);
-    c = ajusteSurface(pts, garder);
-  }
-  const rs = [], gs = [];
-  pts.forEach((p, k) => { if (garder[k]) { rs.push(cr[p[3]]); gs.push(cg[p[3]]); } });
-  const med = (a) => Float32Array.from(a).sort()[a.length >> 1];
-  const r0 = med(rs), g0 = med(gs);
-  const f = 1.6 - 1.2 * sens;
-  const tSombre = 0.38 * f, tClair = 0.45 * f, tC = 0.03 * f;   // une ombre légère sur le mur reste du mur
-  let O = new Uint8Array(n);
-  for (let i = 0; i < n; i++) {
-    if (!dans[i]) continue;
-    const x = i % w, y = (i - x) / w;
-    const dl = Math.log(L[i] + 3) - surface(c, x / w - 0.5, y / h - 0.5);
-    const tc = tC * (1 + 18 / (L[i] + 6));
-    if (dl < -tSombre || dl > tClair || Math.abs(cr[i] - r0) > tc || Math.abs(cg[i] - g0) > tc) O[i] = 1;
-  }
-  const r = Math.max(2, Math.round(Math.max(w, h) / 220));
-  for (let k = 0; k < r; k++) O = morpho(O, w, h, false);
-  for (let k = 0; k < r; k++) O = morpho(O, w, h, true);
-  // texture : une surface bien plus chargée que le mur (écran allumé, motif, objet) est un objet
-  const mL = flou(L, w, h, 2), mL2 = flou(L.map((v) => v * v), w, h, 2);
-  const T = new Float32Array(n);
-  const ech = [];
-  for (let i = 0; i < n; i++) {
-    if (!dans[i]) continue;
-    T[i] = Math.sqrt(Math.max(0, mL2[i] - mL[i] * mL[i])) / (mL[i] + 4);
-    if (!(i % 3)) ech.push(T[i]);
-  }
-  const tMed = Float32Array.from(ech).sort()[ech.length >> 1] || 0;
-  let X = new Uint8Array(n);
-  const seuilT = Math.max(0.05, 2.6 * tMed) * f;
-  for (let i = 0; i < n; i++) if (dans[i] && T[i] > seuilT) X[i] = 1;
-  const rt = r + 2;
-  for (let k = 0; k < rt; k++) X = morpho(X, w, h, false);
-  for (let k = 0; k < rt - 2; k++) X = morpho(X, w, h, true);
-  for (let i = 0; i < n; i++) if (X[i]) O[i] = 1;
-  retirerPetits(O, w, h, Math.round(aire * 0.0015));
-  boucherTrous(O, w, h, Math.round(aire * 0.01));
-  zonesDeLumiere(O, L, cr, cg, r0, g0, w, h, c, aire, tC, T, tMed);
-  objetsCernes(O, dans, L, w, h, c, aire);
-  const m = new Uint8Array(n);
-  let surf = 0;
-  for (let i = 0; i < n; i++) if (dans[i] && !O[i]) { m[i] = 1; surf++; }
-  return { m, w, h, part: surf / n };
-}
-
 function quadValide(q, w, h) {
   let signe = 0, aire = 0;
   for (let i = 0; i < 4; i++) {
@@ -810,6 +597,7 @@ const ICO = {
   cam: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M4 8h3l1.6-2.2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13.2" r="3.6"/></svg>',
   img: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 16l5-5 4 4 3-3 5 5"/><circle cx="15.5" cy="9" r="1.6"/></svg>',
   vid: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3" y="6.5" width="12.5" height="11" rx="2"/><path d="M15.5 10.5l5.5-3v9l-5.5-3z"/></svg>',
+  ava: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M12 3v18"/><path d="M12 5h6.5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H12z" fill="currentColor" stroke="none" opacity=".35"/></svg>',
   dl: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>',
 };
 
@@ -843,6 +631,8 @@ button:focus-visible, .btn:focus-within{ outline:2px solid #c9a46a; outline-offs
 .chip{ flex:0 0 auto; display:inline-flex; align-items:center; gap:7px; height:36px; padding:0 14px; border-radius:999px; border:1px solid rgba(26,23,21,.14); background:#fff; font-weight:600; font-size:13px; color:#1a1715; cursor:pointer; white-space:nowrap; }
 .chip.on{ background:#1a1715; color:#fff; border-color:#1a1715; }
 .chip.pri{ background:#7a2632; border-color:#7a2632; color:#fff; }
+.chip.ava{ border:1.5px solid #7a2632; color:#7a2632; background:#f6e9eb; }
+.chip.ava.on{ background:#7a2632; color:#fff; }
 .chip:disabled{ opacity:.45; cursor:default; }
 .sub{ margin:0 14px 10px; padding:12px 14px; border-radius:14px; background:#fff; border:1px solid rgba(26,23,21,.1); }
 .sub .row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
@@ -887,6 +677,8 @@ button:focus-visible, .btn:focus-within{ outline:2px solid #c9a46a; outline-offs
 .btn.pri{ background:#7a2632; border-color:#7a2632; color:#fff; box-shadow:0 8px 18px rgba(122,38,50,.3); }
 .btn input{ position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; }
 .lnk{ margin-top:12px; border:0; background:none; color:#7a2632; font-weight:700; font-size:13.5px; text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+.conseil{ margin:12px 0 0; padding:10px 12px; border-radius:12px; background:#f6e9eb; border:1px solid rgba(122,38,50,.18); color:#45111c; font-size:12.5px; line-height:1.4; text-align:left; }
+.conseil b{ display:block; margin-bottom:2px; font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#7a2632; }
 .tips{ display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin:14px 0 0; padding:12px 0 0; border-top:1px solid rgba(26,23,21,.08); list-style:none; font-size:12px; color:#6b625b; }
 .tips li::before{ content:'✓ '; color:#7a2632; font-weight:700; }
 .pv{ position:absolute; inset:0; touch-action:none; user-select:none; -webkit-user-select:none; }
@@ -1124,91 +916,29 @@ class Visualiseur {
     return this.pScene;
   }
 
-  /* --- pied : nom, prix, estimation et action --- */
-  lots(surf) {
-    const p = this.parH.get(this.h);
-    const vs = (p.v || []).map((v) => {
-      const m = /([\d]+(?:[.,]\d+)?)\s*m²/.exec(v.t);
-      return m ? { ...v, a: parseFloat(m[1].replace(',', '.')) } : null;
-    }).filter((v) => v && v.ok !== false && v.a > 0);
-    if (!vs.length) return null;
-    const besoin = surf * 1.1;
-    let best = null;
-    const essai = (i, reste, qte, cout) => {
-      if (best && cout >= best.cout) return;
-      if (i === vs.length) { if (reste <= 1e-6) best = { cout, qte: qte.slice() }; return; }
-      const max = Math.ceil(Math.max(reste, 0) / vs[i].a);
-      for (let k = 0; k <= max; k++) { qte[i] = k; essai(i + 1, reste - k * vs[i].a, qte, cout + k * vs[i].p); }
-      qte[i] = 0;
-    };
-    essai(0, besoin, vs.map(() => 0), 0);
-    if (!best) return null;
-    const lignes = vs.map((v, i) => ({ v, q: best.qte[i] })).filter((l) => l.q > 0);
-    return { besoin, lignes, cout: best.cout, couvert: lignes.reduce((s, l) => s + l.q * l.v.a, 0) };
-  }
-
+  /* --- pied : nom, prix et action --- */
   majPied() {
     const p = this.parH.get(this.h);
     if (!p) return;
     const n = nomCourt(p.t);
     this.$('.fi b').textContent = `${n.marque} · ${n.couleur}`;
     const cta = this.$('.cta');
-    const surf = this.mmode === 'photo' && this.modes.photo && this.modes.photo.surface();
-    const est = surf ? this.lots(surf) : null;
-    this.estimation = est;
-    if (est) {
-      const detail = est.lignes.map((l) => `${l.q} × ${l.v.t.replace(/\s*\(.*\)\s*/, '').toLowerCase()}`).join(' + ');
-      this.$('.fi span').textContent = `Mur ${fr(surf)} m² (+10 % coupes) · ${detail} · ${this.fmt.format(est.cout / 100)}`;
-      if (this.o.boutique) {
-        // page d'essai hors boutique : lien panier Shopify (variante:quantité)
-        cta.textContent = 'Commander sur Murizelia';
-        cta.href = this.o.boutique.replace(/\/$/, '') + '/cart/' + est.lignes.map((l) => l.v.id + ':' + l.q).join(',');
-        cta.target = '_blank';
-        cta.dataset.act = 'lien';
-      } else {
-        cta.textContent = 'Ajouter au panier';
-        cta.href = p.u;
-        cta.dataset.act = 'panier';
-      }
-    } else if (this.o.boutique) {
-      this.$('.fi span').textContent = `à partir de ${this.fmt.format(p.prix / 100)} · plaque ${fr(TUILES[p.h].p[0], 1).replace(',0', '')} × ${fr(TUILES[p.h].p[1], 1).replace(',0', '')} cm`;
+    this.$('.fi span').textContent = `à partir de ${this.fmt.format(p.prix / 100)} · plaque ${fr(TUILES[p.h].p[0], 1).replace(',0', '')} × ${fr(TUILES[p.h].p[1], 1).replace(',0', '')} cm`;
+    if (this.o.boutique) {
       cta.textContent = 'Voir sur la boutique';
       cta.href = p.u;
       cta.target = '_blank';
       cta.dataset.act = 'lien';
-    } else {
-      this.$('.fi span').textContent = `à partir de ${this.fmt.format(p.prix / 100)} · plaque ${fr(TUILES[p.h].p[0], 1).replace(',0', '')} × ${fr(TUILES[p.h].p[1], 1).replace(',0', '')} cm`;
-      if (p.h === this.courant) { cta.textContent = 'Choisir ma quantité'; cta.href = '#'; cta.dataset.act = 'fermer'; }
-      else { cta.textContent = 'Voir ce carrelage'; cta.href = p.u + (p.u.includes('?') ? '&' : '?') + 'mur3d=' + (this.mmode || 'photo'); cta.dataset.act = 'lien'; }
-    }
+    } else if (p.h === this.courant) { cta.textContent = 'Choisir ma quantité'; cta.href = '#'; cta.dataset.act = 'fermer'; }
+    else { cta.textContent = 'Voir ce carrelage'; cta.href = p.u + (p.u.includes('?') ? '&' : '?') + 'mur3d=' + (this.mmode || 'photo'); cta.dataset.act = 'lien'; }
   }
 
-  async action(e) {
-    const cta = e.currentTarget, act = cta.dataset.act;
-    if (act === 'lien') return;
+  action(e) {
+    if (e.currentTarget.dataset.act !== 'fermer') return;
     e.preventDefault();
-    if (act === 'fermer') {
-      this.fermer();
-      const f = document.querySelector('[data-lot-picker], .mm-lots, product-form, form[action*="/cart/add"]');
-      if (f) setTimeout(() => f.scrollIntoView({ behavior: 'smooth', block: 'center' }), 280);
-      return;
-    }
-    if (act === 'panier' && this.estimation) {
-      cta.setAttribute('aria-busy', 'true');
-      const racine = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
-      try {
-        const r = await fetch(racine + 'cart/add.js', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ items: this.estimation.lignes.map((l) => ({ id: l.v.id, quantity: l.q })) }),
-        });
-        if (!r.ok) throw new Error(await r.text());
-        location.href = racine + 'cart';
-      } catch (err) {
-        cta.removeAttribute('aria-busy');
-        this.toast('Ajout au panier impossible pour le moment. Réessayez depuis la fiche produit.');
-      }
-    }
+    this.fermer();
+    const f = document.querySelector('[data-lot-picker], .mm-lots, product-form, form[action*="/cart/add"]');
+    if (f) setTimeout(() => f.scrollIntoView({ behavior: 'smooth', block: 'center' }), 280);
   }
 }
 
@@ -1222,11 +952,9 @@ class ModePhoto {
     this.etat = 'vide';
     this.dim = [300, 250];
     this.expo = 1;
-    this.sens = 0.5;
-    this.auto = true;       // objets devant le mur (écran, meubles…) laissés visibles ; désactivable
     this.retouche = null;   // 'montrer' | 'carreler' quand le client retouche au doigt
     this.pinceau = 0.035;   // rayon du pinceau, en part du petit côté de la photo
-    this.coins = true;
+    this.coins = true;      // points des coins affichés (à faire glisser) ; « Enlever les points » pour le rendu final
     this.split = 0;
     this.reveal = 9;
     const live = v.o.video !== false && !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
@@ -1241,6 +969,7 @@ class ModePhoto {
     <label class="btn${tactile ? '' : ' pri'}">${ICO.img}<span>${tactile ? 'Choisir une photo' : 'Importer une photo de mon mur'}</span><input type="file" accept="image/*" data-f></label>
     ${live ? `<button type="button" class="btn" data-live>${ICO.vid}<span>${tactile ? 'Filmer mon mur en direct' : 'Utiliser ma webcam'}</span></button>` : ''}
     <button type="button" class="lnk" data-demo>Essayer avec une photo exemple</button>
+    <p class="conseil"><b>Conseillé :</b> retirez les objets et accessoires déplaçables devant le mur pour avoir le meilleur rendu.</p>
     <ul class="tips"><li>Mur de face, en entier</li><li>Lumière du jour</li><li>Sans flash</li></ul>
   </div>
 </div>
@@ -1292,26 +1021,19 @@ class ModePhoto {
     this.demander();
   }
 
-  surface() {
-    if (!this.quad || this.etat === 'vide') return 0;
-    return this.dim[0] * this.dim[1] / 1e4;
-  }
-
   /* --- barre d'outils --- */
   outils() {
     const t = this.v.$('.tools');
     if (this.etat === 'vide') { t.innerHTML = ''; this.v.$('.subs').innerHTML = ''; return; }
     const pret = !!this.quad;
     t.innerHTML = `
-      <button type="button" class="chip${this.sub === 'dim' ? ' on' : ''}" data-sub="dim"${pret ? '' : ' disabled'}>Dimensions</button>
-      <button type="button" class="chip${this.coins ? ' on' : ''}" data-act="coins"${pret ? '' : ' disabled'}>Ajuster les coins</button>
-      <button type="button" class="chip" data-act="zone"${pret ? '' : ' disabled'}>Nouvelle zone</button>
-      <button type="button" class="chip${this.split > 0 ? ' on' : ''}" data-act="split"${pret ? '' : ' disabled'}>Avant / après</button>
+      <button type="button" class="chip ava${this.split > 0 ? ' on' : ''}" data-act="split"${pret ? '' : ' disabled'}>${ICO.ava} Avant / après</button>
+      <button type="button" class="chip pri" data-act="save"${pret && this.etat === 'photo' ? '' : ' disabled'}>${ICO.dl} Enregistrer l’image</button>
+      <button type="button" class="chip" data-act="coins"${pret ? '' : ' disabled'}>${this.coins ? 'Enlever les points' : 'Remettre les points'}</button>
       <button type="button" class="chip${this.sub === 'lum' ? ' on' : ''}" data-sub="lum"${pret ? '' : ' disabled'}>Lumière</button>
+      <button type="button" class="chip" data-act="zone"${pret ? '' : ' disabled'}>Nouvelle zone</button>
       <button type="button" class="chip${this.sub === 'ret' ? ' on' : ''}" data-sub="ret"${pret ? '' : ' disabled'}>Retoucher</button>
-      <button type="button" class="chip${this.sub === 'det' ? ' on' : ''}" data-sub="det">Objets devant le mur</button>
-      <button type="button" class="chip" data-act="nouv">Nouvelle photo</button>
-      <button type="button" class="chip pri" data-act="save"${pret && this.etat === 'photo' ? '' : ' disabled'}>${ICO.dl} Enregistrer</button>`;
+      <button type="button" class="chip" data-act="nouv">Nouvelle photo</button>`;
     t.querySelectorAll('[data-sub]').forEach((b) => b.addEventListener('click', () => {
       this.sub = this.sub === b.dataset.sub ? null : b.dataset.sub;
       this.retouche = this.sub === 'ret' ? this.retouche || 'montrer' : null;
@@ -1328,37 +1050,7 @@ class ModePhoto {
     const s = this.v.$('.subs');
     if (this.v.mmode !== 'photo') return;
     if (!this.sub || this.etat === 'vide') { s.innerHTML = ''; return; }
-    const m = this.tx ? this.tx.m : TUILES[this.v.h].m;
-    if (this.sub === 'dim') {
-      const nx = this.dim[0] / m[0], ny = this.dim[1] / m[1];
-      const html = `<div class="sub"><div class="row">
-        <label>Largeur <input type="number" inputmode="numeric" min="20" max="3000" value="${Math.round(this.dim[0])}" data-w> cm</label>
-        <label>Hauteur <input type="number" inputmode="numeric" min="20" max="3000" value="${Math.round(this.dim[1])}" data-hh> cm</label></div>
-        <p>Mesurez la zone encadrée : ≈ ${fr(nx)} × ${fr(ny)} plaques, ${fr(this.surface())} m². La hauteur est estimée d’après la perspective.</p></div>`;
-      if (!s.querySelector('[data-w]')) {
-        s.innerHTML = html;
-        const w = s.querySelector('[data-w]'), hh = s.querySelector('[data-hh]');
-        const maj = (k) => {
-          const vw = parseFloat(w.value), vh = parseFloat(hh.value);
-          if (k === 'w' && vw >= 20) {
-            const r = this.dim[0] / this.dim[1];
-            this.dim = [vw, this.hauteurManuelle ? this.dim[1] : vw / r];
-            if (!this.hauteurManuelle) hh.value = Math.round(this.dim[1]);
-          }
-          if (k === 'h' && vh >= 20) { this.dim = [this.dim[0], vh]; this.hauteurManuelle = true; }
-          this.geometrie();
-          s.querySelector('p').textContent = `Mesurez la zone encadrée : ≈ ${fr(this.dim[0] / m[0])} × ${fr(this.dim[1] / m[1])} plaques, ${fr(this.surface())} m². La hauteur est estimée d’après la perspective.`;
-        };
-        w.addEventListener('input', () => maj('w'));
-        hh.addEventListener('input', () => maj('h'));
-      } else {
-        const actif = this.v.root.activeElement;
-        const w = s.querySelector('[data-w]'), hh = s.querySelector('[data-hh]');
-        if (actif !== w) w.value = Math.round(this.dim[0]);
-        if (actif !== hh) hh.value = Math.round(this.dim[1]);
-        s.querySelector('p').textContent = `Mesurez la zone encadrée : ≈ ${fr(nx)} × ${fr(ny)} plaques, ${fr(this.surface())} m². La hauteur est estimée d’après la perspective.`;
-      }
-    } else if (this.sub === 'lum') {
+    if (this.sub === 'lum') {
       if (!s.querySelector('[data-expo]')) {
         s.innerHTML = `<div class="sub"><div class="row"><label for="mmx">Luminosité</label><input id="mmx" type="range" min="60" max="140" value="${Math.round(this.expo * 100)}" data-expo></div>
           <p>La lumière de votre photo est reproduite automatiquement ; affinez si besoin.</p></div>`;
@@ -1381,25 +1073,6 @@ class ModePhoto {
           this.majSub();
         }));
         s.querySelector('[data-p]').addEventListener('input', (e) => { this.pinceau = e.target.value / 100; });
-      }
-    } else if (this.sub === 'det') {
-      if (!s.querySelector('[data-auto]')) {
-        s.innerHTML = `<div class="sub"><div class="row">
-          <button type="button" class="chip${this.auto ? ' on' : ''}" data-auto>Contourner les objets : ${this.auto ? 'oui' : 'non'}</button>
-          <input type="range" min="0" max="100" value="${Math.round(this.sens * 100)}" data-sens aria-label="Sensibilité" ${this.auto ? '' : 'disabled'}></div>
-          <p>Oui : télé, meubles, lampes et objets devant le mur restent visibles, le carrelage passe derrière. Non : il couvre toute la zone encadrée. Le curseur règle la sensibilité.</p></div>`;
-        s.querySelector('[data-auto]').addEventListener('click', () => {
-          this.auto = !this.auto;
-          s.innerHTML = '';
-          this.majSub();
-          this.majTout();
-        });
-        let tm;
-        s.querySelector('[data-sens]').addEventListener('input', (e) => {
-          this.sens = e.target.value / 100;
-          clearTimeout(tm);
-          tm = setTimeout(() => this.majTout(), 120);
-        });
       }
     }
   }
@@ -1469,7 +1142,7 @@ class ModePhoto {
     this.r.setPhoto(c, w, h);
     this.analyse(c, 480);
     this.etat = 'photo';
-    if (!garder) { this.quad = null; this.seg = null; this.ov = null; this.mf = null; this.hauteurManuelle = false; this.manuel = false; }
+    if (!garder) { this.quad = null; this.ov = null; this.mf = null; this.manuel = false; }
     this.pe.hidden = true; this.pv.hidden = false;
     this.el.querySelector('.live').hidden = true;
     this.placement = [];
@@ -1500,22 +1173,13 @@ class ModePhoto {
     this.pxLow = gl.getImageData(0, 0, lw, lh).data;
   }
 
-  /* --- objets devant le mur et géométrie --- */
-  calculerMasque() {
-    this.seg = null;
-    if (this.auto && this.quad && this.pxSeg) {
-      const k = this.segW / this.sw;
-      this.seg = masqueZone(this.pxSeg, this.segW, this.segH, this.quad.map(([x, y]) => [x * k, y * k]), this.sens);
-    }
-    this.appliquerRetouches();
-  }
-
-  // masque final = objets détectés + retouches du client (montrer la photo / remettre le carrelage)
+  /* --- retouches et géométrie --- */
+  // le carrelage couvre toute la zone encadrée, sauf là où le client a montré la photo au doigt
   appliquerRetouches() {
-    if (!this.seg && !this.ov) { this.mf = null; this.r.setMasque(null); return; }
+    if (!this.ov) { this.mf = null; this.r.setMasque(null); return; }
     const W = this.segW, H = this.segH;
-    const m = this.seg ? this.seg.m.slice() : new Uint8Array(W * H).fill(1);
-    if (this.ov) for (let i = 0; i < m.length; i++) { if (this.ov[i] > 0) m[i] = 1; else if (this.ov[i] < 0) m[i] = 0; }
+    const m = new Uint8Array(W * H).fill(1);
+    for (let i = 0; i < m.length; i++) { if (this.ov[i] > 0) m[i] = 1; else if (this.ov[i] < 0) m[i] = 0; }
     this.mf = { m, w: W, h: H };
     this.r.setMasque(this.mf);
   }
@@ -1557,7 +1221,7 @@ class ModePhoto {
 
   majTout() {
     if (!this.quad) return;
-    this.calculerMasque();
+    this.appliquerRetouches();
     this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), !this.mf));
     this.geometrie();
   }
@@ -1712,27 +1376,24 @@ class ModePhoto {
     }
     this.quad = q;
     this.manuel = true;
-    if (!this.hauteurManuelle) {
-      const c = cadre(q, this.sw, this.sh);
-      this.dim = [this.dim[0], Math.round(this.dim[0] / clamp(c.rapport, 0.15, 8))];
-    }
+    this.coins = true;
+    const c = cadre(q, this.sw, this.sh);
+    this.dim = [this.dim[0], Math.round(this.dim[0] / clamp(c.rapport, 0.15, 8))];
     this.majTout();
     this.revealGraine = [cx / this.sw, cy / this.sh];
     this.animReveal();
     this.hint.style.opacity = 0;
-    if (!demo) this.v.toast('Carrelage posé derrière vos meubles et objets. Faites glisser les coins pour ajuster, puis indiquez la largeur dans « Dimensions ».', 5500);
+    if (!demo) this.v.toast('Carrelage posé sur toute la zone. Faites glisser les points pour ajuster, puis « Enlever les points » pour voir le rendu final.', 5500);
     this.outils();
     this.v.majPied();
   }
 
   nouvelleZone() {
     this.quad = null;
-    this.seg = null;
     this.ov = null;
     this.mf = null;
     this.placement = [];
     this.manuel = false;
-    this.hauteurManuelle = false;
     this.aidePose();
     this.placer();
     this.demander();
@@ -1751,12 +1412,9 @@ class ModePhoto {
   }
 
   majCoin() {
-    if (!this.hauteurManuelle) {
-      const c = cadre(this.quad, this.sw, this.sh);
-      this.dim = [this.dim[0], Math.round(this.dim[0] / clamp(c.rapport, 0.15, 8))];
-    }
+    const c = cadre(this.quad, this.sw, this.sh);
+    this.dim = [this.dim[0], Math.round(this.dim[0] / clamp(c.rapport, 0.15, 8))];
     this.geometrie();
-    this.majSub();
   }
 
   montrerLoupe(e, x, y, pinceau) {
@@ -1807,7 +1465,7 @@ class ModePhoto {
     this.r.setPhoto(vd, w0, h0);
     this.analyse(vd, 256);
     this.etat = 'live';
-    this.quad = null; this.seg = null; this.manuel = false; this.hauteurManuelle = false;
+    this.quad = null; this.manuel = false;
     this.pe.hidden = true; this.pv.hidden = false;
     this.el.querySelector('.live').hidden = false;
     this.hint.textContent = 'Cadrez votre mur, puis touchez « Figer l’image »';
@@ -1973,4 +1631,4 @@ export function ouvrir(o) {
 }
 
 // exposés pour les tests
-export const _interne = { masqueZone, cadre, homographie, eclairage, composer, TUILES };
+export const _interne = { cadre, homographie, eclairage, composer, TUILES };

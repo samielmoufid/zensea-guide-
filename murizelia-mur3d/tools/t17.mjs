@@ -1,0 +1,35 @@
+// Parcours « Mon mur » : accueil, pose des 4 points, Enlever les points, Avant/après, Enregistrer l'image
+import { chromium } from 'playwright';
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: ['--ignore-certificate-errors', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
+const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true, deviceScaleFactor: 2, acceptDownloads: true });
+const p = await ctx.newPage();
+p.on('pageerror', (e) => console.log('PAGEERR', e.message));
+p.on('console', (m) => { if (m.type() === 'error') console.log('CONSOLE', m.text()); });
+await p.goto('http://127.0.0.1:8765/test/index.html?h=mosaela-carrelage-adhesif-3d-damier-bleu-saphir-25-4x25-4-cm', { waitUntil: 'networkidle' });
+await p.tap('[data-mm-m3-open]');
+await p.waitForFunction(() => document.querySelector('#mm-mur-3d'));
+await p.waitForTimeout(1000);
+await p.screenshot({ path: 'shots/u-0.png' });
+const S = (js) => p.evaluate(`(async () => { const r = document.querySelector('#mm-mur-3d').shadowRoot; ${js} })()`);
+const input = await p.evaluateHandle(() => document.querySelector('#mm-mur-3d').shadowRoot.querySelectorAll('[data-f]')[1]);
+await input.asElement().setInputFiles('seg2/bureau.jpg');
+await p.waitForTimeout(2000);
+const box = await S(`const c = r.querySelector('canvas.cv').getBoundingClientRect(); return { x: c.x, y: c.y, w: c.width, h: c.height };`);
+for (const [u, v] of [[0.01, 0.01], [0.99, 0.01], [0.99, 0.62], [0.01, 0.62]]) { await p.touchscreen.tap(box.x + box.w * u, box.y + box.h * v); await p.waitForTimeout(400); }
+await p.waitForTimeout(2500);
+console.log('outils :', await S(`return [...r.querySelectorAll('.tools .chip')].map(c => c.textContent.trim()).join(' | ')`));
+console.log('pied :', await S(`return r.querySelector('.fi span').textContent + ' / ' + r.querySelector('.cta').textContent`));
+await p.screenshot({ path: 'shots/u-1.png' });
+await S(`r.querySelector('[data-act="coins"]').click()`); await p.waitForTimeout(600);
+console.log('après Enlever :', await S(`return r.querySelector('[data-act="coins"]').textContent + ' | points visibles: ' + [...r.querySelectorAll('.hd')].filter(h => !h.hidden).length`));
+await p.screenshot({ path: 'shots/u-2.png' });
+await S(`r.querySelector('[data-act="split"]').click()`); await p.waitForTimeout(800);
+await p.screenshot({ path: 'shots/u-3.png' });
+await S(`r.querySelector('[data-act="split"]').click()`); await p.waitForTimeout(400);
+await S(`r.querySelector('[data-act="coins"]').click()`); await p.waitForTimeout(400);
+console.log('après Remettre :', await S(`return r.querySelector('[data-act="coins"]').textContent + ' | points visibles: ' + [...r.querySelectorAll('.hd')].filter(h => !h.hidden).length`));
+const dl = p.waitForEvent('download', { timeout: 8000 }).catch(() => null);
+await S(`r.querySelector('[data-act="save"]').click()`);
+const d = await dl;
+if (d) { await d.saveAs('shots/u-save.jpg'); console.log('enregistré :', d.suggestedFilename()); } else console.log('pas de téléchargement');
+await b.close();
