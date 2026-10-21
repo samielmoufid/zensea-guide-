@@ -598,12 +598,15 @@ void main(){
       vec3 col = alb * il * uExpo * uCast * rel;
       // reflets : la pièce floutée, décalée par le relief, selon Fresnel
       float nv = max(dot(n, V), 0.0);
-      float F = 0.04 + 0.96 * pow(1.0 - nv, 5.0);
+      float F = 0.02 + 0.98 * pow(1.0 - nv, 5.0);
       vec3 Rf = reflect(-V, n), R0 = reflect(-V, uNw);
       vec2 dr = (Rf.xy - R0.xy) * 0.45;
       vec3 env = toLin(texture2D(uLow, clamp(vUv + dr, 0.0, 1.0)).rgb);
       float gl = uGloss * (1.0 - rg) * (1.0 - rg);
-      col = mix(col, env * 1.15, clamp(F * gl, 0.0, 0.6));
+      // seules les zones plus claires que le mur (fenêtre, lampe) se reflètent franchement : le reflet
+      // uniforme d'un mur gris voilerait les teintes foncées, ce que l'œil ne voit pas sur le vrai carreau
+      float hl = mix(0.3, 1.0, smoothstep(0.9, 1.8, lum(env) / max(lum(uRef), 0.004)));
+      col = mix(col, env * 1.15, clamp(F * gl * hl, 0.0, 0.3));
       vec3 H = normalize(uL + V);
       float sh = mix(700.0, 24.0, rg);
       float sp = pow(max(dot(n, H), 0.0), sh) * (sh + 8.0) / 60.0;

@@ -36,7 +36,9 @@ tuiles = {}
 for e in meta:
     h = e['handle']
     fam = e['famille']
-    alb = cv2.imread(os.path.join(TEX, h + '.jpg'))
+    # couleur étalonnée sur les photos d'ambiance quand elle existe (tools/etalon.py)
+    etal = os.path.join(BASE, 'out', 'tex-etal', h + '.jpg')
+    alb = cv2.imread(etal if os.path.exists(etal) else os.path.join(TEX, h + '.jpg'))
     nor = cv2.imread(os.path.join(TEX, h + '-n.jpg'))
     jpg(os.path.join(AS, 'mm-mur-%s.jpg' % h), alb, 86)
     jpg(os.path.join(AS, 'mm-mur-%s-n.jpg' % h), nor, 90)
