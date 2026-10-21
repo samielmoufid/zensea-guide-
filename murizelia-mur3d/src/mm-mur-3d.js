@@ -1059,7 +1059,7 @@ class Visualiseur {
   monter() {
     const hote = document.createElement('div');
     hote.id = 'mm-mur-3d';
-    hote.style.cssText = 'position:fixed;inset:0;z-index:2147483000;display:none;';
+    hote.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:none;';
     document.body.appendChild(hote);
     this.hote = hote;
     const r = hote.attachShadow({ mode: 'open' });
@@ -1136,6 +1136,8 @@ class Visualiseur {
     }
     if (o.carreau && this.parH.has(o.carreau)) this.h = o.carreau;
     else if (o.courant && this.parH.has(o.courant)) this.h = o.courant;
+    // toujours au premier plan (bandeau cookies, bulles de chat) : dernier élément du body
+    document.body.appendChild(this.hote);
     this.hote.style.display = 'block';
     this.ancienOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = 'hidden';
