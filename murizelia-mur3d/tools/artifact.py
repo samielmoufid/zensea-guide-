@@ -55,7 +55,7 @@ h1 em{ font-family:var(--mm-accent-font); font-style:italic; font-weight:400; co
 
   <ol class="etapes">
     <li>Touchez « Voir en 3D sur mon mur », puis « Prendre une photo ».</li>
-    <li>Touchez votre mur sur la photo : le carrelage s’y pose en taille réelle.</li>
+    <li>Touchez les 4 coins de la zone à carreler : le carrelage s’y pose en taille réelle.</li>
     <li>Changez de carrelage en bas de l’écran, sans reprendre la photo.</li>
   </ol>
 

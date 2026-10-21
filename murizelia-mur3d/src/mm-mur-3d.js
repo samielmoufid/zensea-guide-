@@ -1437,6 +1437,7 @@ class ModePhoto {
     t.innerHTML = `
       <button type="button" class="chip${this.sub === 'dim' ? ' on' : ''}" data-sub="dim"${pret ? '' : ' disabled'}>Dimensions</button>
       <button type="button" class="chip${this.coins ? ' on' : ''}" data-act="coins"${pret ? '' : ' disabled'}>Ajuster les coins</button>
+      <button type="button" class="chip" data-act="zone"${pret ? '' : ' disabled'}>Nouvelle zone</button>
       <button type="button" class="chip${this.split > 0 ? ' on' : ''}" data-act="split"${pret ? '' : ' disabled'}>Avant / après</button>
       <button type="button" class="chip${this.sub === 'lum' ? ' on' : ''}" data-sub="lum"${pret ? '' : ' disabled'}>Lumière</button>
       <button type="button" class="chip${this.sub === 'det' ? ' on' : ''}" data-sub="det">Objets devant le mur</button>
@@ -1518,6 +1519,7 @@ class ModePhoto {
     if (a === 'split') { this.split = this.split > 0 ? 0 : 0.5; this.placer(); this.demander(); this.outils(); }
     if (a === 'nouv') { this.arreterVideo(false); this.etat = 'vide'; this.quad = null; this.pv.hidden = true; this.pe.hidden = false; this.sub = null; this.outils(); this.v.majPied(); }
     if (a === 'save') this.enregistrer();
+    if (a === 'zone') this.nouvelleZone();
   }
 
   /* --- sources --- */
@@ -1580,7 +1582,9 @@ class ModePhoto {
     if (!garder) { this.quad = null; this.seg = null; this.hauteurManuelle = false; this.manuel = false; this.auto = false; }
     this.pe.hidden = true; this.pv.hidden = false;
     this.el.querySelector('.live').hidden = true;
-    this.hint.textContent = 'Touchez votre mur pour y poser le carrelage';
+    this.placement = [];
+    this.viseur = null;
+    this.aidePose();
     this.hint.style.opacity = garder && this.quad ? 0 : 1;
     this.placer();
     this.outils();
@@ -1719,12 +1723,13 @@ class ModePhoto {
     const r = this.rect();
     if (!r) return;
     Object.assign(this.cv.style, { left: r.x + 'px', top: r.y + 'px', width: r.w + 'px', height: r.h + 'px' });
-    const vis = !!this.quad && this.coins;
+    const enPose = !this.quad ? (this.placement || []).concat(this.viseur ? [this.viseur] : []) : null;
+    const pts = this.quad ? (this.coins ? this.quad : []) : enPose;
     this.hds.forEach((hd, i) => {
-      hd.hidden = !vis;
-      if (vis) { hd.style.left = (r.x + this.quad[i][0] * r.s) + 'px'; hd.style.top = (r.y + this.quad[i][1] * r.s) + 'px'; }
+      hd.hidden = !pts[i];
+      if (pts[i]) { hd.style.left = (r.x + pts[i][0] * r.s) + 'px'; hd.style.top = (r.y + pts[i][1] * r.s) + 'px'; }
     });
-    this.poly.setAttribute('points', vis ? this.quad.map(([x, y]) => `${r.x + x * r.s},${r.y + y * r.s}`).join(' ') : '');
+    this.poly.setAttribute('points', pts.length > 1 ? pts.map(([x, y]) => `${r.x + x * r.s},${r.y + y * r.s}`).join(' ') : '');
     this.splitEl.hidden = !(this.split > 0 && this.quad);
     if (this.split > 0) this.splitEl.style.left = (r.x + this.split * r.w) + 'px';
   }
@@ -1739,9 +1744,16 @@ class ModePhoto {
     this.pv.addEventListener('pointerdown', (e) => {
       if (this.etat === 'vide' || e.target.closest('button')) return;
       const hd = e.target.closest('.hd'), sp = e.target.closest('.split');
-      if (hd) drag = { t: 'coin', i: +hd.dataset.i };
+      if (hd && this.quad) drag = { t: 'coin', i: +hd.dataset.i };
       else if (sp) drag = { t: 'split' };
-      else drag = { t: 'tap', x: e.clientX, y: e.clientY, t0: performance.now() };
+      else if (this.etat === 'photo' && !this.quad) {
+        // pose d'un coin : le doigt peut glisser, la loupe montre où tombe le point
+        drag = { t: 'pose' };
+        const [x, y] = this.versImage(e);
+        this.viseur = [clamp(x, 0, this.sw), clamp(y, 0, this.sh)];
+        this.placer();
+        this.montrerLoupe(e, x, y);
+      } else return;
       this.pv.setPointerCapture(e.pointerId);
       e.preventDefault();
     });
@@ -1757,26 +1769,79 @@ class ModePhoto {
         this.split = clamp(x / this.sw, 0.001, 1);
         this.placer();
         this.demander();
+      } else if (drag.t === 'pose') {
+        this.viseur = [clamp(x, 0, this.sw), clamp(y, 0, this.sh)];
+        this.placer();
+        this.montrerLoupe(e, x, y);
       }
     });
     const fin = (e) => {
       if (!drag) return;
-      if (drag.t === 'tap' && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) < 12 && this.etat !== 'vide') {
-        const [x, y] = this.versImage(e);
-        if (x >= 0 && y >= 0 && x <= this.sw && y <= this.sh && !this.dansZone(x, y)) {
-          this.manuel = false;
-          this.hauteurManuelle = false;
-          this.hint.textContent = 'Détection du mur…';
-          this.hint.style.opacity = 1;
-          const g = [x / this.sw * this.segW, y / this.sh * this.segH];
-          setTimeout(() => this.detecter(g, true), 40);
-        }
+      if (drag.t === 'pose' && this.viseur) {
+        this.loupe.hidden = true;
+        this.placement.push(this.viseur);
+        this.viseur = null;
+        if (this.placement.length === 4) this.finaliserZone();
+        else { this.aidePose(); this.placer(); }
       }
       if (drag.t === 'coin') { this.loupe.hidden = true; this.majTout(); }
       drag = null;
     };
     this.pv.addEventListener('pointerup', fin);
     this.pv.addEventListener('pointercancel', fin);
+  }
+
+  aidePose() {
+    const n = this.placement.length;
+    this.hint.textContent = n === 0 ? 'Touchez les 4 coins de la zone à carreler' : `Coin ${n + 1} sur 4 · touchez le coin suivant`;
+    this.hint.style.opacity = 1;
+  }
+
+  // les 4 points touchés, dans n'importe quel ordre -> haut gauche, haut droit, bas droit, bas gauche
+  finaliserZone() {
+    const pts = this.placement.slice();
+    const cx = pts.reduce((t, p) => t + p[0], 0) / 4, cy = pts.reduce((t, p) => t + p[1], 0) / 4;
+    pts.sort((a, b) => Math.atan2(a[1] - cy, a[0] - cx) - Math.atan2(b[1] - cy, b[0] - cx));
+    let k = 0;
+    pts.forEach((p, i) => { if (p[0] + p[1] < pts[k][0] + pts[k][1]) k = i; });
+    const q = [0, 1, 2, 3].map((i) => pts[(k + i) % 4]);
+    this.placement = [];
+    if (!quadValide(q, this.sw, this.sh)) {
+      this.v.toast('Ces 4 points ne forment pas une zone : touchez les 4 coins du mur à carreler.', 4500);
+      this.aidePose();
+      this.placer();
+      return;
+    }
+    this.quad = q;
+    this.manuel = true;
+    this.seg = null;
+    this.auto = false;
+    this.graine = [cx / this.sw * this.segW, cy / this.sh * this.segH];
+    if (!this.hauteurManuelle) {
+      const c = cadre(q, this.sw, this.sh);
+      this.dim = [this.dim[0], Math.round(this.dim[0] / clamp(c.rapport, 0.15, 8))];
+    }
+    this.r.setMasque(null);
+    this.majTout();
+    this.revealGraine = [cx / this.sw, cy / this.sh];
+    this.animReveal();
+    this.hint.style.opacity = 0;
+    this.v.toast('Carrelage posé. Faites glisser les coins pour ajuster, puis indiquez la largeur dans « Dimensions ».', 5000);
+    this.outils();
+    this.v.majPied();
+  }
+
+  nouvelleZone() {
+    this.quad = null;
+    this.seg = null;
+    this.placement = [];
+    this.manuel = false;
+    this.hauteurManuelle = false;
+    this.aidePose();
+    this.placer();
+    this.demander();
+    this.outils();
+    this.v.majPied();
   }
 
   // point (pixels de la photo) à l'intérieur de la zone encadrée
@@ -1837,7 +1902,7 @@ class ModePhoto {
     this.quad = null; this.seg = null; this.manuel = false; this.hauteurManuelle = false;
     this.pe.hidden = true; this.pv.hidden = false;
     this.el.querySelector('.live').hidden = false;
-    this.hint.textContent = 'Visez votre mur, puis touchez-le';
+    this.hint.textContent = 'Cadrez votre mur, puis touchez « Figer l’image »';
     this.hint.style.opacity = 1;
     this.placer(); this.outils();
     let n = 0, tSeg = 0;
