@@ -203,6 +203,31 @@ function boucherTrous(m, w, h, maxi) {
   }
 }
 
+/*
+  Une grande zone marquée « objet » qui garde la teinte du mur et n'est pas très sombre est une
+  différence de lumière (soleil, haut du mur plus éclairé, ombre douce) : elle redevient du mur.
+  Les vrais grands objets restent : sombres (télé, meuble foncé) ou d'une autre couleur.
+*/
+function zonesDeLumiere(O, L, cr, cg, r0, g0, w, h, c, aire, tC, T, tMed) {
+  const n = w * h, vu = new Uint8Array(n), file = new Int32Array(n);
+  for (let s0 = 0; s0 < n; s0++) {
+    if (!O[s0] || vu[s0]) continue;
+    let a = 0, z = 0, sd = 0, sc = 0, tol = 0, st = 0;
+    vu[s0] = 1; file[z++] = s0;
+    while (a < z) {
+      const p = file[a++], x = p % w, y = (p - x) / w;
+      sd += Math.log(L[p] + 3) - surface(c, x / w - 0.5, y / h - 0.5);
+      sc += Math.max(Math.abs(cr[p] - r0), Math.abs(cg[p] - g0));
+      tol += tC * (1 + 18 / (L[p] + 6));
+      st += T[p];
+      const v = [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1];
+      for (const q of v) if (q >= 0 && O[q] && !vu[q]) { vu[q] = 1; file[z++] = q; }
+    }
+    // même teinte, pas plus sombre, même texture que le mur -> lumière ; plus texturé (écran, motif) -> objet
+    if (z > aire * 0.08 && sc / z < 0.6 * tol / z && sd / z > -0.2 && st / z < 1.25 * tMed + 0.005) for (let i = 0; i < z; i++) O[file[i]] = 0;
+  }
+}
+
 // retire les morceaux isolés (valeur 1) plus petits que maxi pixels
 function retirerPetits(m, w, h, maxi) {
   const vu = new Uint8Array(m.length), file = new Int32Array(m.length);
@@ -256,8 +281,10 @@ function objetsCernes(O, dans, L, w, h, c, aire) {
   if (regions.length < 2) return;
   const total = regions.reduce((t, r) => t + r.z, 0);
   const mur = regions.reduce((b, r) => (r.z > b.z ? r : b), regions[0]);
-  const objet = regions.map((r) => r !== mur && r.z > aire * 0.004 && r.z < total * 0.35 &&
-    (Math.abs(r.d - mur.d) > 0.12 || r.t > mur.t * 1.8 + 0.02));
+  // plus sombre ou plus texturé : objet (écran, capot) ; plus clair seulement : objet s'il est petit (cadre),
+  // sinon c'est une zone plus éclairée du mur
+  const objet = regions.map((r) => r !== mur && r.z > aire * 0.004 && r.z < total * 0.3 &&
+    (r.d < mur.d - 0.12 || r.t > mur.t * 1.8 + 0.02 || (r.d > mur.d + 0.12 && r.z < total * 0.12)));
   if (!objet.some(Boolean)) return;
   let M = new Uint8Array(n);
   for (let i = 0; i < n; i++) if (lab[i] >= 0 && objet[lab[i]]) M[i] = 1;
@@ -342,6 +369,7 @@ function masqueZone(px, w, h, q, sens) {
   for (let i = 0; i < n; i++) if (X[i]) O[i] = 1;
   retirerPetits(O, w, h, Math.round(aire * 0.0015));
   boucherTrous(O, w, h, Math.round(aire * 0.01));
+  zonesDeLumiere(O, L, cr, cg, r0, g0, w, h, c, aire, tC, T, tMed);
   objetsCernes(O, dans, L, w, h, c, aire);
   const m = new Uint8Array(n);
   let surf = 0;

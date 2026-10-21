@@ -6,7 +6,7 @@
 */
 
 const TUILES = {"minera-carrelage-adhesif-effet-marbre-blanc-anthracite-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#eae9e9"},"minera-carrelage-adhesif-effet-marbre-blanc-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#bcb7ad"},"minera-carrelage-adhesif-effet-marbre-bleu-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#a1b0b8"},"minera-carrelage-adhesif-effet-marbre-graphite-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#7d6f5c"},"minera-carrelage-adhesif-effet-marbre-gris-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#b1b1b6"},"minera-carrelage-adhesif-effet-marbre-noir-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#18140c"},"minera-carrelage-adhesif-effet-marbre-rose-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#f1d0ce"},"minera-carrelage-adhesif-effet-marbre-vert-dore-30x30-cm":{"f":"marbre","m":[30.0,30.0],"p":[30.0,30.0],"r":0,"c":"#b3c1ab"},"mosaela-carrelage-adhesif-3d-beige-sable-25-4x25-4-cm":{"f":"mosaique","m":[25.58,25.58],"p":[25.4,25.4],"r":1,"c":"#d9b77b"},"mosaela-carrelage-adhesif-3d-bleu-azur-25-4x25-4-cm":{"f":"mosaique","m":[25.75,25.75],"p":[25.4,25.4],"r":1,"c":"#3e748f"},"mosaela-carrelage-adhesif-3d-damier-bleu-saphir-25-4x25-4-cm":{"f":"damier","m":[25.51,25.51],"p":[25.4,25.4],"r":1,"c":"#8b98aa"},"mosaela-carrelage-adhesif-3d-damier-bordeaux-25-4x25-4-cm":{"f":"damier","m":[25.52,25.52],"p":[25.4,25.4],"r":1,"c":"#b1908e"},"mosaela-carrelage-adhesif-3d-damier-vert-sapin-25-4x25-4-cm":{"f":"damier","m":[25.47,25.47],"p":[25.4,25.4],"r":1,"c":"#97a197"},"mosaela-carrelage-adhesif-3d-orange-terracotta-25-4x25-4-cm":{"f":"mosaique","m":[25.57,25.57],"p":[25.4,25.4],"r":1,"c":"#c08975"},"mosaela-carrelage-adhesif-3d-rouge-bordeaux-25-4x25-4-cm":{"f":"mosaique","m":[25.5,25.5],"p":[25.4,25.4],"r":1,"c":"#63494a"},"mosaela-carrelage-adhesif-3d-vert-bouteille-25-4x25-4-cm":{"f":"mosaique","m":[25.58,25.58],"p":[25.4,25.4],"r":1,"c":"#3c523e"},"mosaela-carrelage-adhesif-3d-vert-olive-25-4x25-4-cm":{"f":"mosaique","m":[25.63,25.63],"p":[25.4,25.4],"r":1,"c":"#636c3a"},"stria-carrelage-adhesif-3d-blanc-brillant-25x25-cm":{"f":"baguettes","m":[25.12,25.12],"p":[25.0,25.0],"r":1,"c":"#e5e5e5"},"stria-carrelage-adhesif-3d-bleu-indigo-30x30-cm":{"f":"baguettes","m":[30.44,30.44],"p":[30.0,30.0],"r":1,"c":"#5c6e7d"},"stria-carrelage-adhesif-3d-rose-poudre-30x30-cm":{"f":"baguettes","m":[30.38,30.38],"p":[30.0,30.0],"r":1,"c":"#e4d1cc"},"stria-carrelage-adhesif-3d-rouge-bordeaux-30x30-cm":{"f":"baguettes","m":[30.28,30.28],"p":[30.0,30.0],"r":1,"c":"#723932"},"stria-carrelage-adhesif-3d-vert-d-eau-25x25-cm":{"f":"baguettes","m":[25.24,25.24],"p":[25.0,25.0],"r":1,"c":"#afd7d1"},"stria-carrelage-adhesif-3d-vert-emeraude-30x30-cm":{"f":"baguettes","m":[30.32,30.32],"p":[30.0,30.0],"r":1,"c":"#3b7063"},"stria-carrelage-adhesif-3d-vert-grise-30x30-cm":{"f":"baguettes","m":[30.32,30.32],"p":[30.0,30.0],"r":1,"c":"#cccbc0"},"stria-carrelage-adhesif-3d-vieux-rose-25x25-cm":{"f":"baguettes","m":[25.09,25.09],"p":[25.0,25.0],"r":1,"c":"#daa7af"}};
-const VERSION = '202610211636';
+const VERSION = '202610211644';
 
 // photo d'exemple : vraie cuisine (panorama Poly Haven CC0 recadré), mur du fond repéré à la main
 const DEMO = { quad: [[397, 352], [1566, 268], [1566, 1000], [397, 988]], largeur: 330 };
@@ -203,6 +203,31 @@ function boucherTrous(m, w, h, maxi) {
   }
 }
 
+/*
+  Une grande zone marquée « objet » qui garde la teinte du mur et n'est pas très sombre est une
+  différence de lumière (soleil, haut du mur plus éclairé, ombre douce) : elle redevient du mur.
+  Les vrais grands objets restent : sombres (télé, meuble foncé) ou d'une autre couleur.
+*/
+function zonesDeLumiere(O, L, cr, cg, r0, g0, w, h, c, aire, tC, T, tMed) {
+  const n = w * h, vu = new Uint8Array(n), file = new Int32Array(n);
+  for (let s0 = 0; s0 < n; s0++) {
+    if (!O[s0] || vu[s0]) continue;
+    let a = 0, z = 0, sd = 0, sc = 0, tol = 0, st = 0;
+    vu[s0] = 1; file[z++] = s0;
+    while (a < z) {
+      const p = file[a++], x = p % w, y = (p - x) / w;
+      sd += Math.log(L[p] + 3) - surface(c, x / w - 0.5, y / h - 0.5);
+      sc += Math.max(Math.abs(cr[p] - r0), Math.abs(cg[p] - g0));
+      tol += tC * (1 + 18 / (L[p] + 6));
+      st += T[p];
+      const v = [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, y > 0 ? p - w : -1, y < h - 1 ? p + w : -1];
+      for (const q of v) if (q >= 0 && O[q] && !vu[q]) { vu[q] = 1; file[z++] = q; }
+    }
+    // même teinte, pas plus sombre, même texture que le mur -> lumière ; plus texturé (écran, motif) -> objet
+    if (z > aire * 0.08 && sc / z < 0.6 * tol / z && sd / z > -0.2 && st / z < 1.25 * tMed + 0.005) for (let i = 0; i < z; i++) O[file[i]] = 0;
+  }
+}
+
 // retire les morceaux isolés (valeur 1) plus petits que maxi pixels
 function retirerPetits(m, w, h, maxi) {
   const vu = new Uint8Array(m.length), file = new Int32Array(m.length);
@@ -256,8 +281,10 @@ function objetsCernes(O, dans, L, w, h, c, aire) {
   if (regions.length < 2) return;
   const total = regions.reduce((t, r) => t + r.z, 0);
   const mur = regions.reduce((b, r) => (r.z > b.z ? r : b), regions[0]);
-  const objet = regions.map((r) => r !== mur && r.z > aire * 0.004 && r.z < total * 0.35 &&
-    (Math.abs(r.d - mur.d) > 0.12 || r.t > mur.t * 1.8 + 0.02));
+  // plus sombre ou plus texturé : objet (écran, capot) ; plus clair seulement : objet s'il est petit (cadre),
+  // sinon c'est une zone plus éclairée du mur
+  const objet = regions.map((r) => r !== mur && r.z > aire * 0.004 && r.z < total * 0.3 &&
+    (r.d < mur.d - 0.12 || r.t > mur.t * 1.8 + 0.02 || (r.d > mur.d + 0.12 && r.z < total * 0.12)));
   if (!objet.some(Boolean)) return;
   let M = new Uint8Array(n);
   for (let i = 0; i < n; i++) if (lab[i] >= 0 && objet[lab[i]]) M[i] = 1;
@@ -342,6 +369,7 @@ function masqueZone(px, w, h, q, sens) {
   for (let i = 0; i < n; i++) if (X[i]) O[i] = 1;
   retirerPetits(O, w, h, Math.round(aire * 0.0015));
   boucherTrous(O, w, h, Math.round(aire * 0.01));
+  zonesDeLumiere(O, L, cr, cg, r0, g0, w, h, c, aire, tC, T, tMed);
   objetsCernes(O, dans, L, w, h, c, aire);
   const m = new Uint8Array(n);
   let surf = 0;
