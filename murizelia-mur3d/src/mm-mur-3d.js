@@ -439,7 +439,21 @@ function masqueZone(px, w, h, q, sens) {
   const m = new Uint8Array(n);
   let surf = 0;
   for (let i = 0; i < n; i++) if (dans[i] && !O[i]) { m[i] = 1; surf++; }
-  return { m, w, h, part: surf / n };
+  return { m, w, h, part: surf / n, dans };
+}
+
+// composante connexe (4 voisins) du pixel s où ok(i) est vrai
+function remplir(s, w, h, ok) {
+  if (!ok(s)) return [];
+  const vu = new Uint8Array(w * h), file = new Int32Array(w * h);
+  let a = 0, z = 0;
+  vu[s] = 1; file[z++] = s;
+  while (a < z) {
+    const p = file[a++], x = p % w;
+    const v = [x > 0 ? p - 1 : -1, x < w - 1 ? p + 1 : -1, p >= w ? p - w : -1, p < w * h - w ? p + w : -1];
+    for (const q of v) if (q >= 0 && !vu[q] && ok(q)) { vu[q] = 1; file[z++] = q; }
+  }
+  return file.subarray(0, z);
 }
 
 function quadValide(q, w, h) {
@@ -876,6 +890,7 @@ const ICO = {
   img: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 16l5-5 4 4 3-3 5 5"/><circle cx="15.5" cy="9" r="1.6"/></svg>',
   vid: '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="3" y="6.5" width="12.5" height="11" rx="2"/><path d="M15.5 10.5l5.5-3v9l-5.5-3z"/></svg>',
   ava: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M12 3v18"/><path d="M12 5h6.5a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H12z" fill="currentColor" stroke="none" opacity=".35"/></svg>',
+  main: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-4 0"/><path d="M14 10V9a2 2 0 0 0-4 0v1"/><path d="M10 9.5V4a2 2 0 0 0-4 0v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-6-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>',
   dl: '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/></svg>',
 };
 
@@ -914,6 +929,8 @@ button:focus-visible, .btn:focus-within{ outline:2px solid #c9a46a; outline-offs
 .chip:disabled{ opacity:.45; cursor:default; }
 .sub{ margin:0 14px 10px; padding:12px 14px; border-radius:14px; background:#fff; border:1px solid rgba(26,23,21,.1); }
 .sub .row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.sub .row.defil{ flex-wrap:nowrap; gap:8px; overflow-x:auto; margin:0 -14px; padding:0 14px; scrollbar-width:none; }
+.sub .row.defil::-webkit-scrollbar{ display:none; }
 .sub label{ display:flex; align-items:center; gap:6px; font-weight:600; font-size:13px; }
 .sub input[type=number]{ width:78px; height:36px; padding:0 8px; border-radius:10px; border:1px solid rgba(26,23,21,.2); font:600 15px inherit; font-family:inherit; text-align:center; background:#fbf8f4; }
 .sub input[type=range]{ flex:1; min-width:140px; accent-color:#7a2632; }
@@ -1230,8 +1247,8 @@ class ModePhoto {
     this.etat = 'vide';
     this.dim = [300, 250];
     this.expo = 1;
-    this.sens = 0.5;        // sensibilité de la détection des objets devant le mur
-    this.retouche = null;   // 'montrer' | 'carreler' quand le client retouche au doigt
+    this.retouche = null;   // 'objet' (toucher un objet à garder) | 'montrer' | 'carreler' (peindre au doigt)
+    this.histo = [];        // retouches précédentes, pour « Annuler »
     this.pinceau = 0.035;   // rayon du pinceau, en part du petit côté de la photo
     this.coins = true;      // points des coins affichés (à faire glisser) ; « Enlever les points » pour le rendu final
     this.split = 0;
@@ -1248,7 +1265,7 @@ class ModePhoto {
     <label class="btn${tactile ? '' : ' pri'}">${ICO.img}<span>${tactile ? 'Choisir une photo' : 'Importer une photo de mon mur'}</span><input type="file" accept="image/*" data-f></label>
     ${live ? `<button type="button" class="btn" data-live>${ICO.vid}<span>${tactile ? 'Filmer mon mur en direct' : 'Utiliser ma webcam'}</span></button>` : ''}
     <button type="button" class="lnk" data-demo>Essayer avec une photo exemple</button>
-    <p class="conseil"><b>Conseillé :</b> retirez les objets et accessoires déplaçables devant le mur pour avoir le meilleur rendu.</p>
+    <p class="conseil"><b>Comme le jour de la pose</b>On carrèle un mur dégagé : les objets devant s’effacent pour révéler le carrelage en entier, net et fidèle. Un robinet, un miroir à garder ? Touchez-le simplement.</p>
     <ul class="tips"><li>Mur de face, en entier</li><li>Lumière du jour</li><li>Sans flash</li></ul>
   </div>
 </div>
@@ -1308,16 +1325,15 @@ class ModePhoto {
     t.innerHTML = `
       <button type="button" class="chip ava${this.split > 0 ? ' on' : ''}" data-act="split"${pret ? '' : ' disabled'}>${ICO.ava} Avant / après</button>
       <button type="button" class="chip pri" data-act="save"${pret && this.etat === 'photo' ? '' : ' disabled'}>${ICO.dl} Enregistrer l’image</button>
+      <button type="button" class="chip${this.sub === 'garder' ? ' on' : ''}" data-sub="garder"${pret ? '' : ' disabled'}>${ICO.main} Garder un objet</button>
       <button type="button" class="chip" data-act="coins"${pret ? '' : ' disabled'}>${this.coins ? 'Enlever les points' : 'Remettre les points'}</button>
       <button type="button" class="chip${this.sub === 'lum' ? ' on' : ''}" data-sub="lum"${pret ? '' : ' disabled'}>Lumière</button>
       <button type="button" class="chip" data-act="zone"${pret ? '' : ' disabled'}>Nouvelle zone</button>
-      <button type="button" class="chip${this.sub === 'ret' ? ' on' : ''}" data-sub="ret"${pret ? '' : ' disabled'}>Retoucher</button>
       <button type="button" class="chip" data-act="nouv">Nouvelle photo</button>`;
     t.querySelectorAll('[data-sub]').forEach((b) => b.addEventListener('click', () => {
       this.sub = this.sub === b.dataset.sub ? null : b.dataset.sub;
-      this.retouche = this.sub === 'ret' ? this.retouche || 'montrer' : null;
-      this.hint.textContent = 'Passez le doigt sur ce qui doit rester visible';
-      this.hint.style.opacity = this.retouche ? 1 : 0;
+      this.retouche = this.sub === 'garder' ? this.retouche || 'objet' : null;
+      this.aideRetouche();
       this.placer();
       this.outils();
     }));
@@ -1335,25 +1351,96 @@ class ModePhoto {
           <p>La lumière de votre photo est reproduite automatiquement ; affinez si besoin.</p></div>`;
         s.querySelector('[data-expo]').addEventListener('input', (e) => { this.expo = e.target.value / 100; this.demander(); });
       }
-    } else if (this.sub === 'ret') {
-      if (!s.querySelector('[data-r]')) {
-        s.innerHTML = `<div class="sub"><div class="row">
-          <button type="button" class="chip${this.retouche === 'montrer' ? ' on' : ''}" data-r="montrer">Montrer la photo</button>
-          <button type="button" class="chip${this.retouche === 'carreler' ? ' on' : ''}" data-r="carreler">Remettre le carrelage</button>
-          <button type="button" class="chip" data-r="annuler">Tout annuler</button></div>
-          <div class="row" style="margin-top:10px"><label for="mmp">Pinceau</label><input id="mmp" type="range" min="1" max="10" value="${Math.round(this.pinceau * 100)}" data-p></div>
-          <p>Passez le doigt sur un objet pour le faire réapparaître devant le carrelage (miroir, robinet, cadre…), ou sur un oubli pour le carreler.</p></div>`;
-        s.querySelectorAll('[data-r]').forEach((b) => b.addEventListener('click', () => {
-          if (b.dataset.r === 'annuler') { this.ov = null; this.appliquerRetouches(); this.majTout(); return; }
-          this.retouche = b.dataset.r;
-          this.hint.textContent = this.retouche === 'montrer' ? 'Passez le doigt sur ce qui doit rester visible' : 'Passez le doigt là où il manque du carrelage';
-          this.hint.style.opacity = 1;
-          s.innerHTML = '';
-          this.majSub();
-        }));
-        s.querySelector('[data-p]').addEventListener('input', (e) => { this.pinceau = e.target.value / 100; });
+    } else if (this.sub === 'garder') {
+      const peint = this.retouche !== 'objet';
+      s.innerHTML = `<div class="sub"><div class="row defil">
+        <button type="button" class="chip${this.retouche === 'objet' ? ' on' : ''}" data-r="objet">Toucher l’objet</button>
+        <button type="button" class="chip${this.retouche === 'montrer' ? ' on' : ''}" data-r="montrer">Peindre à garder</button>
+        <button type="button" class="chip${this.retouche === 'carreler' ? ' on' : ''}" data-r="carreler">Recarreler</button>
+        <button type="button" class="chip" data-r="annuler"${this.histo.length ? '' : ' disabled'}>Annuler</button>
+        <button type="button" class="chip" data-r="tout"${this.ov ? '' : ' disabled'}>Tout recarreler</button></div>
+        ${peint ? `<div class="row" style="margin-top:8px"><label for="mmp">Pinceau</label><input id="mmp" type="range" min="1" max="10" value="${Math.round(this.pinceau * 100)}" data-p></div>` : ''}
+        <p>${peint ? 'Passez le doigt pour garder un détail, ou pour le recouvrir.' : 'Touchez un robinet, un miroir, une prise… : il reste devant le carrelage.'}</p></div>`;
+      s.querySelectorAll('[data-r]').forEach((b) => b.addEventListener('click', () => {
+        const r = b.dataset.r;
+        if (r === 'annuler') { this.ov = this.histo.pop() || null; this.majRetouches(); }
+        else if (r === 'tout') { this.memo(); this.ov = null; this.majRetouches(); }
+        else { this.retouche = r; this.aideRetouche(); }
+        this.majSub();
+      }));
+      const pp = s.querySelector('[data-p]');
+      if (pp) pp.addEventListener('input', (e) => { this.pinceau = e.target.value / 100; });
+    }
+  }
+
+  aideRetouche() {
+    const t = { objet: 'Touchez l’objet à garder', montrer: 'Passez le doigt sur ce qui doit rester visible', carreler: 'Passez le doigt là où il manque du carrelage' };
+    this.hint.textContent = t[this.retouche] || '';
+    this.hint.style.opacity = this.retouche ? 1 : 0;
+  }
+
+  // mémorise les retouches avant un changement, pour « Annuler »
+  memo() {
+    this.histo.push(this.ov ? this.ov.slice() : null);
+    if (this.histo.length > 20) this.histo.shift();
+  }
+
+  majRetouches() {
+    this.appliquerRetouches();
+    this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), true));
+    this.demander();
+  }
+
+  /*
+    Objet touché (robinet, miroir, prise…) : sa silhouette est la partie de la zone qui se distingue
+    du mur (teinte, lumière, texture, contour net) autour du point touché ; à défaut, les pixels de
+    même couleur que lui. Il reste sur l'image, devant le carrelage.
+  */
+  garderObjet(x, y) {
+    const W = this.segW, H = this.segH, n = W * H, k = W / this.sw;
+    if (!this.objets) this.objets = masqueZone(this.pxSeg, W, H, this.quad.map(([a, b]) => [a * k, b * k]), 0.6);
+    const o = this.objets;
+    if (!o) return;
+    let aire = 0;
+    for (let i = 0; i < n; i++) aire += o.dans[i];
+    const sx = clamp(Math.round(x * k), 0, W - 1), sy = clamp(Math.round(y * k), 0, H - 1);
+    const estObjet = (i) => o.dans[i] && !o.m[i];
+    // le doigt couvre plusieurs pixels : l'objet le plus proche du point touché
+    let s0 = -1;
+    const R = Math.round(0.03 * Math.min(W, H));
+    for (let r = 0; r <= R && s0 < 0; r++) {
+      for (let dy = -r; dy <= r && s0 < 0; dy++) {
+        for (let dx = -r; dx <= r; dx++) {
+          if (Math.max(Math.abs(dx), Math.abs(dy)) !== r) continue;
+          const X = sx + dx, Y = sy + dy;
+          if (X >= 0 && Y >= 0 && X < W && Y < H && estObjet(Y * W + X)) { s0 = Y * W + X; break; }
+        }
       }
     }
+    let sel = s0 >= 0 ? remplir(s0, W, H, estObjet) : null;
+    if (!sel || sel.length > aire * 0.35) {
+      const px = this.pxSeg, j0 = (sy * W + sx) * 4;
+      const c = [px[j0], px[j0 + 1], px[j0 + 2]];
+      sel = remplir(sy * W + sx, W, H, (i) => Math.abs(px[i * 4] - c[0]) + Math.abs(px[i * 4 + 1] - c[1]) + Math.abs(px[i * 4 + 2] - c[2]) < 54);
+      if (sel.length > aire * 0.2) sel = null;
+    }
+    if (!sel || sel.length < 6) {
+      this.v.toast('Aucun objet net ici. Choisissez « Peindre à garder » et passez le doigt dessus.', 4500);
+      return;
+    }
+    this.memo();
+    if (!this.ov || this.ov.length !== n) this.ov = new Int8Array(n);
+    // un pixel de marge : le rendu tranche ensuite le bord au pixel près
+    for (const i of sel) {
+      const X = i % W;
+      this.ov[i] = -1;
+      if (X > 0) this.ov[i - 1] = -1;
+      if (X < W - 1) this.ov[i + 1] = -1;
+      if (i >= W) this.ov[i - W] = -1;
+      if (i < n - W) this.ov[i + W] = -1;
+    }
+    this.majRetouches();
+    this.majSub();
   }
 
   act(a) {
@@ -1421,7 +1508,7 @@ class ModePhoto {
     this.r.setPhoto(c, w, h);
     this.analyse(c, 480);
     this.etat = 'photo';
-    if (!garder) { this.quad = null; this.seg = null; this.ov = null; this.mf = null; this.manuel = false; }
+    if (!garder) { this.quad = null; this.objets = null; this.ov = null; this.histo = []; this.mf = null; this.manuel = false; }
     this.pe.hidden = true; this.pv.hidden = false;
     this.el.querySelector('.live').hidden = true;
     this.placement = [];
@@ -1452,22 +1539,13 @@ class ModePhoto {
     this.pxLow = gl.getImageData(0, 0, lw, lh).data;
   }
 
-  /* --- objets devant le mur et géométrie --- */
-  calculerMasque() {
-    this.seg = null;
-    if (this.quad && this.pxSeg) {
-      const k = this.segW / this.sw;
-      this.seg = masqueZone(this.pxSeg, this.segW, this.segH, this.quad.map(([x, y]) => [x * k, y * k]), this.sens);
-    }
-    this.appliquerRetouches();
-  }
-
-  // masque final = objets détectés + retouches du client (montrer la photo / remettre le carrelage)
+  /* --- objets gardés et géométrie --- */
+  // le carrelage couvre toute la zone, comme sur un mur dégagé, sauf les objets que le client garde
   appliquerRetouches() {
-    if (!this.seg && !this.ov) { this.mf = null; this.r.setMasque(null); return; }
+    if (!this.ov) { this.mf = null; this.r.setMasque(null); return; }
     const W = this.segW, H = this.segH;
-    const m = this.seg ? this.seg.m.slice() : new Uint8Array(W * H).fill(1);
-    if (this.ov) for (let i = 0; i < m.length; i++) { if (this.ov[i] > 0) m[i] = 1; else if (this.ov[i] < 0) m[i] = 0; }
+    const m = new Uint8Array(W * H).fill(1);
+    for (let i = 0; i < m.length; i++) if (this.ov[i] < 0) m[i] = 0;
     this.mf = { m, w: W, h: H };
     this.r.setMasque(this.mf);
   }
@@ -1509,8 +1587,9 @@ class ModePhoto {
 
   majTout() {
     if (!this.quad) return;
-    this.calculerMasque();
-    this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), !this.mf));
+    this.objets = null;
+    this.appliquerRetouches();
+    this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), true));
     this.geometrie();
   }
 
@@ -1579,8 +1658,11 @@ class ModePhoto {
     this.pv.addEventListener('pointerdown', (e) => {
       if (this.etat === 'vide' || e.target.closest('button')) return;
       const hd = e.target.closest('.hd'), sp = e.target.closest('.split');
-      if (this.retouche && this.quad && this.etat === 'photo' && !sp) {
+      if (this.retouche === 'objet' && this.quad && this.etat === 'photo' && !sp) {
+        drag = { t: 'objet', x0: e.clientX, y0: e.clientY };
+      } else if (this.retouche && this.quad && this.etat === 'photo' && !sp) {
         const [x, y] = this.versImage(e);
+        this.memo();
         drag = { t: 'peint', der: [x, y] };
         this.peindre(drag.der, drag.der);
         this.montrerLoupe(e, x, y, true);
@@ -1631,9 +1713,12 @@ class ModePhoto {
       if (drag.t === 'coin') { this.loupe.hidden = true; this.majTout(); }
       if (drag.t === 'peint') {
         this.loupe.hidden = true;
-        this.appliquerRetouches();
-        this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), !this.mf));
-        this.demander();
+        this.majRetouches();
+        this.majSub();
+      }
+      if (drag.t === 'objet' && e.type === 'pointerup' && Math.hypot(e.clientX - drag.x0, e.clientY - drag.y0) < 14) {
+        const [x, y] = this.versImage(e);
+        this.garderObjet(x, y);
       }
       drag = null;
     };
@@ -1671,15 +1756,16 @@ class ModePhoto {
     this.revealGraine = [cx / this.sw, cy / this.sh];
     this.animReveal();
     this.hint.style.opacity = 0;
-    if (!demo) this.v.toast('Carrelage posé derrière vos objets. Faites glisser les points pour ajuster, puis « Enlever les points » pour voir le rendu final.', 5500);
+    if (!demo) this.v.toast('Mur carrelé, comme le jour de la pose. Un robinet, un miroir à garder ? Touchez « Garder un objet ».', 5500);
     this.outils();
     this.v.majPied();
   }
 
   nouvelleZone() {
     this.quad = null;
-    this.seg = null;
+    this.objets = null;
     this.ov = null;
+    this.histo = [];
     this.mf = null;
     this.placement = [];
     this.manuel = false;
@@ -1754,7 +1840,7 @@ class ModePhoto {
     this.r.setPhoto(vd, w0, h0);
     this.analyse(vd, 256);
     this.etat = 'live';
-    this.quad = null; this.seg = null; this.manuel = false;
+    this.quad = null; this.objets = null; this.manuel = false;
     this.pe.hidden = true; this.pv.hidden = false;
     this.el.querySelector('.live').hidden = false;
     this.hint.textContent = 'Cadrez votre mur, puis touchez « Figer l’image »';
@@ -1766,7 +1852,7 @@ class ModePhoto {
       this.r.image('uPhoto', vd, {});
       if (n++ % 3 === 0) {
         this.analyse(vd, 256);
-        if (this.quad) this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), !this.mf));
+        if (this.quad) this.r.setEclairage(eclairage(this.pxLow, this.cLow.width, this.cLow.height, this.zone(), true));
       }
       this.dessiner();
       this.boucle = requestAnimationFrame(boucle);
