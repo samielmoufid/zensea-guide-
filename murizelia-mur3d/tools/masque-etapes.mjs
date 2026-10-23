@@ -1,0 +1,20 @@
+// node tools/masque-etapes.mjs raw w h quadJSON : étapes du masque -> seg2/etape-<n>.raw (1 = objet)
+import fs from 'fs';
+let src = fs.readFileSync(new URL('../theme/assets/mm-mur-3d.js', import.meta.url), 'utf-8');
+const pose = (marque, nom) => { src = src.replace(marque, `globalThis.__e.push(['${nom}', O.slice()]);\n` + marque); };
+pose('  for (let k = 0; k < r; k++) O = morpho(O, w, h, false);', 'seuils');
+pose('  retirerPetits(O, w, h, Math.round(aire * 0.0015));', 'texture');
+pose('  const G = contours(L, w, h);', 'nettoye');
+pose('  objetsCernes(O, dans, L, w, h, c, aire, G);', 'lumiere');
+pose('  const m = new Uint8Array(n);\n  let surf = 0;', 'cernes');
+src = src.replace("  if (regions.length < 2) return;", "  globalThis.__r = regions.map((r, i) => ({ ...r, i }));\n  if (regions.length < 2) return;");
+src = src.replace("    regions.push({ z, d: sd / z, t:", "    regions.push({ x0: file[0] % w, y0: (file[0] / w) | 0, z, d: sd / z, t:");
+src = src.replace("  let X = new Uint8Array(n);", "  globalThis.__t = { tMur, tMurL, nb: eT.length }; globalThis.__T = [T, Tl];\n  let X = new Uint8Array(n);");
+globalThis.__e = [];
+fs.writeFileSync('seg2/etapes.mjs', src);
+const { _interne } = await import(new URL('../seg2/etapes.mjs', import.meta.url));
+const [,, raw, w, h, q] = process.argv;
+_interne.masqueZone(new Uint8ClampedArray(fs.readFileSync(raw)), +w, +h, JSON.parse(q), 0.5);
+globalThis.__e.forEach(([n, O], i) => fs.writeFileSync(`seg2/etape-${i}.raw`, Buffer.from(O)));
+fs.writeFileSync('seg2/etape-T.raw', Buffer.from(globalThis.__T[0].buffer)); fs.writeFileSync('seg2/etape-Tl.raw', Buffer.from(globalThis.__T[1].buffer)); console.log(JSON.stringify(globalThis.__t)); console.log(JSON.stringify(globalThis.__r.filter(r => r.z > 300).map(r => [r.i, r.x0, r.y0, r.z, +r.d.toFixed(3), +r.t.toFixed(3)])));
+console.log(globalThis.__e.map(([n, O]) => n + ' ' + (O.reduce((a, b) => a + b, 0) / O.length).toFixed(3)).join(' | '));
