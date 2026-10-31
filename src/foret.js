@@ -34,7 +34,7 @@ const CADENCE_COURSE = 2.7
 const PITCH_MAX = 80 * DEG
 
 export class Foret {
-  constructor(canvas, { mobile = false, base = './' } = {}) {
+  constructor(canvas, { mobile = false, base = './', pavillon = true } = {}) {
     this.canvas = canvas
     this.mobile = mobile
     this.base = base            // racine des images (la page du livre est dans /livre/)
@@ -83,7 +83,7 @@ export class Foret {
     this.actif = false
 
     this._sphere()
-    this._temple()
+    if (pavillon) this._temple()   // le temple en photo du sentier ; inutile sous le temple 3D
     this._soleil()
     this._rais()
     this._poussieres()
@@ -632,6 +632,17 @@ export class Foret {
     this.dragYaw = 0; this.dragPitch = 0; this.inertie = null
   }
 
+  // Tourne le regard vers ce cap et cette inclinaison (en tenant compte du
+  // gyroscope) : en quittant un instrument, on reste tourné vers lui.
+  regarder(yaw, pitch) {
+    const gy = this.gyroBrut ? this.gyro.yaw - this.gyroYaw0 : 0
+    const gp = this.gyroBrut ? this.gyro.pitch : 0
+    this.dragYaw = yaw - this.yaw0 - gy
+    this.dragPitch = pitch - gp
+    this.inertie = null
+    this.yaw = yaw; this.pitch = pitch
+  }
+
   distanceMusique() { return this.pos.distanceTo(this.musique) }
   // Angle de la musique par rapport au regard, en radians (négatif = à gauche).
   angleMusique() {
@@ -763,6 +774,12 @@ export class Foret {
       }
     } else if (this.phasePas % (2 * Math.PI) > 0.01) {
       this.phasePas = 0
+    }
+    // Le temple se dessine lui-même : il reçoit le regard et place sa caméra.
+    if (this.autre?.dessiner) {
+      this.autre.dessiner(this.camera, { yaw: this.yaw, pitch: this.pitch, dt, ease })
+      this.apres?.(this.autre.camRendu, dt)
+      return
     }
     if (this.autre) {
       // Dans l'atelier : pas de marche, on est debout puis assis.

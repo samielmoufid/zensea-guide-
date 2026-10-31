@@ -17,6 +17,26 @@ export const H_BAS = 0.135     // profondeur de la coque inférieure : d'après 
 export const hauteur = r => H_HAUT * Math.pow(Math.max(0, 1 - Math.pow(r / R, 2.3)), 0.62)
 export const profondeur = r => H_BAS * Math.max(0, 1 - Math.pow(r / R, 2))
 
+// Un champ de note ajouté (configuration plus grande que celle de la photo) :
+// une fossette dessinée, bord sombre et reflet doux, posée sur l'acier.
+let fossetteTex = null
+function textureFossette() {
+  if (fossetteTex) return fossetteTex
+  const cv = document.createElement('canvas'); cv.width = cv.height = 128
+  const g = cv.getContext('2d')
+  const r = g.createRadialGradient(64, 64, 30, 64, 64, 62)
+  r.addColorStop(0, 'rgba(0,0,0,0)'); r.addColorStop(0.72, 'rgba(0,0,0,0.12)'); r.addColorStop(0.9, 'rgba(0,0,0,0.42)'); r.addColorStop(1, 'rgba(0,0,0,0)')
+  g.fillStyle = r; g.fillRect(0, 0, 128, 128)
+  const h = g.createRadialGradient(52, 50, 2, 58, 58, 34)
+  h.addColorStop(0, 'rgba(255,248,230,0.34)'); h.addColorStop(1, 'rgba(255,248,230,0)')
+  g.fillStyle = h; g.fillRect(0, 0, 128, 128)
+  g.strokeStyle = 'rgba(255,240,210,0.18)'; g.lineWidth = 2
+  g.beginPath(); g.arc(64, 64, 40, Math.PI * 1.05, Math.PI * 1.7); g.stroke()
+  fossetteTex = new THREE.CanvasTexture(cv)
+  fossetteTex.colorSpace = THREE.SRGBColorSpace
+  return fossetteTex
+}
+
 let ropeTex = null
 function textureCorde() {
   if (ropeTex) return ropeTex
@@ -69,8 +89,8 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
   // le relief (ding bombé, champs en creux, martelage) vient d'une carte de
   // normales construite d'après la position des champs sur la photo.
   const acier = new THREE.MeshPhysicalMaterial({
-    color: 0xffffff, metalness: m.metal ?? 0.78, roughness: (m.rough ?? 0.34) + 0.1,
-    clearcoat: 0, envMapIntensity: 0.75, normalScale: new THREE.Vector2(0.5, 0.5),
+    color: 0xffffff, metalness: m.metal ?? 0.38, roughness: (m.rough ?? 0.34) + 0.08,
+    clearcoat: 0, envMapIntensity: 0.7, normalScale: new THREE.Vector2(0.5, 0.5),
     anisotropy: 0.45, anisotropyRotation: Math.PI / 2
   })
   const coque = new THREE.Mesh(calotte(true), acier)
@@ -96,7 +116,7 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
 
   // Champs de notes (invisibles) : là où le doigt frappe. Disposition
   // générique en attendant les notes réelles : ding au centre, huit autour.
-  const champs = [], marqueurs = []
+  const champs = [], marqueurs = [], fossettes = []
   const cible = new THREE.MeshBasicMaterial({ visible: false })
   // Normale de la surface au rayon r (pour poser les marqueurs à plat sur
   // l'acier) : dessus (hauteur) ou dessous (profondeur, tournée vers le bas).
@@ -107,7 +127,7 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
   }
   const matMarqueur = () => new THREE.MeshBasicMaterial({ color: 0xfff1cf, transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide })
   // bas = true : champ sous la coque (visible une fois l'instrument retourné).
-  const poser = (r, ang, taille, note, idx, bas = false) => {
+  const poser = (r, ang, taille, note, idx, bas = false, ajoute = false) => {
     const y = bas ? -profondeur(r) : hauteur(r)
     const s = bas ? -1 : 1
     const c = new THREE.Mesh(new THREE.CircleGeometry(taille, 20), cible)
@@ -123,13 +143,18 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
     mk.userData = { pulse: 0, bas }
     g.add(mk); marqueurs.push(mk)
     c.userData.marqueur = mk
+    if (ajoute) {
+      const f = new THREE.Mesh(new THREE.CircleGeometry(taille, 32), new THREE.MeshBasicMaterial({ map: textureFossette(), transparent: true, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2 }))
+      f.position.set(Math.cos(ang) * r, y + 0.0025 * s, Math.sin(ang) * r)
+      f.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), normale(r, ang, bas))
+      f.scale.set(1, 0.82, 1)
+      g.add(f); fossettes.push(f)
+    }
   }
-  poser(0, 0, 0.07, m.notes[0], 0)
-  for (let k = 0; k < 8; k++) poser(R * 0.63, k * Math.PI / 4 - Math.PI / 2, 0.05, m.notes[k + 1] ?? m.notes[0] * 2, k + 1)
   // Zigzag classique : la note la plus grave devant le joueur (bas de la
   // photo), puis en montant, à gauche, à droite, à gauche… jusqu'en haut.
   // a = 0 devant, négatif à gauche, ±π tout en haut.
-  const zigzag = (liste) => {
+  function zigzag(liste) {
     const pts = liste.map(([x, y]) => ({ x, y, a: Math.atan2(x, y) })).sort((p, q) => Math.abs(p.a) - Math.abs(q.a))
     const ordre = []
     for (let i = 0; i < pts.length;) {
@@ -140,24 +165,57 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
     }
     return ordre
   }
-  // Les vrais champs, mesurés sur la photo (rayon unitaire, y vers le bas de l'image).
+  // Les vrais champs, mesurés sur la photo (rayon unitaire, y vers le bas de
+  // l'image) ; on les garde pour redistribuer les notes à chaque configuration.
+  let photo = null, cfg = null
   const placerChamps = (d) => {
     if (!d?.champs?.length) return
+    photo = d
+    configurer(...(cfg ?? [m.notes, m.notesBas ?? []]))
+  }
+
+  // Les notes d'une configuration : le ding, puis les champs de la photo dans
+  // l'ordre du zigzag ; s'il en manque, des champs ajoutés dans les plus grands
+  // vides du rebord. Dessous : les champs photographiés (17 notes) ou, pour les
+  // 12 et 14 notes, des champs ajoutés en couronne sous la coque.
+  const configurer = (haut, bas = []) => {
+    cfg = [haut, bas]
     for (const c of champs.splice(0)) g.remove(c)
     for (const mk of marqueurs.splice(0)) g.remove(mk)
-    poser(0, 0, R * (d.rayonDing ?? 0.17) * 0.95, m.notes[0], 0)
-    zigzag(d.champs).forEach((c, k) => {
+    for (const f of fossettes.splice(0)) { g.remove(f); f.geometry.dispose(); f.material.dispose() }
+    const d = photo ?? { champs: [], rayonChamp: 0.1, rayonDing: 0.15 }
+    const rc = R * (d.rayonChamp ?? 0.095) * 1.15
+    poser(0, 0, R * (d.rayonDing ?? 0.17) * 0.95, haut[0], 0)
+    const vus = zigzag(d.champs)
+    vus.forEach((c, k) => {
       const r = Math.hypot(c.x, c.y) * R, ang = Math.atan2(c.y, c.x)
-      poser(r, ang, R * (d.rayonChamp ?? 0.095) * 1.15, m.notes[k + 1] ?? m.notes[m.notes.length - 1] * 1.5, k + 1)
+      poser(r, ang, rc, haut[k + 1] ?? haut[haut.length - 1] * 1.5, k + 1)
     })
-    // Les notes du dessous (grandes gammes) : photo prise par en dessous,
-    // l'instrument se retourne autour de l'axe gauche-droite (z inversé).
-    if (d.dessous?.length && m.notesBas) {
+    // Champs ajoutés : à chaque fois dans le plus grand vide angulaire du rebord.
+    const angles = vus.map(c => Math.atan2(c.y, c.x))
+    for (let k = vus.length + 1; k < haut.length; k++) {
+      const tri = [...angles].sort((a, b) => a - b)
+      let best = 0, gap = -1
+      for (let i = 0; i < tri.length; i++) {
+        const a = tri[i], b = i + 1 < tri.length ? tri[i + 1] : tri[0] + 2 * Math.PI
+        if (b - a > gap) { gap = b - a; best = a + (b - a) / 2 }
+      }
+      if (!tri.length) best = -Math.PI / 2
+      angles.push(best)
+      poser(R * 0.8, best, rc * 0.82, haut[k], k, false, true)
+    }
+    if (d.dessous?.length && m.dessous) {
       zigzag(d.dessous).forEach((c, k) => {
         const r = Math.hypot(c.x, c.y) * R, ang = Math.atan2(-c.y, c.x)
-        poser(r, ang, R * (d.rayonDessous ?? 0.09) * 1.15, m.notesBas[k] ?? m.notesBas[m.notesBas.length - 1] * 1.5, 100 + k, true)
+        poser(r, ang, R * (d.rayonDessous ?? 0.09) * 1.15, bas[k] ?? bas[bas.length - 1] * 1.5, 100 + k, true)
+      })
+    } else {
+      bas.forEach((f, k) => {
+        const ang = Math.PI / 2 + (k - (bas.length - 1) / 2) * (2 * Math.PI / Math.max(bas.length, 5))
+        poser(R * 0.52, ang, rc * 0.95, f, 100 + k, true, true)
       })
     }
+    g.userData.nChamps = champs.length
   }
 
   // Halo de frappe : un anneau qui s'allume sur le champ touché.
@@ -211,6 +269,6 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
     }, undefined, () => { acier.color.setHex(m.couleur ?? 0x555a60); acier.metalness = 0.9; res(false) })
   })
 
-  g.userData = { modele: m, champs, marqueurs, coque, dessous, ombre, halo, charger, placerChamps, marque: 0, marqueBas: 0, repos: new THREE.Vector3(), reposQ: new THREE.Quaternion(), reposS: 1 }
+  g.userData = { modele: m, champs, marqueurs, coque, dessous, ombre, halo, charger, placerChamps, configurer, marque: 0, marqueBas: 0, repos: new THREE.Vector3(), reposQ: new THREE.Quaternion(), reposS: 1 }
   return g
 }

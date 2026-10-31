@@ -266,6 +266,58 @@ export class Ambiance {
     this._boucle()
   }
 
+  // Ambiance du temple : la forêt (vent, oiseaux), la pluie sur le toit, ou rien.
+  setAmbiance(type) {
+    this.type = type
+    if (!this.ctx) return
+    if (type === 'aucune') { this.pluie(false); if (this.running) this.stop(0.8); return }
+    if (!this.running) this.start(2)
+    const t = this.ctx.currentTime
+    this.oiseaux.gain.setTargetAtTime(type === 'pluie' ? 0.12 : 1, t, 0.6)
+    this.ventGain.gain.setTargetAtTime(type === 'pluie' ? 0.08 : 0.16, t, 0.8)
+    this.pluie(type === 'pluie')
+  }
+
+  // La pluie sur le toit de bois : un lit de bruit doux (la pluie dans les
+  // pins), et des gouttes une à une, sèches, sur les planches et les tuiles.
+  pluie(on) {
+    if (!this.ctx) return
+    const c = this.ctx, t = c.currentTime
+    if (!this._pluie) {
+      const lit = this._sourceBruit()
+      const bp = c.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 2400; bp.Q.value = 0.45
+      const lp = c.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 7000
+      const g = c.createGain(); g.gain.value = 0
+      lit.connect(bp).connect(lp).connect(g).connect(this.master); lit.start()
+      const grave = this._sourceBruit()
+      const lp2 = c.createBiquadFilter(); lp2.type = 'lowpass'; lp2.frequency.value = 320
+      const g2 = c.createGain(); g2.gain.value = 0
+      grave.connect(lp2).connect(g2).connect(this.master); grave.start()
+      this._pluie = { g, g2, timer: null }
+    }
+    const p = this._pluie
+    p.g.gain.setTargetAtTime(on ? 0.11 : 0, t, 1.2)
+    p.g2.gain.setTargetAtTime(on ? 0.09 : 0, t, 1.2)
+    clearTimeout(p.timer); p.timer = null
+    if (!on) return
+    const goutte = () => {
+      if (!this._pluie || this.type !== 'pluie' || !this.ctx) return
+      const t = c.currentTime + 0.005
+      const n = this._sourceBruit()
+      const f = c.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = rnd(1800, 5200); f.Q.value = rnd(4, 9)
+      const e = c.createGain()
+      const v = rnd(0.02, 0.07)
+      e.gain.setValueAtTime(0.0001, t); e.gain.exponentialRampToValueAtTime(v, t + 0.002); e.gain.exponentialRampToValueAtTime(0.0001, t + rnd(0.03, 0.08))
+      const pan = c.createStereoPanner ? c.createStereoPanner() : null
+      if (pan) pan.pan.value = rnd(-0.9, 0.9)
+      n.connect(f).connect(e)
+      if (pan) e.connect(pan).connect(this.master); else e.connect(this.master)
+      n.start(t, rnd(0, 3)); n.stop(t + 0.12)
+      p.timer = setTimeout(goutte, rnd(25, 140))
+    }
+    goutte()
+  }
+
   // Sourdine : quand on joue, la forêt s'éloigne un peu (oiseaux, vent,
   // handpan lointain), les notes sous les mains passent à côté, intactes.
   sourdine(on) {
