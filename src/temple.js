@@ -528,6 +528,8 @@ export class Temple {
     if (!g) return
     // Sa photo passe devant la file d'attente des autres.
     g.userData.charger()
+    if (this.choisi !== g) this.choisi?.userData.nettete(false)
+    g.userData.nettete(true)
     this.choisi = g
     this.retourne = false
     this.mode = this.mode === 'dessus' ? 'dessus' : 'jeu'

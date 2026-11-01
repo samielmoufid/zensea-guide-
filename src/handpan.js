@@ -236,13 +236,22 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
 
   // Textures : la photo, puis le relief. Chargées après coup, sans bloquer.
   // Une seule fois : appeler de nouveau rend le même chargement en cours.
-  let enCours = null
+  // Sur téléphone, la photo est réduite à 640 px pour la mémoire, sauf pour
+  // l'instrument qu'on regarde de près : lui garde sa photo pleine, bien nette.
+  let enCours = null, pleine = null, reduite = null, net = false
+  const nettete = on => {
+    net = on
+    const im = on ? pleine : reduite
+    if (im && acier.map && acier.map.image !== im) { acier.map.image = im; acier.map.needsUpdate = true }
+  }
   const charger = () => enCours ??= new Promise(res => {
     loader.load(`${base}hp-${m.id}.jpg`, tex => {
       tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = aniso
       if (mobile && tex.image?.width > 700) {
         const cv = document.createElement('canvas'); cv.width = cv.height = 640
-        cv.getContext('2d').drawImage(tex.image, 0, 0, 640, 640); tex.image = cv
+        cv.getContext('2d').drawImage(tex.image, 0, 0, 640, 640)
+        pleine = tex.image; reduite = cv
+        if (!net) tex.image = cv
       }
       acier.map = tex; acier.color.setHex(0xffffff); acier.needsUpdate = true
       // Teinte du dessous : moyenne d'un anneau près du bord de la photo.
@@ -273,6 +282,6 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
     }, undefined, () => { acier.color.setHex(0x555a60); acier.metalness = 0.9; res(false) })
   })
 
-  g.userData = { modele: m, champs, marqueurs, coque, dessous, ombre, halo, charger, placerChamps, configurer, marque: 0, marqueBas: 0, repos: new THREE.Vector3(), reposQ: new THREE.Quaternion(), reposS: 1 }
+  g.userData = { modele: m, champs, marqueurs, coque, dessous, ombre, halo, charger, nettete, placerChamps, configurer, marque: 0, marqueBas: 0, repos: new THREE.Vector3(), reposQ: new THREE.Quaternion(), reposS: 1 }
   return g
 }
