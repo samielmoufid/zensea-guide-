@@ -89,7 +89,9 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
   // le relief (ding bombé, champs en creux, martelage) vient d'une carte de
   // normales construite d'après la position des champs sur la photo.
   const acier = new THREE.MeshPhysicalMaterial({
-    color: 0xffffff, metalness: m.metal ?? 0.38, roughness: (m.rough ?? 0.34) + 0.08,
+    // Gris acier en attendant la photo (le blanc pur ressort trop) ;
+    // la photo, une fois chargée, donne seule la couleur.
+    color: 0x8f8b86, metalness: m.metal ?? 0.38, roughness: (m.rough ?? 0.34) + 0.08,
     clearcoat: 0, envMapIntensity: 0.7, normalScale: new THREE.Vector2(0.5, 0.5),
     anisotropy: 0.45, anisotropyRotation: Math.PI / 2
   })
@@ -233,14 +235,16 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
   g.add(ombre)
 
   // Textures : la photo, puis le relief. Chargées après coup, sans bloquer.
-  const charger = () => new Promise(res => {
+  // Une seule fois : appeler de nouveau rend le même chargement en cours.
+  let enCours = null
+  const charger = () => enCours ??= new Promise(res => {
     loader.load(`${base}hp-${m.id}.jpg`, tex => {
       tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = aniso
       if (mobile && tex.image?.width > 700) {
         const cv = document.createElement('canvas'); cv.width = cv.height = 640
         cv.getContext('2d').drawImage(tex.image, 0, 0, 640, 640); tex.image = cv
       }
-      acier.map = tex; acier.needsUpdate = true
+      acier.map = tex; acier.color.setHex(0xffffff); acier.needsUpdate = true
       // Teinte du dessous : moyenne d'un anneau près du bord de la photo.
       try {
         const cv = document.createElement('canvas'); cv.width = cv.height = 64
@@ -266,7 +270,7 @@ export function creerHandpan(m, { loader, base, mobile, aniso }) {
           loader.load(`${base}nm-${m.id}b.jpg`, nb => { nb.anisotropy = aniso; acierBas.normalMap = nb; acierBas.needsUpdate = true }, undefined, () => {})
         }, undefined, () => {})
       }
-    }, undefined, () => { acier.color.setHex(m.couleur ?? 0x555a60); acier.metalness = 0.9; res(false) })
+    }, undefined, () => { acier.color.setHex(0x555a60); acier.metalness = 0.9; res(false) })
   })
 
   g.userData = { modele: m, champs, marqueurs, coque, dessous, ombre, halo, charger, placerChamps, configurer, marque: 0, marqueBas: 0, repos: new THREE.Vector3(), reposQ: new THREE.Quaternion(), reposS: 1 }

@@ -62,6 +62,8 @@ const pret = (async () => {
     temple.charger(p => { barre.style.width = `${Math.round(p * 100)}%`; hint.textContent = `Préparation du temple… ${Math.round(p * 100)} %` })
   ])
   livre?.setEnvironment(temple.env)
+  // Lien vers un handpan précis : sa photo se charge pendant l'accueil.
+  temple.handpans.find(h => h.userData.modele.id === params.get('handpan'))?.userData.charger()
   foret.entrerAtelier(temple, temple.capVers(0))
   entry.classList.add('is-scene')
   $('.t-charge').classList.add('is-fini')

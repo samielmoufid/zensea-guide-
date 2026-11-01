@@ -526,6 +526,8 @@ export class Temple {
   // On s'approche de cet instrument pour le jouer.
   choisir(g) {
     if (!g) return
+    // Sa photo passe devant la file d'attente des autres.
+    g.userData.charger()
     this.choisi = g
     this.retourne = false
     this.mode = this.mode === 'dessus' ? 'dessus' : 'jeu'
