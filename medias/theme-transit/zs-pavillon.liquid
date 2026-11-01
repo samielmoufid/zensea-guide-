@@ -1,0 +1,176 @@
+{%- comment -%}
+  Accueil · « Jouez-le avant de le choisir » puis la formation offerte, dans un même bloc
+  vert-noir (même direction artistique que la page formation et que Pandrum).
+  Le handpan est une image ronde (anneau de bois compris) : aucune découpe en CSS,
+  donc rien ne déborde, sur Safari comme ailleurs. La zone qui joue les notes est posée
+  exactement sur le disque du handpan (39 % de rayon).
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign sid = section.id
+  if s.image != blank
+    assign img = s.image | image_url: width: 1200
+  elsif s.image_url != blank
+    assign img = s.image_url
+  else
+    assign img = 'zensea-pavillon-handpan.jpg' | file_img_url: '1200x'
+  endif
+-%}
+{%- render 'zs-handpan-sound' -%}
+{%- render 'zs-formation-data' -%}
+
+<div class="zpv" id="zpv-{{ sid }}">
+  <div class="zpv__in">
+
+    <div class="zpv__jouez">
+      <div class="zpv__visuel">
+        <div class="zpv__stage">
+          <img class="zpv__img" src="{{ img }}" alt="Handpan Zensea vu de dessus, à toucher pour l'écouter" width="1200" height="1200" loading="lazy">
+          <span class="zpv__pan" data-zpv-pan role="button" aria-label="Touchez le handpan pour l'écouter"></span>
+          <span class="zpv__ring" aria-hidden="true"></span>
+          <span class="zpv__hint">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5V4a1.5 1.5 0 0 1 3 0v6m0-1a1.5 1.5 0 0 1 3 0v4.5A6.5 6.5 0 0 1 11.5 20h-.6a6 6 0 0 1-4.6-2.2L3.6 14.5a1.5 1.5 0 0 1 2.3-1.9L9 15.5V11"/></svg>
+            {{ s.hint }}
+          </span>
+        </div>
+      </div>
+      <div class="zpv__txt">
+        <span class="zpv__eyebrow">{{ s.eyebrow_a }}{% if s.eyebrow_a != blank and s.eyebrow_b != blank %} · {% endif %}{{ s.eyebrow_b }}</span>
+        <h2 class="zpv__title">{{ s.title }}{% if s.title_accent != blank %} <em>{{ s.title_accent }}</em>{% endif %}</h2>
+        <div class="zpv__text">{{ s.text }}</div>
+        <a class="zpv__btn" href="{{ s.button_link }}">{{ s.button_label }}</a>
+      </div>
+    </div>
+
+    {%- if s.show_formation -%}
+      <div class="zpv__sep" aria-hidden="true"></div>
+      <div class="zpv__formation">
+        <div class="zpv__ecrans">{%- render 'zs-devices', id: sid, bg: s.screen_image, bg2: s.phone_image -%}</div>
+        <div class="zpv__txt">
+          <span class="zpv__eyebrow">{{ s.f_eyebrow }}</span>
+          <h2 class="zpv__title">{{ s.f_title }}</h2>
+          <p class="zpv__text" data-zpv-intro>{{ s.f_text }}</p>
+          <div class="zpv__chiffres" data-zpv-chiffres></div>
+          <a class="zpv__btn zpv__btn--ligne" href="{{ s.f_link }}">{{ s.f_btn }}</a>
+          <p class="zpv__deja">Déjà client ? <a href="{{ s.f_acces_link }}">Accéder à ma formation <span aria-hidden="true">→</span></a></p>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  #zpv-{{ sid }},#zpv-{{ sid }} *{box-sizing:border-box}
+  #zpv-{{ sid }}{--sand:#E6D3A3;--mist:#C4D2CA;--muted:#93a89c;--ligne:rgba(255,255,255,.1);
+    position:relative;color:#fff;padding:{{ s.pad }}px 0;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>"),
+      radial-gradient(55% 40% at 22% 18%,rgba(46,94,70,.42),transparent 70%),
+      radial-gradient(50% 35% at 85% 80%,rgba(36,78,57,.3),transparent 70%),
+      linear-gradient(180deg,#0b1913 0%,#07110c 45%,#050c09 100%)}
+  #zpv-{{ sid }} .zpv__in{max-width:1240px;margin:0 auto;padding:0 24px}
+  #zpv-{{ sid }} .zpv__jouez,#zpv-{{ sid }} .zpv__formation{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:76px;align-items:center}
+  #zpv-{{ sid }} .zpv__formation .zpv__ecrans{order:2}
+  #zpv-{{ sid }} .zpv__sep{height:1px;margin:90px 0;background:linear-gradient(90deg,transparent,rgba(180,201,190,.18),transparent)}
+
+  #zpv-{{ sid }} .zpv__stage{position:relative;width:100%;max-width:560px;margin:0 auto}
+  #zpv-{{ sid }} .zpv__img{display:block;width:100%;height:auto;max-width:100%;border-radius:50%;box-shadow:0 50px 90px -40px rgba(0,0,0,.9)}
+  #zpv-{{ sid }} .zpv__pan{position:absolute;left:11%;top:11%;width:78%;height:78%;border-radius:50%;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none}
+  #zpv-{{ sid }} .zpv__ring{position:absolute;left:26.4%;top:67.4%;width:11.5%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;border:2.5px solid #EAD9B0;pointer-events:none;animation:zpvPulse 2s ease-in-out infinite}
+  @keyframes zpvPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.95}50%{transform:translate(-50%,-50%) scale(1.22);opacity:.35}}
+  #zpv-{{ sid }} .zpv__hint{position:absolute;left:50%;bottom:6%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;white-space:nowrap;
+    background:rgba(7,17,12,.82);color:#F6F3EC;padding:11px 20px;border-radius:99px;font-size:14px;font-weight:600;pointer-events:none;transition:opacity .4s;
+    border:1px solid rgba(255,255,255,.08);box-shadow:0 10px 24px -10px rgba(0,0,0,.8)}
+  #zpv-{{ sid }}.is-played .zpv__hint,#zpv-{{ sid }}.is-played .zpv__ring{opacity:0}
+
+  #zpv-{{ sid }} .zpv__eyebrow{display:block;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);margin:0 0 16px}
+  #zpv-{{ sid }} .zpv__title{margin:0 0 18px;font-weight:600;font-size:clamp(30px,3.8vw,48px);line-height:1.08;letter-spacing:-.02em;color:#fff;text-shadow:0 2px 0 rgba(0,0,0,.4),0 20px 44px rgba(0,0,0,.5)}
+  #zpv-{{ sid }} .zpv__title em{font-style:normal;color:var(--sand)}
+  #zpv-{{ sid }} .zpv__text,#zpv-{{ sid }} .zpv__text p{margin:0 0 28px;font-size:17px;line-height:1.65;color:var(--mist)}
+  #zpv-{{ sid }} .zpv__text p:last-child{margin-bottom:28px}
+  #zpv-{{ sid }} .zpv__btn{display:flex;justify-content:center;align-items:center;width:100%;max-width:440px;padding:18px 28px;border-radius:14px;
+    background:linear-gradient(180deg,#f0e0b6,var(--sand) 55%,#d8c28c);color:#13261c;text-decoration:none;font-weight:600;font-size:16px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 16px 30px -14px rgba(0,0,0,.9);transition:transform .25s,filter .25s}
+  #zpv-{{ sid }} .zpv__btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+  #zpv-{{ sid }} .zpv__btn--ligne{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.7);box-shadow:none}
+  #zpv-{{ sid }} .zpv__btn--ligne:hover{background:rgba(255,255,255,.06)}
+  #zpv-{{ sid }} .zpv__chiffres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:520px;margin:0 0 26px}
+  #zpv-{{ sid }} .zpv__chiffres div{border:1px solid var(--ligne);border-radius:14px;padding:16px 10px;text-align:center;
+    background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.01));box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+  #zpv-{{ sid }} .zpv__chiffres b{display:block;font-size:26px;font-weight:600;color:var(--sand);line-height:1.1}
+  #zpv-{{ sid }} .zpv__chiffres span{display:block;margin-top:4px;font-size:13px;color:var(--mist)}
+  #zpv-{{ sid }} .zpv__deja{margin:18px 0 0;font-size:15px;color:var(--mist)}
+  #zpv-{{ sid }} .zpv__deja a{color:var(--sand);font-weight:600;text-decoration:none}
+  #zpv-{{ sid }} .zpv__deja a:hover{text-decoration:underline;text-underline-offset:3px}
+
+  @media (max-width:989px){
+    #zpv-{{ sid }} .zpv__jouez,#zpv-{{ sid }} .zpv__formation{grid-template-columns:1fr;gap:36px}
+    #zpv-{{ sid }} .zpv__formation .zpv__ecrans{order:0}
+    #zpv-{{ sid }} .zpv__btn{max-width:none}
+  }
+  @media (max-width:749px){
+    #zpv-{{ sid }}{padding:{{ s.pad_m }}px 0}
+    #zpv-{{ sid }} .zpv__in{padding:0 18px}
+    #zpv-{{ sid }} .zpv__sep{margin:56px 0}
+    #zpv-{{ sid }} .zpv__title{font-size:30px}
+    #zpv-{{ sid }} .zpv__text,#zpv-{{ sid }} .zpv__text p{font-size:16px}
+    #zpv-{{ sid }} .zpv__chiffres b{font-size:22px}
+  }
+</style>
+
+<script>
+(function(){
+  var root=document.getElementById('zpv-{{ sid }}'); if(!root) return;
+  var pan=root.querySelector('[data-zpv-pan]');
+  pan.addEventListener('pointerdown',function(ev){
+    if(!window.ZSPan) return;
+    ev.preventDefault();
+    window.ZSPan.tone(window.ZSPan.noteAt(pan,ev));
+    window.ZSPan.ripple(pan,ev);
+    root.classList.add('is-played');
+  });
+  var F=window.ZS_FORMATION, boite=root.querySelector('[data-zpv-chiffres]');
+  if(F&&boite){
+    var n=0,t=0; F.forEach(function(m){n+=m.l.length; m.l.forEach(function(x){t+=x[3];});});
+    var h=Math.floor(t/3600), mn=Math.round(t%3600/60), duree=h? h+' h '+(mn<10?'0':'')+mn : mn+' min';
+    boite.innerHTML='<div><b>'+n+'</b><span>leçons vidéo</span></div><div><b>'+F.length+'</b><span>étapes</span></div><div><b>'+duree+'</b><span>de cours</span></div>';
+    var intro=root.querySelector('[data-zpv-intro]');
+    if(intro) intro.textContent=intro.textContent.replace('{n}',n);
+    root.querySelectorAll('[data-zf-stat]').forEach(function(e){e.textContent=n+' leçons · '+F.length+' étapes · '+duree;});
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Zensea — Jouez-le",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Le handpan à toucher" },
+    { "type": "image_picker", "id": "image", "label": "Image ronde du handpan (vue de dessus)" },
+    { "type": "text", "id": "image_url", "label": "Ou adresse de l'image", "info": "Vide : le handpan Lagon dans son anneau de bois." },
+    { "type": "text", "id": "hint", "label": "Bulle sur le handpan", "default": "Touchez le handpan" },
+    { "type": "text", "id": "eyebrow_a", "label": "Sur-titre (début)", "default": "Nouveau" },
+    { "type": "text", "id": "eyebrow_b", "label": "Sur-titre (fin)", "default": "Pavillon 3D" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Jouez-le avant de le choisir" },
+    { "type": "text", "id": "title_accent", "label": "Fin du titre (couleur sable)" },
+    { "type": "richtext", "id": "text", "label": "Texte", "default": "<p>17 handpans à essayer en 3D, chacun avec son vrai son. Touchez les notes, comparez 440 et 432 Hz, puis choisissez le vôtre.</p>" },
+    { "type": "text", "id": "button_label", "label": "Bouton", "default": "Entrer dans le pavillon" },
+    { "type": "text", "id": "button_link", "label": "Lien du bouton", "default": "https://guide.zensea.fr/" },
+    { "type": "header", "content": "La formation offerte" },
+    { "type": "checkbox", "id": "show_formation", "label": "Afficher la formation sous le handpan", "default": true },
+    { "type": "text", "id": "f_eyebrow", "label": "Sur-titre", "default": "Offerte avec chaque handpan" },
+    { "type": "text", "id": "f_title", "label": "Titre", "default": "Votre formation vidéo offerte" },
+    { "type": "textarea", "id": "f_text", "label": "Texte", "default": "{n} leçons filmées pour aller de votre toute première note à vos premiers morceaux, à votre rythme.", "info": "{n} est remplacé par le nombre de leçons." },
+    { "type": "text", "id": "f_btn", "label": "Bouton", "default": "Voir toute la formation" },
+    { "type": "text", "id": "f_link", "label": "Lien du bouton", "default": "/pages/formation" },
+    { "type": "text", "id": "f_acces_link", "label": "Lien « Déjà client ? »", "default": "/pages/acces-formation" },
+    { "type": "text", "id": "screen_image", "label": "Image de l'écran ordinateur", "default": "https://zensea.fr/cdn/shop/files/ChatGPT_Image_7_sept._2026_22_03_51_2.png?width=1200" },
+    { "type": "text", "id": "phone_image", "label": "Image de l'écran téléphone", "default": "https://zensea.fr/cdn/shop/files/ChatGPT_Image_9_sept._2026_00_26_45.png?width=600" },
+    { "type": "header", "content": "Espacements" },
+    { "type": "range", "id": "pad", "min": 20, "max": 160, "step": 4, "unit": "px", "label": "Marges (bureau)", "default": 112 },
+    { "type": "range", "id": "pad_m", "min": 20, "max": 120, "step": 4, "unit": "px", "label": "Marges (mobile)", "default": 64 }
+  ],
+  "presets": [{ "name": "Zensea — Jouez-le" }]
+}
+{% endschema %}
