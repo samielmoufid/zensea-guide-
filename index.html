@@ -3,96 +3,172 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-  <title>Zensea — Le guide du handpan</title>
-  <meta name="description" content="Dix-sept handpans dans un temple ouvert sur la forêt. Choisissez le vôtre, jouez, lisez le guide.">
-  <meta name="theme-color" content="#0b1a13">
+  <title>Zensea — Le temple des handpans</title>
+  <meta name="description" content="Un pavillon de bois au cœur d’une forêt de pins, au soleil couchant. Dix-sept handpans à jouer en 3D avant de choisir le vôtre.">
+  <meta name="theme-color" content="#1a120c">
   <link rel="canonical" href="https://guide.zensea.fr/">
-  <meta property="og:title" content="Zensea — Le guide du handpan">
-  <meta property="og:description" content="Dix-sept handpans dans un temple ouvert sur la forêt. Choisissez le vôtre, jouez, lisez le guide.">
+  <meta property="og:title" content="Zensea — Le temple des handpans">
+  <meta property="og:description" content="Dix-sept handpans dans un temple ouvert sur la forêt, au soleil couchant. Jouez-les avant de choisir le vôtre.">
   <meta property="og:url" content="https://guide.zensea.fr/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2716%27 fill=%27%232e5e46%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%279%27 fill=%27none%27 stroke=%27%23f6f9f8%27 stroke-width=%272%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%273%27 fill=%27%23f6f9f8%27/%3E%3C/svg%3E">
-  <link rel="preload" as="image" href="./foret/sentier-mini.jpg">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2716%27 fill=%27%23c9934c%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%279%27 fill=%27none%27 stroke=%27%23fff6e6%27 stroke-width=%272%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%273%27 fill=%27%23fff6e6%27/%3E%3C/svg%3E">
+  <link rel="preload" as="image" href="./temple/foret-mini.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
-  <script type="module" crossorigin src="./assets/guide-C3dMVsWz.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/three.module-Bi10bcu1.js">
-  <link rel="modulepreload" crossorigin href="./assets/loupe-B-U3vfab.js">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap">
+  <script type="module" crossorigin src="./assets/guide-BZLlT0Oh.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/three.module-DRLB9TDx.js">
+  <link rel="modulepreload" crossorigin href="./assets/loupe-Ib1wy0nU.js">
   <link rel="stylesheet" crossorigin href="./assets/loupe-BuavQvWn.css">
+  <link rel="stylesheet" crossorigin href="./assets/guide-CPkWcxqw.css">
 </head>
-<body>
-  <!-- La scène WebGL vit derrière tout le reste. -->
+<body class="t-page">
   <canvas id="scene" aria-hidden="true"></canvas>
-  <div id="fallback" class="fallback" hidden aria-hidden="true"></div>
-  <div class="grade" aria-hidden="true"></div>
+  <div id="fallback" class="t-fallback" hidden aria-hidden="true"><img src="./temple/foret-mini.jpg" alt=""></div>
+  <div class="t-vignette" aria-hidden="true"></div>
+  <div id="veil" class="veil t-voile" aria-hidden="true"></div>
 
-  <!-- Voile de transition : brume qui se lève à l'entrée. -->
-  <div id="veil" class="veil" aria-hidden="true"></div>
-
-  <!-- Écran d'entrée. -->
-  <section id="entry" class="entry" aria-labelledby="entry-title">
-    <div class="entry__bg" aria-hidden="true"></div>
-    <div class="entry__vignette" aria-hidden="true"></div>
-    <div class="entry__inner">
-      <p class="entry__brand">Zensea</p>
-      <h1 id="entry-title" class="entry__title">
-        <span class="entry__line">Le guide</span>
-        <span class="entry__line entry__line--em">du handpan</span>
-      </h1>
-      <p class="entry__lead">Un temple de bois ouvert sur la forêt, et dix-sept handpans qui vous attendent.<br>Prenez une grande respiration.</p>
-
-      <p class="entry__ask">Voulez-vous activer le son pour un voyage encore plus immersif ?</p>
-      <div class="entry__actions">
-        <button id="enter-sound" class="btn btn--primary" type="button">
-          <span class="btn__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-          </span>
+  <!-- Accueil : la scène réelle derrière, qui tourne lentement. -->
+  <section id="entry" class="t-accueil" aria-labelledby="t-titre">
+    <img class="t-accueil__photo" src="./temple/foret-mini.jpg" alt="" aria-hidden="true">
+    <div class="t-accueil__fond" aria-hidden="true"></div>
+    <div class="t-accueil__contenu">
+      <p class="t-logo t-logo--grand">Zensea</p>
+      <p class="t-sur">Le temple des handpans</p>
+      <h1 id="t-titre" class="t-titre">Faites-les chanter <em>avant de choisir</em></h1>
+      <p class="t-lead">Un pavillon de bois au cœur d’une forêt de pins, au soleil couchant. Dix-sept handpans vous y attendent, modelés d’après leurs photos et accordés sur leurs vraies gammes.</p>
+      <div class="t-accueil__boutons">
+        <button id="enter-sound" class="t-btn t-btn--or" type="button" disabled>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
           Entrer avec le son
         </button>
-        <button id="enter-silent" class="btn btn--ghost" type="button">Entrer en silence</button>
+        <button id="enter-silent" class="t-btn t-btn--ligne" type="button" disabled>Entrer en silence</button>
       </div>
-      <p class="entry__hint" id="entry-hint">Chargement de la forêt…</p>
+      <div class="t-charge" aria-hidden="true"><span id="t-charge-barre"></span></div>
+      <p id="entry-hint" class="t-etat" role="status">Préparation du temple…</p>
+      <ul class="t-atouts">
+        <li class="t-atout--mobile"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M4 8.5c-1.4 2.2-1.4 4.8 0 7M20 8.5c1.4 2.2 1.4 4.8 0 7"/></svg>Inclinez le téléphone pour regarder autour de vous</li>
+        <li><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/></svg>Casque ou écouteurs conseillés</li>
+      </ul>
     </div>
   </section>
 
-  <!-- Interface dans la forêt. -->
-  <div id="hud" class="hud" hidden>
-    <p class="hud__brand">Zensea</p>
-    <button id="sound-toggle" class="hud__sound" type="button" aria-pressed="false" aria-label="Activer ou couper le son">
-      <svg class="hud__sound-on" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-      <svg class="hud__sound-off" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
-    </button>
-    <p id="look-hint" class="hud__hint">Glissez pour regarder autour de vous</p>
-    <button id="reposer" class="lecture__fermer hud__reposer" type="button" aria-label="Reposer le handpan" hidden>
-      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      <span>Reposer</span>
-    </button>
-    <button id="walk" class="hud__walk" type="button" aria-label="Maintenir pour marcher">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/><path d="m8 22 2-7"/><path d="M14 22l-2-5-2-3 1-5 3 2 3 3"/><path d="M9 12l1-5 3-1"/></svg>
-      <span>Marcher</span>
-    </button>
-    <button id="run" class="hud__walk hud__walk--run" type="button" aria-label="Courir">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/><path d="m4 20 4-6"/><path d="M15 21l-2-6-4-2 2-5 4 1 3 3"/><path d="M9 8l4-1"/><path d="m11 5 2 3"/></svg>
-      <span>Courir</span>
-    </button>
-    <div class="hud__bottom">
-      <p class="hud__breathe" id="breathe">Respirez.</p>
-      <p class="hud__murmure" id="murmure" aria-live="polite"></p>
-      <div id="carte" class="carte" hidden>
-        <p class="carte__nom" id="carte-nom"></p>
-        <p class="carte__sous" id="carte-sous"></p>
+  <!-- Interface du temple. -->
+  <div id="hud" class="hud t-hud" hidden>
+    <header class="t-barre">
+      <button id="t-tous" class="t-pill t-verre" type="button" hidden>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        <span>Tous les handpans</span>
+      </button>
+      <a id="t-logo" class="t-logo" href="https://zensea.fr" target="_top" aria-label="Zensea, retour à la boutique">Zensea</a>
+      <div class="t-actions">
+        <button id="btn-guide" class="t-rond t-verre" type="button" aria-label="Votre guide offert" title="Votre guide offert">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10.2 5 7.8 4.5 4 4.5v13c3.8 0 6.2.5 8 2 1.8-1.5 4.2-2 8-2v-13c-3.8 0-6.2.5-8 2z"/><path d="M12 6.5v13"/></svg>
+        </button>
+        <button id="btn-modeles" class="t-rond t-verre" type="button" aria-label="Choisir un modèle" title="Choisir un modèle">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="7.5" cy="7.5" r="3"/><circle cx="16.5" cy="7.5" r="3"/><circle cx="7.5" cy="16.5" r="3"/><circle cx="16.5" cy="16.5" r="3"/></svg>
+        </button>
+        <button id="sound-toggle" class="t-rond t-verre" type="button" aria-pressed="false" aria-label="Activer ou couper le son" title="Son">
+          <svg class="t-son-on" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          <svg class="t-son-off" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
+        </button>
       </div>
-      <button id="guide" class="btn btn--primary btn--big" type="button" hidden>
-        <span class="btn__label">Ouvrir le guide</span>
-        <span class="btn__arrow" aria-hidden="true">→</span>
-      </button>
-      <button id="retourner" class="btn btn--primary btn--big" type="button" hidden>
-        <span class="btn__label">Voir le dessous</span>
-      </button>
-      <button id="choose" class="btn btn--primary btn--big" type="button">
-        <span class="btn__label">Suivre la musique</span>
-        <span class="btn__arrow" aria-hidden="true">→</span>
-      </button>
+      <p id="t-astuce" class="t-astuce" hidden>Tous nos modèles, d’un coup d’œil</p>
+    </header>
+
+    <p id="t-aide" class="t-aide" role="status"></p>
+
+    <button id="t-bulle" class="t-bulle" type="button" hidden>
+      <span class="t-bulle__nom"></span>
+      <span class="t-bulle__sous"></span>
+      <span class="t-bulle__act"><i aria-hidden="true"></i><span>Toucher pour jouer</span></span>
+    </button>
+
+    <div id="t-notes" class="t-notes" aria-hidden="true"></div>
+    <button id="t-prec" class="t-fleche t-fleche--g t-verre" type="button" aria-label="Modèle précédent" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    <button id="t-suiv" class="t-fleche t-fleche--d t-verre" type="button" aria-label="Modèle suivant" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+
+    <div id="t-lecon" class="t-lecon t-verre" hidden>
+      <p class="t-lecon__titre"></p>
+      <div class="t-lecon__points"></div>
+      <p class="t-lecon__texte"></p>
+      <button class="t-lecon__fin" type="button">Arrêter</button>
     </div>
+
+    <section id="panneau" class="t-panneau" aria-labelledby="p-nom" hidden>
+      <button id="poignee" class="t-poignee" type="button" aria-expanded="false" aria-controls="panneau-corps" aria-label="Afficher les réglages"><span></span></button>
+      <div class="t-panneau__tete">
+        <div class="t-panneau__titres">
+          <h2 id="p-nom"></h2>
+          <p class="t-panneau__sous"><span id="p-prix" class="t-prix"></span><span class="t-sep" aria-hidden="true">·</span><span id="p-gamme"></span></p>
+        </div>
+        <a id="p-choisir" class="t-btn t-btn--or t-btn--petit" target="_top" href="#">Je le veux</a>
+      </div>
+      <div class="t-panneau__actions">
+        <button id="p-melodie" class="t-pill" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg><span>Écouter une mélodie</span></button>
+        <button id="p-apprendre" class="t-pill" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 8l10 5 10-5z"/><path d="M6 10.5V16c3 2.5 9 2.5 12 0v-5.5"/></svg><span>Apprendre</span></button>
+        <button id="p-enreg" class="t-pill" type="button"><i class="t-point" aria-hidden="true"></i><span>Enregistrer</span></button>
+        <button id="p-reecouter" class="t-pill" type="button" hidden><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg><span>Réécouter</span></button>
+        <button id="p-dessus" class="t-pill" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Vue de dessus</span></button>
+        <button id="p-retourner" class="t-pill" type="button" hidden><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/></svg><span>Retourner</span></button>
+      </div>
+      <div id="p-menu" class="t-menu" hidden></div>
+      <div id="panneau-corps" class="t-panneau__corps">
+        <div class="t-groupe" id="g-notes">
+          <span class="t-etiq">Nombre de notes</span>
+          <div class="t-segments" id="p-notes" role="radiogroup" aria-label="Nombre de notes"></div>
+          <p class="t-precision" id="p-notes-info"></p>
+        </div>
+        <div class="t-groupe">
+          <span class="t-etiq">Accordage (La4)</span>
+          <div class="t-segments" id="p-hz" role="radiogroup" aria-label="Accordage">
+            <button type="button" role="radio" data-hz="440">440 Hz</button>
+            <button type="button" role="radio" data-hz="432">432 Hz</button>
+          </div>
+        </div>
+        <div class="t-groupe">
+          <span class="t-etiq">Nom des notes</span>
+          <div class="t-segments" id="p-noms" role="radiogroup" aria-label="Nom des notes">
+            <button type="button" role="radio" data-noms="fr">Do Ré Mi</button>
+            <button type="button" role="radio" data-noms="en">C D E</button>
+            <button type="button" role="radio" data-noms="aucun">Masqués</button>
+          </div>
+        </div>
+        <div class="t-groupe">
+          <span class="t-etiq">Ambiance sonore</span>
+          <div class="t-segments" id="p-ambiance" role="radiogroup" aria-label="Ambiance sonore">
+            <button type="button" role="radio" data-amb="foret">Forêt</button>
+            <button type="button" role="radio" data-amb="pluie">Pluie sur le toit</button>
+            <button type="button" role="radio" data-amb="aucune">Aucune</button>
+          </div>
+        </div>
+        <p class="t-description" id="p-description"></p>
+        <p class="t-clavier" id="p-clavier">Au clavier : touches 1 à 0, puis − et =. Flèches : modèle précédent ou suivant.</p>
+        <a id="p-fiche" class="t-lien" target="_top" href="#">Voir la fiche du produit →</a>
+      </div>
+    </section>
+
+    <section id="feuille-modeles" class="t-feuille" role="dialog" aria-modal="true" aria-labelledby="titre-modeles" hidden>
+      <div class="t-feuille__boite">
+        <header class="t-feuille__tete">
+          <h2 id="titre-modeles">Choisir un modèle</h2>
+          <button class="t-rond t-fermer" type="button" data-fermer aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </header>
+        <div class="t-filtres" id="filtres" role="tablist"></div>
+        <div class="t-cartes" id="cartes"></div>
+      </div>
+    </section>
+
+    <section id="feuille-guide" class="t-feuille t-feuille--modale" role="dialog" aria-modal="true" aria-labelledby="titre-guide" hidden>
+      <div class="t-feuille__boite t-guide">
+        <header class="t-feuille__tete">
+          <h2 id="titre-guide">Votre guide offert</h2>
+          <button class="t-rond t-fermer" type="button" data-fermer aria-label="Fermer"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </header>
+        <img class="t-guide__visuel" src="./livre/couverture.jpg" alt="Couverture du guide : Le handpan, du premier geste au premier morceau" width="1024" height="1536" decoding="async">
+        <p class="t-guide__texte">Avec chaque handpan Zensea, notre guide du débutant vous est offert : dix-neuf pages pour apprendre pas à pas, du premier toucher jusqu’à vos premiers morceaux.</p>
+        <button id="guide-feuilleter" class="t-btn t-btn--or t-btn--large" type="button">Feuilleter le guide</button>
+        <button class="t-btn t-btn--ligne t-btn--large" type="button" data-fermer>Revenir au temple</button>
+      </div>
+    </section>
 
     <!-- Le livre ouvert : navigation dans les pages. -->
     <div id="lecture" class="lecture" hidden>
@@ -125,6 +201,5 @@
       <p class="loupe__aide"><span class="loupe__chevron" aria-hidden="true">‹</span><span class="loupe__texte">Glissez vers la gauche pour la page suivante</span></p>
     </div>
   </div>
-
 </body>
 </html>
