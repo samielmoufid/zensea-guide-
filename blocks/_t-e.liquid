@@ -1,0 +1,245 @@
+{% comment %}
+  Maison Philidor — « Voir chez moi » : l'échiquier en 3D, puis posé sur la table en réalité augmentée,
+  à sa taille réelle. Les modèles (un par taille) sont dans Contenu > Fichiers (philidor-3d-*.glb).
+  Le bloc gravure ouvre la même fenêtre, zoomée sur la plaque en laiton gravée au texte du client.
+{% endcomment %}
+
+{%- liquid
+  assign p = closest.product | default: product
+  capture liste
+    render 'philidor-3d-modeles', handle: p.handle
+  endcapture
+  assign lignes = liste | strip | split: ';;'
+  assign en = false
+  if request.locale.iso_code == 'en'
+    assign en = true
+  endif
+-%}
+
+{%- if p != blank and lignes.size > 0 -%}
+{%- capture carte -%}
+  {%- for l in lignes -%}
+    {%- assign c = l | split: '|' -%}
+    "{{ c[0] | strip }}":{"src":{{ c[1] | strip | file_url | json }},"y":{{ c[2] }},"z":{{ c[3] }},"dims":{{ c[4] | strip | json }} }{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}
+{%- endcapture -%}
+{%- assign premiere = lignes | first | split: '|' -%}
+
+<philidor-3d data-variants="{{ '{' | append: carte | append: '}' | escape }}"></philidor-3d>
+
+<script>
+  if (!customElements.get('philidor-3d')) {
+    customElements.define('philidor-3d', class extends HTMLElement {
+      connectedCallback() {
+        this.ref = (n) => this.querySelector('[data-ref="' + n + '"]');
+        this.dlg = this.ref('dlg');
+        this.en = document.documentElement.lang && document.documentElement.lang.indexOf('en') === 0;
+        this.ref('open').addEventListener('click', () => this.open());
+        this.ref('close').addEventListener('click', () => this.dlg.close());
+        this.dlg.addEventListener('click', (e) => { if (e.target === this.dlg) this.dlg.close(); });
+        this.brancherGravure();
+      }
+
+      // ajoute dans l'option gravure le bouton « Voir la gravure sur l'échiquier en 3D »
+      brancherGravure() {
+        var g = document.querySelector('philidor-gravure');
+        if (!g || g.querySelector('.mph-grav__3d')) return;
+        var apres = g.querySelector('.mph-grav__preview'), on = g.querySelector('.mph-grav__toggle'), inp = g.querySelector('.mph-grav__input');
+        if (!apres || !on || !inp) return;
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'mph-grav__3d'; b.hidden = !on.checked;
+        b.innerHTML = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></svg>' +
+          (this.en ? 'See the engraving on the board in 3D' : "Voir la gravure sur l'échiquier en 3D");
+        apres.insertAdjacentElement('afterend', b);
+        on.addEventListener('change', function () { b.hidden = !on.checked; });
+        b.addEventListener('click', () => this.preview(inp.value.trim() || inp.getAttribute('placeholder') || 'MAISON PHILIDOR', g.police));
+      }
+
+      // modèle de la taille choisie (variante du formulaire), sinon le premier
+      modele() {
+        var map = {}; try { map = JSON.parse(this.dataset.variants); } catch (e) {}
+        var input = document.querySelector('form[action*="/cart/add"] [name="id"]');
+        var id = (input && input.value) || new URLSearchParams(location.search).get('variant');
+        return map[id] || map[Object.keys(map)[0]] || { src: this.dataset.default, y: 0, z: 0, dims: '' };
+      }
+
+      chargerViewer() {
+        if (customElements.get('model-viewer')) return Promise.resolve();
+        if (!this.constructor.lib) {
+          this.constructor.lib = new Promise(function (ok, ko) {
+            var s = document.createElement('script');
+            s.type = 'module'; s.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
+            s.onload = ok; s.onerror = ko; document.head.appendChild(s);
+          }).then(function () { return customElements.whenDefined('model-viewer'); });
+        }
+        return this.constructor.lib;
+      }
+
+      // texte de la plaque : celui de l'aperçu gravure, sinon celui du bloc gravure s'il est activé
+      gravure(texte, police) {
+        if (texte) return { texte: texte, police: police };
+        var g = document.querySelector('philidor-gravure');
+        if (!g) return null;
+        var on = g.querySelector('.mph-grav__toggle'), inp = g.querySelector('.mph-grav__input');
+        if (!on || !on.checked || !inp || !inp.value.trim()) return null;
+        return { texte: inp.value.trim(), police: g.police };
+      }
+
+      async open(texte, police) {
+        var m = this.modele();
+        this.ref('dims').textContent = m.dims || '';
+        if (!this.dlg.open) this.dlg.showModal();
+        var grav = this.gravure(texte, police);
+        try { await this.chargerViewer(); } catch (e) { this.ref('wait').textContent = this.en ? 'The 3D view could not load. Please try again.' : "La 3D n'a pas pu se charger. Réessayez dans un instant."; return; }
+        var mv = this.mv;
+        if (!mv) {
+          mv = this.mv = document.createElement('model-viewer');
+          mv.setAttribute('camera-controls', '');
+          mv.setAttribute('touch-action', 'pan-y');
+          mv.setAttribute('ar', '');
+          mv.setAttribute('ar-modes', 'webxr scene-viewer quick-look');
+          mv.setAttribute('ar-scale', 'fixed');
+          mv.setAttribute('shadow-intensity', '1');
+          mv.setAttribute('shadow-softness', '0.8');
+          mv.setAttribute('environment-image', 'neutral');
+          mv.setAttribute('exposure', '1.05');
+          mv.setAttribute('interaction-prompt', 'none');
+          mv.setAttribute('min-camera-orbit', 'auto auto 0.12m');
+          mv.setAttribute('alt', this.dataset.titre);
+          mv.innerHTML = '<button slot="ar-button" class="mph3d__arbtn">' +
+            '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></svg>' +
+            (this.en ? 'Place it on my table' : 'Le poser sur ma table') + '</button>';
+          mv.addEventListener('load', () => { this.ref('wait').hidden = true; this.appliquer(); });
+          mv.addEventListener('error', () => { this.ref('wait').hidden = false; this.ref('wait').textContent = this.en ? 'The 3D view could not load.' : "La 3D n'a pas pu se charger."; });
+          this.ref('stage').appendChild(mv);
+        }
+        this.grav = grav; this.m = m;
+        if (mv.getAttribute('src') !== m.src) { this.ref('wait').hidden = false; mv.setAttribute('src', m.src); }
+        else this.appliquer();
+      }
+
+      preview(texte, police) { return this.open(texte, police); }
+
+      // plaque gravée + cadrage : vue d'ensemble, ou zoom sur la plaque quand il y a une gravure
+      async appliquer() {
+        var mv = this.mv, m = this.m, grav = this.grav;
+        if (!mv || !mv.model) return;
+        var mat = mv.model.materials.find(function (x) { return x.name === 'plaque'; });
+        if (mat) {
+          if (grav) {
+            var tex = await mv.createTexture(await this.dessinPlaque(grav.texte, grav.police));
+            mat.pbrMetallicRoughness.baseColorTexture.setTexture(tex);
+            mat.pbrMetallicRoughness.setBaseColorFactor([1, 1, 1, 1]);
+            mat.setAlphaMode('OPAQUE');
+          } else {
+            mat.pbrMetallicRoughness.setBaseColorFactor([1, 1, 1, 0]);
+            mat.setAlphaMode('BLEND');
+          }
+        }
+        if (grav && m) {
+          mv.cameraTarget = '0m ' + m.y + 'm ' + m.z + 'm';
+          mv.cameraOrbit = '0deg 50deg 0.24m';
+          mv.fieldOfView = '30deg';
+        } else {
+          mv.cameraTarget = 'auto auto auto';
+          mv.cameraOrbit = '0deg 58deg auto';
+          mv.fieldOfView = 'auto';
+        }
+        mv.jumpCameraToGoal();
+      }
+
+      // la plaque en laiton doré, gravée au texte et à la police choisis
+      async dessinPlaque(texte, police) {
+        var fam = police ? "'" + police + "', Georgia, serif" : 'Georgia, serif';
+        try { if (police && document.fonts) await document.fonts.load('120px ' + fam); } catch (e) {}
+        var cv = document.createElement('canvas'); cv.width = 1000; cv.height = 200;
+        var c = cv.getContext('2d');
+        c.translate(0, 200); c.scale(1, -1); // la plaque lit l'image tête en bas (convention glTF)
+        var g = c.createLinearGradient(0, 0, 1000, 200);
+        g.addColorStop(0, '#b8892d'); g.addColorStop(.45, '#f1d58b'); g.addColorStop(.7, '#c99a3d'); g.addColorStop(1, '#9c7424');
+        c.fillStyle = g; c.fillRect(0, 0, 1000, 200);
+        c.strokeStyle = 'rgba(90,60,10,.55)'; c.lineWidth = 4; c.strokeRect(14, 14, 972, 172);
+        [[46, 100], [954, 100]].forEach(function (v) {
+          var r = c.createRadialGradient(v[0] - 4, v[1] - 4, 1, v[0], v[1], 13);
+          r.addColorStop(0, '#fff3c8'); r.addColorStop(1, '#8a6420');
+          c.fillStyle = r; c.beginPath(); c.arc(v[0], v[1], 13, 0, 7); c.fill();
+          c.strokeStyle = 'rgba(60,40,5,.7)'; c.lineWidth = 3; c.beginPath(); c.moveTo(v[0] - 8, v[1]); c.lineTo(v[0] + 8, v[1]); c.stroke();
+        });
+        var t = texte.toUpperCase(), taille = 112;
+        c.textAlign = 'center'; c.textBaseline = 'middle';
+        do { c.font = '500 ' + taille + 'px ' + fam; taille -= 4; } while (c.measureText(t).width > 820 && taille > 30);
+        c.fillStyle = 'rgba(255,240,200,.55)'; c.fillText(t, 500, 104);
+        c.fillStyle = '#3d2806'; c.fillText(t, 500, 100);
+        return cv.toDataURL('image/png');
+      }
+    });
+  }
+</script>
+{%- endif -%}
+
+{% stylesheet %}
+  .mph3d { display: block; margin: 4px 0 2px; }
+  .mph-grav__3d {
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; margin-top: 12px;
+    padding: 11px 14px; border: 1px solid var(--mph-walnut, #8a5a2b); border-radius: 10px;
+    background: #fff; color: var(--mph-walnut, #8a5a2b); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .mph-grav__3d:hover { background: var(--mph-walnut, #8a5a2b); color: #fff; }
+  .mph-grav__3d[hidden] { display: none; }
+  .mph3d__open {
+    display: flex; align-items: center; gap: 12px; width: 100%;
+    padding: 12px 14px; border: 1px solid #e3d8c6; border-radius: 12px;
+    background: linear-gradient(180deg, #fffdf9, #fbf5ec); color: var(--mph-ink, #2a1b12);
+    font: inherit; text-align: left; cursor: pointer;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+  }
+  .mph3d__open:hover { border-color: #c9ab7e; box-shadow: 0 6px 18px -10px rgba(80,50,20,.45); }
+  .mph3d__open:active { transform: scale(.99); }
+  .mph3d__cube {
+    flex: 0 0 auto; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 10px;
+    background: var(--mph-walnut, #8a5a2b); color: #f6e7c8;
+  }
+  .mph3d__txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; line-height: 1.25; }
+  .mph3d__txt strong { font-size: 15px; font-weight: 600; letter-spacing: .01em; }
+  .mph3d__txt span { font-size: 12.5px; color: var(--mph-muted, #7b5e47); }
+  .mph3d__ar {
+    flex: 0 0 auto; font-size: 11px; font-weight: 700; letter-spacing: .12em; color: #8a5a2b;
+    border: 1px solid #d9c3a0; border-radius: 99px; padding: 4px 9px; background: #fff;
+  }
+  .mph3d__dlg {
+    width: min(980px, 100vw); height: min(760px, 100dvh); max-width: 100vw; max-height: 100dvh;
+    padding: 0; border: 0; border-radius: 16px; overflow: hidden;
+    background: #f4efe6; color: var(--mph-ink, #2a1b12);
+    display: none; flex-direction: column;
+  }
+  .mph3d__dlg[open] { display: flex; }
+  .mph3d__dlg::backdrop { background: rgba(28,18,10,.62); backdrop-filter: blur(2px); }
+  @media (max-width: 749px) { .mph3d__dlg { width: 100vw; height: 100dvh; border-radius: 0; } }
+  .mph3d__head { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px 10px; border-bottom: 1px solid #e6dccd; background: #fffaf2; }
+  .mph3d__head-t { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+  .mph3d__kicker { font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #b9853f; font-weight: 600; }
+  .mph3d__name { font-size: 15px; font-weight: 600; line-height: 1.25; }
+  .mph3d__dims { font-size: 12.5px; color: var(--mph-muted, #7b5e47); }
+  .mph3d__close { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e3d8c6; background: #fff; font-size: 15px; cursor: pointer; color: inherit; }
+  .mph3d__stage { position: relative; flex: 1; min-height: 0; background: radial-gradient(ellipse at 50% 35%, #fbf7f0 0%, #ece3d4 75%); }
+  .mph3d__stage model-viewer { width: 100%; height: 100%; --poster-color: transparent; --progress-bar-color: #8a5a2b; }
+  .mph3d__wait { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; font-size: 13.5px; color: #7b5e47; }
+  .mph3d__arbtn {
+    position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: 0; border-radius: 99px;
+    background: var(--mph-walnut, #8a5a2b); color: #fff; font: inherit; font-size: 14.5px; font-weight: 600;
+    box-shadow: 0 10px 24px -10px rgba(60,35,10,.7); cursor: pointer; white-space: nowrap;
+  }
+  .mph3d__foot { padding: 10px 16px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid #e6dccd; background: #fffaf2; }
+  .mph3d__tip { margin: 0; font-size: 12px; color: var(--mph-muted, #7b5e47); text-align: center; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Voir chez moi — 3D",
+  "tag": null,
+  "settings": [],
+  "presets": [{ "name": "Voir chez moi — 3D", "category": "Maison Philidor" }]
+}
+{% endschema %}
