@@ -20,7 +20,7 @@
 {%- capture carte -%}
   {%- for l in lignes -%}
     {%- assign c = l | split: '|' -%}
-    "{{ c[0] | strip }}":{"src":{{ c[1] | strip | file_url | json }},"y":{{ c[2] }},"z":{{ c[3] }},"dims":{{ c[4] | strip | json }}}{% unless forloop.last %},{% endunless %}
+    "{{ c[0] | strip }}":{"src":{{ c[1] | strip | file_url | json }},"y":{{ c[2] }},"z":{{ c[3] }},"dims":{{ c[4] | strip | json }} }{% unless forloop.last %},{% endunless %}
   {%- endfor -%}
 {%- endcapture -%}
 {%- assign premiere = lignes | first | split: '|' -%}
